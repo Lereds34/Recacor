@@ -77,9 +77,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Col 1 — Identité */}
           <div>
-            <h3 className="text-2xl font-black text-white mb-4">
-              RECA<span className="text-purple-bright">COR</span>
-            </h3>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-recacor.webp" alt="Recacor" className="h-9 w-auto mb-4 brightness-0 invert" />
+            <h3 className="sr-only">Recacor</h3>
             <p className="text-xs uppercase tracking-wider text-purple-glow font-semibold mb-4">
               Montpellier — Le Crès
             </p>

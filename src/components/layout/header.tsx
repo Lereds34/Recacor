@@ -60,13 +60,16 @@ export function Header() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <span className={cn(
-                "text-2xl font-black tracking-tighter transition-colors",
-                scrolled ? "text-purple-deep" : "text-white"
-              )}>
-                RECA<span className="text-purple-bright">COR</span>
-              </span>
+            <Link href="/" className="flex items-center gap-2" aria-label="Recacor — Accueil">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-recacor.webp"
+                alt="Recacor"
+                className={cn(
+                  "h-7 sm:h-8 w-auto transition-all",
+                  scrolled ? "" : "brightness-0 invert"
+                )}
+              />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-6">

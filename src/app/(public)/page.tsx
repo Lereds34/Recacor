@@ -38,6 +38,7 @@ import { ParallaxImage } from "@/components/parallax-image";
 import { BgParticles } from "@/components/bg-particles";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
+import { OpenStatus } from "@/components/open-status";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -110,10 +111,7 @@ function HeroSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
         <div className="max-w-3xl">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/80 text-xs font-medium tracking-wider uppercase backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              Ouvert aujourd&apos;hui · Sans RDV
-            </span>
+            <OpenStatus />
           </motion.div>
 
           <motion.h1
@@ -300,25 +298,25 @@ function TrajectoireSection() {
     {
       year: "1950",
       title: "La fondation",
-      text: "Création de Recacor à Córdoba (Espagne). Origine artisanale : le recreusage de pneumatiques, un savoir-faire rare transmis de génération en génération.",
+      text: "Création de Recacor à Córdoba (Espagne). Atelier artisanal de recreusage de pneumatiques, un savoir-faire rare transmis de génération en génération.",
       Icon: Wrench,
     },
     {
-      year: "1980",
-      title: "Le réseau espagnol",
-      text: "Ouverture progressive d'ateliers à travers l'Espagne. Recacor devient une référence nationale du pneumatique PL et industriel.",
-      Icon: Truck,
-    },
-    {
-      year: "2010",
-      title: "L'expansion européenne",
-      text: "Plus de 60 ateliers en Espagne. Début du rayonnement en Europe et en Afrique du Nord, avec une expertise reconnue sur le pneu lourd.",
+      year: "Développement",
+      title: "60+ ateliers en Espagne",
+      text: "Croissance progressive avec plus de 60 ateliers en Espagne et 400+ professionnels. Expansion vers l'Europe et l'Afrique du Nord, expertise reconnue sur le pneu lourd.",
       Icon: Globe,
     },
     {
-      year: "2024",
-      title: "L'arrivée en France",
-      text: "Implantation à Montpellier — Le Crès avec notre premier garage français. VL, PL, agricole et industriel : tout Recacor au service du Sud.",
+      year: "2017",
+      title: "Recacor France",
+      text: "Création de Recacor France pour porter le savoir-faire espagnol sur le territoire français : pneumatiques VL, PL, agricoles et industriels.",
+      Icon: Truck,
+    },
+    {
+      year: "Aujourd'hui",
+      title: "Implantation Le Crès",
+      text: "Garage Recacor à Montpellier — Le Crès. VL, PL, agricole et industriel : tout l'écosystème Recacor au service du Sud de la France.",
       Icon: MapPin,
     },
   ];

@@ -4,13 +4,14 @@ import { useState } from "react";
 import { MultiStepForm, FormField, isValidPhone, isValidEmail } from "../multi-step-form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Truck, Leaf, Shield, RefreshCw, Zap } from "lucide-react";
 
 const SERVICES = [
-  { value: "pneus_pl", label: "Pneus PL", emoji: "🚚" },
-  { value: "pneus_agricoles", label: "Pneus agricoles", emoji: "🚜" },
-  { value: "pneus_industriels", label: "Pneus industriels", emoji: "🏗️" },
-  { value: "recreusage", label: "Recreusage", emoji: "🔄" },
-  { value: "assistance_site", label: "Assistance sur site", emoji: "⚡" },
+  { value: "pneus_pl", label: "Pneus PL", Icon: Truck },
+  { value: "pneus_agricoles", label: "Pneus agricoles", Icon: Leaf },
+  { value: "pneus_industriels", label: "Pneus industriels", Icon: Shield },
+  { value: "recreusage", label: "Recreusage", Icon: RefreshCw },
+  { value: "assistance_site", label: "Assistance sur site", Icon: Zap },
 ];
 
 const QUANTITES = ["1-5", "6-20", "20+"];
@@ -79,13 +80,13 @@ export function DevisPlForm() {
                       type="button"
                       onClick={() => update("service", s.value)}
                       className={cn(
-                        "rounded-xl border p-3 text-xs font-medium transition-all",
+                        "rounded-xl border p-3 text-xs font-medium transition-all flex flex-col items-center gap-2",
                         data.service === s.value
                           ? "border-purple-bright bg-purple-bright/10 text-purple-bright"
                           : "border-border hover:border-purple-bright/30"
                       )}
                     >
-                      <span className="block text-xl mb-1">{s.emoji}</span>
+                      <s.Icon className="h-5 w-5" strokeWidth={1.75} />
                       {s.label}
                     </button>
                   ))}

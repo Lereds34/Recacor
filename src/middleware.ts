@@ -1,30 +1,44 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 
-const ADMIN_USER = process.env.ADMIN_USER || "admin";
-const ADMIN_PASS = process.env.ADMIN_PASS || "recacor2026";
+const SECRET = new TextEncoder().encode(
+  process.env.AUTH_SECRET || "recacor-dev-secret-change-me-in-prod-please-min-32"
+);
 
-export function middleware(req: NextRequest) {
-  if (!req.nextUrl.pathname.startsWith("/admin") && !req.nextUrl.pathname.startsWith("/api/admin")) {
+export async function middleware(req: NextRequest) {
+  const path = req.nextUrl.pathname;
+
+  // Routes publiques (login + API auth)
+  if (path === "/admin/login" || path.startsWith("/api/admin/auth/")) {
     return NextResponse.next();
   }
 
-  const auth = req.headers.get("authorization");
-
-  if (auth) {
-    const [scheme, encoded] = auth.split(" ");
-    if (scheme === "Basic" && encoded) {
-      const decoded = Buffer.from(encoded, "base64").toString("utf-8");
-      const [user, pass] = decoded.split(":");
-      if (user === ADMIN_USER && pass === ADMIN_PASS) {
-        return NextResponse.next();
-      }
-    }
+  if (!path.startsWith("/admin") && !path.startsWith("/api/admin")) {
+    return NextResponse.next();
   }
 
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Recacor Admin"' },
-  });
+  const token = req.cookies.get("recacor_session")?.value;
+  if (!token) {
+    if (path.startsWith("/api/")) {
+      return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+    }
+    const url = req.nextUrl.clone();
+    url.pathname = "/admin/login";
+    url.searchParams.set("from", path);
+    return NextResponse.redirect(url);
+  }
+
+  try {
+    await jwtVerify(token, SECRET);
+    return NextResponse.next();
+  } catch {
+    if (path.startsWith("/api/")) {
+      return NextResponse.json({ error: "session expired" }, { status: 401 });
+    }
+    const url = req.nextUrl.clone();
+    url.pathname = "/admin/login";
+    return NextResponse.redirect(url);
+  }
 }
 
 export const config = {

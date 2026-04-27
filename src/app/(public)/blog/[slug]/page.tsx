@@ -55,7 +55,19 @@ export default async function ArticlePage({
 
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        {article.frontmatter.image ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={article.frontmatter.image}
+              alt={article.frontmatter.titre}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-deep/85 via-purple-mid/70 to-purple-bright/65" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        )}
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"

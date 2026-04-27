@@ -108,6 +108,25 @@ export async function ensureSchema() {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `;
+
+  // Media library
+  await sql`
+    CREATE TABLE IF NOT EXISTS media (
+      id          SERIAL PRIMARY KEY,
+      url         TEXT NOT NULL,
+      pathname    TEXT NOT NULL,
+      filename    TEXT NOT NULL,
+      alt         TEXT NOT NULL DEFAULT '',
+      mime        TEXT NOT NULL DEFAULT '',
+      size_bytes  INTEGER NOT NULL DEFAULT 0,
+      width       INTEGER,
+      height      INTEGER,
+      tag         TEXT,
+      uploaded_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_media_uploaded ON media (uploaded_at DESC);`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_media_tag ON media (tag);`;
 }
 
 /* ─────── Settings helpers ─────── */

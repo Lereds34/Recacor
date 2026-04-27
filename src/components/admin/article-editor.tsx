@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Eye, Save, Trash2, FileText } from "lucide-react";
+import { ArrowLeft, Eye, Save, Trash2, FileText, ImageIcon } from "lucide-react";
 import Link from "next/link";
+import { MediaPicker } from "./media-picker";
 
 const TEMPLATE = `---
 titre: Titre de l'article
@@ -13,6 +14,7 @@ categorie: pneus-voiture
 date: ${new Date().toISOString().split("T")[0]}
 auteur: Équipe Recacor
 read_time: 4 min
+image:
 ---
 
 # Titre de l'article
@@ -190,6 +192,7 @@ export function ArticleEditor({ initialRaw, initialSlug, isEdit = false }: Props
 
       {tab === "edit" ? (
         <div>
+          <ArticleImagePicker raw={raw} onUpdate={setRaw} />
           <p className="text-xs text-muted-foreground mb-2">
             Collez votre markdown complet ci-dessous (frontmatter + contenu). Le slug et la
             catégorie sont lus automatiquement.
@@ -235,6 +238,34 @@ export function ArticleEditor({ initialRaw, initialSlug, isEdit = false }: Props
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+/* Picker image hero qui sync avec le frontmatter du markdown */
+function ArticleImagePicker({ raw, onUpdate }: { raw: string; onUpdate: (r: string) => void }) {
+  const match = raw.match(/^image:\s*(.*)$/m);
+  const current = match?.[1]?.trim() || "";
+
+  const update = (url: string) => {
+    if (raw.match(/^image:\s*.*$/m)) {
+      onUpdate(raw.replace(/^image:\s*.*$/m, `image: ${url}`));
+    } else {
+      const fmMatch = raw.match(/^---[\s\S]*?---/);
+      if (fmMatch) {
+        const fm = fmMatch[0];
+        const newFm = fm.replace(/\n---$/, `\nimage: ${url}\n---`);
+        onUpdate(raw.replace(fm, newFm));
+      }
+    }
+  };
+
+  return (
+    <div className="mb-4 rounded-2xl border border-border bg-white p-4">
+      <MediaPicker value={current} onChange={update} label="Image principale (hero article)" />
+      <p className="text-[10px] text-muted-foreground mt-2">
+        Synchronisé avec le champ <code>image:</code> du frontmatter
+      </p>
     </div>
   );
 }

@@ -72,6 +72,8 @@ interface ArticleRow {
 }
 
 function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
+  // Extrait image depuis le raw frontmatter (pas stocké en colonne dédiée pour l'instant)
+  const imgMatch = row.raw?.match(/^image:\s*(.+)$/m);
   return {
     slug: row.slug,
     titre: row.titre,
@@ -80,6 +82,7 @@ function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
     date: row.date || undefined,
     auteur: row.auteur || undefined,
     read_time: row.read_time || undefined,
+    image: imgMatch?.[1]?.trim() || undefined,
   };
 }
 

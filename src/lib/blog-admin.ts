@@ -1,62 +1,108 @@
-import fs from "fs/promises";
-import path from "path";
 import matter from "gray-matter";
+import { sql, ensureSchema } from "./db";
 import type { ArticleFrontmatter, Categorie } from "./blog";
-
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
 
 export interface AdminArticle extends ArticleFrontmatter {
   body: string;
-  raw: string; // markdown complet (frontmatter + body)
+  raw: string;
 }
 
-async function ensureDir() {
-  try {
-    await fs.access(BLOG_DIR);
-  } catch {
-    await fs.mkdir(BLOG_DIR, { recursive: true });
-  }
+interface AdminRow {
+  slug: string;
+  titre: string;
+  meta_description: string;
+  categorie: string;
+  date: string | null;
+  auteur: string | null;
+  read_time: string | null;
+  body: string;
+  raw: string;
 }
 
 export async function listArticles(): Promise<ArticleFrontmatter[]> {
-  await ensureDir();
-  const files = await fs.readdir(BLOG_DIR);
-  const articles: ArticleFrontmatter[] = [];
-  for (const file of files) {
-    if (!file.endsWith(".md")) continue;
-    const raw = await fs.readFile(path.join(BLOG_DIR, file), "utf-8");
-    const { data } = matter(raw);
-    articles.push(data as ArticleFrontmatter);
-  }
-  return articles.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  await ensureSchema();
+  const rows = (await sql`
+    SELECT slug, titre, meta_description, categorie, date, auteur, read_time
+    FROM articles
+    ORDER BY date DESC NULLS LAST
+  `) as AdminRow[];
+  return rows.map((r) => ({
+    slug: r.slug,
+    titre: r.titre,
+    meta_description: r.meta_description,
+    categorie: r.categorie as Categorie,
+    date: r.date || undefined,
+    auteur: r.auteur || undefined,
+    read_time: r.read_time || undefined,
+  }));
 }
 
 export async function readArticle(slug: string): Promise<AdminArticle | null> {
-  await ensureDir();
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-  try {
-    const raw = await fs.readFile(filePath, "utf-8");
-    const { data, content } = matter(raw);
-    return { ...(data as ArticleFrontmatter), body: content, raw };
-  } catch {
-    return null;
-  }
+  await ensureSchema();
+  const rows = (await sql`SELECT * FROM articles WHERE slug = ${slug} LIMIT 1`) as AdminRow[];
+  if (rows.length === 0) return null;
+  const r = rows[0];
+  return {
+    slug: r.slug,
+    titre: r.titre,
+    meta_description: r.meta_description,
+    categorie: r.categorie as Categorie,
+    date: r.date || undefined,
+    auteur: r.auteur || undefined,
+    read_time: r.read_time || undefined,
+    body: r.body,
+    raw: r.raw,
+  };
 }
 
 export async function writeArticle(slug: string, raw: string): Promise<void> {
-  await ensureDir();
-  // Validation : slug safe (alphanumeric + tirets)
+  await ensureSchema();
   if (!/^[a-z0-9][a-z0-9-]*$/.test(slug)) {
+    throw new Error("Slug invalide (lettres minuscules, chiffres, tirets)");
+  }
+  const { data, content } = matter(raw);
+  const fm = data as ArticleFrontmatter;
+  if (!fm.titre) throw new Error("Frontmatter 'titre' requis");
+  if (!fm.categorie) throw new Error("Frontmatter 'categorie' requis");
+
+  await sql`
+    INSERT INTO articles (slug, titre, meta_description, categorie, date, auteur, read_time, body, raw, updated_at)
+    VALUES (
+      ${slug},
+      ${fm.titre},
+      ${fm.meta_description || ""},
+      ${fm.categorie},
+      ${fm.date || null},
+      ${fm.auteur || null},
+      ${fm.read_time || null},
+      ${content},
+      ${raw},
+      NOW()
+    )
+    ON CONFLICT (slug) DO UPDATE SET
+      titre = EXCLUDED.titre,
+      meta_description = EXCLUDED.meta_description,
+      categorie = EXCLUDED.categorie,
+      date = EXCLUDED.date,
+      auteur = EXCLUDED.auteur,
+      read_time = EXCLUDED.read_time,
+      body = EXCLUDED.body,
+      raw = EXCLUDED.raw,
+      updated_at = NOW();
+  `;
+}
+
+export async function renameArticle(oldSlug: string, newSlug: string): Promise<void> {
+  await ensureSchema();
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(newSlug)) {
     throw new Error("Slug invalide");
   }
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-  await fs.writeFile(filePath, raw, "utf-8");
+  await sql`UPDATE articles SET slug = ${newSlug} WHERE slug = ${oldSlug}`;
 }
 
 export async function deleteArticle(slug: string): Promise<void> {
-  await ensureDir();
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-  await fs.unlink(filePath);
+  await ensureSchema();
+  await sql`DELETE FROM articles WHERE slug = ${slug}`;
 }
 
 export const VALID_CATEGORIES: Categorie[] = [
@@ -65,20 +111,3 @@ export const VALID_CATEGORIES: Categorie[] = [
   "pneus-pl",
   "blog",
 ];
-
-export function buildMarkdown(
-  fm: ArticleFrontmatter,
-  body: string
-): string {
-  const frontmatter = `---
-titre: ${fm.titre}
-slug: ${fm.slug}
-meta_description: ${fm.meta_description}
-categorie: ${fm.categorie}
-date: ${fm.date || new Date().toISOString().split("T")[0]}
-auteur: ${fm.auteur || "Équipe Recacor"}
-read_time: ${fm.read_time || "3 min"}
----
-`;
-  return frontmatter + "\n" + body.trim() + "\n";
-}

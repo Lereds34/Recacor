@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readArticle, writeArticle, deleteArticle } from "@/lib/blog-admin";
+import { readArticle, writeArticle, deleteArticle, renameArticle } from "@/lib/blog-admin";
 
 export const dynamic = "force-dynamic";
 
@@ -19,12 +19,13 @@ export async function PUT(req: Request, { params }: Params) {
     if (!raw) {
       return NextResponse.json({ error: "raw requis" }, { status: 400 });
     }
-    const finalSlug = newSlug || slug;
-    await writeArticle(finalSlug, raw);
     if (newSlug && newSlug !== slug) {
-      await deleteArticle(slug);
+      await renameArticle(slug, newSlug);
+      await writeArticle(newSlug, raw);
+    } else {
+      await writeArticle(slug, raw);
     }
-    return NextResponse.json({ ok: true, slug: finalSlug });
+    return NextResponse.json({ ok: true, slug: newSlug || slug });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }

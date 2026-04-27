@@ -1,11 +1,8 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
-
-const BLOG_DIR = path.join(process.cwd(), "content", "blog");
+import { sql } from "./db";
 
 export type Categorie = "pneus-voiture" | "mecanique" | "pneus-pl" | "blog";
 
@@ -62,25 +59,35 @@ export const CTA_PER_CATEGORY: Record<
 
 export const categoryLabel = (c: Categorie) => CATEGORY_LABELS[c];
 
-function ensureBlogDir() {
-  if (!fs.existsSync(BLOG_DIR)) fs.mkdirSync(BLOG_DIR, { recursive: true });
+interface ArticleRow {
+  slug: string;
+  titre: string;
+  meta_description: string;
+  categorie: string;
+  date: string | null;
+  auteur: string | null;
+  read_time: string | null;
+  body: string;
+  raw: string;
 }
 
-export function getAllSlugs(): string[] {
-  ensureBlogDir();
-  return fs
-    .readdirSync(BLOG_DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => f.replace(/\.md$/, ""));
+function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
+  return {
+    slug: row.slug,
+    titre: row.titre,
+    meta_description: row.meta_description,
+    categorie: row.categorie as Categorie,
+    date: row.date || undefined,
+    auteur: row.auteur || undefined,
+    read_time: row.read_time || undefined,
+  };
 }
 
 function extractFaq(content: string): { q: string; a: string }[] {
-  // Recherche section ## FAQ et extrait **Question ?**\nRéponse pairs
   const faqMatch = content.match(/##\s+FAQ\s*\n([\s\S]*?)(?=\n##\s|\n*$)/i);
   if (!faqMatch) return [];
   const faqBlock = faqMatch[1];
   const items: { q: string; a: string }[] = [];
-  // Match **Question ?**\nRéponse jusqu'au prochain ** ou fin
   const regex = /\*\*([^*]+\?)\*\*\s*\n([\s\S]*?)(?=\n\*\*[^*]+\?\*\*|\n*$)/g;
   let m: RegExpExecArray | null;
   while ((m = regex.exec(faqBlock)) !== null) {
@@ -101,46 +108,72 @@ function makeExcerpt(content: string, maxWords = 35): string {
   return words.join(" ") + (words.length === maxWords ? "…" : "");
 }
 
-export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  ensureBlogDir();
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return null;
-
-  const raw = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(raw);
-
-  const faq = extractFaq(content);
-  const excerpt = makeExcerpt(content);
-
-  // Retire la section FAQ du body markdown (sera générée séparément + Schema.org)
-  const bodyWithoutFaq = content.replace(/##\s+FAQ[\s\S]*?(?=\n##\s|$)/i, "");
-
+async function rowToArticle(row: ArticleRow): Promise<Article> {
+  const faq = extractFaq(row.body);
+  const excerpt = makeExcerpt(row.body);
+  const bodyWithoutFaq = row.body.replace(/##\s+FAQ[\s\S]*?(?=\n##\s|$)/i, "");
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
     .process(bodyWithoutFaq);
-
   return {
-    frontmatter: data as ArticleFrontmatter,
+    frontmatter: rowToFrontmatter(row),
     html: processed.toString(),
     faq,
     excerpt,
   };
 }
 
+export async function getAllSlugs(): Promise<string[]> {
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const rows = (await sql`SELECT slug FROM articles`) as { slug: string }[];
+    return rows.map((r) => r.slug);
+  } catch {
+    return [];
+  }
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  if (!process.env.DATABASE_URL) return null;
+  try {
+    const rows = (await sql`SELECT * FROM articles WHERE slug = ${slug} LIMIT 1`) as ArticleRow[];
+    if (rows.length === 0) return null;
+    return rowToArticle(rows[0]);
+  } catch {
+    return null;
+  }
+}
+
 export async function getAllArticles(): Promise<Article[]> {
-  const slugs = getAllSlugs();
-  const articles = await Promise.all(slugs.map((s) => getArticleBySlug(s)));
-  return articles
-    .filter((a): a is Article => a !== null)
-    .sort((a, b) => {
-      const da = a.frontmatter.date || "";
-      const db = b.frontmatter.date || "";
-      return db.localeCompare(da);
-    });
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const rows = (await sql`SELECT * FROM articles ORDER BY date DESC NULLS LAST`) as ArticleRow[];
+    return Promise.all(rows.map(rowToArticle));
+  } catch {
+    return [];
+  }
 }
 
 export async function getArticlesByCategory(cat: Categorie): Promise<Article[]> {
-  const all = await getAllArticles();
-  return all.filter((a) => a.frontmatter.categorie === cat);
+  if (!process.env.DATABASE_URL) return [];
+  try {
+    const rows = (await sql`
+      SELECT * FROM articles
+      WHERE categorie = ${cat}
+      ORDER BY date DESC NULLS LAST
+    `) as ArticleRow[];
+    return Promise.all(rows.map(rowToArticle));
+  } catch {
+    return [];
+  }
+}
+
+/* Helpers réutilisés par admin (parsing markdown) */
+export function parseMarkdown(raw: string): {
+  frontmatter: ArticleFrontmatter;
+  body: string;
+} {
+  const { data, content } = matter(raw);
+  return { frontmatter: data as ArticleFrontmatter, body: content };
 }

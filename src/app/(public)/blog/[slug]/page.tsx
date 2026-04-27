@@ -3,20 +3,18 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   getArticleBySlug,
-  getAllSlugs,
   CTA_PER_CATEGORY,
   categoryLabel,
 } from "@/lib/blog";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, User, Phone } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
 import { BgParticles } from "@/components/bg-particles";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
-
-export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
-}
 
 export async function generateMetadata({
   params,

@@ -5,6 +5,9 @@ import { ArrowRight, Clock, User } from "lucide-react";
 import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel } from "@/lib/blog";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog Recacor — Conseils pneus, mécanique & flottes",
   description:

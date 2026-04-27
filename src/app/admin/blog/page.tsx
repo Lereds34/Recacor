@@ -4,6 +4,7 @@ import { Plus, ExternalLink, Pencil } from "lucide-react";
 import { categoryLabel } from "@/lib/blog";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function AdminBlogList() {
   const articles = await listArticles();

@@ -2,8 +2,16 @@ import Link from "next/link";
 import { listArticles } from "@/lib/blog-admin";
 import { FileText, Plus, ExternalLink, ArrowRight } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export default async function AdminHome() {
-  const articles = await listArticles();
+  let articles: Awaited<ReturnType<typeof listArticles>> = [];
+  try {
+    articles = await listArticles();
+  } catch {
+    /* DB indisponible — affiche 0 */
+  }
 
   return (
     <div className="space-y-10">

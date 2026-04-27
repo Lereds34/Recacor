@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { getLegalPage } from "@/lib/legal";
+import { LegalContent } from "@/components/legal-renderer";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
@@ -6,12 +11,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cgv" },
 };
 
-export default function CgvPage() {
+export default async function CgvPage() {
+  const page = await getLegalPage("cgv");
   return (
     <section className="pt-32 pb-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-black mb-8">Conditions générales de vente</h1>
-        <p className="text-muted-foreground">Contenu CGV à compléter.</p>
+        <h1 className="text-4xl font-black mb-8">{page.titre}</h1>
+        <LegalContent markdown={page.content} />
       </div>
     </section>
   );

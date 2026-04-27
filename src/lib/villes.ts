@@ -1,44 +1,69 @@
+import { sql, ensureSchema } from "./db";
+
 export interface Ville {
   slug: string;
-  name: string;
+  nom: string;
+  cp: string;
   distance: string;
   description: string;
-  cp: string;
+  meta_title?: string | null;
+  meta_description?: string | null;
+  published: boolean;
 }
 
-export const villes: Ville[] = [
-  {
-    slug: "montpellier",
-    name: "Montpellier",
-    cp: "34000",
-    distance: "10 min",
-    description:
-      "La capitale de l'Hérault est à seulement 10 minutes de notre garage au Crès. Pas besoin de vous déplacer loin pour trouver les meilleurs prix pneus de la région.",
-  },
-  {
-    slug: "lattes",
-    name: "Lattes",
-    cp: "34970",
-    distance: "15 min",
-    description:
-      "Entre Montpellier et la mer, Lattes est à 15 minutes de nos ateliers. Venez changer vos pneus en toute simplicité sans rendez-vous.",
-  },
-  {
-    slug: "lunel",
-    name: "Lunel",
-    cp: "34400",
-    distance: "20 min",
-    description:
-      "À 20 minutes du Crès via l'A9, Lunel est une ville rapidement accessible. Nos techniciens vous attendent pour pneus, vidange et parallélisme.",
-  },
-  {
-    slug: "le-cres",
-    name: "Le Crès",
-    cp: "34920",
-    distance: "Notre garage",
-    description:
-      "Notre garage principal est installé au Crès, 1240 Route de Nîmes. Un accueil chaleureux, un stock immédiat et des prix imbattables.",
-  },
-];
+interface VilleRow {
+  slug: string;
+  nom: string;
+  cp: string;
+  distance: string;
+  description: string;
+  meta_title: string | null;
+  meta_description: string | null;
+  published: boolean;
+}
 
-export const findVille = (slug: string) => villes.find((v) => v.slug === slug);
+export async function listVilles(includeUnpublished = false): Promise<Ville[]> {
+  try {
+    await ensureSchema();
+    const rows = (includeUnpublished
+      ? await sql`SELECT * FROM villes ORDER BY nom`
+      : await sql`SELECT * FROM villes WHERE published = TRUE ORDER BY nom`) as VilleRow[];
+    return rows;
+  } catch {
+    return [];
+  }
+}
+
+export async function findVille(slug: string): Promise<Ville | null> {
+  try {
+    await ensureSchema();
+    const rows = (await sql`SELECT * FROM villes WHERE slug = ${slug} LIMIT 1`) as VilleRow[];
+    return rows[0] || null;
+  } catch {
+    return null;
+  }
+}
+
+export async function upsertVille(v: Ville): Promise<void> {
+  await ensureSchema();
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(v.slug)) {
+    throw new Error("Slug invalide");
+  }
+  await sql`
+    INSERT INTO villes (slug, nom, cp, distance, description, meta_title, meta_description, published)
+    VALUES (${v.slug}, ${v.nom}, ${v.cp}, ${v.distance}, ${v.description}, ${v.meta_title || null}, ${v.meta_description || null}, ${v.published})
+    ON CONFLICT (slug) DO UPDATE SET
+      nom = EXCLUDED.nom,
+      cp = EXCLUDED.cp,
+      distance = EXCLUDED.distance,
+      description = EXCLUDED.description,
+      meta_title = EXCLUDED.meta_title,
+      meta_description = EXCLUDED.meta_description,
+      published = EXCLUDED.published;
+  `;
+}
+
+export async function deleteVille(slug: string): Promise<void> {
+  await ensureSchema();
+  await sql`DELETE FROM villes WHERE slug = ${slug}`;
+}

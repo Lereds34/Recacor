@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate": "node --env-file=.env.local scripts/migrate-articles.mjs"
+    "db:migrate": "node --env-file=.env.local scripts/migrate-articles.mjs",
+    "db:seed-villes": "node --env-file=.env.local scripts/migrate-villes.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",

@@ -22,12 +22,15 @@ export function ContactSimpleForm() {
 
     pushFormSubmit("vl", "contact-form");
     const payload = { ...data, ...getUtmData(), form_id: "contact-form", service_type: "contact" };
-    console.log("[Contact submit]", payload);
 
     try {
-      await new Promise((r) => setTimeout(r, 400));
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
     } catch (err) {
-      console.error(err);
+      console.error("[contact submit]", err);
     }
 
     router.push("/merci");

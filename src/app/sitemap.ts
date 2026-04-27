@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
-import { villes } from "@/lib/villes";
+import { listVilles } from "@/lib/villes";
+import { getAllSlugs } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://recacor.fr";
   const now = new Date();
 
@@ -23,6 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/confidentialite",
   ];
 
+  const villes = await listVilles();
+  const blogSlugs = await getAllSlugs();
+
   return [
     ...staticRoutes.map((path) => ({
       url: `${base}${path}`,
@@ -35,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,
+    })),
+    ...blogSlugs.map((slug) => ({
+      url: `${base}/blog/${slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 }

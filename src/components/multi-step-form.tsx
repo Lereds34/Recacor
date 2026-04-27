@@ -71,15 +71,20 @@ export function MultiStepForm({
 
     pushFormSubmit(serviceType, id);
 
-    // In real implementation: POST to /api/leads with data + getUtmData()
     const payload = { ...data, ...getUtmData(), form_id: id, service_type: serviceType };
-    console.log("[Lead submit]", payload);
 
     try {
-      // await fetch("/api/leads", { method: "POST", body: JSON.stringify(payload) });
-      await new Promise((r) => setTimeout(r, 400));
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        console.error("[lead submit]", err);
+      }
     } catch (err) {
-      console.error(err);
+      console.error("[lead submit network]", err);
     }
 
     router.push("/merci");

@@ -1,7 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ScrollProgress } from "@/components/scroll-progress";
-import { Onboarding } from "@/components/onboarding";
 import { StickyCallButton } from "@/components/sticky-call-button";
 import { CookieBanner } from "@/components/cookie-banner";
 import { UtmCapture } from "@/components/gtm";
@@ -14,7 +13,6 @@ export default function PublicLayout({
   return (
     <>
       <UtmCapture />
-      <Onboarding />
       <ScrollProgress />
       <Header />
       <main className="flex-1">{children}</main>

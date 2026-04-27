@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PneusVoitureClient } from "./client";
+import { RelatedArticles } from "@/components/related-articles";
 
 export const metadata: Metadata = {
   title: "Pneus Voiture Montpellier — Toutes marques au Crès",
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function PneusVoiturePage() {
-  return <PneusVoitureClient />;
+  return (
+    <>
+      <PneusVoitureClient />
+      <RelatedArticles categorie="pneus-voiture" />
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MecaniqueClient } from "./client";
+import { RelatedArticles } from "@/components/related-articles";
 
 export const metadata: Metadata = {
   title: "Mécanique Légère Montpellier — Garage Recacor Le Crès",
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function MecaniquePage() {
-  return <MecaniqueClient />;
+  return (
+    <>
+      <MecaniqueClient />
+      <RelatedArticles categorie="mecanique" />
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PlClient } from "./client";
+import { RelatedArticles } from "@/components/related-articles";
 
 export const metadata: Metadata = {
   title: "Pneus Poids Lourd Hérault — Agricole & Industriel",
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function PlPage() {
-  return <PlClient />;
+  return (
+    <>
+      <PlClient />
+      <RelatedArticles categorie="pneus-pl" />
+    </>
+  );
 }

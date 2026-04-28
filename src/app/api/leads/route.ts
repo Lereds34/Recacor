@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { sql, ensureSchema } from "@/lib/db";
+import { sql, ensureSchema, getSetting } from "@/lib/db";
 import { getSiteConfig } from "@/lib/site-config";
+import { subscribeContact } from "@/lib/mailchimp";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -74,6 +75,20 @@ export async function POST(req: Request) {
       sendLeadEmail(config.leadsEmailTo, data, leadId).catch((err) =>
         console.error("[lead email]", err)
       );
+    }
+
+    // Mailchimp : ajout automatique à l'audience configurée
+    if (process.env.MAILCHIMP_API_KEY && data.email) {
+      const audienceId = await getSetting("mailchimp_audience_id");
+      if (audienceId) {
+        subscribeContact(audienceId, {
+          email: data.email,
+          firstName: data.prenom,
+          lastName: data.nom,
+          phone: data.telephone,
+          tags: [data.service_type, data.form_id, data.utm_source || "direct"].filter(Boolean) as string[],
+        }).catch((err) => console.error("[mailchimp]", err));
+      }
     }
 
     return NextResponse.json({ ok: true, id: leadId });

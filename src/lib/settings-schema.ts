@@ -74,6 +74,14 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     ],
   },
   {
+    id: "mailchimp",
+    title: "Mailchimp",
+    description: "Ajout automatique des leads à une audience Mailchimp. La clé API est définie via la variable d'environnement MAILCHIMP_API_KEY.",
+    fields: [
+      { key: "mailchimp_audience_id", label: "Audience ID (List ID)", type: "text", defaultValue: "", placeholder: "ex: a1b2c3d4e5", help: "Récupérez l'ID dans Mailchimp → Audience → Settings → Audience name and defaults" },
+    ],
+  },
+  {
     id: "social",
     title: "Réseaux sociaux",
     fields: [

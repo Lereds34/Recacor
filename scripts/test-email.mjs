@@ -76,10 +76,38 @@ async function main() {
   console.log(`   leads_email_to = ${TO}`);
   console.log(`   leads_send_confirmation = 1 (confirmation client activée)`);
 
-  // Tente l'envoi via Resend
+  const html = buildHtml(SAMPLE, 999);
+
+  // Brevo en priorité
+  if (process.env.BREVO_API_KEY) {
+    console.log(`\n📤 Envoi via Brevo vers ${TO}...`);
+    const senderName = process.env.BREVO_SENDER_NAME || "Recacor";
+    const senderEmail = process.env.BREVO_SENDER_EMAIL || "noreply@recacor.fr";
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: senderName, email: senderEmail },
+        to: [{ email: TO }],
+        subject: "🔔 [TEST] Visuel email Recacor",
+        htmlContent: html,
+      }),
+    });
+    const j = await res.json();
+    if (res.ok) {
+      console.log(`✅ Email envoyé via Brevo ! Message ID: ${j.messageId || "—"}`);
+    } else {
+      console.error(`❌ Erreur Brevo:`, j);
+    }
+    return;
+  }
+
   if (process.env.RESEND_API_KEY) {
     console.log(`\n📤 Envoi via Resend vers ${TO}...`);
-    const html = buildHtml(SAMPLE, 999);
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -95,18 +123,14 @@ async function main() {
     });
     const j = await res.json();
     if (res.ok) {
-      console.log(`✅ Email envoyé ! ID: ${j.id || "—"}`);
+      console.log(`✅ Email envoyé via Resend ! ID: ${j.id || "—"}`);
     } else {
       console.error(`❌ Erreur Resend:`, j);
     }
-  } else {
-    console.log(`\n⚠️  RESEND_API_KEY non définie — l'email test n'a pas pu être envoyé.`);
-    console.log(`\n👉 Pour activer l'envoi de mails:`);
-    console.log(`   1. Créer un compte gratuit sur https://resend.com (3000 mails/mois)`);
-    console.log(`   2. Récupérer la clé API`);
-    console.log(`   3. Ajouter dans .env.local : RESEND_API_KEY=re_xxx`);
-    console.log(`   4. Relancer ce script: npm run email:test`);
+    return;
   }
+
+  console.log(`\n⚠️  Ni BREVO_API_KEY ni RESEND_API_KEY définies.`);
 }
 
 main().catch((err) => {

@@ -3,6 +3,7 @@ import { sql, ensureSchema, getSetting } from "@/lib/db";
 import { getSiteConfig } from "@/lib/site-config";
 import { subscribeContact } from "@/lib/mailchimp";
 import { leadNotificationEmail, leadConfirmationEmail } from "@/lib/email-templates";
+import { sendEmail } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -72,7 +73,9 @@ export async function POST(req: Request) {
       }).catch((err) => console.error("[lead webhook]", err));
     }
 
-    if (config.leadsEmailTo && process.env.RESEND_API_KEY) {
+    const hasMailer = !!(process.env.BREVO_API_KEY || process.env.RESEND_API_KEY);
+
+    if (config.leadsEmailTo && hasMailer) {
       sendLeadEmail(config.leadsEmailTo, data, leadId).catch((err) =>
         console.error("[lead email]", err)
       );
@@ -80,7 +83,7 @@ export async function POST(req: Request) {
 
     // Confirmation au client si activée
     const sendConfirm = await getSetting("leads_send_confirmation", "");
-    if (sendConfirm === "1" && data.email && process.env.RESEND_API_KEY) {
+    if (sendConfirm === "1" && data.email && hasMailer) {
       sendConfirmationEmail(data).catch((err) =>
         console.error("[lead confirmation]", err)
       );
@@ -109,39 +112,24 @@ export async function POST(req: Request) {
 
 async function sendLeadEmail(to: string, data: LeadPayload, leadId: number) {
   const { subject, html, text } = leadNotificationEmail(data, leadId);
-
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM || "Recacor <noreply@recacor.fr>",
-      to,
-      subject,
-      html,
-      text,
-    }),
+  const result = await sendEmail({
+    to,
+    subject,
+    html,
+    text,
+    replyTo: data.email,
   });
+  if (!result.ok) console.error("[lead email]", result.error);
 }
 
 async function sendConfirmationEmail(data: LeadPayload) {
-  if (!data.email || !process.env.RESEND_API_KEY) return;
+  if (!data.email) return;
   const { subject, html, text } = leadConfirmationEmail(data);
-
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.RESEND_FROM || "Recacor <noreply@recacor.fr>",
-      to: data.email,
-      subject,
-      html,
-      text,
-    }),
+  const result = await sendEmail({
+    to: data.email,
+    subject,
+    html,
+    text,
   });
+  if (!result.ok) console.error("[confirmation email]", result.error);
 }

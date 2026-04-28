@@ -20,7 +20,7 @@ export async function sendEmail(opts: SendOptions): Promise<{ ok: boolean; provi
 
 async function sendViaBrevo(opts: SendOptions): Promise<{ ok: boolean; provider: string; id?: string; error?: string }> {
   const senderName = process.env.BREVO_SENDER_NAME || "Recacor";
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || "noreply@recacor.fr";
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "recacor.fr@gmail.com";
 
   try {
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {

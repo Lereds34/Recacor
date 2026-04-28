@@ -13,54 +13,26 @@ import { Counter } from "@/components/counter";
 
 const centres = [
   {
-    name: "Bordeaux",
-    city: "33 — Gironde",
-    address: "Zone industrielle, 33000 Bordeaux",
-    phone: "05 XX XX XX XX",
-    hours: "Lun-Ven : 8h-18h | Sam : 8h-12h",
-    specialities: ["Flottes PL", "Utilitaires", "Dépannage 24/7"],
-    emoji: "",
-    image: "/Design sans titre (29)/1.webp",
-    description:
-      "Notre centre historique, spécialisé dans la maintenance de flottes poids lourds et véhicules utilitaires sur l'axe Atlantique.",
-    equipments: ["Pont élévateur PL", "Équilibreuse HD", "Atelier mobile"],
-    team: 8,
-  },
-  {
-    name: "Béziers",
+    name: "Le Crès",
     city: "34 — Hérault",
-    address: "Zone d'activité, 34500 Béziers",
-    phone: "04 XX XX XX XX",
-    hours: "Lun-Ven : 8h-18h | Sam : 8h-12h",
-    specialities: ["Tous véhicules", "Agricole", "Recreusage"],
-    emoji: "",
-    image: "/Design sans titre (29)/3.webp",
-    description:
-      "Centre polyvalent couvrant tous types de véhicules, y compris les engins agricoles et industriels de la région viticole.",
-    equipments: ["Recreuseuse", "Géométrie 3D", "Stockage saisonnier"],
-    team: 6,
-  },
-  {
-    name: "Montpellier",
-    city: "34 — Hérault",
-    address: "Parc d'activité, 34000 Montpellier",
-    phone: "04 XX XX XX XX",
-    hours: "Lun-Ven : 8h-18h",
-    specialities: ["Particuliers", "Professionnels", "Stockage"],
+    address: "1240 Route de Nîmes, 34920 Le Crès",
+    phone: "04 99 53 33 90",
+    hours: "Lun-Ven : 8h–17h | Sam : 8h–12h",
+    specialities: ["Pneus VL", "Poids Lourd", "Agricole & Industriel"],
     emoji: "",
     image: "/Design sans titre (29)/2.webp",
     description:
-      "Notre centre le plus récent, idéalement situé aux portes de la métropole pour servir particuliers et professionnels.",
-    equipments: ["Diagnostic digital", "Montage rapide", "Salle d'attente"],
+      "Pneus toutes marques, mécanique légère, recreusage PL et assistance sur site en Hérault. Sans rendez-vous pour les particuliers.",
+    equipments: ["Géométrie laser 3D", "Équilibreuse HD", "Recreuseuse industrielle"],
     team: 5,
   },
 ];
 
 const stats = [
-  { value: 3, suffix: "", label: "Centres en France", icon: MapPin },
-  { value: 19, suffix: "", label: "Techniciens certifiés", icon: Users },
-  { value: 98, suffix: "%", label: "Satisfaction client", icon: Star },
-  { value: 30, suffix: "min", label: "Intervention moyenne", icon: Gauge },
+  { value: 1, suffix: "", label: "Centre en France", icon: MapPin },
+  { value: 60, suffix: "+", label: "Années d'expertise", icon: Star },
+  { value: 10, suffix: "+", label: "Marques partenaires", icon: Shield },
+  { value: 15, suffix: "min", label: "Montage pneu VL", icon: Gauge },
 ];
 
 const whyUs = [
@@ -110,8 +82,8 @@ export default function NosCentresPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl"
           >
-            3 centres au cœur{" "}
-            <span className="text-purple-glow">du Sud</span>
+            Garage Recacor{" "}
+            <span className="text-purple-glow">Le Crès</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -119,8 +91,8 @@ export default function NosCentresPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-white/60 max-w-xl text-lg"
           >
-            Stratégiquement implantés sur les axes logistiques majeurs, nos
-            centres vous garantissent réactivité, proximité et expertise.
+            Pneus VL, PL, agricoles et industriels à Montpellier — Le Crès.
+            Sans rendez-vous, stock immédiat, expertise depuis 1950.
           </motion.p>
 
           <motion.div
@@ -431,10 +403,10 @@ export default function NosCentresPage() {
                 Demander un devis <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="tel:05XXXXXXXX"
+                href="tel:0499533390"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/25 text-white font-medium text-sm hover:bg-white/10 transition-all"
               >
-                <Phone className="h-4 w-4" /> Appeler
+                <Phone className="h-4 w-4" /> 04 99 53 33 90
               </Link>
             </div>
           </motion.div>

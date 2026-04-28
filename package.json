@@ -9,6 +9,7 @@
     "lint": "eslint",
     "db:migrate": "node --env-file=.env.local scripts/migrate-articles.mjs",
     "db:seed-villes": "node --env-file=.env.local scripts/migrate-villes.mjs",
+    "db:seed-villes-v2": "node --env-file=.env.local scripts/seed-villes-v2.mjs",
     "email:test": "node --env-file=.env.local scripts/test-email.mjs"
   },
   "dependencies": {

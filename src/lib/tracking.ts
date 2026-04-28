@@ -125,7 +125,9 @@ export function hasConsent(): "granted" | "denied" | null {
   return match[1] === "granted" ? "granted" : "denied";
 }
 
-export const PHONE_NUMBER = "+33607621043";
-export const PHONE_DISPLAY = "06 07 62 10 43";
+export const PHONE_NUMBER = "+33499533390";
+export const PHONE_DISPLAY = "04 99 53 33 90";
+export const PHONE_MOBILE = "+33607621043";
+export const PHONE_MOBILE_DISPLAY = "06 07 62 10 43";
 export const ADDRESS = "1240 Route de Nîmes, 34920 Le Crès";
 export const BUSINESS_NAME = "Recacor Montpellier — Le Crès";

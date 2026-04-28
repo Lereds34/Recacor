@@ -40,6 +40,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { OpenStatus } from "@/components/open-status";
+import { LocalBusinessJsonLd } from "@/components/schema-jsonld";
 import { DynamicImage, DynamicVideo, useAssetUrl } from "@/components/dynamic-media";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -344,7 +345,7 @@ function TrajectoireSection() {
               Notre histoire
             </span>
             <h2 className="mt-3 text-4xl sm:text-5xl font-black tracking-tight leading-[1.1]">
-              35 ans de passion,<br />
+              Depuis 1950,<br />
               <span className="text-gradient-purple">une trajectoire unique</span>
             </h2>
           </motion.div>
@@ -464,7 +465,7 @@ function ServicesSection() {
       description:
         "Maintenance préventive et curative des pneumatiques pour vos flottes poids lourds et utilitaires. Intervention sur site, gestion de parc et suivi personnalisé.",
       icon: Truck,
-      href: "/poids-lourd",
+      href: "/pneus-utilitaires-pl",
       features: ["Intervention 24h/24", "Gestion de parc", "Suivi digital"],
     },
     {
@@ -472,7 +473,7 @@ function ServicesSection() {
       description:
         "Solutions adaptées aux véhicules utilitaires légers et flottes de professionnels. Contrats sur-mesure et tarifs préférentiels.",
       icon: Shield,
-      href: "/poids-lourd",
+      href: "/pneus-utilitaires-pl",
       features: ["Contrats sur-mesure", "Tarifs pro", "Multi-marques"],
     },
     {
@@ -480,7 +481,7 @@ function ServicesSection() {
       description:
         "Entretien et remplacement de pneumatiques pour votre véhicule personnel. Avec ou sans rendez-vous, toutes marques.",
       icon: Car,
-      href: "/particulier",
+      href: "/pneus-voiture",
       features: ["Sans rendez-vous", "Toutes marques", "Devis gratuit"],
     },
   ];
@@ -592,7 +593,7 @@ function ServicesSection() {
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <p className="font-black text-lg text-purple-deep">+35 ans</p>
+                  <p className="font-black text-lg text-purple-deep">Depuis 1950</p>
                   <p className="text-xs text-muted-foreground">d&apos;expertise pneumatique</p>
                 </div>
               </motion.div>
@@ -921,16 +922,66 @@ function MarquesSection() {
 
 /* ─────────────────── AVIS CLIENTS ─────────────────── */
 const allAvis = [
-  { name: "Jean-Pierre M.", role: "Transporteur — Bordeaux", text: "Service impeccable, les techniciens sont très professionnels. Je recommande vivement RECACOR pour la gestion de ma flotte de 40 véhicules.", rating: 5 },
-  { name: "Sophie L.", role: "Particulier — Montpellier", text: "Accueil chaleureux et travail de qualité. Mon véhicule est entre de bonnes mains. Prix très compétitifs par rapport à la concurrence.", rating: 5 },
-  { name: "Marc D.", role: "Artisan — Béziers", text: "Réactivité et expertise au rendez-vous. RECACOR comprend les contraintes des professionnels. Service rapide et fiable, même en urgence.", rating: 5 },
-  { name: "Thomas R.", role: "Directeur logistique — Toulouse", text: "Depuis que nous travaillons avec RECACOR, nos coûts de maintenance pneumatique ont baissé de 20%. Un partenaire indispensable.", rating: 5 },
-  { name: "Caroline B.", role: "Particulier — Bordeaux", text: "J'ai été bluffée par la rapidité d'intervention. En moins d'une heure mes 4 pneus étaient changés. Équipe très sympathique.", rating: 5 },
-  { name: "Youssef K.", role: "Chef de parc — Narbonne", text: "La gestion de flotte RECACOR est un vrai game-changer. Suivi digital, alertes d'usure, intervention planifiée. Tout est parfait.", rating: 5 },
-  { name: "Nathalie P.", role: "Particulier — Sète", text: "Excellent rapport qualité/prix et des conseils avisés sur le choix des pneumatiques. Je ne change plus de prestataire !", rating: 4 },
-  { name: "Fabrice G.", role: "Transporteur — Perpignan", text: "Le dépannage 24h/24 nous a sauvé plusieurs fois. Une équipe réactive qui comprend l'urgence du transport routier.", rating: 5 },
-  { name: "Isabelle V.", role: "Particulier — Montpellier", text: "Service au top ! On m'a même offert le contrôle de pression pour mes prochains passages. Fidélité récompensée.", rating: 5 },
-  { name: "Pierre-Antoine L.", role: "Agriculteur — Béziers", text: "Ils s'occupent aussi de nos engins agricoles. Difficile de trouver un prestataire aussi polyvalent et compétent dans la région.", rating: 5 },
+  {
+    name: "Clara R.",
+    role: "Cliente vérifiée — Le Crès",
+    text: "Garage sérieux et équipe très accueillante. Prise en charge rapide, explications claires et travail soigné. On sent qu'ils sont honnêtes et à l'écoute, ce qui est vraiment rassurant. Je recommande sans hésiter !",
+    rating: 5,
+  },
+  {
+    name: "Bertrand",
+    role: "Client vérifié — Le Crès",
+    text: "J'ai éclaté un pneu sur la route et on m'a amené dans ce garage. J'ai été pris rapidement en charge pour le changement de 2 pneus avant à un prix très correct. Les pneus étaient disponibles de suite. Merci à toute l'équipe pour la réactivité.",
+    rating: 5,
+  },
+  {
+    name: "Charlotte M.",
+    role: "Cliente vérifiée — Le Crès",
+    text: "Super accompagnement de la part de l'équipe et notamment de Ruben. Professionnalisme, sérieux, communication et réactivité. On ne peut que recommander ce garage !",
+    rating: 5,
+  },
+  {
+    name: "Olivier P.",
+    role: "Local Guide Google — Le Crès",
+    text: "Garage avec une équipe sympathique. Échanges des pneus faits dans les règles de l'art. Tarifs compétitifs. Continuez comme ça, je recommande !",
+    rating: 5,
+  },
+  {
+    name: "Géraldine V.",
+    role: "Local Guide Google — Le Crès",
+    text: "J'ai fait appel à ce garage par hasard car j'avais crevé dans le coin et quelle bonne surprise. Un service efficace et de bons conseils ! Merci beaucoup.",
+    rating: 5,
+  },
+  {
+    name: "SOS Tyres",
+    role: "Professionnel vérifié — Le Crès",
+    text: "Garage au top !! Très bien équipé avec un service très réactif, un stock important à prix très compétitif.",
+    rating: 5,
+  },
+  {
+    name: "Charline C.",
+    role: "Cliente vérifiée — Le Crès",
+    text: "Très bon garage, service au top. Ruben est à l'écoute. Je recommande.",
+    rating: 5,
+  },
+  {
+    name: "Maxime C.",
+    role: "Client vérifié — Le Crès",
+    text: "Garage au top, de l'accueil à la prestation. Merci encore, je reviendrai.",
+    rating: 5,
+  },
+  {
+    name: "Jeremy D.",
+    role: "Local Guide Google — Le Crès",
+    text: "Pose rapide et prix correct. Efficace !",
+    rating: 5,
+  },
+  {
+    name: "Kevin M.",
+    role: "Client vérifié — Le Crès",
+    text: "Rapide, souriant et efficace ! Je recommande vivement.",
+    rating: 5,
+  },
 ];
 
 function AvisMarquee({ items, direction }: { items: typeof allAvis; direction: "left" | "right" }) {
@@ -997,8 +1048,7 @@ function AvisSection() {
             <span className="text-gradient-purple">nos clients</span>
           </h2>
           <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
-            +2 000 clients nous font confiance. Découvrez leurs retours
-            d&apos;expérience.
+            Ce que disent nos clients sur Google. Avis 100% authentiques.
           </p>
         </motion.div>
       </div>
@@ -1262,7 +1312,7 @@ const faqCategories = [
     items: [
       {
         q: "Quels types de véhicules prenez-vous en charge ?",
-        a: "Nous intervenons sur tous types de véhicules : poids lourds, semi-remorques, utilitaires, véhicules de tourisme, engins agricoles et industriels. Chaque centre dispose d'équipements adaptés à toutes les dimensions de pneumatiques.",
+        a: "Nous intervenons sur tous types de véhicules : poids lourds, semi-remorques, utilitaires, véhicules de tourisme, engins agricoles et industriels. Notre atelier Le Crès est équipé pour toutes les dimensions de pneumatiques.",
       },
       {
         q: "Proposez-vous un service de dépannage ?",
@@ -1280,7 +1330,7 @@ const faqCategories = [
     items: [
       {
         q: "Faut-il prendre rendez-vous ?",
-        a: "Pour les particuliers, la plupart de nos centres acceptent les clients sans rendez-vous. Pour les flottes et interventions planifiées, nous recommandons de prendre rendez-vous pour garantir la disponibilité des équipements et des pneumatiques nécessaires.",
+        a: "Non, notre garage Le Crès accepte les particuliers sans rendez-vous. Pour les flottes et interventions planifiées, nous recommandons de prendre rendez-vous pour garantir la disponibilité des pneumatiques.",
       },
       {
         q: "Quelles marques de pneumatiques proposez-vous ?",
@@ -1679,6 +1729,7 @@ function ParticuliersProsSection() {
 export default function HomePage() {
   return (
     <>
+      <LocalBusinessJsonLd />
       <HeroSection />
       <DevisVlSection />
       <ServicesSection />

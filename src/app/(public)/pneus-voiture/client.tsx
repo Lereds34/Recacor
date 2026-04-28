@@ -35,6 +35,17 @@ const marques = [
   "Hankook", "Dunlop", "Yokohama", "BFGoodrich", "Firestone",
 ];
 
+const dimensions = [
+  { dim: "195/65 R15", usage: "Peugeot 308, Citroën C4, Renault Mégane" },
+  { dim: "205/55 R16", usage: "VW Golf, Ford Focus, Peugeot 308" },
+  { dim: "185/65 R15", usage: "Renault Clio, Peugeot 208, Citroën C3" },
+  { dim: "215/65 R16", usage: "SUV compacts, Peugeot 3008, Citroën C5" },
+  { dim: "225/45 R17", usage: "Berlines premium, Renault Mégane RS" },
+  { dim: "205/60 R16", usage: "Crossovers, Nissan Qashqai, Renault Kadjar" },
+  { dim: "235/35 R19", usage: "Sportives, berlines GT" },
+  { dim: "175/65 R14", usage: "Citadines, Renault Twingo, Fiat Panda" },
+];
+
 const faqs = [
   {
     q: "Faut-il prendre rendez-vous pour changer ses pneus ?",
@@ -176,6 +187,50 @@ export function PneusVoitureClient() {
                 {m}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dimensions */}
+      <section className="py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+              Dimensions{" "}
+              <span className="text-gradient-purple">disponibles en stock</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
+              Les dimensions les plus courantes sont en stock immédiat à Le Crès.
+              Votre dimension absente ? Livraison sous 24-48h.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {dimensions.map((d, i) => (
+              <motion.div
+                key={d.dim}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="rounded-2xl border border-border bg-white p-5 hover:border-purple-bright/30 hover:shadow-lg hover:shadow-purple-bright/[0.06] transition-all"
+              >
+                <p className="text-lg font-black text-purple-bright mb-1">{d.dim}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{d.usage}</p>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <p className="text-sm text-muted-foreground">
+              Dimension non listée ?{" "}
+              <a href="#devis" className="text-purple-bright font-semibold hover:underline">
+                Demandez un devis gratuit →
+              </a>
+            </p>
           </div>
         </div>
       </section>

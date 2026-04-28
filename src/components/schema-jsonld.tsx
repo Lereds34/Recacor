@@ -84,3 +84,51 @@ export function FaqJsonLd({ items, id = "faq" }: { items: FaqItem[]; id?: string
     />
   );
 }
+
+export function LocalBusinessJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    name: "Recacor Montpellier — Le Crès",
+    image: "https://recacor.fr/LOGO_MARQUE/recacor-logo.webp",
+    url: "https://recacor.fr",
+    telephone: "+33499533390",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "1240 Route de Nîmes",
+      addressLocality: "Le Crès",
+      postalCode: "34920",
+      addressCountry: "FR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 43.644,
+      longitude: 3.967,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "17:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "08:00",
+        closes: "12:00",
+      },
+    ],
+    priceRange: "€€",
+    servesCuisine: undefined,
+    areaServed: "Hérault",
+    hasMap: "https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès",
+  };
+  return (
+    <Script
+      id="local-business"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

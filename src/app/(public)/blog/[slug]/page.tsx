@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   getArticleBySlug,
+  getAllArticles,
   CTA_PER_CATEGORY,
   categoryLabel,
 } from "@/lib/blog";
@@ -41,6 +42,15 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   const cta = CTA_PER_CATEGORY[article.frontmatter.categorie];
+
+  const allArticles = await getAllArticles();
+  const relatedArticles = allArticles
+    .filter(
+      (a) =>
+        a.frontmatter.slug !== slug &&
+        a.frontmatter.categorie === article.frontmatter.categorie
+    )
+    .slice(0, 3);
 
   return (
     <>
@@ -134,6 +144,33 @@ export default async function ArticlePage({
                   </summary>
                   <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
                 </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Articles liés */}
+      {relatedArticles.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-black tracking-tight mb-8">
+              Articles <span className="text-gradient-purple">similaires</span>
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedArticles.map((a) => (
+                <Link key={a.frontmatter.slug} href={`/blog/${a.frontmatter.slug}`}
+                  className="group rounded-2xl border border-border bg-white p-6 hover:border-purple-bright/30 hover:shadow-lg transition-all">
+                  <Badge className="bg-purple-bright/10 text-purple-bright border-purple-bright/20 text-xs mb-3">
+                    {categoryLabel(a.frontmatter.categorie)}
+                  </Badge>
+                  <h3 className="font-black text-sm leading-snug mb-2 group-hover:text-purple-deep transition-colors line-clamp-2">
+                    {a.frontmatter.titre}
+                  </h3>
+                  <span className="text-xs text-purple-bright font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Lire <ArrowRight className="h-3 w-3" />
+                  </span>
+                </Link>
               ))}
             </div>
           </div>

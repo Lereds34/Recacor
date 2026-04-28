@@ -4,6 +4,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { StickyCallButton } from "@/components/sticky-call-button";
 import { CookieBanner } from "@/components/cookie-banner";
 import { UtmCapture } from "@/components/gtm";
+import { AssetsProvider } from "@/components/dynamic-media";
 
 export default function PublicLayout({
   children,
@@ -11,7 +12,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <AssetsProvider>
       <UtmCapture />
       <ScrollProgress />
       <Header />
@@ -19,6 +20,6 @@ export default function PublicLayout({
       <Footer />
       <StickyCallButton />
       <CookieBanner />
-    </>
+    </AssetsProvider>
   );
 }

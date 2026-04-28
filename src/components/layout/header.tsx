@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { PhoneLink } from "@/components/phone-link";
 import { PHONE_DISPLAY } from "@/lib/tracking";
+import { useAssetUrl } from "@/components/dynamic-media";
 
 const navigation = [
   { name: "Pneus voiture", href: "/pneus-voiture" },
@@ -15,11 +16,13 @@ const navigation = [
   { name: "Notre garage", href: "/contact" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
+  // Maquette retirée
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const logoUrl = useAssetUrl("site_logo", "/logo-recacor.webp");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -63,7 +66,7 @@ export function Header() {
             <Link href="/" className="flex items-center gap-2" aria-label="Recacor — Accueil">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/logo-recacor.webp"
+                src={logoUrl}
                 alt="Recacor"
                 className={cn(
                   "h-7 sm:h-8 w-auto transition-all",

@@ -1,5 +1,6 @@
 "use client";
 
+import { createContext, useContext } from "react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -39,22 +40,26 @@ import { BgParticles } from "@/components/bg-particles";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { OpenStatus } from "@/components/open-status";
+import { DynamicImage, DynamicVideo, useAssetUrl } from "@/components/dynamic-media";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 /* ─────────────────── HERO ─────────────────── */
 
 function HeroVideo() {
+  const url = useAssetUrl("home_hero_video", "/VIDEO/animation transition.mp4");
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    video.load();
     video.play().catch(() => {});
-  }, []);
+  }, [url]);
 
   return (
     <video
+      key={url}
       ref={videoRef}
       muted
       loop
@@ -62,7 +67,7 @@ function HeroVideo() {
       preload="auto"
       className="absolute inset-0 w-full h-full object-cover"
     >
-      <source src="/VIDEO/animation transition.mp4" type="video/mp4" />
+      <source src={url} type="video/mp4" />
     </video>
   );
 }
@@ -568,6 +573,7 @@ function ServicesSection() {
           >
             <div className="relative rounded-3xl overflow-hidden aspect-[4/5]">
               <ParallaxImage
+                assetKey="home_services_image"
                 src="/Design sans titre (29)/1.webp"
                 alt="RECACOR - Pneumatiques"
                 className="absolute inset-0 w-full h-full"
@@ -639,6 +645,7 @@ function ProfessionnalismeSection() {
           <MotionDiv variants={fadeUp} custom={2}>
             <div className="relative rounded-2xl overflow-hidden min-h-[320px]">
               <ParallaxImage
+                assetKey="home_pro_image"
                 src="/Design sans titre (29)/2.webp"
                 alt="RECACOR - Pneumatiques Hankook iON"
                 className="absolute inset-0 w-full h-full rounded-2xl"
@@ -739,6 +746,7 @@ function CentresSection() {
             {/* Image + overlay stat */}
             <div className="mt-8 relative rounded-2xl overflow-hidden h-48">
               <ParallaxImage
+                assetKey="home_centres_image"
                 src="/Design sans titre (29)/3.webp"
                 alt="RECACOR - Pile de pneumatiques"
                 className="absolute inset-0 w-full h-full"
@@ -1055,9 +1063,9 @@ function PresenceSection() {
             className="relative"
           >
             <div className="relative rounded-3xl overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/carte/europe-map-CBh8PVWh.webp"
+              <DynamicImage
+                assetKey="home_europe_map"
+                fallback="/carte/europe-map-CBh8PVWh.webp"
                 alt="Carte de présence RECACOR en Europe"
                 className="w-full h-auto"
               />
@@ -1470,16 +1478,16 @@ function FAQSection() {
           transition={{ duration: 0.6 }}
           className="mt-20 rounded-3xl overflow-hidden border border-border shadow-xl shadow-purple-bright/[0.04]"
         >
-          <video
+          <DynamicVideo
+            assetKey="home_faq_video"
+            fallback="/Vidéo_d_une_roue_sur_camion.mp4"
             autoPlay
             muted
             loop
             playsInline
             preload="metadata"
             className="w-full h-auto"
-          >
-            <source src="/Vidéo_d_une_roue_sur_camion.mp4" type="video/mp4" />
-          </video>
+          />
         </motion.div>
       </div>
     </section>

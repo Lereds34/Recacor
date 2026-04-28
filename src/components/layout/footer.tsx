@@ -209,9 +209,9 @@ export function Footer() {
             </span>
           </div>
           <p className="text-xs text-white/30">
-            Maquette par{" "}
+            Site web fait par{" "}
             <a href="https://webomax.fr" target="_blank" rel="noopener noreferrer" className="text-purple-glow hover:text-white transition-colors font-medium">
-              WeboMax
+              Webomax
             </a>
           </p>
         </div>

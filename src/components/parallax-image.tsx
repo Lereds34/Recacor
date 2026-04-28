@@ -2,15 +2,17 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useAssetUrl } from "./dynamic-media";
 
 interface ParallaxImageProps {
   src: string;
   alt: string;
   className?: string;
   speed?: number;
+  assetKey?: string;
 }
 
-export function ParallaxImage({ src, alt, className, speed = 0.15 }: ParallaxImageProps) {
+export function ParallaxImage({ src, alt, className, speed = 0.15, assetKey }: ParallaxImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -18,11 +20,12 @@ export function ParallaxImage({ src, alt, className, speed = 0.15 }: ParallaxIma
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [`-${speed * 100}%`, `${speed * 100}%`]);
+  const url = useAssetUrl(assetKey || "", src);
 
   return (
     <div ref={ref} className={`overflow-hidden ${className || ""}`}>
       <motion.img
-        src={src}
+        src={url}
         alt={alt}
         style={{ y }}
         className="w-full h-[120%] object-cover"

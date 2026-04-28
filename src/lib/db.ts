@@ -109,6 +109,17 @@ export async function ensureSchema() {
     );
   `;
 
+  // Site assets : key/url pour remplacer les placeholders
+  await sql`
+    CREATE TABLE IF NOT EXISTS site_assets (
+      key        TEXT PRIMARY KEY,
+      url        TEXT NOT NULL DEFAULT '',
+      type       TEXT NOT NULL DEFAULT 'image',
+      alt        TEXT NOT NULL DEFAULT '',
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `;
+
   // Media library
   await sql`
     CREATE TABLE IF NOT EXISTS media (

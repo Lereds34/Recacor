@@ -68,6 +68,8 @@ export function Header() {
               <img
                 src={logoUrl}
                 alt="Recacor"
+                width={153}
+                height={32}
                 className={cn(
                   "h-7 sm:h-8 w-auto transition-all",
                   scrolled ? "" : "brightness-0 invert"

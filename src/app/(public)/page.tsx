@@ -54,8 +54,16 @@ function HeroVideo() {
   React.useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.load();
-    video.play().catch(() => {});
+    // Defer load until after first paint / idle to keep LCP fast.
+    const start = () => {
+      video.load();
+      video.play().catch(() => {});
+    };
+    if ("requestIdleCallback" in window) {
+      (window as unknown as { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(start);
+    } else {
+      setTimeout(start, 600);
+    }
   }, [url]);
 
   return (
@@ -65,7 +73,7 @@ function HeroVideo() {
       muted
       loop
       playsInline
-      preload="auto"
+      preload="none"
       className="absolute inset-0 w-full h-full object-cover"
     >
       <source src={url} type="video/mp4" />
@@ -120,12 +128,7 @@ function HeroSection() {
             <OpenStatus />
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight"
-          >
+          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight">
             Garage Pneus{" "}
             <span className="text-purple-glow">Montpellier</span>
             <br />
@@ -135,11 +138,11 @@ function HeroSection() {
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
                 className="absolute bottom-2 left-0 right-0 h-3 sm:h-4 bg-purple-light/40 -rotate-1 origin-left"
               />
             </span>
-          </motion.h1>
+          </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -876,8 +879,11 @@ function InfiniteMarquee({ items, direction = "left", speed = 30 }: { items: typ
             <img
               src={brand.url}
               alt={brand.name}
+              width={120}
+              height={32}
               className="h-8 w-auto object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
               loading="lazy"
+              decoding="async"
             />
           </div>
         ))}

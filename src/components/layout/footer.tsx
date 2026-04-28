@@ -78,7 +78,7 @@ export function Footer() {
           {/* Col 1 — Identité */}
           <div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-recacor.webp" alt="Recacor" className="h-9 w-auto mb-4 brightness-0 invert" />
+            <img src="/logo-recacor.webp" alt="Recacor" width={172} height={36} className="h-9 w-auto mb-4 brightness-0 invert" loading="lazy" />
             <h3 className="sr-only">Recacor</h3>
             <p className="text-xs uppercase tracking-wider text-purple-glow font-semibold mb-4">
               Montpellier — Le Crès

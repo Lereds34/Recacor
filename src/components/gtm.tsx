@@ -4,7 +4,10 @@ import Script from "next/script";
 import { useEffect } from "react";
 import { captureUtmParams, GTM_ID } from "@/lib/tracking";
 
+const GTM_ENABLED = /^GTM-[A-Z0-9]+$/.test(GTM_ID) && GTM_ID !== "GTM-XXXXXXX";
+
 export function GtmConsent() {
+  if (!GTM_ENABLED) return null;
   return (
     <Script id="gtm-consent" strategy="beforeInteractive">
       {`
@@ -23,6 +26,7 @@ export function GtmConsent() {
 }
 
 export function GtmHead() {
+  if (!GTM_ENABLED) return null;
   return (
     <Script id="gtm-head" strategy="afterInteractive">
       {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -35,6 +39,7 @@ export function GtmHead() {
 }
 
 export function GtmNoscript() {
+  if (!GTM_ENABLED) return null;
   return (
     <noscript>
       <iframe

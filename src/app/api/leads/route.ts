@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sql, ensureSchema, getSetting } from "@/lib/db";
 import { getSiteConfig } from "@/lib/site-config";
 import { subscribeContact } from "@/lib/mailchimp";
+import { leadNotificationEmail, leadConfirmationEmail } from "@/lib/email-templates";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -77,6 +78,14 @@ export async function POST(req: Request) {
       );
     }
 
+    // Confirmation au client si activée
+    const sendConfirm = await getSetting("leads_send_confirmation", "");
+    if (sendConfirm === "1" && data.email && process.env.RESEND_API_KEY) {
+      sendConfirmationEmail(data).catch((err) =>
+        console.error("[lead confirmation]", err)
+      );
+    }
+
     // Mailchimp : ajout automatique à l'audience configurée
     if (process.env.MAILCHIMP_API_KEY && data.email) {
       const audienceId = await getSetting("mailchimp_audience_id");
@@ -99,22 +108,7 @@ export async function POST(req: Request) {
 }
 
 async function sendLeadEmail(to: string, data: LeadPayload, leadId: number) {
-  const subject = `Nouveau lead Recacor #${leadId} — ${data.service_type.toUpperCase()}`;
-  const lines = [
-    `<h2>Nouveau lead</h2>`,
-    `<p><strong>ID :</strong> ${leadId}</p>`,
-    `<p><strong>Type :</strong> ${data.service_type}</p>`,
-    `<p><strong>Formulaire :</strong> ${data.form_id}</p>`,
-    `<hr/>`,
-    data.nom && `<p><strong>Nom :</strong> ${data.nom} ${data.prenom || ""}</p>`,
-    data.entreprise && `<p><strong>Entreprise :</strong> ${data.entreprise}</p>`,
-    `<p><strong>Téléphone :</strong> <a href="tel:${data.telephone}">${data.telephone}</a></p>`,
-    `<p><strong>Email :</strong> <a href="mailto:${data.email}">${data.email}</a></p>`,
-    data.cp && `<p><strong>CP :</strong> ${data.cp}</p>`,
-    data.message && `<p><strong>Message :</strong><br/>${(data.message as string).replace(/\n/g, "<br/>")}</p>`,
-    `<hr/>`,
-    `<p><small><strong>Source :</strong> ${data.utm_source || "direct"} · <strong>Page :</strong> ${data.page_source || "/"}</small></p>`,
-  ].filter(Boolean);
+  const { subject, html, text } = leadNotificationEmail(data, leadId);
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -126,7 +120,28 @@ async function sendLeadEmail(to: string, data: LeadPayload, leadId: number) {
       from: process.env.RESEND_FROM || "Recacor <noreply@recacor.fr>",
       to,
       subject,
-      html: lines.join("\n"),
+      html,
+      text,
+    }),
+  });
+}
+
+async function sendConfirmationEmail(data: LeadPayload) {
+  if (!data.email || !process.env.RESEND_API_KEY) return;
+  const { subject, html, text } = leadConfirmationEmail(data);
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: process.env.RESEND_FROM || "Recacor <noreply@recacor.fr>",
+      to: data.email,
+      subject,
+      html,
+      text,
     }),
   });
 }

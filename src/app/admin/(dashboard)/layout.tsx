@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, Inbox, Settings, MapPin, Scale, Globe, ImageIcon, LifeBuoy, Home, Layers } from "lucide-react";
+import { FileText, Inbox, Settings, MapPin, Scale, Globe, ImageIcon, LifeBuoy, Home, Layers, Mail } from "lucide-react";
 import { LogoutButton } from "@/components/admin/logout-button";
 
 export const metadata = {
@@ -15,6 +15,7 @@ const NAV = [
   { href: "/admin/media", label: "Bibliothèque", Icon: ImageIcon },
   { href: "/admin/villes", label: "Villes", Icon: MapPin },
   { href: "/admin/legal", label: "Légal", Icon: Scale },
+  { href: "/admin/emails", label: "Emails", Icon: Mail },
   { href: "/admin/settings", label: "Réglages", Icon: Settings },
   { href: "/admin/maintenance", label: "Maintenance", Icon: LifeBuoy },
 ];

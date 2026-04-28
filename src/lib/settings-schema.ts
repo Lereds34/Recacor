@@ -69,8 +69,9 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     title: "Réception des leads",
     description: "Où envoyer les leads quand un formulaire est soumis (en plus du stockage en base).",
     fields: [
-      { key: "leads_email_to", label: "Email réception leads", type: "email", defaultValue: "", placeholder: "leads@recacor.fr", help: "Si renseigné, chaque lead est envoyé à cet email (nécessite Resend configuré)" },
+      { key: "leads_email_to", label: "Email réception leads", type: "email", defaultValue: "", placeholder: "leads@recacor.fr", help: "Si renseigné, chaque lead est envoyé à cet email avec un visuel premium (nécessite Resend configuré)" },
       { key: "leads_webhook_url", label: "Webhook CRM", type: "url", defaultValue: "", placeholder: "https://...", help: "POST JSON envoyé pour chaque nouveau lead" },
+      { key: "leads_send_confirmation", label: "Email confirmation au client (1 = activé)", type: "text", defaultValue: "", placeholder: "1", help: "Mettez '1' pour envoyer un email de confirmation au client après soumission" },
     ],
   },
   {

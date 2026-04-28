@@ -109,18 +109,27 @@ export async function ensureSchema() {
     );
   `;
 
-  // Site assets : key/url pour remplacer les placeholders
+  // Site assets : key/url pour remplacer les placeholders + data binaire stockée dans Neon
   await sql`
     CREATE TABLE IF NOT EXISTS site_assets (
       key        TEXT PRIMARY KEY,
       url        TEXT NOT NULL DEFAULT '',
       type       TEXT NOT NULL DEFAULT 'image',
       alt        TEXT NOT NULL DEFAULT '',
+      mime       TEXT NOT NULL DEFAULT '',
+      filename   TEXT NOT NULL DEFAULT '',
+      data       BYTEA,
+      size_bytes INTEGER NOT NULL DEFAULT 0,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `;
+  // Migration: ajouter colonnes si la table existait sans
+  await sql`ALTER TABLE site_assets ADD COLUMN IF NOT EXISTS mime TEXT NOT NULL DEFAULT '';`;
+  await sql`ALTER TABLE site_assets ADD COLUMN IF NOT EXISTS filename TEXT NOT NULL DEFAULT '';`;
+  await sql`ALTER TABLE site_assets ADD COLUMN IF NOT EXISTS data BYTEA;`;
+  await sql`ALTER TABLE site_assets ADD COLUMN IF NOT EXISTS size_bytes INTEGER NOT NULL DEFAULT 0;`;
 
-  // Media library
+  // Media library — binaire stocké dans Neon (bytea)
   await sql`
     CREATE TABLE IF NOT EXISTS media (
       id          SERIAL PRIMARY KEY,
@@ -133,9 +142,11 @@ export async function ensureSchema() {
       width       INTEGER,
       height      INTEGER,
       tag         TEXT,
+      data        BYTEA,
       uploaded_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `;
+  await sql`ALTER TABLE media ADD COLUMN IF NOT EXISTS data BYTEA;`;
   await sql`CREATE INDEX IF NOT EXISTS idx_media_uploaded ON media (uploaded_at DESC);`;
   await sql`CREATE INDEX IF NOT EXISTS idx_media_tag ON media (tag);`;
 }

@@ -1,16 +1,14 @@
 import { NextResponse } from "next/server";
-import { put } from "@vercel/blob";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 import sharp from "sharp";
-import { getAllAssets, setAsset, resetAsset } from "@/lib/site-assets";
-import { slugifyFilename } from "@/lib/media";
+import { getAllAssets, setAsset, setAssetBinary, resetAsset } from "@/lib/site-assets";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const MAX_WIDTH = 1920;
 const WEBP_QUALITY = 82;
+const MAX_IMAGE_BYTES = 10 * 1024 * 1024; // 10 Mo
 const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50 Mo
 
 export async function GET() {
@@ -46,22 +44,20 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: "file et key requis" }, { status: 400 });
     }
 
-    let url: string;
     let buffer: Buffer;
     let filename: string;
-    let contentType: string;
+    let mime: string;
 
     if (type === "video") {
       if (file.size > MAX_VIDEO_BYTES) {
         return NextResponse.json({ error: "Vidéo trop lourde (50 Mo max)" }, { status: 400 });
       }
       const ext = (file.name.split(".").pop() || "mp4").toLowerCase();
-      filename = `site/${key}-${Date.now()}.${ext}`;
+      filename = `${key}.${ext}`;
       buffer = Buffer.from(await file.arrayBuffer());
-      contentType = file.type || "video/mp4";
+      mime = file.type || "video/mp4";
     } else {
-      // Image : conversion WebP forcée
-      if (file.size > 10 * 1024 * 1024) {
+      if (file.size > MAX_IMAGE_BYTES) {
         return NextResponse.json({ error: "Image trop lourde (10 Mo max)" }, { status: 400 });
       }
       const inputBuffer = Buffer.from(await file.arrayBuffer());
@@ -71,29 +67,11 @@ export async function PUT(req: Request) {
         pipeline = pipeline.resize(MAX_WIDTH, null, { withoutEnlargement: true });
       }
       buffer = await pipeline.webp({ quality: WEBP_QUALITY }).toBuffer();
-      filename = `site/${key}-${Date.now()}.webp`;
-      contentType = "image/webp";
+      filename = `${key}.webp`;
+      mime = "image/webp";
     }
 
-    // Sécurité du nom
-    filename = filename.replace(/[^a-zA-Z0-9./_-]+/g, "-");
-
-    if (process.env.BLOB_READ_WRITE_TOKEN) {
-      const blob = await put(`recacor/${filename}`, buffer, {
-        access: "public",
-        addRandomSuffix: false,
-        contentType,
-      });
-      url = blob.url;
-    } else {
-      const safeName = slugifyFilename(filename.replace(/^site\//, ""));
-      const uploadsDir = path.join(process.cwd(), "public", "uploads", "site");
-      await mkdir(uploadsDir, { recursive: true });
-      await writeFile(path.join(uploadsDir, safeName), buffer);
-      url = `/uploads/site/${safeName}`;
-    }
-
-    await setAsset(key, url, type, alt);
+    const url = await setAssetBinary(key, buffer, type, mime, filename, alt);
     return NextResponse.json({ ok: true, url });
   } catch (e) {
     console.error("[site-asset upload]", e);

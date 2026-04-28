@@ -36,6 +36,41 @@ export async function insertMedia(m: Omit<MediaItem, "id" | "uploaded_at">): Pro
   return rows[0];
 }
 
+/** Variante avec data binaire stockée dans Neon */
+export async function insertMediaWithData(
+  m: Omit<MediaItem, "id" | "uploaded_at" | "url" | "pathname">,
+  buffer: Buffer
+): Promise<MediaItem> {
+  await ensureSchema();
+  const rows = (await sql`
+    INSERT INTO media (url, pathname, filename, alt, mime, size_bytes, width, height, tag, data)
+    VALUES ('', '', ${m.filename}, ${m.alt}, ${m.mime}, ${m.size_bytes}, ${m.width || null}, ${m.height || null}, ${m.tag || null}, ${buffer})
+    RETURNING *;
+  `) as MediaItem[];
+  const inserted = rows[0];
+  // L'URL pointe vers /api/media/[id]
+  const url = `/api/media/${inserted.id}`;
+  await sql`UPDATE media SET url = ${url}, pathname = ${`media/${inserted.id}`} WHERE id = ${inserted.id}`;
+  inserted.url = url;
+  inserted.pathname = `media/${inserted.id}`;
+  return inserted;
+}
+
+export async function getMediaBinary(id: number): Promise<{ data: Buffer; mime: string; filename: string } | null> {
+  try {
+    await ensureSchema();
+    const rows = (await sql`SELECT data, mime, filename FROM media WHERE id = ${id} LIMIT 1`) as { data: Buffer | null; mime: string; filename: string }[];
+    if (rows.length === 0 || !rows[0].data) return null;
+    return {
+      data: Buffer.isBuffer(rows[0].data) ? rows[0].data : Buffer.from(rows[0].data),
+      mime: rows[0].mime || "application/octet-stream",
+      filename: rows[0].filename,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function updateMediaAlt(id: number, alt: string): Promise<void> {
   await ensureSchema();
   await sql`UPDATE media SET alt = ${alt} WHERE id = ${id}`;

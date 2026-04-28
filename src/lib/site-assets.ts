@@ -210,6 +210,58 @@ export async function setAsset(
   invalidateAssetsCache();
 }
 
+/** Stocke le binaire d'un asset directement dans Neon (bytea) */
+export async function setAssetBinary(
+  key: string,
+  buffer: Buffer,
+  type: "image" | "video",
+  mime: string,
+  filename: string,
+  alt = ""
+): Promise<string> {
+  await ensureSchema();
+  // L'URL pointe vers notre endpoint /api/asset/[key] avec un cache-bust
+  const url = `/api/asset/${encodeURIComponent(key)}?v=${Date.now()}`;
+  await sql`
+    INSERT INTO site_assets (key, url, type, alt, mime, filename, data, size_bytes, updated_at)
+    VALUES (${key}, ${url}, ${type}, ${alt}, ${mime}, ${filename}, ${buffer}, ${buffer.length}, NOW())
+    ON CONFLICT (key) DO UPDATE SET
+      url = EXCLUDED.url,
+      type = EXCLUDED.type,
+      alt = EXCLUDED.alt,
+      mime = EXCLUDED.mime,
+      filename = EXCLUDED.filename,
+      data = EXCLUDED.data,
+      size_bytes = EXCLUDED.size_bytes,
+      updated_at = NOW();
+  `;
+  invalidateAssetsCache();
+  return url;
+}
+
+export interface AssetBlob {
+  data: Buffer;
+  mime: string;
+  filename: string;
+}
+
+export async function getAssetBinary(key: string): Promise<AssetBlob | null> {
+  try {
+    await ensureSchema();
+    const rows = (await sql`
+      SELECT data, mime, filename FROM site_assets WHERE key = ${key} LIMIT 1
+    `) as { data: Buffer | null; mime: string; filename: string }[];
+    if (rows.length === 0 || !rows[0].data) return null;
+    return {
+      data: Buffer.isBuffer(rows[0].data) ? rows[0].data : Buffer.from(rows[0].data),
+      mime: rows[0].mime || "application/octet-stream",
+      filename: rows[0].filename || key,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function resetAsset(key: string): Promise<void> {
   await ensureSchema();
   await sql`DELETE FROM site_assets WHERE key = ${key}`;

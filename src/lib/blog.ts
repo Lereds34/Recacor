@@ -127,10 +127,18 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
   };
 }
 
+// Filtre runtime : un article est public dès que `status='published'`,
+// OU s'il est `status='scheduled'` ET que sa `publish_at` est passée.
+// Plus besoin de cron pour flipper le status — la lecture matche les dates dynamiquement.
+
 export async function getAllSlugs(): Promise<string[]> {
   if (!process.env.DATABASE_URL) return [];
   try {
-    const rows = (await sql`SELECT slug FROM articles WHERE status = 'published'`) as { slug: string }[];
+    const rows = (await sql`
+      SELECT slug FROM articles
+      WHERE status = 'published'
+         OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW())
+    `) as { slug: string }[];
     return rows.map((r) => r.slug);
   } catch {
     return [];
@@ -142,7 +150,9 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
     const rows = (await sql`
       SELECT * FROM articles
-      WHERE slug = ${slug} AND status = 'published'
+      WHERE slug = ${slug}
+        AND (status = 'published'
+             OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
       LIMIT 1
     `) as ArticleRow[];
     if (rows.length === 0) return null;
@@ -158,6 +168,7 @@ export async function getAllArticles(): Promise<Article[]> {
     const rows = (await sql`
       SELECT * FROM articles
       WHERE status = 'published'
+         OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW())
       ORDER BY date DESC NULLS LAST
     `) as ArticleRow[];
     return Promise.all(rows.map(rowToArticle));
@@ -171,7 +182,9 @@ export async function getArticlesByCategory(cat: Categorie): Promise<Article[]> 
   try {
     const rows = (await sql`
       SELECT * FROM articles
-      WHERE categorie = ${cat} AND status = 'published'
+      WHERE categorie = ${cat}
+        AND (status = 'published'
+             OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
       ORDER BY date DESC NULLS LAST
     `) as ArticleRow[];
     return Promise.all(rows.map(rowToArticle));

@@ -3,6 +3,8 @@ import { PlClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
 import { getSetting } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Pneus Poids Lourd Hérault — Agricole & Industriel",
   description:

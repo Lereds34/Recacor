@@ -3,6 +3,8 @@ import { MecaniqueClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
 import { getSetting } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Mécanique Légère Montpellier — Garage Recacor Le Crès",
   description:

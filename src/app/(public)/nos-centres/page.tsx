@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { NosCentresClient } from "./client";
 import { getSetting } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Notre Garage Recacor — Le Crès, Hérault",
   description:

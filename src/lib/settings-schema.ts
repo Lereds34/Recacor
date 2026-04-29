@@ -93,6 +93,19 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     ],
   },
   {
+    id: "hero_images",
+    title: "Images de pages",
+    description: "Image affichée au-dessus du formulaire (ou du contenu principal) de chaque page. URL d'une image hébergée (Vercel Blob, CDN, etc.). Laisser vide pour ne rien afficher.",
+    fields: [
+      { key: "hero_image_pneus_vl", label: "Image page Pneus Voiture", type: "url", defaultValue: "" },
+      { key: "hero_image_mecanique", label: "Image page Mécanique", type: "url", defaultValue: "" },
+      { key: "hero_image_pneus_pl", label: "Image page Pneus PL", type: "url", defaultValue: "" },
+      { key: "hero_image_nos_centres", label: "Image page Notre Garage", type: "url", defaultValue: "" },
+      { key: "hero_image_blog", label: "Image page Blog", type: "url", defaultValue: "" },
+      { key: "hero_image_contact", label: "Image page Contact", type: "url", defaultValue: "" },
+    ],
+  },
+  {
     id: "seo",
     title: "SEO global",
     fields: [

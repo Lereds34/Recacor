@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
 import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
+import { getSetting } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
@@ -140,7 +141,10 @@ function ArticleCard({ article, featured = false }: { article: Article; featured
 }
 
 export default async function BlogPage() {
-  const articles = await getAllArticles();
+  const [articles, heroImage] = await Promise.all([
+    getAllArticles(),
+    getSetting("hero_image_blog"),
+  ]);
   const featured = articles[0];
   const rest = articles.slice(1);
 
@@ -178,6 +182,18 @@ export default async function BlogPage() {
             <p className="text-muted-foreground text-lg">
               Les premiers articles arrivent bientôt — revenez vite !
             </p>
+          </div>
+        </section>
+      )}
+
+      {/* Image hero éditable */}
+      {heroImage && (
+        <section className="pt-12 bg-background">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
+            </div>
           </div>
         </section>
       )}

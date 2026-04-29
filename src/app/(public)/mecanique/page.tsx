@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MecaniqueClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
+import { getSetting } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Mécanique Légère Montpellier — Garage Recacor Le Crès",
@@ -9,10 +10,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/mecanique" },
 };
 
-export default function MecaniquePage() {
+export default async function MecaniquePage() {
+  const heroImage = await getSetting("hero_image_mecanique");
   return (
     <>
-      <MecaniqueClient />
+      <MecaniqueClient heroImage={heroImage} />
       <RelatedArticles categorie="mecanique" />
     </>
   );

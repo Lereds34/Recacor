@@ -69,7 +69,7 @@ const faqs = [
   },
 ];
 
-export function PneusVoitureClient() {
+export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
   return (
     <>
       <BreadcrumbJsonLd
@@ -281,6 +281,12 @@ export function PneusVoitureClient() {
       <section id="devis" className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
         <BgParticles />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          {heroImage && (
+            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
+            </div>
+          )}
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Demandez votre{" "}

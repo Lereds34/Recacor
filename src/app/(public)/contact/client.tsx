@@ -9,7 +9,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { BreadcrumbJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
-export function ContactClient() {
+export function ContactClient({ heroImage }: { heroImage?: string }) {
 
   return (
     <>
@@ -88,6 +88,12 @@ export function ContactClient() {
       <section className="relative py-24 bg-muted overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
+          {heroImage && (
+            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
+            </div>
+          )}
           <div className="text-center mb-10">
             <h2 className="text-4xl font-black tracking-tight">
               Envoyez-nous <span className="text-gradient-purple">un message</span>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PlClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
+import { getSetting } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Pneus Poids Lourd Hérault — Agricole & Industriel",
@@ -9,10 +10,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pneus-utilitaires-pl" },
 };
 
-export default function PlPage() {
+export default async function PlPage() {
+  const heroImage = await getSetting("hero_image_pneus_pl");
   return (
     <>
-      <PlClient />
+      <PlClient heroImage={heroImage} />
       <RelatedArticles categorie="pneus-pl" />
     </>
   );

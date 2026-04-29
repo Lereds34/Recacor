@@ -13,6 +13,7 @@
     "db:seed-villes-v3": "node --env-file=.env.local scripts/seed-villes-v3.mjs",
     "blog:generate": "node --env-file=.env.local scripts/generate-blog-articles.mjs",
     "blog:generate-dry": "node --env-file=.env.local scripts/generate-blog-articles.mjs --dry-run --limit 5",
+    "vercel:deploy": "curl -X POST https://api.vercel.com/v1/integrations/deploy/prj_zct9ONuDq2nNafaAt84Pu38z01jX/ohMime7T0Q",
     "email:test": "node --env-file=.env.local scripts/test-email.mjs"
   },
   "dependencies": {

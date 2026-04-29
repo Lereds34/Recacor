@@ -1,6 +1,6 @@
 /* ───── Tracking utilities ───── */
 
-export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-XXXXXXX";
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-K5H57QHQ";
 
 const UTM_KEYS = [
   "utm_source",

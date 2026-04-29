@@ -22,8 +22,8 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     title: "Coordonnées",
     description: "Informations affichées sur tout le site (header, footer, contact, schema.org).",
     fields: [
-      { key: "phone_number", label: "Téléphone (tel:)", type: "tel", defaultValue: "+33607621043", placeholder: "+33607621043" },
-      { key: "phone_display", label: "Téléphone (affiché)", type: "text", defaultValue: "06 07 62 10 43" },
+      { key: "phone_number", label: "Téléphone (tel:)", type: "tel", defaultValue: "+33499533390", placeholder: "+33499533390" },
+      { key: "phone_display", label: "Téléphone (affiché)", type: "text", defaultValue: "04 99 53 33 90" },
       { key: "email", label: "Email contact", type: "email", defaultValue: "contact@recacor.fr" },
       { key: "address_street", label: "Adresse", type: "text", defaultValue: "1240 Route de Nîmes" },
       { key: "address_city", label: "Ville", type: "text", defaultValue: "Le Crès" },

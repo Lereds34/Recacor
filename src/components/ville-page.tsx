@@ -5,6 +5,7 @@ import { ArrowRight, Phone, MapPin, Clock } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { BgParticles } from "@/components/bg-particles";
+import { AvisSection } from "@/components/avis-section";
 import { BreadcrumbJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 import type { Ville } from "@/lib/villes";
@@ -97,6 +98,8 @@ export function VillePageClient({ ville }: { ville: Ville }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
     </>
   );
 }

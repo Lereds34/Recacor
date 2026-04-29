@@ -6,6 +6,7 @@ import { CheckCircle, ArrowRight, Sun, Snowflake, Cloud, Car } from "lucide-reac
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { BgParticles } from "@/components/bg-particles";
+import { AvisSection } from "@/components/avis-section";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
@@ -324,6 +325,8 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
 
       {/* FAQ */}
       <section className="relative py-24 bg-muted overflow-hidden">

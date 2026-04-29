@@ -5,6 +5,7 @@ import { ArrowRight, Wrench, Droplet, Disc, Gauge, Target } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisMecaniqueForm } from "@/components/forms/devis-mecanique";
 import { BgParticles } from "@/components/bg-particles";
+import { AvisSection } from "@/components/avis-section";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 import Link from "next/link";
@@ -146,6 +147,8 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
 
       {/* FAQ */}
       <section className="relative py-24 bg-muted overflow-hidden">

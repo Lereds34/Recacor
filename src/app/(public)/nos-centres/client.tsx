@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { BgParticles } from "@/components/bg-particles";
 import { ParallaxImage } from "@/components/parallax-image";
 import { Counter } from "@/components/counter";
+import { AvisSection } from "@/components/avis-section";
 
 const centres = [
   {
@@ -388,6 +389,8 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
 
       {/* CTA bottom */}
       <section className="py-20 bg-background">

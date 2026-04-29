@@ -6,6 +6,7 @@ import { Truck, CheckCircle, ArrowRight, AlertTriangle, Leaf, MapPin, Clock, Tre
 import { PhoneLink } from "@/components/phone-link";
 import { DevisPlForm } from "@/components/forms/devis-pl";
 import { BgParticles } from "@/components/bg-particles";
+import { AvisSection } from "@/components/avis-section";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
@@ -287,6 +288,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
 
       {/* FAQ */}
       <section className="py-24 bg-background">

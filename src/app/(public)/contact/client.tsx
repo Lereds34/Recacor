@@ -6,6 +6,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
 import { ContactSimpleForm } from "@/components/forms/contact-simple";
 import { BgParticles } from "@/components/bg-particles";
+import { AvisSection } from "@/components/avis-section";
 import { BreadcrumbJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
@@ -108,6 +109,8 @@ export function ContactClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <AvisSection />
     </>
   );
 }

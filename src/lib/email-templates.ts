@@ -298,8 +298,8 @@ export function leadConfirmationEmail(data: LeadEmailData): { subject: string; h
               </div>
 
               <div style="margin-top:24px;text-align:center">
-                <a href="tel:+33607621043" style="display:inline-block;background:${PURPLE_BRIGHT};color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:16px 28px;border-radius:999px;box-shadow:0 8px 24px rgba(109,40,217,0.25)">
-                  📞 06 07 62 10 43
+                <a href="tel:+33499533390" style="display:inline-block;background:${PURPLE_BRIGHT};color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:16px 28px;border-radius:999px;box-shadow:0 8px 24px rgba(109,40,217,0.25)">
+                  📞 04 99 53 33 90
                 </a>
                 <div style="margin-top:12px;font-size:12px;color:#64748b">
                   Lun–Ven : 8h–17h · Sam : 8h–12h
@@ -352,7 +352,7 @@ export function leadConfirmationEmail(data: LeadEmailData): { subject: string; h
     `Votre demande Recacor a bien été reçue.`,
     `Notre équipe vous recontacte sous 24h en jours ouvrés.`,
     ``,
-    `Pour nous appeler directement : 06 07 62 10 43`,
+    `Pour nous appeler directement : 04 99 53 33 90`,
     `Lun-Ven : 8h-17h · Sam : 8h-12h`,
     ``,
     `Recacor — 1240 Route de Nîmes, 34920 Le Crès`,

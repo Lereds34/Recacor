@@ -19,7 +19,20 @@ interface LeadEmailData {
   fbclid?: string;
   page_source?: string;
   referrer?: string;
+  // Détails pneus / véhicule / mécanique
+  largeur?: string;
+  hauteur?: string;
+  diametre?: string;
+  type?: string;
+  quantite?: string;
+  marque_souhaitee?: string;
+  modele?: string;
+  plaque?: string;
+  prestation_complementaire?: string;
+  service?: string;
 }
+
+const WHATSAPP_NUMBER = "33607621043"; // PHONE_MOBILE sans +
 
 const SITE_URL = "https://recacor.fr";
 const PURPLE_DEEP = "#2D1460";
@@ -56,6 +69,39 @@ function row(label: string, value: string | undefined | null, link?: string): st
         <div style="font-size:15px;color:#0f172a;font-weight:600">${v}</div>
       </td>
     </tr>`;
+}
+
+function buildDimension(d: LeadEmailData): string | undefined {
+  if (!d.largeur && !d.hauteur && !d.diametre) return undefined;
+  const lh = [d.largeur, d.hauteur].filter(Boolean).join("/");
+  const r = d.diametre ? `R${d.diametre}` : "";
+  return [lh, r].filter(Boolean).join(" ").trim() || undefined;
+}
+
+function detailsSection(d: LeadEmailData): string {
+  const dimension = buildDimension(d);
+  const rows = [
+    row("Service", d.service),
+    row("Dimension", dimension),
+    row("Type", d.type),
+    row("Quantité", d.quantite),
+    row("Marque souhaitée", d.marque_souhaitee),
+    row("Véhicule", d.modele),
+    row("Plaque", d.plaque),
+    row("Prestation complémentaire", d.prestation_complementaire),
+  ].join("");
+  if (!rows.trim()) return "";
+  return `
+          <tr>
+            <td style="padding:8px 32px 0 32px">
+              <div style="font-size:11px;font-weight:800;color:${PURPLE_BRIGHT};letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;margin-top:16px">
+                Détails de la demande
+              </div>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                ${rows}
+              </table>
+            </td>
+          </tr>`;
 }
 
 /** Email envoyé à l'admin pour chaque nouveau lead */
@@ -131,8 +177,8 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
                   ${
                     data.telephone
                       ? `
-                  <td align="center" style="padding-right:6px">
-                    <a href="tel:${escapeHtml(data.telephone)}" style="display:block;background:${PURPLE_BRIGHT};color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 16px;border-radius:12px;text-align:center">
+                  <td align="center" width="33%" style="padding-right:4px">
+                    <a href="tel:${escapeHtml(data.telephone)}" style="display:block;background:${PURPLE_BRIGHT};color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 8px;border-radius:12px;text-align:center">
                       📞 Appeler
                     </a>
                   </td>`
@@ -141,13 +187,18 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
                   ${
                     data.email
                       ? `
-                  <td align="center" style="padding-left:6px">
-                    <a href="mailto:${escapeHtml(data.email)}" style="display:block;background:#ffffff;color:${PURPLE_BRIGHT};text-decoration:none;font-weight:700;font-size:14px;padding:13px 16px;border-radius:12px;border:1px solid #e5e7eb;text-align:center">
+                  <td align="center" width="33%" style="padding-left:4px;padding-right:4px">
+                    <a href="mailto:${escapeHtml(data.email)}" style="display:block;background:#ffffff;color:${PURPLE_BRIGHT};text-decoration:none;font-weight:700;font-size:14px;padding:13px 8px;border-radius:12px;border:1px solid #e5e7eb;text-align:center">
                       ✉ Répondre
                     </a>
                   </td>`
                       : ""
                   }
+                  <td align="center" width="33%" style="padding-left:4px">
+                    <a href="https://wa.me/${WHATSAPP_NUMBER}" style="display:block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 8px;border-radius:12px;text-align:center">
+                      💬 WhatsApp
+                    </a>
+                  </td>
                 </tr>
               </table>
             </td>
@@ -169,6 +220,9 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
               </table>
             </td>
           </tr>
+
+          <!-- Détails de la demande (pneus / véhicule / mécanique) -->
+          ${detailsSection(data)}
 
           <!-- Message -->
           ${
@@ -225,6 +279,7 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
 </body>
 </html>`;
 
+  const dimension = buildDimension(data);
   const text = [
     `Nouveau lead Recacor #${leadId}`,
     ``,
@@ -234,8 +289,17 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
     `Email : ${data.email || "—"}`,
     data.entreprise ? `Entreprise : ${data.entreprise}` : "",
     data.cp ? `CP : ${data.cp}` : "",
+    data.service ? `Service : ${data.service}` : "",
+    dimension ? `Dimension : ${dimension}` : "",
+    data.type ? `Type pneu : ${data.type}` : "",
+    data.quantite ? `Quantité : ${data.quantite}` : "",
+    data.marque_souhaitee ? `Marque souhaitée : ${data.marque_souhaitee}` : "",
+    data.modele ? `Véhicule : ${data.modele}` : "",
+    data.plaque ? `Plaque : ${data.plaque}` : "",
+    data.prestation_complementaire ? `Prestation : ${data.prestation_complementaire}` : "",
     data.message ? `\nMessage :\n${data.message}` : "",
     ``,
+    `WhatsApp : https://wa.me/${WHATSAPP_NUMBER}`,
     `Source : ${data.utm_source || "direct"}${data.utm_campaign ? ` · ${data.utm_campaign}` : ""}`,
     `Page : ${data.page_source || "/"}`,
     ``,

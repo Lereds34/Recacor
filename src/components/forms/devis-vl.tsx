@@ -10,6 +10,12 @@ const DIAMETRES = ["13", "14", "15", "16", "17", "18", "19", "20"];
 const CHARGES = Array.from({ length: 61 }, (_, i) => String(60 + i));
 const VITESSES = ["H", "T", "V", "W", "Y"];
 const TYPES = ["Été", "Hiver", "4 saisons"];
+const PRESTATIONS = [
+  "Vidange",
+  "Parallélisme & Géométrie",
+  "Freinage (plaquettes/disques)",
+  "Révision",
+];
 
 type VlData = {
   largeur: string;
@@ -19,8 +25,10 @@ type VlData = {
   vitesse: string;
   type: string;
   quantite: string;
+  marque_souhaitee: string;
   modele: string;
   plaque: string;
+  prestation_complementaire: string;
   nom: string;
   prenom: string;
   telephone: string;
@@ -37,8 +45,10 @@ const initial: VlData = {
   vitesse: "",
   type: "",
   quantite: "",
+  marque_souhaitee: "",
   modele: "",
   plaque: "",
+  prestation_complementaire: "",
   nom: "",
   prenom: "",
   telephone: "",
@@ -119,11 +129,20 @@ export function DevisVlForm() {
                   <Input type="number" min={1} max={8} placeholder="ex. 2" value={data.quantite} onChange={(e) => update("quantite", e.target.value)} className="h-11" />
                 </FormField>
               </div>
+              <FormField label="Marque souhaitée (optionnel)">
+                <Input placeholder="ex. Michelin, Goodyear, Hankook..." value={data.marque_souhaitee} onChange={(e) => update("marque_souhaitee", e.target.value)} className="h-11" />
+              </FormField>
               <FormField label="Modèle de véhicule">
                 <Input placeholder="ex. Peugeot 208, Clio 5" value={data.modele} onChange={(e) => update("modele", e.target.value)} className="h-11" />
               </FormField>
               <FormField label="Plaque d'immatriculation">
                 <Input placeholder="AA-000-AA" value={data.plaque} onChange={(e) => update("plaque", e.target.value.toUpperCase())} className="h-11" />
+              </FormField>
+              <FormField label="Prestation complémentaire souhaitée (optionnel)">
+                <select value={data.prestation_complementaire} onChange={(e) => update("prestation_complementaire", e.target.value)} className={select}>
+                  <option value="">Aucune</option>
+                  {PRESTATIONS.map((p) => <option key={p}>{p}</option>)}
+                </select>
               </FormField>
             </div>
           ),
@@ -179,7 +198,9 @@ export function DevisVlForm() {
           )}
           {data.type && <div className="flex justify-between"><dt className="text-muted-foreground">Type</dt><dd className="font-semibold">{data.type}</dd></div>}
           {data.quantite && <div className="flex justify-between"><dt className="text-muted-foreground">Quantité</dt><dd className="font-semibold">{data.quantite}</dd></div>}
+          {data.marque_souhaitee && <div className="flex justify-between"><dt className="text-muted-foreground">Marque</dt><dd className="font-semibold">{data.marque_souhaitee}</dd></div>}
           {data.modele && <div className="flex justify-between"><dt className="text-muted-foreground">Véhicule</dt><dd className="font-semibold">{data.modele}</dd></div>}
+          {data.prestation_complementaire && <div className="flex justify-between"><dt className="text-muted-foreground">Prestation</dt><dd className="font-semibold">{data.prestation_complementaire}</dd></div>}
           <div className="flex justify-between"><dt className="text-muted-foreground">Contact</dt><dd className="font-semibold">{data.telephone}</dd></div>
           <div className="flex justify-between"><dt className="text-muted-foreground">Email</dt><dd className="font-semibold truncate max-w-[60%]">{data.email}</dd></div>
         </dl>

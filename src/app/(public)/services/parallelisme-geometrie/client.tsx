@@ -80,7 +80,7 @@ export function ParallelismeClient() {
             </h2>
           </div>
           <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
-            <DevisMecaniqueForm defaultService="Parallélisme & Géométrie" />
+            <DevisMecaniqueForm defaultService="Contrôle parallélisme" />
           </div>
         </div>
       </section>

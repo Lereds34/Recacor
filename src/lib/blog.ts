@@ -130,7 +130,7 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
 export async function getAllSlugs(): Promise<string[]> {
   if (!process.env.DATABASE_URL) return [];
   try {
-    const rows = (await sql`SELECT slug FROM articles`) as { slug: string }[];
+    const rows = (await sql`SELECT slug FROM articles WHERE status = 'published'`) as { slug: string }[];
     return rows.map((r) => r.slug);
   } catch {
     return [];
@@ -140,7 +140,11 @@ export async function getAllSlugs(): Promise<string[]> {
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   if (!process.env.DATABASE_URL) return null;
   try {
-    const rows = (await sql`SELECT * FROM articles WHERE slug = ${slug} LIMIT 1`) as ArticleRow[];
+    const rows = (await sql`
+      SELECT * FROM articles
+      WHERE slug = ${slug} AND status = 'published'
+      LIMIT 1
+    `) as ArticleRow[];
     if (rows.length === 0) return null;
     return rowToArticle(rows[0]);
   } catch {
@@ -151,7 +155,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 export async function getAllArticles(): Promise<Article[]> {
   if (!process.env.DATABASE_URL) return [];
   try {
-    const rows = (await sql`SELECT * FROM articles ORDER BY date DESC NULLS LAST`) as ArticleRow[];
+    const rows = (await sql`
+      SELECT * FROM articles
+      WHERE status = 'published'
+      ORDER BY date DESC NULLS LAST
+    `) as ArticleRow[];
     return Promise.all(rows.map(rowToArticle));
   } catch {
     return [];
@@ -163,7 +171,7 @@ export async function getArticlesByCategory(cat: Categorie): Promise<Article[]> 
   try {
     const rows = (await sql`
       SELECT * FROM articles
-      WHERE categorie = ${cat}
+      WHERE categorie = ${cat} AND status = 'published'
       ORDER BY date DESC NULLS LAST
     `) as ArticleRow[];
     return Promise.all(rows.map(rowToArticle));

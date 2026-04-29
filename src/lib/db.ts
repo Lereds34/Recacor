@@ -45,6 +45,10 @@ export async function ensureSchema() {
   `;
   await sql`CREATE INDEX IF NOT EXISTS idx_articles_categorie ON articles (categorie);`;
   await sql`CREATE INDEX IF NOT EXISTS idx_articles_date ON articles (date DESC);`;
+  // Scheduling: 'published' (visible) | 'scheduled' (cron flips when publish_at <= NOW) | 'draft'
+  await sql`ALTER TABLE articles ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'published';`;
+  await sql`ALTER TABLE articles ADD COLUMN IF NOT EXISTS publish_at TIMESTAMPTZ;`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_articles_status_publishat ON articles (status, publish_at);`;
 
   // Settings (key-value)
   await sql`

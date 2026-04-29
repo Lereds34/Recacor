@@ -4,12 +4,29 @@ import { useState } from "react";
 import { MultiStepForm, FormField, isValidPhone, isValidEmail } from "../multi-step-form";
 import { Input } from "@/components/ui/input";
 
-const SERVICES = [
-  "Vidange",
-  "Parallélisme & Géométrie",
-  "Freinage (plaquettes/disques)",
-  "Révision",
-  "Autre",
+const SERVICE_GROUPS: { label: string; options: string[] }[] = [
+  {
+    label: "Freinage",
+    options: [
+      "Plaquettes avant",
+      "Plaquettes arrière",
+      "Disques + plaquettes avant",
+      "Disques + plaquettes arrière",
+      "Freinage complet (4 roues)",
+    ],
+  },
+  {
+    label: "Vidange",
+    options: ["Vidange simple", "Vidange complète (avec filtres)"],
+  },
+  {
+    label: "Géométrie",
+    options: ["Contrôle parallélisme", "Parallélisme + réglage"],
+  },
+  {
+    label: "Autre",
+    options: ["Révision complète", "Autre (préciser dans le message)"],
+  },
 ];
 
 type MecData = {
@@ -64,7 +81,11 @@ export function DevisMecaniqueForm({ defaultService }: { defaultService?: string
               <FormField label="Type de service">
                 <select value={data.service} onChange={(e) => update("service", e.target.value)} className={select}>
                   <option value="">Choisir un service</option>
-                  {SERVICES.map((s) => <option key={s}>{s}</option>)}
+                  {SERVICE_GROUPS.map((group) => (
+                    <optgroup key={group.label} label={group.label}>
+                      {group.options.map((opt) => <option key={opt}>{opt}</option>)}
+                    </optgroup>
+                  ))}
                 </select>
               </FormField>
               <FormField label="Modèle de véhicule">

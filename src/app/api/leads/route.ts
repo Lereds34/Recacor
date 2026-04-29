@@ -37,8 +37,8 @@ export async function POST(req: Request) {
     if (!data.form_id || !data.service_type) {
       return NextResponse.json({ error: "form_id et service_type requis" }, { status: 400 });
     }
-    if (!data.telephone || !data.email) {
-      return NextResponse.json({ error: "telephone et email requis" }, { status: 400 });
+    if (!data.telephone) {
+      return NextResponse.json({ error: "telephone requis" }, { status: 400 });
     }
 
     const inserted = (await sql`

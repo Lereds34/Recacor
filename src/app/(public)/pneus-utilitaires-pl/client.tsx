@@ -245,10 +245,18 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                   </div>
                 ))}
               </div>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <PhoneLink location="cta" serviceType="pl" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-purple-bright to-purple-mid text-white font-bold shadow-lg shadow-purple-bright/25 hover:shadow-xl transition-shadow" showIcon>
                   Assistance urgente : {PHONE_DISPLAY}
                 </PhoneLink>
+                <a
+                  href="https://wa.me/33607621043"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-base hover:opacity-90 transition-opacity"
+                >
+                  💬 WhatsApp
+                </a>
               </div>
             </div>
             <div className="rounded-3xl bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright p-10 text-white text-center">

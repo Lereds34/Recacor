@@ -222,7 +222,14 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                           <div className="w-8 h-8 rounded-lg bg-purple-bright/[0.08] flex items-center justify-center shrink-0">
                             <MapPin className="h-4 w-4 text-purple-bright" />
                           </div>
-                          <span className="text-muted-foreground">{c.address}</span>
+                          <a
+                            href="https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-purple-bright transition-colors"
+                          >
+                            {c.address}
+                          </a>
                         </div>
                         <div className="flex items-center gap-2.5 text-sm">
                           <div className="w-8 h-8 rounded-lg bg-purple-bright/[0.08] flex items-center justify-center shrink-0">

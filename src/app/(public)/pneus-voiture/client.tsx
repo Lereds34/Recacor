@@ -311,7 +311,16 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               Nous trouver –{" "}
               <span className="text-gradient-purple">Garage Recacor Le Crès</span>
             </h2>
-            <p className="mt-3 text-muted-foreground">1240 Route de Nîmes, 34920 Le Crès</p>
+            <p className="mt-3 text-muted-foreground">
+              <a
+                href="https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-purple-bright transition-colors"
+              >
+                1240 Route de Nîmes, 34920 Le Crès
+              </a>
+            </p>
           </div>
           <div className="rounded-3xl overflow-hidden border border-border aspect-[16/9] bg-muted">
             <iframe

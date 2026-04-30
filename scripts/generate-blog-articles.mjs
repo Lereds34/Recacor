@@ -35,6 +35,36 @@ import {
   tplSaisonnier,
 } from "./blog-templates.mjs";
 
+const CATEGORY_IMAGES = {
+  "pneus-voiture": [
+    "https://recacor.fr/api/media/9",
+    "https://recacor.fr/api/media/10",
+    "https://recacor.fr/api/media/11",
+  ],
+  "pneus-pl": [
+    "https://recacor.fr/api/media/12",
+    "https://recacor.fr/api/media/13",
+    "https://recacor.fr/api/media/19",
+    "https://recacor.fr/api/media/21",
+    "https://recacor.fr/api/media/22",
+  ],
+  "mecanique": [
+    "https://recacor.fr/api/media/14",
+    "https://recacor.fr/api/media/15",
+  ],
+  "blog": [
+    "https://recacor.fr/api/media/16",
+    "https://recacor.fr/api/media/18",
+    "https://recacor.fr/api/media/20",
+  ],
+};
+
+function getCategoryImage(categorie, slug) {
+  const images = CATEGORY_IMAGES[categorie] || CATEGORY_IMAGES["blog"];
+  const index = slug.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0) % images.length;
+  return images[index];
+}
+
 const DATABASE_URL = process.env.DATABASE_URL;
 if (!DATABASE_URL) {
   console.error("❌ DATABASE_URL manquant — vérifie .env.local");
@@ -193,7 +223,7 @@ function computePublishAt(index, startDate) {
   return d;
 }
 
-function buildRaw({ titre, slug, categorie, date, auteur, readTime, metaDescription, body }) {
+function buildRaw({ titre, slug, categorie, date, auteur, readTime, metaDescription, image, body }) {
   const fm = [
     "---",
     `titre: ${JSON.stringify(titre)}`,
@@ -203,6 +233,7 @@ function buildRaw({ titre, slug, categorie, date, auteur, readTime, metaDescript
     `date: ${date}`,
     `auteur: ${JSON.stringify(auteur)}`,
     `read_time: ${JSON.stringify(readTime)}`,
+    `image: ${image || ""}`,
     "---",
     "",
   ].join("\n");
@@ -313,6 +344,7 @@ async function main() {
       auteur,
       readTime,
       metaDescription,
+      image: getCategoryImage(spec.categorie, spec.slug),
       body,
     });
 

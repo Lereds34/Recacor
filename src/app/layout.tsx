@@ -42,6 +42,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+  verification: {
+    google: "_naRLlj4qLlcKs8Md4eIvVOkQTWNi0snmmyuuI2C5EU",
+  },
 };
 
 export default function RootLayout({

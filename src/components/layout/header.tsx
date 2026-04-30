@@ -13,7 +13,6 @@ const navigation = [
   { name: "Pneus voiture", href: "/pneus-voiture" },
   { name: "Mécanique", href: "/mecanique" },
   { name: "Pneus PL", href: "/pneus-utilitaires-pl" },
-  { name: "Notre garage", href: "/contact" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
   // Maquette retirée

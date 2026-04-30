@@ -124,6 +124,14 @@ export default function MerciPage() {
                 >
                   {PHONE_DISPLAY}
                 </PhoneLink>
+                <a
+                  href="https://wa.me/33607621043"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] text-white font-bold text-sm hover:opacity-90 transition-opacity mt-3"
+                >
+                  💬 WhatsApp
+                </a>
                 <p className="text-xs text-white/40 mt-3">Lun–Ven 8h–17h · Sam 8h–12h</p>
               </div>
             </motion.div>

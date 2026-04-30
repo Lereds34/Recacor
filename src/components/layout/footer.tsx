@@ -103,7 +103,14 @@ export async function Footer() {
             <div className="space-y-3">
               <div className="flex items-start gap-2.5 text-sm text-white/60">
                 <MapPin className="h-4 w-4 text-purple-glow shrink-0 mt-0.5" />
-                {ADDRESS}
+                <a
+                  href="https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-purple-glow transition-colors"
+                >
+                  {ADDRESS}
+                </a>
               </div>
               <PhoneLink location="footer" className="flex items-center gap-2.5 text-sm text-white hover:text-purple-glow transition-colors font-semibold">
                 <Phone className="h-4 w-4 text-purple-glow shrink-0" />

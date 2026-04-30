@@ -2,6 +2,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Phone, Mail, MapPin, Clock, Star } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
 import { PHONE_DISPLAY, ADDRESS, BUSINESS_NAME } from "@/lib/tracking";
 import { getSiteConfig } from "@/lib/site-config";
 
@@ -190,6 +191,8 @@ export async function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 text-xs text-white/40">
             <span>&copy; {new Date().getFullYear()} RECACOR. Tous droits réservés.</span>
+            <span className="hidden sm:inline text-white/20">·</span>
+            <CookieSettingsButton />
             <span className="hidden sm:inline-flex items-center gap-1">
               <Star className="w-3 h-3 fill-purple-glow text-purple-glow" />
               <span className="font-semibold text-white/60">5,0</span>

@@ -18,6 +18,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     dataLayer: any[];
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function gtag(...args: any[]): void;
 }
 
 export function captureUtmParams() {
@@ -103,8 +105,7 @@ export function pushDevisConfirmed() {
 /* Consent Mode v2 */
 export function grantConsent() {
   if (typeof window === "undefined") return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push("consent", "update", {
+  gtag("consent", "update", {
     ad_storage: "granted",
     ad_user_data: "granted",
     ad_personalization: "granted",

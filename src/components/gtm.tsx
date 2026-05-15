@@ -11,14 +11,15 @@ export function GtmConsent() {
   return (
     <Script id="gtm-consent" strategy="beforeInteractive">
       {`
+        const c = document.cookie.match(/cookie_consent=([^;]+)/)?.[1];
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('consent', 'default', {
-          'ad_storage': 'denied',
-          'ad_user_data': 'denied',
-          'ad_personalization': 'denied',
-          'analytics_storage': 'denied',
-          'wait_for_update': 500
+          ad_storage: c === 'granted' ? 'granted' : 'denied',
+          analytics_storage: c === 'granted' ? 'granted' : 'denied',
+          ad_user_data: c === 'granted' ? 'granted' : 'denied',
+          ad_personalization: c === 'granted' ? 'granted' : 'denied',
+          wait_for_update: 500,
         });
       `}
     </Script>

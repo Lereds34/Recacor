@@ -3,7 +3,7 @@ import { sql, ensureSchema } from "./db";
 export interface AssetDef {
   key: string;
   label: string;
-  type: "image" | "video";
+  type: "image" | "video" | "media";
   fallback: string;
   alt?: string;
   description?: string;
@@ -25,10 +25,10 @@ export const SITE_ASSETS: PageAssets[] = [
     assets: [
       {
         key: "home_hero_video",
-        label: "Vidéo Hero (fond)",
-        type: "video",
+        label: "Hero d'accueil (image ou vidéo)",
+        type: "media",
         fallback: "/VIDEO/animation transition.mp4",
-        description: "Vidéo en autoplay/loop derrière le titre",
+        description: "Image ou vidéo affichée en fond derrière le titre",
       },
       {
         key: "home_services_image",
@@ -53,9 +53,10 @@ export const SITE_ASSETS: PageAssets[] = [
       },
       {
         key: "home_faq_video",
-        label: "Vidéo sous la FAQ",
-        type: "video",
+        label: "Bloc bas de page (image ou vidéo)",
+        type: "media",
         fallback: "/Vidéo_d_une_roue_sur_camion.mp4",
+        description: "Image ou vidéo affichée sous la FAQ",
       },
       {
         key: "home_europe_map",

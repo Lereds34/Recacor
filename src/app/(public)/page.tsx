@@ -42,17 +42,23 @@ import { DevisVlForm } from "@/components/forms/devis-vl";
 import { OpenStatus } from "@/components/open-status";
 import { LocalBusinessJsonLd } from "@/components/schema-jsonld";
 import { AvisSection } from "@/components/avis-section";
-import { DynamicImage, DynamicVideo, useAssetUrl } from "@/components/dynamic-media";
+import { DynamicImage, DynamicMedia, useAsset } from "@/components/dynamic-media";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 /* ─────────────────── HERO ─────────────────── */
 
-function HeroVideo() {
-  const url = useAssetUrl("home_hero_video", "/VIDEO/animation transition.mp4");
+const HERO_POSTER = "/Design sans titre (29)/1.webp";
+const FAQ_POSTER = "/Design sans titre (29)/3.webp";
+
+function HeroMedia() {
+  const asset = useAsset("home_hero_video");
+  const url = asset?.url || "/VIDEO/animation transition.mp4";
+  const type = asset?.type || "video";
   const videoRef = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
+    if (type === "image") return;
     const video = videoRef.current;
     if (!video) return;
     // Defer load until after first paint / idle to keep LCP fast.
@@ -65,7 +71,18 @@ function HeroVideo() {
     } else {
       setTimeout(start, 600);
     }
-  }, [url]);
+  }, [url, type]);
+
+  if (type === "image") {
+    // eslint-disable-next-line @next/next/no-img-element
+    return (
+      <img
+        src={url}
+        alt={asset?.alt || ""}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    );
+  }
 
   return (
     <video
@@ -75,6 +92,7 @@ function HeroVideo() {
       loop
       playsInline
       preload="none"
+      poster={HERO_POSTER}
       className="absolute inset-0 w-full h-full object-cover"
     >
       <source src={url} type="video/mp4" />
@@ -112,7 +130,7 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <HeroVideo />
+      <HeroMedia />
       <div className="absolute inset-0 bg-gradient-to-br from-purple-deep/90 via-purple-mid/80 to-purple-bright/75" />
       <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/60 via-transparent to-purple-deep/30" />
 
@@ -1391,14 +1409,12 @@ function FAQSection() {
           transition={{ duration: 0.6 }}
           className="mt-20 rounded-3xl overflow-hidden border border-border shadow-xl shadow-purple-bright/[0.04]"
         >
-          <DynamicVideo
+          <DynamicMedia
             assetKey="home_faq_video"
             fallback="/Vidéo_d_une_roue_sur_camion.mp4"
+            poster={FAQ_POSTER}
+            alt="Atelier Recacor"
             autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
             className="w-full h-auto"
           />
         </motion.div>

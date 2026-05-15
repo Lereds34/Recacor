@@ -29,11 +29,19 @@ export function SiteContentClient({ pages, stored }: Props) {
     return !!data[asset.key]?.url && data[asset.key]?.url !== asset.fallback;
   };
 
-  const handleUpload = async (asset: AssetDef, file: File) => {
+  const handleUpload = async (asset: AssetDef, file: File, typeOverride?: "image" | "video") => {
+    const actualType: "image" | "video" =
+      typeOverride ||
+      (asset.type === "media"
+        ? file.type.startsWith("video/")
+          ? "video"
+          : "image"
+        : (asset.type as "image" | "video"));
+
     const fd = new FormData();
     fd.append("file", file);
     fd.append("key", asset.key);
-    fd.append("type", asset.type);
+    fd.append("type", actualType);
     fd.append("alt", asset.alt || "");
 
     const res = await fetch("/api/admin/site-assets", { method: "PUT", body: fd });
@@ -41,7 +49,7 @@ export function SiteContentClient({ pages, stored }: Props) {
     if (res.ok) {
       setData((d) => ({
         ...d,
-        [asset.key]: { key: asset.key, url: j.url, type: asset.type, alt: asset.alt || "" },
+        [asset.key]: { key: asset.key, url: j.url, type: actualType, alt: asset.alt || "" },
       }));
     } else {
       alert(j.error || "Erreur");
@@ -114,8 +122,9 @@ export function SiteContentClient({ pages, stored }: Props) {
                         key={asset.key}
                         asset={asset}
                         currentUrl={getCurrent(asset)}
+                        currentType={data[asset.key]?.type}
                         custom={isCustom(asset)}
-                        onUpload={(file) => handleUpload(asset, file)}
+                        onUpload={(file, typeOverride) => handleUpload(asset, file, typeOverride)}
                         onReset={() => handleReset(asset)}
                       />
                     ))}
@@ -133,26 +142,30 @@ export function SiteContentClient({ pages, stored }: Props) {
 function AssetCard({
   asset,
   currentUrl,
+  currentType,
   custom,
   onUpload,
   onReset,
 }: {
   asset: AssetDef;
   currentUrl: string;
+  currentType?: string;
   custom: boolean;
-  onUpload: (file: File) => Promise<void>;
+  onUpload: (file: File, typeOverride?: "image" | "video") => Promise<void>;
   onReset: () => void;
 }) {
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const videoInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = async (file: File) => {
+  const handleFile = async (file: File, typeOverride?: "image" | "video") => {
     setUploading(true);
     setError("");
     try {
-      await onUpload(file);
+      await onUpload(file, typeOverride);
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2500);
     } catch (e) {
@@ -162,13 +175,19 @@ function AssetCard({
     }
   };
 
+  const isMedia = asset.type === "media";
+  // Pour la preview : on regarde le type effectivement stocké en base si disponible,
+  // sinon on fallback sur le type déclaré (et pour "media" sans upload : vidéo).
+  const previewType: "image" | "video" =
+    (currentType as "image" | "video" | undefined) ||
+    (asset.type === "media" ? "video" : (asset.type as "image" | "video"));
   const accept = asset.type === "video" ? "video/*" : "image/*";
 
   return (
     <div className="rounded-xl border border-border bg-white overflow-hidden flex flex-col">
       {/* Preview */}
       <div className="relative aspect-video bg-muted flex items-center justify-center overflow-hidden">
-        {asset.type === "video" ? (
+        {previewType === "video" ? (
           <>
             {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
             <video
@@ -207,7 +226,7 @@ function AssetCard({
       {/* Info + actions */}
       <div className="p-4 flex-1 flex flex-col">
         <div className="flex items-start gap-2 mb-3">
-          {asset.type === "video" ? (
+          {previewType === "video" ? (
             <Video className="w-4 h-4 text-purple-bright shrink-0 mt-0.5" />
           ) : (
             <ImageIcon className="w-4 h-4 text-purple-bright shrink-0 mt-0.5" />
@@ -220,17 +239,44 @@ function AssetCard({
           </div>
         </div>
 
-        <input
-          ref={inputRef}
-          type="file"
-          accept={accept}
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) handleFile(f);
-            e.target.value = "";
-          }}
-          className="hidden"
-        />
+        {isMedia ? (
+          <>
+            <input
+              ref={imageInputRef}
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) handleFile(f, "image");
+                e.target.value = "";
+              }}
+              className="hidden"
+            />
+            <input
+              ref={videoInputRef}
+              type="file"
+              accept="video/*"
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                if (f) handleFile(f, "video");
+                e.target.value = "";
+              }}
+              className="hidden"
+            />
+          </>
+        ) : (
+          <input
+            ref={inputRef}
+            type="file"
+            accept={accept}
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              if (f) handleFile(f);
+              e.target.value = "";
+            }}
+            className="hidden"
+          />
+        )}
 
         {error && (
           <div className="mb-2 text-xs text-red-600 flex items-center gap-1">
@@ -239,25 +285,56 @@ function AssetCard({
         )}
 
         <div className="mt-auto flex gap-2">
-          <button
-            onClick={() => inputRef.current?.click()}
-            disabled={uploading}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-purple-bright text-white text-xs font-bold hover:bg-purple-mid disabled:opacity-50"
-          >
-            {uploading ? (
-              <>
-                <Loader2 className="w-3.5 h-3.5 animate-spin" /> Upload...
-              </>
-            ) : success ? (
-              <>
-                <Check className="w-3.5 h-3.5" /> Remplacé !
-              </>
-            ) : (
-              <>
-                <Upload className="w-3.5 h-3.5" /> Remplacer
-              </>
-            )}
-          </button>
+          {isMedia ? (
+            <>
+              <button
+                onClick={() => imageInputRef.current?.click()}
+                disabled={uploading}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-purple-bright text-white text-xs font-bold hover:bg-purple-mid disabled:opacity-50"
+              >
+                {uploading ? (
+                  <>
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  </>
+                ) : success ? (
+                  <>
+                    <Check className="w-3.5 h-3.5" /> OK
+                  </>
+                ) : (
+                  <>
+                    <ImageIcon className="w-3.5 h-3.5" /> Image
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => videoInputRef.current?.click()}
+                disabled={uploading}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-purple-deep text-white text-xs font-bold hover:bg-purple-mid disabled:opacity-50"
+              >
+                <Video className="w-3.5 h-3.5" /> Vidéo
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => inputRef.current?.click()}
+              disabled={uploading}
+              className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-purple-bright text-white text-xs font-bold hover:bg-purple-mid disabled:opacity-50"
+            >
+              {uploading ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" /> Upload...
+                </>
+              ) : success ? (
+                <>
+                  <Check className="w-3.5 h-3.5" /> Remplacé !
+                </>
+              ) : (
+                <>
+                  <Upload className="w-3.5 h-3.5" /> Remplacer
+                </>
+              )}
+            </button>
+          )}
           {custom && (
             <button
               onClick={onReset}
@@ -270,7 +347,11 @@ function AssetCard({
         </div>
 
         <p className="mt-2 text-[10px] text-muted-foreground">
-          {asset.type === "video" ? "MP4 · 50 Mo max" : "Auto-converti en WebP · 1920px max · 10 Mo max"}
+          {isMedia
+            ? "Image (WebP, 10 Mo max) ou vidéo (MP4, 50 Mo max)"
+            : asset.type === "video"
+              ? "MP4 · 50 Mo max"
+              : "Auto-converti en WebP · 1920px max · 10 Mo max"}
         </p>
       </div>
     </div>

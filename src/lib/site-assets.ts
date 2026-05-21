@@ -147,7 +147,7 @@ interface AssetRow {
 }
 
 let cache: { data: Record<string, AssetRow>; ts: number } | null = null;
-const TTL = 60_000;
+const TTL = 5 * 60_000; // 5 min
 
 async function loadAll(): Promise<Record<string, AssetRow>> {
   if (cache && Date.now() - cache.ts < TTL) return cache.data;

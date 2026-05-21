@@ -27,7 +27,21 @@ export const sql = new Proxy(function () {}, {
   },
 }) as unknown as NeonQueryFunction<false, false>;
 
-export async function ensureSchema() {
+let _schemaReady: Promise<void> | null = null;
+
+export async function ensureSchema(): Promise<void> {
+  if (_schemaReady) return _schemaReady;
+  _schemaReady = (async () => {
+    await runSchemaMigrations();
+  })().catch((err) => {
+    // En cas d'échec, on autorise une nouvelle tentative au prochain appel.
+    _schemaReady = null;
+    throw err;
+  });
+  return _schemaReady;
+}
+
+async function runSchemaMigrations(): Promise<void> {
   await sql`
     CREATE TABLE IF NOT EXISTS articles (
       slug          TEXT PRIMARY KEY,
@@ -168,11 +182,23 @@ export async function getSetting(key: string, defaultValue = ""): Promise<string
   }
 }
 
+let _settingsCache: { data: Record<string, string>; ts: number } | null = null;
+const SETTINGS_TTL = 5 * 60_000; // 5 min
+
+export function invalidateSettingsCache(): void {
+  _settingsCache = null;
+}
+
 export async function getAllSettings(): Promise<Record<string, string>> {
+  if (_settingsCache && Date.now() - _settingsCache.ts < SETTINGS_TTL) {
+    return _settingsCache.data;
+  }
   try {
     await ensureSchema();
     const rows = (await sql`SELECT key, value FROM settings`) as SettingsRow[];
-    return Object.fromEntries(rows.map((r) => [r.key, r.value]));
+    const data = Object.fromEntries(rows.map((r) => [r.key, r.value]));
+    _settingsCache = { data, ts: Date.now() };
+    return data;
   } catch {
     return {};
   }
@@ -185,10 +211,12 @@ export async function setSetting(key: string, value: string): Promise<void> {
     VALUES (${key}, ${value}, NOW())
     ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = NOW();
   `;
+  invalidateSettingsCache();
 }
 
 export async function setSettings(values: Record<string, string>): Promise<void> {
   for (const [k, v] of Object.entries(values)) {
     await setSetting(k, v);
   }
+  invalidateSettingsCache();
 }

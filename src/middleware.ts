@@ -1,9 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const SECRET = new TextEncoder().encode(
-  process.env.AUTH_SECRET || "recacor-dev-secret-change-me-in-prod-please-min-32"
-);
+if (!process.env.AUTH_SECRET) {
+  throw new Error("AUTH_SECRET est manquant dans les variables d'environnement");
+}
+const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;

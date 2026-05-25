@@ -1,9 +1,10 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-const SECRET = new TextEncoder().encode(
-  process.env.AUTH_SECRET || "recacor-dev-secret-change-me-in-prod-please-min-32"
-);
+if (!process.env.AUTH_SECRET) {
+  throw new Error("AUTH_SECRET est manquant dans les variables d'environnement");
+}
+const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 const COOKIE_NAME = "recacor_session";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 jours
 
@@ -56,7 +57,10 @@ export async function getSession(): Promise<SessionPayload | null> {
 export const SESSION_COOKIE = COOKIE_NAME;
 
 export function checkCredentials(user: string, pass: string): boolean {
-  const expectedUser = process.env.ADMIN_USER || "admin";
-  const expectedPass = process.env.ADMIN_PASS || "recacor2026";
+  const expectedUser = process.env.ADMIN_USER;
+  const expectedPass = process.env.ADMIN_PASS;
+  if (!expectedUser || !expectedPass) {
+    throw new Error("ADMIN_USER ou ADMIN_PASS manquants dans les variables d'environnement");
+  }
   return user === expectedUser && pass === expectedPass;
 }

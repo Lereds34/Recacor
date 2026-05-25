@@ -1,10 +1,4 @@
 {
-  "crons": [
-    {
-      "path": "/api/cron/publish-articles",
-      "schedule": "0 6,12 * * *"
-    }
-  ],
   "redirects": [
     {
       "source": "/(.*)",

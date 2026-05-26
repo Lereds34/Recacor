@@ -10,7 +10,7 @@ import { PHONE_DISPLAY } from "@/lib/tracking";
 
 const faqs = [
   { q: "Quand faire régler son parallélisme ?", a: "Après un choc, un changement de pneus, tous les 20 000 km ou si vous constatez une usure anormale des pneus ou un volant de travers." },
-  { q: "Combien coûte un parallélisme ?", a: "Nos tarifs démarrent à 59€ pour un parallélisme simple. La géométrie 4 roues complète est à 89€." },
+  { q: "Combien coûte un parallélisme ?", a: "Nos tarifs démarrent à 65€ pour un parallélisme simple. La géométrie 4 roues complète est à 89€." },
   { q: "Combien de temps dure l'opération ?", a: "Le réglage prend environ 30 à 45 minutes avec notre équipement laser 3D." },
   { q: "Quelle différence entre parallélisme et géométrie ?", a: "Le parallélisme règle l'alignement des roues avant. La géométrie contrôle aussi les angles de carrossage et chasse sur les 4 roues." },
 ];
@@ -22,7 +22,7 @@ export function ParallelismeClient() {
         { name: "Accueil", url: "https://recacor.fr" },
         { name: "Parallélisme & Géométrie", url: "https://recacor.fr/services/parallelisme-geometrie" },
       ]} />
-      <ServiceJsonLd name="Parallélisme Géométrie Montpellier" description="Parallélisme et géométrie voiture sans RDV" price="59" />
+      <ServiceJsonLd name="Parallélisme Géométrie Montpellier" description="Parallélisme et géométrie voiture sans RDV" price="65" />
       <FaqJsonLd items={faqs} id="parallelisme" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">

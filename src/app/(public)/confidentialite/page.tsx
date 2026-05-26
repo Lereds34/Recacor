@@ -7,8 +7,13 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
-  description: "Politique de confidentialité Recacor, conforme RGPD.",
+  description: "Politique de confidentialité Recacor, conforme RGPD. Données collectées via formulaires web et Meta Lead Ads.",
   alternates: { canonical: "/confidentialite" },
+  openGraph: {
+    title: "Politique de confidentialité — Recacor",
+    description: "Politique de confidentialité Recacor, conforme RGPD.",
+    url: "/confidentialite",
+  },
 };
 
 export default async function ConfidentialitePage() {

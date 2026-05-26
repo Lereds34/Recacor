@@ -16,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://recacor.fr"),
+  metadataBase: new URL("https://www.recacor.fr"),
   title: {
     default: "Pneus Voiture Montpellier — Garage Recacor Le Crès",
     template: "%s | Recacor Le Crès",

@@ -7,7 +7,6 @@ import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
 import { getSetting } from "@/lib/db";
 
 export const revalidate = 3600;
-export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog Recacor — Conseils pneus, mécanique & flottes",

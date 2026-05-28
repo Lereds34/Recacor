@@ -188,6 +188,64 @@ export async function Footer() {
           </div>
         </div>
 
+        {/* SEO maillage interne */}
+        <div className="mt-12 pt-10 border-t border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div>
+              <h5 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Marques pneus PL</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["Michelin PL","Bridgestone PL","Continental PL","Goodyear PL","Pirelli PL","Dunlop PL","Nokian PL","Hankook PL","BKT Agricole","Mitas Agricole","Alliance Agricole","Trelleborg Agricole"].map((m) => (
+                  <li key={m}><Link href="/pneus-utilitaires-pl" className="text-xs text-white/35 hover:text-white/70 transition-colors">{m}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Dimensions PL</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["315/80R22.5","295/80R22.5","385/65R22.5","315/70R22.5","275/70R22.5","245/70R17.5","235/75R17.5","265/70R17.5"].map((d) => (
+                  <li key={d}><Link href="/pneus-utilitaires-pl" className="text-xs text-white/35 hover:text-white/70 transition-colors">{d}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Types de véhicules</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["Pneus camion","Pneus semi-remorque","Pneus tracteur routier","Pneus tracteur agricole","Pneus chariot élévateur","Pneus bus et car","Pneus remorque agricole","Pneus engin de chantier"].map((v) => (
+                  <li key={v}><Link href="/pneus-utilitaires-pl" className="text-xs text-white/35 hover:text-white/70 transition-colors">{v}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Zones intervention PL</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {[
+                  { label: "Hérault (34)", href: "/pneus-poids-lourd/herault" },
+                  { label: "Gard (30)", href: "/pneus-poids-lourd/gard" },
+                  { label: "Aveyron (12)", href: "/pneus-poids-lourd/aveyron" },
+                  { label: "Lozère (48)", href: "/pneus-poids-lourd/lozere" },
+                  { label: "Bouches-du-Rhône (13)", href: "/pneus-poids-lourd/bouches-du-rhone" },
+                  { label: "Vaucluse (84)", href: "/pneus-poids-lourd/vaucluse" },
+                  { label: "Aude (11)", href: "/pneus-poids-lourd/aude" },
+                  { label: "Pyrénées-Orientales (66)", href: "/pneus-poids-lourd/pyrenees-orientales" },
+                  { label: "Haute-Garonne (31)", href: "/pneus-poids-lourd/haute-garonne" },
+                  { label: "Ardèche (07)", href: "/pneus-poids-lourd/ardeche" },
+                  { label: "Drôme (26)", href: "/pneus-poids-lourd/drome" },
+                  { label: "Var (83)", href: "/pneus-poids-lourd/var" },
+                  { label: "Tarn (81)", href: "/pneus-poids-lourd/tarn" },
+                  { label: "Lot (46)", href: "/pneus-poids-lourd/lot" },
+                ].map((z) => (
+                  <li key={z.label}><Link href={z.href} className="text-xs text-white/35 hover:text-white/70 transition-colors">{z.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
         <p className="mt-10 text-xs text-white/30 text-center leading-relaxed">
           Recacor — Spécialiste pneus VL et PL à Montpellier — Le Crès (Hérault 34).
           Pneus toutes marques (Michelin, Bridgestone, Continental, Goodyear, Pirelli, Yokohama), montage sans rendez-vous, stock immédiat, parallélisme, géométrie, vidange, recreusage et assistance poids lourd sur site en Hérault.

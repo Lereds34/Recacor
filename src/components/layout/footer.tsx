@@ -223,20 +223,20 @@ export async function Footer() {
               <h5 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3">Zones intervention PL</h5>
               <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
                 {[
-                  { label: "Hérault (34)", href: "/pneus-poids-lourd/herault" },
-                  { label: "Gard (30)", href: "/pneus-poids-lourd/gard" },
-                  { label: "Aveyron (12)", href: "/pneus-poids-lourd/aveyron" },
-                  { label: "Lozère (48)", href: "/pneus-poids-lourd/lozere" },
-                  { label: "Bouches-du-Rhône (13)", href: "/pneus-poids-lourd/bouches-du-rhone" },
-                  { label: "Vaucluse (84)", href: "/pneus-poids-lourd/vaucluse" },
+                  { label: "Ain (01)", href: "/pneus-poids-lourd/ain" },
                   { label: "Aude (11)", href: "/pneus-poids-lourd/aude" },
-                  { label: "Pyrénées-Orientales (66)", href: "/pneus-poids-lourd/pyrenees-orientales" },
-                  { label: "Haute-Garonne (31)", href: "/pneus-poids-lourd/haute-garonne" },
-                  { label: "Ardèche (07)", href: "/pneus-poids-lourd/ardeche" },
+                  { label: "Dordogne (24)", href: "/pneus-poids-lourd/dordogne" },
                   { label: "Drôme (26)", href: "/pneus-poids-lourd/drome" },
-                  { label: "Var (83)", href: "/pneus-poids-lourd/var" },
-                  { label: "Tarn (81)", href: "/pneus-poids-lourd/tarn" },
-                  { label: "Lot (46)", href: "/pneus-poids-lourd/lot" },
+                  { label: "Eure (27)", href: "/pneus-poids-lourd/eure" },
+                  { label: "Gard (30)", href: "/pneus-poids-lourd/gard" },
+                  { label: "Haute-Garonne (31)", href: "/pneus-poids-lourd/haute-garonne" },
+                  { label: "Gironde (33)", href: "/pneus-poids-lourd/gironde" },
+                  { label: "Loire (42)", href: "/pneus-poids-lourd/loire" },
+                  { label: "Loiret (45)", href: "/pneus-poids-lourd/loiret" },
+                  { label: "Vaucluse (84)", href: "/pneus-poids-lourd/vaucluse" },
+                  { label: "Vienne (86)", href: "/pneus-poids-lourd/vienne" },
+                  { label: "Essonne (91)", href: "/pneus-poids-lourd/essonne" },
+                  { label: "Val-d'Oise (95)", href: "/pneus-poids-lourd/val-d-oise" },
                 ].map((z) => (
                   <li key={z.label}><Link href={z.href} className="text-xs text-white/35 hover:text-white/70 transition-colors">{z.label}</Link></li>
                 ))}

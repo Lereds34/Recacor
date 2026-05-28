@@ -40,12 +40,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "telephone requis" }, { status: 400 });
     }
 
-    // AdsFlow CRM — fire-and-forget en PREMIER, indépendant de la DB
-    fetch(
+    // AdsFlow CRM — awaité pour garantir l'envoi avant que Vercel termine la fonction
+    await fetch(
       "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(5000),
         body: JSON.stringify({
           nom: [data.prenom, data.nom].filter(Boolean).join(" ") || null,
           tel: data.telephone || null,

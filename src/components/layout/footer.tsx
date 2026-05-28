@@ -188,6 +188,58 @@ export async function Footer() {
           </div>
         </div>
 
+        {/* SEO maillage interne VL */}
+        <div className="mt-12 pt-10 border-t border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <div>
+              <h5 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Marques pneus voiture</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["Michelin","Goodyear","Dunlop","Continental","Falken","Nexen","Tracmax","Firestone","Superia","Yokohama","Bridgestone","Pirelli"].map((m) => (
+                  <li key={m}><Link href="/pneus-voiture" className="text-xs text-white/30 hover:text-white/70 transition-colors">Pneus {m}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Dimensions courantes</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["195/65 R15","205/55 R16","185/65 R15","195/55 R16","225/45 R17","215/55 R17","205/60 R16","185/60 R15","225/55 R18","215/50 R17"].map((d) => (
+                  <li key={d}><Link href="/pneus-voiture" className="text-xs text-white/30 hover:text-white/70 transition-colors">Pneu {d}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Types de pneus</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {["Pneus été","Pneus hiver","Pneus 4 saisons","Pneus SUV","Pneus 4x4","Pneus citadine","Pneus monospace","Pneus utilitaires légers"].map((t) => (
+                  <li key={t}><Link href="/pneus-voiture" className="text-xs text-white/30 hover:text-white/70 transition-colors">{t}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3">Services & villes</h5>
+              <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
+                {[
+                  { label: "Parallélisme Montpellier", href: "/services/parallelisme-geometrie" },
+                  { label: "Géométrie voiture", href: "/services/parallelisme-geometrie" },
+                  { label: "Montage pneus Le Crès", href: "/pneus-voiture" },
+                  { label: "Vidange Montpellier", href: "/mecanique" },
+                  { label: "Pneus Mauguio", href: "/mauguio" },
+                  { label: "Pneus Lattes", href: "/lattes" },
+                  { label: "Pneus Lunel", href: "/lunel" },
+                  { label: "Pneus Sète", href: "/sete" },
+                ].map((s) => (
+                  <li key={s.label}><Link href={s.href} className="text-xs text-white/30 hover:text-white/70 transition-colors">{s.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
         <p className="mt-10 text-xs text-white/30 text-center leading-relaxed">
           Recacor — Spécialiste pneus VL et PL à Montpellier — Le Crès (Hérault 34).
           Pneus toutes marques (Michelin, Bridgestone, Continental, Goodyear, Pirelli, Yokohama), montage sans rendez-vous, stock immédiat, parallélisme, géométrie, vidange, recreusage et assistance poids lourd sur site en Hérault.

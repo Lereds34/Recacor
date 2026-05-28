@@ -483,12 +483,12 @@ function TrajectoireSection() {
 function ServicesSection() {
   const services = [
     {
-      title: "Flottes industrielles & transport",
+      title: "Particuliers & auto",
       description:
-        "Maintenance préventive et curative des pneumatiques pour vos flottes poids lourds et utilitaires. Intervention sur site, gestion de parc et suivi personnalisé.",
-      icon: Truck,
-      href: "/pneus-utilitaires-pl",
-      features: ["Intervention 24h/24", "Gestion de parc", "Suivi digital"],
+        "Pneus voiture toutes marques à Montpellier — Le Crès. Montage en 15 minutes, sans rendez-vous, à partir de 45€.",
+      icon: Car,
+      href: "/pneus-voiture",
+      features: ["Sans rendez-vous", "À partir de 45€", "Devis gratuit"],
     },
     {
       title: "Professionnels & artisans",
@@ -499,12 +499,12 @@ function ServicesSection() {
       features: ["Contrats sur-mesure", "Tarifs pro", "Multi-marques"],
     },
     {
-      title: "Particuliers & auto",
+      title: "Flottes industrielles & transport",
       description:
-        "Entretien et remplacement de pneumatiques pour votre véhicule personnel. Avec ou sans rendez-vous, toutes marques.",
-      icon: Car,
-      href: "/pneus-voiture",
-      features: ["Sans rendez-vous", "Toutes marques", "Devis gratuit"],
+        "Maintenance préventive et curative des pneumatiques pour vos flottes poids lourds et utilitaires. Intervention sur site, gestion de parc et suivi personnalisé.",
+      icon: Truck,
+      href: "/pneus-utilitaires-pl",
+      features: ["Intervention 24h/24", "Gestion de parc", "Suivi digital"],
     },
   ];
 
@@ -631,9 +631,10 @@ function ServicesSection() {
 /* ─────────────────── PROFESSIONNALISME + STATS ─────────────────── */
 function ProfessionnalismeSection() {
   const stats = [
-    { value: 1, suffix: "", label: "Centre en France" },
+    { value: 4, suffix: "", label: "Sites en France" },
     { value: 8, suffix: "+", label: "Marques partenaires" },
     { value: 60, suffix: "+", label: "Années d'expérience" },
+    { value: 15, suffix: "min", label: "Montage garanti" },
   ];
 
   return (
@@ -1604,6 +1605,123 @@ function ParticuliersProsSection() {
   );
 }
 
+/* ─────────────────── SEO MAILLAGE INTERNE ─────────────────── */
+function VillesSeoSection() {
+  const villes = [
+    { name: "Montpellier", href: "/montpellier" },
+    { name: "Le Crès", href: "/le-cres" },
+    { name: "Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
+    { name: "Juvignac", href: "/juvignac" },
+    { name: "Mauguio", href: "/mauguio" },
+    { name: "Lattes", href: "/lattes" },
+    { name: "Castelnau-le-Lez", href: "/castelnau-le-lez" },
+    { name: "Jacou", href: "/jacou" },
+    { name: "Villeneuve-lès-Maguelone", href: "/villeneuve-les-maguelone" },
+    { name: "Frontignan", href: "/frontignan" },
+    { name: "Gigean", href: "/gigean" },
+    { name: "Lunel", href: "/lunel" },
+    { name: "Pézenas", href: "/pezenas" },
+    { name: "Sète", href: "/sete" },
+    { name: "Nîmes", href: "/nimes" },
+    { name: "Béziers", href: "/beziers" },
+  ];
+
+  const dimensions = [
+    "195/65 R15", "205/55 R16", "185/65 R15", "195/55 R16",
+    "225/45 R17", "215/55 R17", "205/60 R16", "185/60 R15",
+    "225/55 R18", "215/50 R17", "215/55 R18", "185/55 R15",
+  ];
+
+  const marques = [
+    "Michelin", "Goodyear", "Dunlop", "Continental", "Falken",
+    "Nexen", "Tracmax", "Firestone", "Superia", "Yokohama", "Bridgestone", "Pirelli",
+  ];
+
+  const servicesMeca = [
+    { label: "Parallélisme voiture", href: "/services/parallelisme-geometrie" },
+    { label: "Géométrie voiture", href: "/services/parallelisme-geometrie" },
+    { label: "Parallélisme Montpellier", href: "/services/parallelisme-geometrie" },
+    { label: "Montage & équilibrage", href: "/pneus-voiture" },
+    { label: "Vidange voiture", href: "/mecanique" },
+    { label: "Pneus été", href: "/pneus-voiture" },
+    { label: "Pneus hiver", href: "/pneus-voiture" },
+    { label: "Pneus 4 saisons", href: "/pneus-voiture" },
+    { label: "Pneus SUV", href: "/pneus-voiture" },
+    { label: "Pneus 4x4", href: "/pneus-voiture" },
+    { label: "Pneus citadine", href: "/pneus-voiture" },
+  ];
+
+  return (
+    <section className="py-14 bg-background border-t border-border">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          <div>
+            <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-widest mb-4">
+              Pneus voiture autour de Montpellier
+            </h3>
+            <ul className="flex flex-wrap gap-x-3 gap-y-2">
+              {villes.map((v) => (
+                <li key={v.name}>
+                  <Link href={v.href} className="text-sm text-foreground/55 hover:text-purple-bright transition-colors">
+                    Pneus {v.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-widest mb-4">
+              Dimensions les plus courantes
+            </h3>
+            <ul className="flex flex-wrap gap-x-3 gap-y-2">
+              {dimensions.map((d) => (
+                <li key={d}>
+                  <Link href="/pneus-voiture" className="text-sm text-foreground/55 hover:text-purple-bright transition-colors">
+                    Pneu {d}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-widest mb-4">
+              Marques pneus voiture
+            </h3>
+            <ul className="flex flex-wrap gap-x-3 gap-y-2">
+              {marques.map((m) => (
+                <li key={m}>
+                  <Link href="/pneus-voiture" className="text-sm text-foreground/55 hover:text-purple-bright transition-colors">
+                    Pneus {m}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xs font-bold text-foreground/40 uppercase tracking-widest mb-4">
+              Services garage Le Crès
+            </h3>
+            <ul className="flex flex-wrap gap-x-3 gap-y-2">
+              {servicesMeca.map((s) => (
+                <li key={s.label}>
+                  <Link href={s.href} className="text-sm text-foreground/55 hover:text-purple-bright transition-colors">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────────── PAGE ─────────────────── */
 export default function HomePage() {
   return (
@@ -1619,6 +1737,7 @@ export default function HomePage() {
       <TrajectoireSection />
       <ZoneInterventionSection />
       <FAQSection />
+      <VillesSeoSection />
     </>
   );
 }

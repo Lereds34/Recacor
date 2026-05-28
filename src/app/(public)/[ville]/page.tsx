@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import { findVille } from "@/lib/villes";
 import { VillePageClient } from "@/components/ville-page";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 60;
+export const revalidate = 3600;
 
 const RESERVED_SLUGS = new Set([
   "blog", "contact", "merci", "maquette", "mecanique",

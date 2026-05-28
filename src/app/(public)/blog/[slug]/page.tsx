@@ -8,7 +8,7 @@ import {
   categoryLabel,
 } from "@/lib/blog";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 export const revalidate = 60;
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, User, Phone } from "lucide-react";

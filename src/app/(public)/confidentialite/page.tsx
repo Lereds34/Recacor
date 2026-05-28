@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { getLegalPage } from "@/lib/legal";
 import { LegalContent } from "@/components/legal-renderer";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",

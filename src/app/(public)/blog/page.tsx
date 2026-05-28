@@ -6,7 +6,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
 import { getSetting } from "@/lib/db";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 export const revalidate = 60;
 
 export const metadata: Metadata = {

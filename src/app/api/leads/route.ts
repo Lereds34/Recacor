@@ -73,6 +73,29 @@ export async function POST(req: Request) {
       }).catch((err) => console.error("[lead webhook]", err));
     }
 
+    // AdsFlow CRM — fire and forget
+    fetch(
+      "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nom: [data.prenom, data.nom].filter(Boolean).join(" ") || null,
+          tel: data.telephone || null,
+          email: data.email || null,
+          cp: data.cp || null,
+          source: data.utm_source || data.referrer || null,
+          page: data.page_source || null,
+          gclid: data.gclid || null,
+          fbclid: data.fbclid || null,
+          form_id: data.form_id,
+          service_type: data.service_type,
+          message: data.message || null,
+          payload: data,
+        }),
+      }
+    ).catch((err) => console.error("[adsflow webhook]", err));
+
     const hasMailer = !!(process.env.BREVO_API_KEY || process.env.RESEND_API_KEY);
 
     if (config.leadsEmailTo && hasMailer) {

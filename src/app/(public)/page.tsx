@@ -1189,20 +1189,38 @@ function ContactSection() {
 /* ─────────────────── FAQ ─────────────────── */
 const faqCategories = [
   {
-    label: "Services",
+    label: "Pneus voiture",
+    Icon: Car,
+    items: [
+      {
+        q: "Quel est le prix d'un pneu monté à Montpellier ?",
+        a: "À partir de 45€ le pneu monté et équilibré, toutes marques confondues. Le prix varie selon la dimension et la marque choisie. Nous proposons des marques premium (Michelin, Goodyear, Continental) et des alternatives qualité/prix (Nexen, Tracmax, Firestone). Devis gratuit en 2 minutes.",
+      },
+      {
+        q: "Avez-vous les pneus en stock immédiat ?",
+        a: "Oui. Notre stock couvre les dimensions les plus courantes du parc automobile montpelliérain : 195/65 R15, 205/55 R16, 185/65 R15, 225/45 R17 et bien d'autres. Montage en 15 minutes sans rendez-vous. Si votre dimension n'est pas disponible, nous pouvons la commander rapidement.",
+      },
+      {
+        q: "Faut-il prendre rendez-vous pour changer ses pneus ?",
+        a: "Non, vous pouvez vous présenter directement au garage sans rendez-vous du lundi au vendredi de 8h à 17h et le samedi de 8h à 12h. Pour les passages en groupe ou les changements de 4 pneus, un appel en amont est conseillé pour confirmer la disponibilité.",
+      },
+    ],
+  },
+  {
+    label: "Parallélisme & vidange",
     Icon: Wrench,
     items: [
       {
-        q: "Quels types de véhicules prenez-vous en charge ?",
-        a: "Nous intervenons sur tous types de véhicules : poids lourds, semi-remorques, utilitaires, véhicules de tourisme, engins agricoles et industriels. Notre atelier Le Crès est équipé pour toutes les dimensions de pneumatiques.",
+        q: "Combien coûte un parallélisme à Montpellier ?",
+        a: "Le réglage du parallélisme est à partir de 65€. Le contrôle du parallélisme est offert — nous vérifions votre géométrie gratuitement et vous conseillons avant d'intervenir. Un parallélisme mal réglé peut user vos pneus 3 fois plus vite et augmenter votre consommation de carburant.",
       },
       {
-        q: "Proposez-vous un service de dépannage ?",
-        a: "Oui, nous proposons un service de dépannage 24h/24 et 7j/7 pour les professionnels du transport. Nos équipes mobiles interviennent directement sur site, sur autoroute ou en zone industrielle pour minimiser votre temps d'immobilisation.",
+        q: "Combien coûte une vidange au Crès ?",
+        a: "La vidange est à partir de 79€ main-d'œuvre + huile selon le véhicule. Nous effectuons également le contrôle des niveaux, des filtres et l'inspection visuelle des pneus inclus. Sans rendez-vous en semaine.",
       },
       {
-        q: "Qu'est-ce que le recreusage de pneumatiques ?",
-        a: "Le recreusage consiste à redonner de la profondeur aux sculptures d'un pneumatique usé, prolongeant sa durée de vie de 20 à 30%. C'est une solution économique et écologique, réalisée uniquement sur des pneus conçus pour cette opération.",
+        q: "Quelles marques de pneus proposez-vous ?",
+        a: "Michelin, Goodyear, Continental, Dunlop, Falken, Bridgestone, Pirelli, Nexen, Tracmax, Firestone, Superia, Yokohama et bien d'autres. Toutes dimensions VL disponibles. Notre équipe vous conseille la marque adaptée à votre usage et votre budget.",
       },
     ],
   },
@@ -1211,30 +1229,16 @@ const faqCategories = [
     Icon: ClipboardList,
     items: [
       {
-        q: "Faut-il prendre rendez-vous ?",
-        a: "Non, notre garage Le Crès accepte les particuliers sans rendez-vous. Pour les flottes et interventions planifiées, nous recommandons de prendre rendez-vous pour garantir la disponibilité des pneumatiques.",
+        q: "Où se trouve le garage Recacor ?",
+        a: "1240 Route de Nîmes (RN 113), 34920 Le Crès — à 5 minutes de Montpellier centre, sortie Montpellier Est depuis l'A9. Grand parking sur place. Nous desservons Montpellier, Mauguio, Castelnau-le-Lez, Jacou, Lattes et toute l'agglomération.",
       },
       {
-        q: "Quelles marques de pneumatiques proposez-vous ?",
-        a: "Nous sommes partenaires de toutes les grandes marques mondiales : Michelin, Bridgestone, Continental, Goodyear, Pirelli, Hankook, Dunlop, Firestone, Yokohama, BFGoodrich et bien d'autres. Notre équipe vous conseille la marque la plus adaptée à votre usage.",
+        q: "Quels sont vos horaires d'ouverture ?",
+        a: "Lundi au vendredi : 8h–17h. Samedi : 8h–12h. Fermé le dimanche. Pour les urgences professionnelles (PL, flottes), contactez-nous directement par téléphone.",
       },
       {
         q: "Proposez-vous des facilités de paiement ?",
-        a: "Oui, nous proposons plusieurs options : paiement en plusieurs fois sans frais pour les particuliers, et facturation mensuelle avec délais de paiement pour les professionnels sous contrat.",
-      },
-    ],
-  },
-  {
-    label: "Flottes",
-    Icon: Truck,
-    items: [
-      {
-        q: "Comment fonctionne un contrat de gestion de flotte ?",
-        a: "Nous analysons votre parc, définissons un plan de maintenance préventive, et assurons le suivi digital complet de chaque véhicule. Vous recevez des alertes d'usure, des rapports mensuels et bénéficiez de tarifs négociés. Un interlocuteur dédié est assigné à votre compte.",
-      },
-      {
-        q: "Intervenez-vous directement sur notre site ?",
-        a: "Absolument. Nos ateliers mobiles se déplacent sur votre site (dépôt, entrepôt, chantier) pour les interventions planifiées comme pour les urgences. Cela réduit vos coûts d'immobilisation et simplifie la logistique.",
+        a: "Oui, nous proposons le paiement en plusieurs fois pour les particuliers. Les professionnels et gestionnaires de flottes bénéficient de conditions de paiement sur-mesure avec facturation mensuelle. Contactez-nous pour en discuter.",
       },
     ],
   },

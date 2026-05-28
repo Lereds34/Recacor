@@ -31,7 +31,6 @@ interface LeadPayload {
 
 export async function POST(req: Request) {
   try {
-    await ensureSchema();
     const data = (await req.json()) as LeadPayload;
 
     if (!data.form_id || !data.service_type) {
@@ -41,39 +40,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "telephone requis" }, { status: 400 });
     }
 
-    const inserted = (await sql`
-      INSERT INTO leads (
-        form_id, service_type, nom, prenom, entreprise,
-        telephone, email, cp, message, payload,
-        utm_source, utm_medium, utm_campaign, utm_content,
-        gclid, fbclid, page_source, referrer
-      ) VALUES (
-        ${data.form_id}, ${data.service_type},
-        ${data.nom || null}, ${data.prenom || null}, ${data.entreprise || null},
-        ${data.telephone}, ${data.email}, ${data.cp || null}, ${data.message || null},
-        ${JSON.stringify(data)}::jsonb,
-        ${data.utm_source || null}, ${data.utm_medium || null},
-        ${data.utm_campaign || null}, ${data.utm_content || null},
-        ${data.gclid || null}, ${data.fbclid || null},
-        ${data.page_source || null}, ${data.referrer || null}
-      )
-      RETURNING id;
-    `) as { id: number }[];
-
-    const leadId = inserted[0]?.id;
-
-    // Webhook + email (non-bloquant)
-    const config = await getSiteConfig();
-
-    if (config.leadsWebhookUrl) {
-      fetch(config.leadsWebhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: leadId, ...data }),
-      }).catch((err) => console.error("[lead webhook]", err));
-    }
-
-    // AdsFlow CRM — fire and forget
+    // AdsFlow CRM — fire-and-forget en PREMIER, indépendant de la DB
     fetch(
       "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
       {
@@ -96,25 +63,61 @@ export async function POST(req: Request) {
       }
     ).catch((err) => console.error("[adsflow webhook]", err));
 
+    // Insertion DB Neon — si quota dépassé, on continue quand même
+    let leadId: number | undefined;
+    try {
+      await ensureSchema();
+      const inserted = (await sql`
+        INSERT INTO leads (
+          form_id, service_type, nom, prenom, entreprise,
+          telephone, email, cp, message, payload,
+          utm_source, utm_medium, utm_campaign, utm_content,
+          gclid, fbclid, page_source, referrer
+        ) VALUES (
+          ${data.form_id}, ${data.service_type},
+          ${data.nom || null}, ${data.prenom || null}, ${data.entreprise || null},
+          ${data.telephone}, ${data.email}, ${data.cp || null}, ${data.message || null},
+          ${JSON.stringify(data)}::jsonb,
+          ${data.utm_source || null}, ${data.utm_medium || null},
+          ${data.utm_campaign || null}, ${data.utm_content || null},
+          ${data.gclid || null}, ${data.fbclid || null},
+          ${data.page_source || null}, ${data.referrer || null}
+        )
+        RETURNING id;
+      `) as { id: number }[];
+      leadId = inserted[0]?.id;
+    } catch (dbErr) {
+      console.error("[lead DB indisponible]", dbErr);
+      // La DB est KO (quota Neon dépassé) — le lead est déjà dans AdsFlow
+    }
+
+    const config = await getSiteConfig().catch(() => ({ leadsWebhookUrl: null, leadsEmailTo: null }));
+
+    if (config.leadsWebhookUrl) {
+      fetch(config.leadsWebhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: leadId, ...data }),
+      }).catch((err) => console.error("[lead webhook]", err));
+    }
+
     const hasMailer = !!(process.env.BREVO_API_KEY || process.env.RESEND_API_KEY);
 
     if (config.leadsEmailTo && hasMailer) {
-      sendLeadEmail(config.leadsEmailTo, data, leadId).catch((err) =>
+      sendLeadEmail(config.leadsEmailTo, data, leadId ?? 0).catch((err) =>
         console.error("[lead email]", err)
       );
     }
 
-    // Confirmation au client si activée
-    const sendConfirm = await getSetting("leads_send_confirmation", "");
+    const sendConfirm = await getSetting("leads_send_confirmation", "").catch(() => "");
     if (sendConfirm === "1" && data.email && hasMailer) {
       sendConfirmationEmail(data).catch((err) =>
         console.error("[lead confirmation]", err)
       );
     }
 
-    // Mailchimp : ajout automatique à l'audience configurée
     if (process.env.MAILCHIMP_API_KEY && data.email) {
-      const audienceId = await getSetting("mailchimp_audience_id");
+      const audienceId = await getSetting("mailchimp_audience_id").catch(() => null);
       if (audienceId) {
         subscribeContact(audienceId, {
           email: data.email,
@@ -126,7 +129,7 @@ export async function POST(req: Request) {
       }
     }
 
-    return NextResponse.json({ ok: true, id: leadId });
+    return NextResponse.json({ ok: true, id: leadId ?? null });
   } catch (e) {
     console.error("[lead]", e);
     return NextResponse.json({ error: String(e) }, { status: 500 });
@@ -154,5 +157,5 @@ async function sendConfirmationEmail(data: LeadPayload) {
     html,
     text,
   });
-  if (!result.ok) console.error("[confirmation email]", result.error);
+  if (!result.ok) console.error("[lead confirmation]", result.error);
 }

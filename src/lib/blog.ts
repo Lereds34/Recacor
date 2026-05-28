@@ -147,19 +147,16 @@ export async function getAllSlugs(): Promise<string[]> {
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   if (!process.env.DATABASE_URL) return null;
-  try {
-    const rows = (await sql`
-      SELECT * FROM articles
-      WHERE slug = ${slug}
-        AND (status = 'published'
-             OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
-      LIMIT 1
-    `) as ArticleRow[];
-    if (rows.length === 0) return null;
-    return rowToArticle(rows[0]);
-  } catch {
-    return null;
-  }
+  // Ne pas catch : si la DB est KO, on laisse l'erreur remonter pour afficher maintenance
+  const rows = (await sql`
+    SELECT * FROM articles
+    WHERE slug = ${slug}
+      AND (status = 'published'
+           OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
+    LIMIT 1
+  `) as ArticleRow[];
+  if (rows.length === 0) return null;
+  return rowToArticle(rows[0]);
 }
 
 export async function getAllArticles(): Promise<Article[]> {

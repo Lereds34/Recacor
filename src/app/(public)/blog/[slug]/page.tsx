@@ -9,7 +9,6 @@ import {
 } from "@/lib/blog";
 
 export const revalidate = 3600;
-export const revalidate = 60;
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, User, Phone } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -38,7 +37,32 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const article = await getArticleBySlug(slug);
+
+  let article: Awaited<ReturnType<typeof getArticleBySlug>> = null;
+  let dbDown = false;
+  try {
+    article = await getArticleBySlug(slug);
+  } catch {
+    dbDown = true;
+  }
+
+  if (dbDown) {
+    return (
+      <section className="pt-40 pb-20 text-center">
+        <div className="mx-auto max-w-lg px-4">
+          <div className="text-6xl mb-6">🔧</div>
+          <h1 className="text-3xl font-black mb-4">Article temporairement indisponible</h1>
+          <p className="text-muted-foreground mb-8">
+            Notre base de données est en maintenance. Cet article sera de nouveau accessible très prochainement.
+          </p>
+          <Link href="/blog" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-purple-deep text-white font-bold text-sm hover:opacity-90 transition-opacity">
+            ← Retour au blog
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
   if (!article) notFound();
 
   const cta = CTA_PER_CATEGORY[article.frontmatter.categorie];

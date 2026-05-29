@@ -146,7 +146,11 @@ export function AvisSection() {
       .then((r) => r.json())
       .then((data) => {
         if (data.reviews?.length >= 3) {
-          setAvis(data.reviews);
+          // Combine vrais avis + fallback pour avoir au moins 10 cartes
+          const realNames = new Set(data.reviews.map((r: GoogleReview) => r.author_name));
+          const padding = FALLBACK_AVIS.filter((r) => !realNames.has(r.author_name));
+          const combined = [...data.reviews, ...padding].slice(0, 10);
+          setAvis(combined);
           setRating(data.rating);
           setTotal(data.user_ratings_total);
           setSource("google");

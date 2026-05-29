@@ -16,8 +16,20 @@ export interface PlaceData {
   reviews: GoogleReview[];
 }
 
-const PLACE_ID = `cid:${process.env.GOOGLE_PLACE_ID ?? "3085084299642201374"}`;
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+const PLACE_NAME = "Recacor Le Crès";
+
+async function findPlaceId(): Promise<string | null> {
+  const url = new URL("https://maps.googleapis.com/maps/api/place/findplacefromtext/json");
+  url.searchParams.set("input", PLACE_NAME);
+  url.searchParams.set("inputtype", "textquery");
+  url.searchParams.set("fields", "place_id");
+  url.searchParams.set("key", API_KEY!);
+
+  const res = await fetch(url.toString());
+  const json = await res.json();
+  return json.candidates?.[0]?.place_id ?? null;
+}
 
 export async function GET() {
   if (!API_KEY) {
@@ -25,11 +37,15 @@ export async function GET() {
   }
 
   try {
+    const placeId = await findPlaceId();
+    if (!placeId) {
+      return NextResponse.json({ error: "Place introuvable" }, { status: 502 });
+    }
+
     const url = new URL("https://maps.googleapis.com/maps/api/place/details/json");
-    url.searchParams.set("place_id", PLACE_ID);
+    url.searchParams.set("place_id", placeId);
     url.searchParams.set("fields", "rating,user_ratings_total,reviews");
     url.searchParams.set("language", "fr");
-    url.searchParams.set("reviews_sort", "most_relevant");
     url.searchParams.set("key", API_KEY);
 
     const res = await fetch(url.toString(), { next: { revalidate: 86400 } });

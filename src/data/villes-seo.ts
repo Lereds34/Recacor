@@ -10,6 +10,7 @@ export interface VilleSeo {
   angle_title: string;
   angle_text: string;
   faqs: { q: string; a: string }[];
+  contenu?: string[];
   published: boolean;
 }
 
@@ -31,6 +32,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Quel est le tarif pour 4 pneus VL montés ?", a: "À partir de 45€ le pneu monté (180€ pour 4 pneus). Le prix exact dépend de la dimension et de la marque choisie — demandez un devis gratuit en ligne." },
       { q: "Proposez-vous des pneus Michelin à Montpellier ?", a: "Oui, Michelin, Bridgestone, Continental, Goodyear, Pirelli, Hankook et bien d'autres sont disponibles en stock à Le Crès. Toutes les marques, tous les budgets." },
     ],
+    contenu: [
+      "Avec plus de 300 000 habitants et une circulation dense, Montpellier concentre une forte demande en pneus voiture. Les grandes enseignes franchisées (Feu Vert, Norauto, Euromaster) y pratiquent des tarifs qui reflètent leurs loyers et leur structure de coûts. Recacor, implanté à Le Crès sur la RN113 à 5 km du centre, fonctionne différemment : achat direct auprès des fournisseurs, structure allégée, prix discount sur toutes les marques sans compromis sur la qualité du service.",
+      "Les recherches les plus fréquentes de nos clients montpelliérains : \"pneus Montpellier pas cher\", \"garage pneu Montpellier sans rendez-vous\", \"montage pneu rapide Montpellier\". Sur ces trois points, Recacor répond : à partir de 45€ le pneu monté équilibré, accueil sans rendez-vous, montage en 15 minutes. Les dimensions les plus courantes à Montpellier — 205/55R16, 225/45R17, 195/65R15, 205/60R16 — sont systématiquement en stock.",
+      "Le trajet depuis Montpellier est simple : Route de Nîmes / RN113 direction Le Crès. Pas de péage, pas de passage par le centre-ville saturé. Dix minutes de route pour un service professionnel, une note Google de 5,0/5 et un prix annoncé identique au prix facturé — équilibrage et valves neuves inclus. Nos clients Montpellier viennent souvent grouper plusieurs interventions : changement de pneus, contrôle parallélisme offert et vidange à partir de 79€, le tout en une seule visite.",
+      "Un avantage souvent mentionné par nos clients Montpellier : l'absence de file d'attente. Pas de créneau à réserver dix jours à l'avance, pas d'attente de deux heures un samedi matin. Venez directement du lundi au vendredi 8h–17h ou le samedi 8h–12h, parking gratuit sur place. C'est ce que beaucoup appellent un \"service garage professionnel sans les contraintes de la ville\".",
+    ],
     published: true,
   },
   {
@@ -49,6 +56,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Puis-je faire contrôler mon parallélisme en même temps que mes pneus ?", a: "Oui, et c'est fortement recommandé après un changement de pneus. Le contrôle parallélisme est offert avec chaque changement de pneus chez Recacor." },
       { q: "Avez-vous des pneus pour SUV et crossover ?", a: "Oui. Nous avons en stock les dimensions courantes pour SUV (215/65R16, 225/65R17, 235/55R18, etc.). Votre dimension absente ? Livraison 24-48h." },
       { q: "Quels horaires pour venir de Castelnau ?", a: "Lundi–Vendredi 8h–17h, Samedi 8h–12h. Pas besoin de rendez-vous, vous pouvez arriver directement." },
+    ],
+    contenu: [
+      "Castelnau-le-Lez et Le Crès sont communes limitrophes — la frontière passe parfois au milieu d'une rue. Pour les Castelnaudards qui cherchent un garage pneus fiable, Recacor est littéralement à côté : 3 km, 5 minutes en voiture, sans sortir de l'agglomération. Pas besoin de prendre l'autoroute ni de traverser Montpellier.",
+      "La commune attire une population active et mobile : cadres, familles équipées de SUV et crossovers, professionnels qui roulent beaucoup. Les dimensions les plus demandées par les Castelnaudards chez Recacor : 225/45R17, 235/55R18, 225/55R17 — typiques des berlines et SUV récents. Toutes en stock, montage sans rendez-vous, équilibrage inclus dans le prix annoncé.",
+      "Ce qui revient le plus dans les retours de nos clients de Castelnau : la transparence du prix. \"On m'a annoncé 45€ par pneu monté, j'ai payé 45€ par pneu monté.\" Pas de frais cachés sur les valves, pas d'équilibrage facturé en supplément, pas de diagnostic obligatoire à 30€. Le tarif affiché est le tarif final — c'est notre engagement.",
+      "À Castelnau-le-Lez, les garages de quartier indépendants se raréfient et les concessionnaires pratiquent des tarifs élevés. Recacor est l'alternative locale : indépendant, non-franchisé, libre de proposer des prix compétitifs. Avec le contrôle parallélisme laser 3D offert à chaque changement de pneus — un service facturé en supplément dans la majorité des centres franchisés — le rapport qualité/prix est difficile à battre à 3 km de chez vous.",
     ],
     published: true,
   },
@@ -69,6 +82,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Avez-vous des pneus hiver pour l'hiver à la montagne ?", a: "Oui, nous stockons des pneus hiver toutes dimensions. Si vous prévoyez un départ aux sports d'hiver, contactez-nous en avance pour réserver votre montage." },
       { q: "Faites-vous la vidange en même temps que les pneus ?", a: "Oui. Recacor propose aussi la vidange, le freinage et le parallélisme. Profitez de votre visite pneus pour grouper les entretiens." },
     ],
+    contenu: [
+      "Lattes, commune de 20 000 habitants entre Montpellier et la mer, génère un trafic quotidien intense sur la D986 et la RN113 — deux axes qui mènent directement à Recacor en 12 minutes. Les allers-retours entre Port Marianne, la zone commerciale et les communes voisines usent les pneus plus vite que la moyenne. Nos clients de Lattes viennent pour trois raisons principales : le prix (45€ le pneu VL monté équilibré), l'absence de rendez-vous, et la rapidité du service (15 à 20 minutes pour un montage complet 4 pneus).",
+      "Les habitants de Lattes qui cherchent une alternative aux grandes surfaces de la zone commerciale découvrent souvent que les enseignes franchisées ne sont pas systématiquement moins chères qu'un indépendant. Recacor, sans franchise à rémunérer et avec un achat direct auprès des fournisseurs, propose des tarifs discount sur Michelin, Bridgestone, Continental, Goodyear et toutes les marques budget. Devis gratuit en ligne, réponse sous 2h.",
+      "Les quartiers de Lattes les plus proches de Recacor : Maurin, Boirargues, Lattes centre. Depuis Maurin, comptez 10 minutes via la D189 puis la RN113. Depuis Lattes centre, 12 minutes via la D986. Parking gratuit sur place, aucune contrainte de stationnement — un avantage réel par rapport aux garages situés en zone urbaine dense.",
+      "Les dimensions les plus montées pour les clients de Lattes : 205/55R16, 195/65R15, 225/50R17 (berlines et SUV compacts). En cas de dimension spécifique absente du stock, la majorité des pneus VL arrivent sous 24 à 48h ouvrés. Le contrôle parallélisme laser est inclus avec chaque changement — essentiel sur les axes routiers mixtes du secteur Lattes.",
+    ],
     published: true,
   },
   {
@@ -87,6 +106,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Proposez-vous des pneus pour utilitaires légers ?", a: "Oui, nous avons en stock les dimensions pour utilitaires légers (Trafic, Master, Transit, Boxer, etc.) en plus des pneus voiture classiques." },
       { q: "Peut-on confier la voiture et revenir la chercher plus tard ?", a: "Oui. Si vous avez besoin de temps, nous pouvons garder votre véhicule pendant l'intervention. Appelez-nous en arrivant pour organiser ça." },
       { q: "Quelle marque de pneu choisir pour rouler sur l'A9 et la côte ?", a: "Pour une utilisation mixte autoroute/côte, nous recommandons du Michelin, Continental ou Bridgestone en été. Pour les 4 saisons, le Goodyear Vector 4Seasons est très populaire dans la région." },
+    ],
+    contenu: [
+      "Mauguio et son canton — Carnon-Plage, La Grande-Motte, Mudaison — concentrent une population mixte : résidents permanents, professionnels de l'aéroport Montpellier-Méditerranée et saisonniers. Ce profil varié génère des besoins pneus diversifiés, du pneu été standard pour berline familiale aux dimensions runflat pour SUV premium, en passant par les utilitaires des professionnels du tourisme et du transport aéroportuaire.",
+      "Depuis Mauguio, Recacor est à 15 minutes via la RN113. Les garages de proximité sur le Pays de l'Or sont rares, et les franchises de la zone commerciale de Montpellier imposent souvent plusieurs jours d'attente pour un simple montage. Chez Recacor : pas de rendez-vous, accueil direct, pneus montés et équilibrés en 15 minutes. Les clients du secteur Mauguio figurent parmi ceux qui ont le taux de retour le plus élevé — le déplacement est court et le service cohérent.",
+      "Les dimensions les plus fréquentes pour les véhicules du secteur Mauguio-Carnon : 205/55R16, 215/55R17, 225/50R17 pour les berlines et SUV compacts, et 215/65R16, 225/65R17 pour les SUV et monospaces. Pour les utilitaires légers utilisés dans le secteur aéroportuaire, les dimensions de type 215/65R16C ou 225/75R16C sont disponibles sur commande rapide.",
+      "Le contrôle de parallélisme laser 3D est offert avec chaque changement de pneus chez Recacor. Sur les routes du Pays de l'Or — axes rapides type N113, D62 vers Carnon, accès à l'A9 — les à-coups et la diversité des revêtements créent des contraintes mécaniques réelles. Un parallélisme mal réglé peut amputer de 20 à 30 % la durée de vie des pneus neufs.",
     ],
     published: true,
   },
@@ -107,6 +132,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Les pneus runflat sont-ils disponibles chez Recacor ?", a: "Oui, nous proposons des pneus runflat (à flancs renforcés) pour BMW, Mercedes et autres véhicules qui en ont besoin. Sur commande si hors stock." },
       { q: "Peut-on faire réparer une crevaison sans changer le pneu ?", a: "Parfois oui. Si la crevaison est sur la bande de roulement (pas sur les flancs) et que le pneu n'est pas trop usé, une réparation est possible. Amenez votre roue et nous l'évaluons gratuitement." },
     ],
+    contenu: [
+      "Vendargues est une commune résidentielle de l'est montpelliérain, à 8 km de Recacor via la RN113. Entièrement sur axe direct — pas de contournement, pas de passage en ville — le trajet prend 12 minutes depuis n'importe quel quartier de la commune. Les zones d'activité de Vendargues et des communes voisines (Baillargues, Mudaison, Sussargues) génèrent une clientèle professionnelle régulière.",
+      "La spécificité de Vendargues : une population souvent équipée de berlines et SUV moyen/haut de gamme avec des dimensions moins standards. Les 235/45R17, 245/40R18 ou 255/35R19 sont moins courants dans les stocks des grandes enseignes. Recacor a accès à un catalogue fournisseurs large : la majorité des dimensions atypiques arrivent en 24 à 48h ouvrés. Appelez avant de vous déplacer pour confirmer la disponibilité.",
+      "Pour les véhicules les plus courants du secteur — Renault Scénic, Peugeot 3008, Volkswagen Tiguan, Citroën C5 Aircross — les dimensions 205/60R16, 225/55R17 et 235/55R17 sont systématiquement en stock. Montage sans rendez-vous, équilibrage inclus dans le tarif, valves neuves comprises. Aucun supplément non annoncé.",
+      "Nos clients de Vendargues mentionnent souvent le créneau du samedi matin 8h–12h : une heure de trajet et de service, sans attente, pour repartir sur quatre pneus neufs. C'est aussi le moment idéal pour grouper un contrôle de parallélisme — offert avec chaque changement — et anticiper les besoins avant un long trajet estival.",
+    ],
     published: true,
   },
   {
@@ -125,6 +156,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Pourquoi faire la géométrie après un changement de pneus ?", a: "Un mauvais parallélisme use les pneus plus vite (jusqu'à -30% de durée de vie) et dégrade la tenue de route. Le contrôle est offert chez Recacor avec chaque changement." },
       { q: "Combien coûte un réglage complet de géométrie 4 roues ?", a: "La géométrie 4 roues complète est à 89€ chez Recacor. Le simple contrôle parallélisme est offert. Si un réglage s'avère nécessaire, nous vous prévenons avant d'intervenir." },
       { q: "Acceptez-vous les voitures électriques et hybrides ?", a: "Oui. Les voitures électriques et hybrides ont souvent des pneus renforcés (marquage EV ou HL). Nous avons les références adaptées en stock ou sur commande 24h." },
+    ],
+    contenu: [
+      "Jacou et Clapiers figurent parmi les communes du nord montpelliérain avec le taux de conversion le plus élevé sur les recherches \"pneus\" — un indicateur clair que les habitants cherchent activement un garage de confiance sans vouloir traverser Montpellier. Depuis Jacou, Recacor est à 10 minutes via le contournement nord (A9/E15), un trajet fluide qui évite entièrement la ville.",
+      "Le profil des habitants de Jacou correspond à une clientèle exigeante : véhicules récents (Volkswagen Golf, BMW Série 1, Peugeot 308, Audi A3), attentive à la qualité des pneus mais soucieuse du rapport qualité/prix. Recacor propose Michelin, Continental et Bridgestone pour les amateurs de marques premium, et Hankook, Yokohama ou BFGoodrich pour ceux qui veulent une performance équivalente à prix réduit. Le choix est libre, le conseil objectif.",
+      "Nos clients de Jacou viennent souvent pour grouper plusieurs interventions : changement de pneus + réglage de parallélisme, les deux en une seule visite. La géométrie 3D laser est intégrée dans l'offre — contrôle offert, réglage complet à 65€ si nécessaire. Sur les routes du contournement nord et de l'A9 que empruntent quotidiennement les Jacoumards, un parallélisme précis est la meilleure garantie de longévité pour des pneus neufs.",
+      "Les dimensions les plus montées pour nos clients de Jacou et Clapiers : 205/55R16, 225/45R17, 215/55R16. Toutes en stock, disponibles le jour même. Pour les voitures électriques et hybrides — de plus en plus courantes dans la commune — nous disposons des références spécifiques EV/HL (à flancs renforcés, conçus pour le couple moteur des véhicules électriques).",
     ],
     published: true,
   },
@@ -164,6 +201,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Avez-vous des pneus résistants au sel et à l'humidité côtière ?", a: "Tous nos pneus sont conçus pour les conditions routières françaises, y compris les zones côtières. Le plus important est de vérifier l'état de vos pneus régulièrement, surtout en été avec le trafic côtier." },
       { q: "Combien coûte un jeu de 4 pneus monté ?", a: "À partir de 180€ pour 4 pneus montés et équilibrés (45€/pneu). Le prix varie selon la dimension et la marque. Demandez un devis gratuit." },
     ],
+    contenu: [
+      "Pérols est une commune à double vitesse : 10 000 habitants à l'année, et un flux saisonnier important en été avec les vacanciers en direction de Palavas-les-Flots. Cette situation génère un trafic intense sur la N113 — et une usure des pneus accélérée, notamment pour les professionnels de la zone commerciale et les navetteurs quotidiens vers Montpellier.",
+      "Pour les habitants de Pérols, Recacor au Crès est à 12 minutes via la N113 direction est — un trajet simple depuis n'importe quel quartier de la commune. Les professionnels de la zone industrielle de Pérols représentent une part régulière de notre clientèle : utilitaires légers (Renault Trafic, Ford Transit, Peugeot Expert), dimensions spécifiques, interventions rapides pour limiter l'immobilisation du véhicule.",
+      "En haute saison (juin–août), les garages de la côte sont souvent surchargés : attente de plusieurs jours, tarifs majorés, disponibilité réduite. Recacor, à 12 minutes de Pérols et Palavas, est une alternative immédiate sans les contraintes du saisonnier. Même en été, l'accueil sans rendez-vous est maintenu et les délais de montage restent de 15 à 20 minutes.",
+      "Dimensions courantes montées pour nos clients de Pérols : 185/65R15, 195/65R15, 205/55R16 pour les véhicules familiaux, et 215/65R16C, 225/65R16C pour les utilitaires. Contrôle de parallélisme laser offert avec chaque changement — essentiel sur les routes mixtes asphalte/zones portuaires du secteur, qui créent des contraintes d'usure asymétriques sur les trains avant.",
+    ],
     published: true,
   },
   {
@@ -182,6 +225,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Recacor est-il moins cher que les garages à Saint-Jean-de-Védas ?", a: "En général oui. Notre positionnement discount et notre volume d'achats nous permettent de proposer des tarifs compétitifs. Comparez : demandez un devis gratuit en ligne." },
       { q: "Proposez-vous le montage de pneus été lors du passage en saison ?", a: "Oui, le changement saisonnier est notre spécialité. Si vous avez vos pneus en dépôt, nous vous les remontons rapidement. Appelez avant pour anticiper l'affluence." },
       { q: "Faites-vous la mécanique complète (pas seulement les pneus) ?", a: "Oui. Recacor propose aussi la vidange, le freinage, le parallélisme et la géométrie. Profitez de votre visite pneus pour régler d'autres entretiens." },
+    ],
+    contenu: [
+      "Saint-Jean-de-Védas est l'une des communes de l'agglomération montpelliéraine avec la demande en pneus la plus active — l'une des localités où le taux de conversion sur les recherches \"pneu Saint-Jean-de-Védas\" est parmi les plus élevés de l'Hérault. Les habitants cherchent activement un garage compétitif et disponible, sans rendez-vous. Depuis Saint-Jean-de-Védas, Recacor au Crès est à 12 km via la RN113 — un trajet direct de 15 minutes qui relie l'ouest à l'est de l'agglomération sans passer par le centre.",
+      "La concurrence sur la zone saint-jeannaise est réelle : plusieurs garages franchisés y sont installés, avec des structures de coûts élevées qui se répercutent sur les tarifs. Recacor est l'alternative indépendante : mêmes marques (Michelin, Continental, Bridgestone, Goodyear, Pirelli), tarifs souvent plus compétitifs, et surtout sans rendez-vous obligatoire. La différence constatée par nos clients sur un jeu de 4 pneus peut atteindre 60 à 100€ par rapport aux enseignes franchisées locales.",
+      "Les dimensions les plus fréquentes pour les véhicules de Saint-Jean-de-Védas : 205/55R16, 215/55R17, 225/45R17 pour les berlines et crossovers, et 235/55R17, 225/60R17 pour les SUV. Pour les véhicules équipés de roues en alliage avec capteurs TPMS (surveillance de la pression), nos techniciens réinitialisent les capteurs après montage — un service souvent négligé dans les stations rapides.",
+      "Nos clients de Saint-Jean-de-Védas apprécient également la possibilité de grouper plusieurs interventions : pneus + vidange (à partir de 79€) + parallélisme laser offert, le tout en une visite. Le contrôle de parallélisme est particulièrement pertinent après les passages répétés sur les ronds-points et les axes de la zone commerciale de Saint-Jean — un environnement qui sollicite fortement les trains avant.",
     ],
     published: true,
   },

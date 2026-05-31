@@ -61,6 +61,25 @@ function DevisBlock({ nom }: { nom: string }) {
   );
 }
 
+/* ── Bloc contenu long ── */
+function ContenuBlock({ contenu, ville }: { contenu?: string[]; ville: string }) {
+  if (!contenu || contenu.length === 0) return null;
+  return (
+    <section className="py-20 bg-background">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-black tracking-tight mb-8">
+          Pneus à <span className="text-gradient-purple">{ville}</span> — tout ce qu&apos;il faut savoir
+        </h2>
+        <div className="space-y-5">
+          {contenu.map((para, i) => (
+            <p key={i} className="text-muted-foreground leading-relaxed">{para}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Bloc FAQ ── */
 function FaqBlock({ faqs, ville }: { faqs: { q: string; a: string }[]; ville: string }) {
   return (
@@ -182,6 +201,7 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </div>
 
       <AvisSection />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
       <FaqBlock faqs={faqs} ville={ville.nom} />
 
       {/* CTA final */}
@@ -283,6 +303,7 @@ function Variant2({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
 
       <DevisBlock nom={ville.nom} />
       <AvisSection />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
 
       {/* Info garage */}
       <section className="py-20 bg-background">
@@ -419,6 +440,7 @@ function Variant3({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </section>
 
       <AvisSection />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
       <FaqBlock faqs={faqs} ville={ville.nom} />
     </>
   );
@@ -518,6 +540,7 @@ function Variant4({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </section>
 
       <DevisBlock nom={ville.nom} />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
 
       {/* FAQ + CTA intégré */}
       <section className="py-24 bg-background">

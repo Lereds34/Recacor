@@ -47,6 +47,7 @@ const villesLinks = [
   { name: "Pneus Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
   { name: "Pneus Lunel", href: "/lunel" },
   { name: "Pneus Palavas-les-Flots", href: "/palavas-les-flots" },
+  { name: "Pneus Saint-Brès", href: "/saint-bres" },
   { name: "Pneus Nîmes", href: "/nimes" },
   { name: "Pneus Sète", href: "/sete" },
 ];

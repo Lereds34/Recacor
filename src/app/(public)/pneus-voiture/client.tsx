@@ -7,6 +7,7 @@ import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { BgParticles } from "@/components/bg-particles";
 import { AvisSection } from "@/components/avis-section";
+import { DevisCtaLink } from "@/components/devis-cta-link";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
@@ -126,9 +127,9 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             >
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <a href="/formulaire" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-colors">
+            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-colors">
               Devis gratuit <ArrowRight className="h-4 w-4" />
-            </a>
+            </DevisCtaLink>
           </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />

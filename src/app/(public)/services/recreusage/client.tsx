@@ -6,6 +6,7 @@ import { PhoneLink } from "@/components/phone-link";
 import { DevisPlForm } from "@/components/forms/devis-pl";
 import { BgParticles } from "@/components/bg-particles";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
+import { DevisCtaLink } from "@/components/devis-cta-link";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
 const avantages = [
@@ -47,9 +48,9 @@ export function RecreusageClient() {
             <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <a href="/formulaire" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
               Devis B2B <ArrowRight className="h-4 w-4" />
-            </a>
+            </DevisCtaLink>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />

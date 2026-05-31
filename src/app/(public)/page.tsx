@@ -40,6 +40,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { OpenStatus } from "@/components/open-status";
+import { DevisCtaLink } from "@/components/devis-cta-link";
 import { LocalBusinessJsonLd } from "@/components/schema-jsonld";
 import { AvisSection } from "@/components/avis-section";
 import { DynamicImage, DynamicMedia, useAsset } from "@/components/dynamic-media";
@@ -207,13 +208,10 @@ function HeroSection() {
             >
               Appeler maintenant
             </PhoneLink>
-            <Link
-              href="/formulaire"
-              className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold text-base hover:bg-white/10 hover:border-white/50 transition-all"
-            >
+            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold text-base hover:bg-white/10 hover:border-white/50 transition-all">
               Demander un devis
               <ArrowRight className="h-4 w-4" />
-            </Link>
+            </DevisCtaLink>
           </motion.div>
 
           {/* Preuve sociale */}
@@ -1563,9 +1561,9 @@ function ParticuliersProsSection() {
                 <p className="text-xs text-muted-foreground uppercase tracking-wider">À partir de</p>
                 <p className="text-2xl font-black text-purple-bright">45€<span className="text-xs font-medium text-muted-foreground ml-1">monté</span></p>
               </div>
-              <Link href="/formulaire" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-purple-bright text-white text-sm font-bold hover:bg-purple-mid transition-colors">
+              <DevisCtaLink className="items-center gap-2 px-5 py-2.5 rounded-full bg-purple-bright text-white text-sm font-bold hover:bg-purple-mid transition-colors">
                 Devis VL <ArrowRight className="h-4 w-4" />
-              </Link>
+              </DevisCtaLink>
             </div>
           </motion.div>
 

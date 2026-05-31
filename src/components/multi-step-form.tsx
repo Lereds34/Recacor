@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, ReactNode, FormEvent } from "react";
+import { useState, useEffect, useRef, ReactNode, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -40,6 +40,7 @@ export function MultiStepForm({
   rgpdText,
 }: MultiStepFormProps) {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [step, setStep] = useState(0);
   const [startPushed, setStartPushed] = useState(false);
   const [rgpd, setRgpd] = useState(false);
@@ -54,14 +55,18 @@ export function MultiStepForm({
     }
   };
 
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   const next = () => {
     triggerStart();
     if (!isValid(step)) return;
-    if (step < totalSteps - 1) setStep(step + 1);
+    if (step < totalSteps - 1) { setStep(step + 1); scrollToForm(); }
   };
 
   const prev = () => {
-    if (step > 0) setStep(step - 1);
+    if (step > 0) { setStep(step - 1); scrollToForm(); }
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -92,6 +97,7 @@ export function MultiStepForm({
 
   return (
     <form
+      ref={formRef}
       id={id}
       onSubmit={handleSubmit}
       onFocusCapture={triggerStart}

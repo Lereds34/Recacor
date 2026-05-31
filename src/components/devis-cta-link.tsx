@@ -6,23 +6,21 @@ interface DevisCtaLinkProps {
   className?: string;
   children: ReactNode;
   desktopHref?: string;
+  mobileHref?: string;
 }
 
-/**
- * Sur desktop (lg+) : scroll vers #devis (formulaire intégré à la page).
- * Sur mobile : redirige vers /formulaire (page dédiée, form visible dès le chargement).
- */
 export function DevisCtaLink({
   className,
   children,
   desktopHref = "#devis",
+  mobileHref = "/formulaire",
 }: DevisCtaLinkProps) {
   return (
     <>
       <a href={desktopHref} className={cn("hidden lg:inline-flex", className)}>
         {children}
       </a>
-      <Link href="/formulaire" className={cn("lg:hidden inline-flex", className)}>
+      <Link href={mobileHref} className={cn("lg:hidden inline-flex", className)}>
         {children}
       </Link>
     </>

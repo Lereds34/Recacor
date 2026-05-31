@@ -6,7 +6,7 @@ import { Phone } from "lucide-react";
 import type { ReactNode } from "react";
 
 interface PhoneLinkProps {
-  location: "header" | "footer" | "sticky" | "cta" | "page" | "hero";
+  location: "header" | "footer" | "sticky" | "cta" | "page" | "hero" | "formulaire";
   serviceType?: "vl" | "pl" | "mecanique";
   className?: string;
   children: ReactNode;

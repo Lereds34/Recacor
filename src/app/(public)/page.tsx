@@ -1445,7 +1445,7 @@ function ZoneInterventionSection() {
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white overflow-hidden flex flex-col">
             <div className="aspect-[16/10] bg-muted relative">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.5!2d3.9!3d43.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLe+Cr%C3%A8s!5e0!3m2!1sfr!2sfr!4v1"
+                src="https://maps.google.com/maps?q=Recacor+1240+Route+de+Nimes+34920+Le+Cres&output=embed&z=17"
                 className="w-full h-full"
                 allowFullScreen
                 loading="lazy"

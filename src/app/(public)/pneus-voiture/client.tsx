@@ -126,7 +126,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             >
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <a href="#devis" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-colors">
+            <a href="/formulaire" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-colors">
               Devis gratuit <ArrowRight className="h-4 w-4" />
             </a>
           </motion.div>
@@ -228,7 +228,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground">
               Dimension non listée ?{" "}
-              <a href="#devis" className="text-purple-bright font-semibold hover:underline">
+              <a href="/formulaire" className="text-purple-bright font-semibold hover:underline">
                 Demandez un devis gratuit →
               </a>
             </p>

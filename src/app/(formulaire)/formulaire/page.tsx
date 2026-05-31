@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { PhoneLink } from "@/components/phone-link";
-import { PHONE_DISPLAY } from "@/lib/tracking";
+import { PHONE_DISPLAY, PHONE_MOBILE, PHONE_MOBILE_DISPLAY } from "@/lib/tracking";
+import { MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Devis pneus gratuit — Recacor Le Crès",
@@ -38,20 +39,32 @@ export default function FormulairePage() {
           </div>
         </div>
 
-        {/* Appel alternatif */}
-        <div className="mt-5 text-center">
-          <p className="text-sm text-muted-foreground mb-2">
-            Vous préférez nous appeler ?
-          </p>
-          <PhoneLink
-            location="formulaire"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-purple-bright/30 text-purple-bright font-semibold text-sm hover:bg-purple-bright/5 transition-colors"
-            showIcon
-          >
-            {PHONE_DISPLAY}
-          </PhoneLink>
-          <p className="mt-1.5 text-xs text-muted-foreground">
-            Lun–Ven 8h–17h · Sam 8h–12h
+        {/* CTAs alternatifs */}
+        <div className="mt-5 flex flex-col items-center gap-3">
+          <p className="text-sm text-muted-foreground">Ou contactez-nous directement</p>
+
+          <div className="flex gap-3 w-full">
+            <PhoneLink
+              location="formulaire"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl border border-purple-bright/30 text-purple-bright font-semibold text-sm hover:bg-purple-bright/5 transition-colors"
+              showIcon
+            >
+              {PHONE_DISPLAY}
+            </PhoneLink>
+
+            <a
+              href={`https://wa.me/${PHONE_MOBILE.replace("+", "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-[#25D366] text-white font-semibold text-sm hover:bg-[#1ebe5d] transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
+          </div>
+
+          <p className="text-xs text-muted-foreground">
+            Tél. Lun–Ven 8h–17h · Sam 8h–12h · WhatsApp {PHONE_MOBILE_DISPLAY}
           </p>
         </div>
 

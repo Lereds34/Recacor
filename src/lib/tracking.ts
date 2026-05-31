@@ -105,12 +105,14 @@ export function pushDevisConfirmed() {
 /* Consent Mode v2 */
 export function grantConsent() {
   if (typeof window === "undefined") return;
-  gtag("consent", "update", {
-    ad_storage: "granted",
-    ad_user_data: "granted",
-    ad_personalization: "granted",
-    analytics_storage: "granted",
-  });
+  if (typeof gtag === "function") {
+    gtag("consent", "update", {
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+      analytics_storage: "granted",
+    });
+  }
   document.cookie = "cookie_consent=granted; max-age=33696000; path=/; SameSite=Lax";
 }
 

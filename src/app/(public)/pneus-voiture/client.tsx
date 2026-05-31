@@ -229,9 +229,9 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           <div className="mt-8 text-center">
             <p className="text-sm text-muted-foreground">
               Dimension non listée ?{" "}
-              <a href="/formulaire" className="text-purple-bright font-semibold hover:underline">
+              <DevisCtaLink desktopHref="#devis" className="text-purple-bright font-semibold hover:underline">
                 Demandez un devis gratuit →
-              </a>
+              </DevisCtaLink>
             </p>
           </div>
         </div>

@@ -413,7 +413,7 @@ function Variant3({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
           </div>
           <p className="text-center text-sm text-muted-foreground mt-6">
             Dimension absente ?{" "}
-            <a href="/formulaire" className="text-purple-bright font-semibold hover:underline">Demandez un devis →</a>
+            <DevisCtaLink desktopHref="#devis" className="text-purple-bright font-semibold hover:underline">Demandez un devis →</DevisCtaLink>
           </p>
         </div>
       </section>

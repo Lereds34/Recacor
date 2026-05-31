@@ -78,7 +78,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
             >
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <DevisCtaLink mobileHref="/formulaire/mecanique" className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
               Devis gratuit <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>

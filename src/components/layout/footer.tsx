@@ -48,6 +48,13 @@ const villesLinks = [
   { name: "Pneus Lunel", href: "/lunel" },
   { name: "Pneus Palavas-les-Flots", href: "/palavas-les-flots" },
   { name: "Pneus Saint-Brès", href: "/saint-bres" },
+  { name: "Pneus Le Crès", href: "/le-cres" },
+  { name: "Pneus Juvignac", href: "/juvignac" },
+  { name: "Pneus Villeneuve-lès-Maguelone", href: "/villeneuve-les-maguelone" },
+  { name: "Pneus Frontignan", href: "/frontignan" },
+  { name: "Pneus Gigean", href: "/gigean" },
+  { name: "Pneus Pézenas", href: "/pezenas" },
+  { name: "Pneus Béziers", href: "/beziers" },
   { name: "Pneus Nîmes", href: "/nimes" },
   { name: "Pneus Sète", href: "/sete" },
 ];

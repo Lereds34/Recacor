@@ -37,18 +37,18 @@ const navLinks = [
 ];
 
 const villesLinks = [
-  { name: "Montpellier", href: "/montpellier" },
-  { name: "Castelnau-le-Lez", href: "/castelnau-le-lez" },
-  { name: "Vendargues", href: "/vendargues" },
-  { name: "Mauguio", href: "/mauguio" },
-  { name: "Lattes", href: "/lattes" },
-  { name: "Pérols", href: "/perols" },
-  { name: "Jacou", href: "/jacou" },
-  { name: "Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
-  { name: "Lunel", href: "/lunel" },
-  { name: "Palavas-les-Flots", href: "/palavas-les-flots" },
-  { name: "Nîmes", href: "/nimes" },
-  { name: "Sète", href: "/sete" },
+  { name: "Pneus Montpellier", href: "/montpellier" },
+  { name: "Pneus Castelnau-le-Lez", href: "/castelnau-le-lez" },
+  { name: "Pneus Vendargues", href: "/vendargues" },
+  { name: "Pneus Mauguio", href: "/mauguio" },
+  { name: "Pneus Lattes", href: "/lattes" },
+  { name: "Pneus Pérols", href: "/perols" },
+  { name: "Pneus Jacou", href: "/jacou" },
+  { name: "Pneus Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
+  { name: "Pneus Lunel", href: "/lunel" },
+  { name: "Pneus Palavas-les-Flots", href: "/palavas-les-flots" },
+  { name: "Pneus Nîmes", href: "/nimes" },
+  { name: "Pneus Sète", href: "/sete" },
 ];
 
 export async function Footer() {

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Pneus Voiture Montpellier — Garage Recacor Le Crès",
     description:
       "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans RDV, stock immédiat, prix discount.",
-    url: "https://recacor.fr",
+    url: "https://www.recacor.fr",
     siteName: "Recacor",
     locale: "fr_FR",
     type: "website",

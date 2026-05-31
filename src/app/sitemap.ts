@@ -3,7 +3,7 @@ import { listVilles } from "@/lib/villes";
 import { getAllSlugs } from "@/lib/blog";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = "https://recacor.fr";
+  const base = "https://www.recacor.fr";
   const now = new Date();
 
   const staticRoutes = [

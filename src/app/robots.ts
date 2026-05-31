@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/merci", "/api/", "/admin", "/admin/"],
       },
     ],
-    sitemap: "https://recacor.fr/sitemap.xml",
+    sitemap: "https://www.recacor.fr/sitemap.xml",
   };
 }

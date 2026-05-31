@@ -74,7 +74,7 @@ export function RecreusageClient() {
           </div>
 
           <div className="mt-16 rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-white">
-            <h3 className="text-2xl font-black mb-4">Pourquoi recrooer ses pneus ?</h3>
+            <h3 className="text-2xl font-black mb-4">Pourquoi recreuser ses pneus ?</h3>
             <ul className="space-y-2.5">
               {[
                 "Solution économique pour les flottes poids lourd",

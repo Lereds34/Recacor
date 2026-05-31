@@ -1,4 +1,5 @@
 import { sql, ensureSchema } from "./db";
+import { findVilleSeo } from "@/data/villes-seo";
 
 export interface Ville {
   slug: string;
@@ -38,10 +39,22 @@ export async function findVille(slug: string): Promise<Ville | null> {
   try {
     await ensureSchema();
     const rows = (await sql`SELECT * FROM villes WHERE slug = ${slug} LIMIT 1`) as VilleRow[];
-    return rows[0] || null;
+    if (rows[0]) return rows[0];
   } catch {
-    return null;
+    // Neon unavailable — fall through to static data
   }
+  const seo = findVilleSeo(slug);
+  if (!seo) return null;
+  return {
+    slug: seo.slug,
+    nom: seo.nom,
+    cp: seo.cp,
+    distance: seo.distance,
+    description: seo.description,
+    meta_title: null,
+    meta_description: null,
+    published: seo.published,
+  };
 }
 
 export async function upsertVille(v: Ville): Promise<void> {

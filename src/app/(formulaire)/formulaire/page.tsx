@@ -29,7 +29,7 @@ export default function FormulairePage() {
             </h1>
             <div className="flex items-center gap-4 mt-2">
               <span className="text-white/80 text-xs">✓ Gratuit · Sans engagement</span>
-              <span className="text-white/80 text-xs">★ 4,8 · 34 avis</span>
+              <span className="text-white/80 text-xs">★ 5,0 · 34 avis</span>
             </div>
           </div>
 

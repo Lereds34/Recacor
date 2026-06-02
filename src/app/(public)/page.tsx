@@ -142,13 +142,13 @@ function HeroSection() {
       <FloatingParticle delay={1.5} x="50%" y="85%" size={4} />
       <FloatingParticle delay={0.8} x="15%" y="50%" size={3} />
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 pb-16 sm:pb-20 w-full">
         <div className="max-w-3xl">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <OpenStatus />
           </motion.div>
 
-          <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight">
+          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight">
             Garage Pneus{" "}
             <span className="text-purple-glow">Montpellier</span>
             <br />
@@ -164,42 +164,12 @@ function HeroSection() {
             </span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-6 text-lg sm:text-xl text-white/70 max-w-xl leading-relaxed"
-          >
-            Les pneus les moins chers de Montpellier. Stock immédiat, montage en 15min.
-          </motion.p>
-
-          {/* 4 icônes réassurance */}
+          {/* CTA doubles — remontés avant les badges pour mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl"
-          >
-            {reassurances.map((r, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.8 + i * 0.08 }}
-                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10"
-              >
-                <r.Icon className="h-5 w-5 text-purple-glow shrink-0" strokeWidth={1.75} />
-                <span className="text-xs sm:text-sm font-semibold text-white">{r.text}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA doubles */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="mt-10 flex flex-col sm:flex-row gap-3 max-w-2xl"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-6 flex flex-col sm:flex-row gap-3 max-w-2xl"
           >
             <PhoneLink
               location="hero"
@@ -218,8 +188,8 @@ function HeroSection() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="mt-6 flex items-center gap-3 text-white/60 text-sm"
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-4 flex items-center gap-3 text-white/60 text-sm"
           >
             <div className="flex gap-0.5">
               {[1, 2, 3, 4, 5].map((s) => (
@@ -227,6 +197,36 @@ function HeroSection() {
               ))}
             </div>
             <span><strong className="text-white">5,0</strong> · Avis Google</span>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-5 text-lg sm:text-xl text-white/70 max-w-xl leading-relaxed"
+          >
+            Les pneus les moins chers de Montpellier. Stock immédiat, montage en 15min.
+          </motion.p>
+
+          {/* 4 icônes réassurance */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl"
+          >
+            {reassurances.map((r, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 1 + i * 0.08 }}
+                className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/10 backdrop-blur-sm border border-white/10"
+              >
+                <r.Icon className="h-5 w-5 text-purple-glow shrink-0" strokeWidth={1.75} />
+                <span className="text-xs sm:text-sm font-semibold text-white">{r.text}</span>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

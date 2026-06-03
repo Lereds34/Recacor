@@ -178,8 +178,8 @@ function HeroSection() {
             >
               Appeler maintenant
             </PhoneLink>
-            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold text-base hover:bg-white/10 hover:border-white/50 transition-all">
-              Demander un devis
+            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-purple-deep font-bold text-base hover:bg-white/90 shadow-[0_8px_30px_rgba(255,255,255,0.2)] transition-all">
+              Devis gratuit
               <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </motion.div>

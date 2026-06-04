@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  getArticleBySlug,
-  getAllArticles,
-  CTA_PER_CATEGORY,
-  categoryLabel,
-} from "@/lib/blog";
-
-export const revalidate = 300;
+import { getArticleBySlug, getAllArticles, CTA_PER_CATEGORY, categoryLabel } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, User, MapPin, Phone, Calendar, BookOpen } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -17,6 +10,8 @@ import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ArticleTocBox, ArticleTocSidebar } from "@/components/article-toc";
 import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
+
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,

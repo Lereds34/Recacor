@@ -8,7 +8,7 @@ import {
   categoryLabel,
 } from "@/lib/blog";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, User, MapPin, Phone, Calendar, BookOpen } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";

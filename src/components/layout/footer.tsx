@@ -67,7 +67,7 @@ export async function Footer() {
     "@type": "AutoRepair",
     name: BUSINESS_NAME,
     description: "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans rendez-vous, stock immédiat.",
-    url: "https://recacor.fr",
+    url: "https://www.recacor.fr",
     telephone: "+33499533390",
     address: {
       "@type": "PostalAddress",

@@ -6,9 +6,9 @@ import { getSetting } from "@/lib/db";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Mécanique Légère Montpellier — Garage Recacor Le Crès",
+  title: "Vidange & Révision Montpellier | Sans RDV — Garage Recacor Le Crès",
   description:
-    "Révision, freinage, amortisseurs, train roulant. Mécanique légère pour particuliers à Montpellier — Le Crès. Sans RDV.",
+    "Vidange à partir de 79€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
   alternates: { canonical: "/mecanique" },
 };
 

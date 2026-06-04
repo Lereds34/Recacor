@@ -25,7 +25,7 @@ export async function generateMetadata({
     title: v.meta_title || `Pneus ${v.nom} — Garage Recacor Le Crès`,
     description:
       v.meta_description ||
-      `Pneus voiture à ${v.nom}, montage sans RDV chez Recacor au Crès (à ${v.distance}). Stock immédiat, prix discount.`,
+      `Pneus voiture à ${v.nom} dès 45€ montés — Recacor Le Crès (à ${v.distance}). Stock immédiat, montage en 15 min sans RDV. Devis gratuit.`,
     alternates: { canonical: `/${slug}` },
   };
 }

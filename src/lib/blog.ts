@@ -74,9 +74,16 @@ interface ArticleRow {
   raw: string;
 }
 
+const CATEGORY_DEFAULT_IMAGE: Record<Categorie, string> = {
+  "pneus-voiture": "/api/asset/vl_visual_image",
+  "mecanique":     "/api/asset/home_services_image",
+  "pneus-pl":      "/api/asset/home_centres_image",
+  "blog":          "/api/asset/home_pro_image",
+};
+
 function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
-  // Extrait image depuis le raw frontmatter (pas stocké en colonne dédiée pour l'instant)
   const imgMatch = row.raw?.match(/^image:\s*(.+)$/m);
+  const image = imgMatch?.[1]?.trim() || CATEGORY_DEFAULT_IMAGE[row.categorie as Categorie];
   return {
     slug: row.slug,
     titre: row.titre,
@@ -85,7 +92,7 @@ function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
     date: row.date || undefined,
     auteur: row.auteur || undefined,
     read_time: row.read_time || undefined,
-    image: imgMatch?.[1]?.trim() || undefined,
+    image,
   };
 }
 

@@ -15,36 +15,6 @@ export default function MerciPage() {
     pushDevisConfirmed();
   }, []);
 
-  const submitRecall = async () => {
-    if (!selected || !isValidPhone(phone)) return;
-    setSubmitting(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/leads", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          form_id: "rappel-merci",
-          service_type: "contact",
-          telephone: phone,
-          message: `Demande de rappel : ${selected}`,
-          ...getUtmData(),
-          page_source: "/merci",
-        }),
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        setError(err.error || "Une erreur est survenue, réessayez.");
-        setSubmitting(false);
-        return;
-      }
-      setConfirmed(true);
-    } catch {
-      setError("Erreur réseau, réessayez.");
-      setSubmitting(false);
-    }
-  };
-
   return (
     <>
       {/* Hero success */}

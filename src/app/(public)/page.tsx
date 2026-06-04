@@ -41,7 +41,7 @@ import { PhoneLink } from "@/components/phone-link";
 import { DevisVlForm } from "@/components/forms/devis-vl";
 import { OpenStatus } from "@/components/open-status";
 import { DevisCtaLink } from "@/components/devis-cta-link";
-import { LocalBusinessJsonLd } from "@/components/schema-jsonld";
+import { LocalBusinessJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { AvisSection } from "@/components/avis-section";
 import { DynamicImage, DynamicMedia, useAsset } from "@/components/dynamic-media";
 import React, { useState } from "react";
@@ -1725,10 +1725,13 @@ function VillesSeoSection() {
 }
 
 /* ─────────────────── PAGE ─────────────────── */
+const ALL_FAQ_ITEMS = faqCategories.flatMap((cat) => cat.items);
+
 export default function HomePage() {
   return (
     <>
       <LocalBusinessJsonLd />
+      <FaqJsonLd items={ALL_FAQ_ITEMS} id="home" />
       <HeroSection />
       <DevisVlSection />
       <ServicesSection />

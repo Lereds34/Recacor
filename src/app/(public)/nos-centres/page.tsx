@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { NosCentresClient } from "./client";
-import { getAsset } from "@/lib/site-assets";
+import { getSetting } from "@/lib/db";
 
 export const revalidate = 3600;
 
@@ -12,6 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default async function NosCentresPage() {
-  const heroImage = await getAsset("hero_image_nos_centres", "");
+  const heroImage = await getSetting("hero_image_nos_centres");
   return <NosCentresClient heroImage={heroImage} />;
 }

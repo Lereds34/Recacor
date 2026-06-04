@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { MecaniqueClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
-import { getAsset } from "@/lib/site-assets";
+import { getSetting } from "@/lib/db";
 
 export const revalidate = 3600;
 
@@ -59,7 +59,7 @@ const serviceSchema = {
 };
 
 export default async function MecaniquePage() {
-  const heroImage = await getAsset("hero_image_mecanique", "");
+  const heroImage = await getSetting("hero_image_mecanique");
   return (
     <>
       <Script

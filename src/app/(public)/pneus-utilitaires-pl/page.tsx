@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PlClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
-import { getAsset } from "@/lib/site-assets";
+import { getSetting } from "@/lib/db";
 
 export const revalidate = 3600;
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PlPage() {
-  const heroImage = await getAsset("hero_image_pneus_pl", "");
+  const heroImage = await getSetting("hero_image_pneus_pl");
   return (
     <>
       <PlClient heroImage={heroImage} />

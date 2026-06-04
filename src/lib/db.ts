@@ -112,10 +112,12 @@ async function runSchemaMigrations(): Promise<void> {
       description TEXT NOT NULL DEFAULT '',
       meta_title  TEXT,
       meta_description TEXT,
+      image_url   TEXT,
       published   BOOLEAN NOT NULL DEFAULT TRUE,
       created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `;
+  await sql`ALTER TABLE villes ADD COLUMN IF NOT EXISTS image_url TEXT;`;
 
   // Pages légales (HTML/markdown libre)
   await sql`

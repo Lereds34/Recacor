@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, Save, Trash2 } from "lucide-react";
 import Link from "next/link";
 import type { Ville } from "@/lib/villes";
+import { MediaPicker } from "@/components/admin/media-picker";
 
 interface Props {
   initial?: Ville;
@@ -19,6 +20,7 @@ const EMPTY: Ville = {
   description: "",
   meta_title: "",
   meta_description: "",
+  image_url: "",
   published: true,
 };
 
@@ -162,6 +164,20 @@ export function VilleForm({ initial, isEdit }: Props) {
             placeholder="Texte unique pour le SEO local — décrivez la proximité avec la ville et les services proposés."
             className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-bright resize-none"
           />
+        </div>
+
+        <div className="pt-5 border-t border-border space-y-4">
+          <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Image de la page</p>
+          <MediaPicker
+            value={data.image_url || ""}
+            onChange={(url) => update("image_url", url)}
+            label="Image principale (hero de la page ville)"
+          />
+          {!data.image_url && (
+            <p className="text-xs text-muted-foreground">
+              Si vide, l&apos;image par défaut <code>/Img/villes/default.png</code> sera utilisée.
+            </p>
+          )}
         </div>
 
         <div className="pt-5 border-t border-border space-y-4">

@@ -61,19 +61,54 @@ function DevisBlock({ nom }: { nom: string }) {
   );
 }
 
-/* ── Bloc contenu long ── */
-function ContenuBlock({ contenu, ville }: { contenu?: string[]; ville: string }) {
-  if (!contenu || contenu.length === 0) return null;
+const DEFAULT_VILLE_IMAGE = "/Img/villes/default.png";
+
+/* ── Bloc contenu long + image ── */
+function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: string[]; ville: string; imageUrl?: string | null }) {
+  const src = imageUrl || DEFAULT_VILLE_IMAGE;
+  const hasContenu = contenu && contenu.length > 0;
+
+  if (!hasContenu) {
+    return (
+      <section className="py-20 bg-background">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <img
+            src={src}
+            alt={`Garage pneus ${ville} — Recacor Le Crès`}
+            className="w-full rounded-3xl shadow-xl object-cover"
+            loading="lazy"
+            width={1080}
+            height={1080}
+          />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20 bg-background">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-black tracking-tight mb-8">
-          Pneus à <span className="text-gradient-purple">{ville}</span> — tout ce qu&apos;il faut savoir
-        </h2>
-        <div className="space-y-5">
-          {contenu.map((para, i) => (
-            <p key={i} className="text-muted-foreground leading-relaxed">{para}</p>
-          ))}
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight mb-8">
+              Pneus à <span className="text-gradient-purple">{ville}</span> — tout ce qu&apos;il faut savoir
+            </h2>
+            <div className="space-y-5">
+              {contenu!.map((para, i) => (
+                <p key={i} className="text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: para }} />
+              ))}
+            </div>
+          </div>
+          <div className="lg:sticky lg:top-24">
+            <img
+              src={src}
+              alt={`Garage pneus ${ville} — Recacor Le Crès`}
+              className="w-full rounded-3xl shadow-xl object-cover"
+              loading="lazy"
+              width={1080}
+              height={1080}
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -201,7 +236,7 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </div>
 
       <AvisSection />
-      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
       <FaqBlock faqs={faqs} ville={ville.nom} />
 
       {/* CTA final */}
@@ -303,7 +338,7 @@ function Variant2({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
 
       <DevisBlock nom={ville.nom} />
       <AvisSection />
-      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
 
       {/* Info garage */}
       <section className="py-20 bg-background">
@@ -440,7 +475,7 @@ function Variant3({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </section>
 
       <AvisSection />
-      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
       <FaqBlock faqs={faqs} ville={ville.nom} />
     </>
   );
@@ -540,7 +575,7 @@ function Variant4({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
       </section>
 
       <DevisBlock nom={ville.nom} />
-      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} />
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
 
       {/* FAQ + CTA intégré */}
       <section className="py-24 bg-background">

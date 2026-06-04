@@ -9,6 +9,7 @@ export interface Ville {
   description: string;
   meta_title?: string | null;
   meta_description?: string | null;
+  image_url?: string | null;
   published: boolean;
 }
 
@@ -20,6 +21,7 @@ interface VilleRow {
   description: string;
   meta_title: string | null;
   meta_description: string | null;
+  image_url: string | null;
   published: boolean;
 }
 
@@ -63,8 +65,8 @@ export async function upsertVille(v: Ville): Promise<void> {
     throw new Error("Slug invalide");
   }
   await sql`
-    INSERT INTO villes (slug, nom, cp, distance, description, meta_title, meta_description, published)
-    VALUES (${v.slug}, ${v.nom}, ${v.cp}, ${v.distance}, ${v.description}, ${v.meta_title || null}, ${v.meta_description || null}, ${v.published})
+    INSERT INTO villes (slug, nom, cp, distance, description, meta_title, meta_description, image_url, published)
+    VALUES (${v.slug}, ${v.nom}, ${v.cp}, ${v.distance}, ${v.description}, ${v.meta_title || null}, ${v.meta_description || null}, ${v.image_url || null}, ${v.published})
     ON CONFLICT (slug) DO UPDATE SET
       nom = EXCLUDED.nom,
       cp = EXCLUDED.cp,
@@ -72,6 +74,7 @@ export async function upsertVille(v: Ville): Promise<void> {
       description = EXCLUDED.description,
       meta_title = EXCLUDED.meta_title,
       meta_description = EXCLUDED.meta_description,
+      image_url = EXCLUDED.image_url,
       published = EXCLUDED.published;
   `;
 }

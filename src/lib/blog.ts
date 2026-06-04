@@ -17,11 +17,14 @@ export interface ArticleFrontmatter {
   read_time?: string;
 }
 
+export interface ArticleHeading { id: string; text: string; level: 2 | 3 }
+
 export interface Article {
   frontmatter: ArticleFrontmatter;
   html: string;
   faq: { q: string; a: string }[];
   excerpt: string;
+  headings: ArticleHeading[];
 }
 
 const CATEGORY_LABELS: Record<Categorie, string> = {
@@ -115,6 +118,19 @@ function makeExcerpt(content: string, maxWords = 35): string {
   return words.join(" ") + (words.length === maxWords ? "…" : "");
 }
 
+const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FEFF}]/gu;
+
+function addHeadingIds(html: string): string {
+  const slugMap: Record<string, number> = {};
+  return html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, level, attrs, inner) => {
+    const text = inner.replace(/<[^>]+>/g, "").trim();
+    const base = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").slice(0, 60);
+    slugMap[base] = (slugMap[base] ?? 0) + 1;
+    const id = slugMap[base] > 1 ? `${base}-${slugMap[base]}` : base;
+    return `<h${level}${attrs} id="${id}">${inner}</h${level}>`;
+  });
+}
+
 async function rowToArticle(row: ArticleRow): Promise<Article> {
   const faq = extractFaq(row.body);
   const excerpt = makeExcerpt(row.body);
@@ -125,12 +141,19 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
     .process(normalised);
-  return {
-    frontmatter: rowToFrontmatter(row),
-    html: processed.toString(),
-    faq,
-    excerpt,
-  };
+  const rawHtml = processed.toString().replace(EMOJI_RE, "");
+  const html = addHeadingIds(rawHtml);
+  const headings: ArticleHeading[] = [];
+  const hRe = /<h([23])[^>]*id="([^"]+)"[^>]*>([\s\S]*?)<\/h[23]>/gi;
+  let hm: RegExpExecArray | null;
+  while ((hm = hRe.exec(html)) !== null) {
+    headings.push({
+      level: parseInt(hm[1]) as 2 | 3,
+      id: hm[2],
+      text: hm[3].replace(/<[^>]+>/g, "").trim(),
+    });
+  }
+  return { frontmatter: rowToFrontmatter(row), html, faq, excerpt, headings };
 }
 
 // Filtre runtime : un article est public dès que `status='published'`,

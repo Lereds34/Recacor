@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
 import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
-import { getSetting } from "@/lib/db";
+import { getAsset } from "@/lib/site-assets";
 
 export const revalidate = 300;
 
@@ -142,7 +142,7 @@ function ArticleCard({ article, featured = false }: { article: Article; featured
 export default async function BlogPage() {
   const [articles, heroImage] = await Promise.all([
     getAllArticles(),
-    getSetting("hero_image_blog"),
+    getAsset("hero_image_blog", ""),
   ]);
   const featured = articles[0];
   const rest = articles.slice(1);

@@ -60,7 +60,7 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     fields: [
       { key: "google_place_id", label: "Place ID", type: "text", defaultValue: "", help: "À récupérer sur https://developers.google.com/maps/documentation/places/web-service/place-id" },
       { key: "google_review_url", label: "URL 'Laisser un avis'", type: "url", defaultValue: "https://g.page/r/CQgYeWa3dlAPEAE/review" },
-      { key: "google_maps_embed_url", label: "URL embed Google Maps", type: "url", defaultValue: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.5!2d3.9!3d43.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLe+Cr%C3%A8s!5e0!3m2!1sfr!2sfr!4v1" },
+      { key: "google_maps_embed_url", label: "URL embed Google Maps", type: "url", defaultValue: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6000!2d3.9!3d43.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLe+Cr%C3%A8s!5e0!3m2!1sfr!2sfr!4v1" },
       { key: "google_rating_fallback", label: "Note Google (fallback statique)", type: "text", defaultValue: "5,0" },
     ],
   },
@@ -90,19 +90,6 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
       { key: "social_instagram", label: "Instagram URL", type: "url", defaultValue: "" },
       { key: "social_tiktok", label: "TikTok URL", type: "url", defaultValue: "" },
       { key: "social_youtube", label: "YouTube URL", type: "url", defaultValue: "" },
-    ],
-  },
-  {
-    id: "hero_images",
-    title: "Images de pages",
-    description: "Image affichée au-dessus du formulaire (ou du contenu principal) de chaque page. URL d'une image hébergée (Vercel Blob, CDN, etc.). Laisser vide pour ne rien afficher.",
-    fields: [
-      { key: "hero_image_pneus_vl", label: "Image page Pneus Voiture", type: "url", defaultValue: "" },
-      { key: "hero_image_mecanique", label: "Image page Mécanique", type: "url", defaultValue: "" },
-      { key: "hero_image_pneus_pl", label: "Image page Pneus PL", type: "url", defaultValue: "" },
-      { key: "hero_image_nos_centres", label: "Image page Notre Garage", type: "url", defaultValue: "" },
-      { key: "hero_image_blog", label: "Image page Blog", type: "url", defaultValue: "" },
-      { key: "hero_image_contact", label: "Image page Contact", type: "url", defaultValue: "" },
     ],
   },
   {

@@ -125,6 +125,55 @@ export const SITE_ASSETS: PageAssets[] = [
     ],
   },
   {
+    id: "hero-images",
+    page: "Images hero (pages)",
+    description: "Image affichée en haut de chaque page. Laissez vide pour ne rien afficher.",
+    assets: [
+      {
+        key: "hero_image_pneus_vl",
+        label: "Hero — Pneus Voiture",
+        type: "image",
+        fallback: "",
+        alt: "Pneus voiture Recacor",
+      },
+      {
+        key: "hero_image_mecanique",
+        label: "Hero — Mécanique",
+        type: "image",
+        fallback: "",
+        alt: "Mécanique légère Recacor",
+      },
+      {
+        key: "hero_image_pneus_pl",
+        label: "Hero — Pneus PL",
+        type: "image",
+        fallback: "",
+        alt: "Pneus poids lourd Recacor",
+      },
+      {
+        key: "hero_image_blog",
+        label: "Hero — Blog",
+        type: "image",
+        fallback: "",
+        alt: "Blog Recacor",
+      },
+      {
+        key: "hero_image_nos_centres",
+        label: "Hero — Notre Garage",
+        type: "image",
+        fallback: "",
+        alt: "Nos centres Recacor",
+      },
+      {
+        key: "hero_image_contact",
+        label: "Hero — Contact",
+        type: "image",
+        fallback: "",
+        alt: "Contact Recacor",
+      },
+    ],
+  },
+  {
     id: "branding",
     page: "Identité (logo + favicon)",
     assets: [

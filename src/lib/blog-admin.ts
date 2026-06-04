@@ -7,6 +7,12 @@ export interface AdminArticle extends ArticleFrontmatter {
   raw: string;
 }
 
+export interface AdminArticleListItem extends ArticleFrontmatter {
+  status: string;
+  publish_at: string | null;
+  updated_at: string;
+}
+
 interface AdminRow {
   slug: string;
   titre: string;
@@ -15,16 +21,19 @@ interface AdminRow {
   date: string | null;
   auteur: string | null;
   read_time: string | null;
+  status: string;
+  publish_at: string | null;
+  updated_at: string;
   body: string;
   raw: string;
 }
 
-export async function listArticles(): Promise<ArticleFrontmatter[]> {
+export async function listArticles(): Promise<AdminArticleListItem[]> {
   await ensureSchema();
   const rows = (await sql`
-    SELECT slug, titre, meta_description, categorie, date, auteur, read_time
+    SELECT slug, titre, meta_description, categorie, date, auteur, read_time, status, publish_at, updated_at
     FROM articles
-    ORDER BY date DESC NULLS LAST
+    ORDER BY updated_at DESC NULLS LAST
   `) as AdminRow[];
   return rows.map((r) => ({
     slug: r.slug,
@@ -34,6 +43,9 @@ export async function listArticles(): Promise<ArticleFrontmatter[]> {
     date: r.date || undefined,
     auteur: r.auteur || undefined,
     read_time: r.read_time || undefined,
+    status: r.status,
+    publish_at: r.publish_at || null,
+    updated_at: r.updated_at,
   }));
 }
 

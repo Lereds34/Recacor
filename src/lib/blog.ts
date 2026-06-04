@@ -87,14 +87,18 @@ function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {
 }
 
 function extractFaq(content: string): { q: string; a: string }[] {
-  const faqMatch = content.match(/##\s+FAQ\s*\n([\s\S]*?)(?=\n##\s|\n*$)/i);
+  // Accepte ## FAQ, ### FAQ, ## Questions, etc.
+  const faqMatch = content.match(/#{2,3}\s+(?:FAQ|Questions?[^\n]*)\s*\n([\s\S]*?)(?=\n#{1,3}\s|\n*$)/i);
   if (!faqMatch) return [];
   const faqBlock = faqMatch[1];
   const items: { q: string; a: string }[] = [];
-  const regex = /\*\*([^*]+\?)\*\*\s*\n([\s\S]*?)(?=\n\*\*[^*]+\?\*\*|\n*$)/g;
+  // Accepte **Question?** ou **Question** (avec ou sans point d'interrogation)
+  const regex = /\*\*([^*]+?)\*\*\s*\n([\s\S]*?)(?=\n\*\*[^*]+?\*\*|\n*$)/g;
   let m: RegExpExecArray | null;
   while ((m = regex.exec(faqBlock)) !== null) {
-    items.push({ q: m[1].trim(), a: m[2].trim() });
+    const q = m[1].trim();
+    const a = m[2].trim();
+    if (q && a) items.push({ q, a });
   }
   return items;
 }
@@ -114,11 +118,13 @@ function makeExcerpt(content: string, maxWords = 35): string {
 async function rowToArticle(row: ArticleRow): Promise<Article> {
   const faq = extractFaq(row.body);
   const excerpt = makeExcerpt(row.body);
-  const bodyWithoutFaq = row.body.replace(/##\s+FAQ[\s\S]*?(?=\n##\s|$)/i, "");
+  const bodyWithoutFaq = row.body.replace(/#{2,3}\s+(?:FAQ|Questions?)[^\n]*\n[\s\S]*?(?=\n#{1,3}\s|$)/i, "");
+  // Normalise les sauts de ligne : une seule newline → double newline pour markdown
+  const normalised = bodyWithoutFaq.replace(/([^\n])\n([^\n])/g, "$1\n\n$2");
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
-    .process(bodyWithoutFaq);
+    .process(normalised);
   return {
     frontmatter: rowToFrontmatter(row),
     html: processed.toString(),

@@ -66,22 +66,108 @@ export async function Footer() {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
     name: BUSINESS_NAME,
-    description: "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans rendez-vous, stock immédiat.",
+    description: "Spécialiste pneus VL et poids lourd à Montpellier — Le Crès. Montage sans rendez-vous, stock immédiat. Pneus à partir de 45€ montés.",
     url: "https://www.recacor.fr",
     telephone: "+33499533390",
+    image: "https://www.recacor.fr/logo-recacor.webp",
     address: {
       "@type": "PostalAddress",
       streetAddress: "1240 Route de Nîmes",
       addressLocality: "Le Crès",
       postalCode: "34920",
+      addressRegion: "Hérault",
       addressCountry: "FR",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 43.6285,
+      longitude: 3.9412,
     },
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "17:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "12:00" },
     ],
     priceRange: "€€",
-    areaServed: ["Montpellier", "Le Crès", "Hérault"],
+    areaServed: [
+      { "@type": "City", name: "Montpellier" },
+      { "@type": "City", name: "Le Crès" },
+      { "@type": "City", name: "Castelnau-le-Lez" },
+      { "@type": "City", name: "Lunel" },
+      { "@type": "City", name: "Lattes" },
+      { "@type": "City", name: "Mauguio" },
+      { "@type": "AdministrativeArea", name: "Hérault" },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5.0",
+      reviewCount: "34",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services Recacor",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Montage pneu voiture",
+            description: "Montage et équilibrage de pneus toutes marques sans rendez-vous",
+          },
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            price: "45",
+            priceCurrency: "EUR",
+            minPrice: "45",
+            description: "À partir de 45€ le pneu monté et équilibré",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Vidange",
+            description: "Vidange moteur toutes marques avec filtre à huile",
+          },
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            price: "79",
+            priceCurrency: "EUR",
+            minPrice: "79",
+            description: "À partir de 79€",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Parallélisme et géométrie",
+            description: "Contrôle et réglage du parallélisme, contrôle offert",
+          },
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            price: "65",
+            priceCurrency: "EUR",
+            minPrice: "65",
+            description: "À partir de 65€, contrôle offert",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Pneus poids lourd",
+            description: "Montage et recreusage de pneus poids lourd, agricoles et industriels",
+          },
+        },
+      ],
+    },
+    sameAs: [
+      "https://www.facebook.com/profile.php?id=61563216265682",
+      "https://www.instagram.com/recacor_france/",
+      "https://www.tiktok.com/@recacor6",
+    ],
   };
 
   const socials = [

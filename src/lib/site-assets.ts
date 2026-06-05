@@ -216,11 +216,15 @@ export function invalidateAssetsCache() {
   cache = null;
 }
 
+const _assetFallbackMap: Record<string, string> = Object.fromEntries(
+  SITE_ASSETS.flatMap((p) => p.assets).map((a) => [a.key, a.fallback])
+);
+
 /* Helpers de lecture pour les pages publiques */
 export async function getAsset(key: string, fallback: string): Promise<string> {
   const all = await loadAll();
   const stored = all[key]?.url;
-  return stored || fallback;
+  return stored || fallback || _assetFallbackMap[key] || "";
 }
 
 export async function getAssetWithAlt(
@@ -230,8 +234,9 @@ export async function getAssetWithAlt(
 ): Promise<{ url: string; alt: string }> {
   const all = await loadAll();
   const row = all[key];
+  const url = row?.url || fallback || _assetFallbackMap[key] || "";
   return {
-    url: row?.url || fallback,
+    url,
     alt: row?.alt || fallbackAlt,
   };
 }

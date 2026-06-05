@@ -6,8 +6,20 @@ if (!process.env.AUTH_SECRET) {
 }
 const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
+const UTM_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
+
+  // Supprimer les params UTM des pages publiques (évite l'indexation d'URLs dupliquées)
+  if (!path.startsWith("/admin") && !path.startsWith("/api/")) {
+    const hasUtm = UTM_PARAMS.some((p) => req.nextUrl.searchParams.has(p));
+    if (hasUtm) {
+      const url = req.nextUrl.clone();
+      UTM_PARAMS.forEach((p) => url.searchParams.delete(p));
+      return NextResponse.redirect(url, { status: 301 });
+    }
+  }
 
   // Routes publiques (login + API auth)
   if (path === "/admin/login" || path.startsWith("/api/admin/auth/")) {
@@ -43,5 +55,10 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/api/admin/:path*",
+    // Pages publiques (exclut fichiers statiques Next.js)
+    "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml|json)$).*)",
+  ],
 };

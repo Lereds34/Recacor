@@ -6,7 +6,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
 import { getAsset } from "@/lib/site-assets";
 
-export const revalidate = 300;
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: "Blog Recacor — Conseils pneus, mécanique & flottes",

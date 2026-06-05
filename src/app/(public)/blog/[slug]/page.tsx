@@ -11,7 +11,7 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { ArticleTocBox, ArticleTocSidebar } from "@/components/article-toc";
 import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
-export const revalidate = 300;
+export const revalidate = 600;
 
 export async function generateMetadata({
   params,

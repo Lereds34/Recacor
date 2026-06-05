@@ -46,17 +46,6 @@ const villesLinks = [
   { name: "Pneus Jacou", href: "/jacou" },
   { name: "Pneus Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
   { name: "Pneus Lunel", href: "/lunel" },
-  { name: "Pneus Palavas-les-Flots", href: "/palavas-les-flots" },
-  { name: "Pneus Saint-Brès", href: "/saint-bres" },
-  { name: "Pneus Le Crès", href: "/le-cres" },
-  { name: "Pneus Juvignac", href: "/juvignac" },
-  { name: "Pneus Villeneuve-lès-Maguelone", href: "/villeneuve-les-maguelone" },
-  { name: "Pneus Frontignan", href: "/frontignan" },
-  { name: "Pneus Gigean", href: "/gigean" },
-  { name: "Pneus Pézenas", href: "/pezenas" },
-  { name: "Pneus Béziers", href: "/beziers" },
-  { name: "Pneus Nîmes", href: "/nimes" },
-  { name: "Pneus Sète", href: "/sete" },
 ];
 
 export async function Footer() {
@@ -324,7 +313,7 @@ export async function Footer() {
                   { label: "Pneus Mauguio", href: "/mauguio" },
                   { label: "Pneus Lattes", href: "/lattes" },
                   { label: "Pneus Lunel", href: "/lunel" },
-                  { label: "Pneus Sète", href: "/sete" },
+                  { label: "Pneus Vendargues", href: "/vendargues" },
                 ].map((s) => (
                   <li key={s.label}><Link href={s.href} className="text-xs text-white/30 hover:text-white/70 transition-colors">{s.label}</Link></li>
                 ))}

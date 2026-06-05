@@ -182,6 +182,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Puis-je déposer ma voiture et prendre le train pendant l'intervention ?", a: "Le Crès n'a pas de gare TER. Cependant, si vous avez quelqu'un pour vous déposer, le montage de 4 pneus prend 30 à 45 minutes, le temps d'attente sur place est court." },
       { q: "Avez-vous de meilleures offres que les grandes surfaces de Lunel ?", a: "Souvent oui. Nous comptons sur un approvisionnement direct auprès de nos fournisseurs pour vous proposer des prix compétitifs, avec un service professionnel que les grandes surfaces ne font pas toujours." },
     ],
+    contenu: [
+      "Lunel est à 22 km de Recacor — une distance qui se franchit en 20 minutes sur la N113 sans embouteillage. Ce qui surprend les nouveaux clients : le trajet est rentable dès le premier pneu. Le marché lunellois du pneumatique est dominé par des enseignes franchisées dont les tarifs intègrent des coûts de structure élevés. Recacor, acheteur direct auprès de ses fournisseurs, propose sur les mêmes références Michelin, Continental ou Bridgestone des prix que nos clients comparent systématiquement avant de prendre la route.",
+      "L'est de l'Hérault — Lunel, Vauvert, Aigues-Mortes, Saint-Gilles — constitue une zone économique active : logistique, maraîchage, viticulture, tourisme côtier. Les véhicules qui y circulent sont exigeants en termes de pneus : utilitaires de livraison, 4x4 de vignerons, minibus touristiques. Recacor couvre ces besoins avec les gammes commerciales (215/65R16C, 235/65R16C) et des délais de commande de 24 à 48h pour les dimensions hors stock.",
+      "Les clients de Lunel qui viennent chez Recacor partagent une même approche : ils ont comparé. Le devis en ligne ou le coup de fil préalable confirme le prix, le stock, et le créneau. L'aller-retour se planifie sur une demi-matinée — départ 8h, retour 9h30 avec quatre pneus neufs montés, équilibrés, parallélisme contrôlé et offert. C'est cette prévisibilité qui explique la fidélité de notre clientèle lunelloise.",
+      "Les dimensions les plus fréquentes pour le parc automobile lunellois : 185/65R15 et 205/55R16 pour les citadines et berlines compactes, 215/60R17 et 225/65R17 pour les SUV et monospaces familiaux. Pour les véhicules de service des entreprises du secteur, nous établissons des devis flotte sur mesure. Appelez-nous ou remplissez le formulaire en ligne — réponse garantie sous 2 heures ouvrées.",
+    ],
     published: true,
   },
   {
@@ -251,6 +257,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Peut-on venir en juillet-août ou c'est trop chargé ?", a: "Nous travaillons toute l'année. En été l'affluence peut être plus importante, donc venez tôt le matin ou appelez-nous pour estimer le temps d'attente." },
       { q: "Avez-vous des pneus pour les vans et campings-cars ?", a: "Nous avons des pneus pour les fourgons et utilitaires légers. Pour les camping-cars de grande taille, contactez-nous en avance pour vérifier la disponibilité." },
     ],
+    contenu: [
+      "Palavas-les-Flots concentre un paradoxe saisonnier aigu : en dehors de juillet et août, la commune tourne à régime réduit. Mais dès juin, la pression routière explose — camping-cars, remorques de bateaux, véhicules chargés de planches de kitesurf. Cette montée en charge soudaine se retrouve dans les garages locaux : délais de plusieurs jours, tarifs majorés, priorité donnée aux clients habituels. Recacor, à 14 km via Lattes, reste stable toute l'année — les mêmes prix, la même disponibilité, sans prime de saison.",
+      "L'axe Palavas–Lattes–Le Crès est l'un des plus directs du secteur côtier. Depuis le front de mer, comptez 15 à 18 minutes selon la fluidité du trafic sur la D986 et la N113. Ce trajet évite entièrement Montpellier, contrairement à ce que la géographie laisse supposer : on longe l'étang plutôt que de traverser la ville. Pour les résidents permanents de Palavas, c'est un accès pratique que beaucoup de clients découvrent par le bouche-à-oreille.",
+      "Le profil des véhicules à Palavas est plus diversifié qu'il n'y paraît. Aux côtés des citadines des résidents permanents (185/65R15, 195/65R15), on trouve les SUV et monospaces des touristes de passage (225/65R17, 235/55R18), les utilitaires des commerçants locaux et les fourgons des prestataires nautiques. Recacor couvre l'ensemble de ce spectre — pneus VL et utilitaires, montage rapide, pas d'obligation de rendez-vous.",
+      "La proximité côtière a un effet réel sur l'usure des pneus : non pas le sel marin directement, mais les variations thermiques brusques (asphalte chaud + fraîcheur maritime), les routes parfois dégradées par le sable transporté, et les freinages fréquents liés aux zones 30 du centre-ville estival. Nos clients de Palavas qui viennent pour le contrôle de parallélisme — offert avec chaque changement — repartent souvent avec un réglage corrigé qu'ils n'auraient pas soupçonné.",
+    ],
     published: true,
   },
   {
@@ -269,6 +281,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Quel est le trajet depuis Nîmes ?", a: "Depuis Nîmes, prenez l'A9 ou la N113 direction Montpellier jusqu'à la sortie Le Crès. Environ 40 km, 35 minutes sans trafic. Adresse : 1240 Route de Nîmes, 34920 Le Crès." },
       { q: "Peut-on vérifier le stock avant de se déplacer ?", a: "Oui et c'est recommandé pour un déplacement depuis Nîmes. Appelez-nous ou soumettez un devis en ligne avec votre dimension — on vous confirme la disponibilité immédiatement." },
       { q: "Livrez-vous des pneus à Nîmes ?", a: "Non, nous ne livrons pas. La prestation comprend le montage sur place à Le Crès. Pour les flottes PL dans le Gard, nos commerciaux peuvent intervenir — contactez-nous." },
+    ],
+    contenu: [
+      "Nîmes est à 40 km de Recacor — la limite du département, l'A9, et 35 minutes de route. Ce n'est pas une distance à négliger, mais c'est précisément ce que font certains de nos clients nîmois, et pour une raison simple : sur les pneus premium (Michelin Pilot Sport, Continental PremiumContact, Bridgestone Turanza), les écarts de prix entre un concessionnaire nîmois et Recacor peuvent dépasser 100 à 150€ pour un train complet. Le plein d'essence du trajet aller-retour revient à moins de 8€. L'arbitrage est rapide.",
+      "Nîmes est une ville de comparateurs. La population est habituée à comparer les prix en ligne avant d'acheter — les moteurs de recherche et les avis Google jouent un rôle central dans les décisions d'achat local. Recacor, avec sa note de 5,0/5 sur 34 avis et ses tarifs à partir de 45€ le pneu monté, apparaît régulièrement dans ces comparaisons. Les Nîmois qui appellent confirment systématiquement deux points : le prix (identique au téléphone et à la facture) et la rapidité (pas de rendez-vous, montage en 15 minutes).",
+      "L'axe Nîmes–Le Crès est direct : A9 sortie Montpellier-Est ou N113 intégrale, selon l'heure. Le trafic nîmois de pointe (7h30-9h et 17h-18h30) peut allonger le trajet de 10 à 15 minutes, mais en dehors de ces créneaux, les 40 km se font sans accroc. Nos clients de Nîmes choisissent souvent le créneau 9h-11h du matin en semaine — flux fluide, accueil immédiat, retour avant midi.",
+      "Pour les Nîmois, le conseil avant déplacement est systématique : appelez-nous au 04 99 53 33 90 ou soumettez un devis en ligne pour confirmer le stock de votre dimension. Si la référence est hors stock, nous pouvons la commander en 24 à 48h. Dans ce cas, un second déplacement est préférable à une attente sur place — on prend soin de vous le signaler avant que vous partiez de Nîmes.",
     ],
     published: true,
   },
@@ -289,6 +307,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Proposez-vous des tarifs pour les pêcheurs et professionnels de la mer ?", a: "Pour les utilitaires et véhicules professionnels, contactez-nous pour un devis adapté. Nous avons également une gamme PL/industriel." },
       { q: "Avez-vous des pneus adaptés au sel marin ?", a: "Tous nos pneus sont homologués pour les routes françaises. Pour les zones côtières très salées, l'essentiel est de vérifier régulièrement l'état de vos pneus (profondeur, craquelures de flanc)." },
     ],
+    contenu: [
+      "Sète n'est pas une ville de passage — c'est un port de travail. Manutentionnaires, marins-pêcheurs, restaurateurs du quai, techniciens des chantiers nautiques : les professionnels de Sète roulent beaucoup, chargent souvent, et utilisent leurs véhicules de façon intensive. Les revêtements autour du port — asphalte gras, pavés, quais en béton — créent des sollicitations particulières sur les trains avant et les flancs de pneus. Les garages locaux font face à une demande constante, et les délais peuvent s'allonger.",
+      "Depuis Sète, Recacor est à 38 km via la N113 — un trajet de 35 à 40 minutes qui longe en partie le littoral avant de rejoindre le corridor Montpellier–Le Crès. Pour les Sétois qui veulent éviter l'attente et maîtriser leur budget pneumatique, l'option Recacor est pertinente notamment sur les achats importants : 4 pneus utilitaires pour un fourgon de livraison, ou des pneus commerciaux (215/65R16C) pour les véhicules de transport côtier. Ces dimensions sont en stock ou disponibles sous 24 à 48h.",
+      "L'économie maritime de Sète génère un parc automobile très hétérogène. Les résidents permanents roulent en berlines familiales ou citadines. Les professionnels du port utilisent des utilitaires. Les touristes (très nombreux en été) arrivent en camping-cars et SUV. Recacor peut répondre à ces trois typologies sans rendez-vous — à condition de confirmer la disponibilité par téléphone avant de faire la route depuis Sète.",
+      "Pour les Sétois, la recommandation est de planifier le déplacement chez Recacor comme un trajet de demi-journée : appelez la veille, confirmez le stock de vos 4 pneus, et venez le matin. Sur place, le montage prend 15 à 20 minutes. Contrôle de parallélisme offert. Vous repartez vers 10h avec quatre pneus neufs, et vous êtes de retour au port avant midi. C'est la logique de nos clients sétois les plus réguliers.",
+    ],
     published: true,
   },
   {
@@ -307,6 +331,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Quels services proposez-vous aux habitants du Crès ?", a: "Changement de pneus VL, montage, équilibrage, parallélisme laser 3D, vidange, freinage. Tout sans rendez-vous du lundi au vendredi 8h–17h et le samedi 8h–12h." },
       { q: "Faut-il être client régulier pour avoir les meilleurs prix ?", a: "Non. Nos tarifs discount s'appliquent à tous : 45€ le pneu monté, 79€ la vidange, 65€ le parallélisme. Pas de prix préférentiel caché." },
       { q: "Peut-on amener sa voiture le matin et la récupérer le soir ?", a: "Oui, si vous avez besoin de laisser votre véhicule, c'est possible. Appelez-nous pour nous prévenir et nous organisons ça." },
+    ],
+    contenu: [
+      "Recacor est implanté au 1240 Route de Nîmes, en plein cœur de Le Crès. Les habitants de la commune ont un avantage que personne d'autre n'a : aucun trajet. Pas de calcul de rentabilité, pas d'heure à bloquer dans l'agenda, pas de question sur le stock — on passe en voiture, on ressort 20 minutes plus tard. C'est la proposition la plus simple qui soit, et c'est celle que nos voisins du Crès apprécient le plus.",
+      "La RN113 traverse Le Crès du bout à l'autre — et Recacor est installé dessus depuis des années. Nos techniciens connaissent les conditions routières locales : les ronds-points du quartier la Paillade en bordure de commune, les virages de la D172, les axes mixtes qui combinent voirie urbaine et sections plus rapides. Un parallélisme réglé en connaissance de ces sollicitations réelles vaut plus qu'un réglage générique.",
+      "Les habitants du Crès qui nous confient leur véhicule savent que leur voiture ne part pas loin. Elle reste sur la même commune, chez un garage qu'on peut voir de la route. Cette transparence géographique a une valeur que les clients réguliers mentionnent souvent : on sait où on laisse sa voiture, on peut passer reprendre quelque chose si besoin, on peut revenir à pied si le trajet se fait en journée.",
+      "Pour les Cressois, le samedi matin est le créneau privilégié : arrivée à 8h, départ avant 9h avec quatre pneus neufs. Les familles du Crès qui gèrent plusieurs véhicules passent parfois les deux en une matinée — un gain de temps impossible dans un garage franchisé en zone commerciale avec file d'attente. Vidange, freinage, parallélisme : tout peut se faire le même jour, sur rendez-vous informel ou directement à l'accueil.",
     ],
     published: true,
   },
@@ -327,6 +357,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Proposez-vous des pneus pour toutes les marques de voiture ?", a: "Oui, des citadines aux berlines premium en passant par les SUV. Michelin, Continental, Goodyear, Bridgestone, Pirelli, Hankook… et les marques budget. Demandez votre devis." },
       { q: "Le contrôle parallélisme est-il vraiment offert ?", a: "Oui, le contrôle de parallélisme avec notre équipement laser 3D est offert avec chaque changement de pneus. Si un réglage est nécessaire, nous vous informons avant d'intervenir." },
     ],
+    contenu: [
+      "Juvignac est la porte d'entrée ouest de Montpellier — une commune résidentielle en forte croissance, avec un profil de population CSP+ marqué : professions libérales, cadres, familles avec deux véhicules récents. Le secteur Juvignac–Montarnaud–Saint-Georges-d'Orques concentre une proportion importante de berlines premium (BMW Série 3, Audi A4, Mercedes Classe C) et de SUV familiaux de milieu/haut de gamme. Ces véhicules ont souvent des dimensions spécifiques (225/45R17, 235/40R18, 255/35R19) que les enseignes classiques n'ont pas toujours en stock.",
+      "Le trajet depuis Juvignac vers Recacor emprunte le périphérique nord de Montpellier — un axe conçu pour la fluidité, qui permet de relier l'ouest à l'est de l'agglomération sans traverser le centre. Depuis l'échangeur de Juvignac, on rejoint Le Crès en 18 à 22 minutes selon l'heure. C'est le trajet que nos clients de Juvignac décrivent comme « moins pénible qu'on ne le croit » — une fois le périphérique pris, le reste est linéaire.",
+      "Juvignac abrite aussi le Golf de Montpellier Massane, l'un des clubs les plus actifs de l'agglomération. Ce n'est pas un détail : les véhicules utilisés par cette clientèle sont souvent des modèles récents avec des exigences précises en matière de pneus. Les runflat pour BMW et Mini, les pneus à flancs renforcés pour les SUV hybrides, les profils bas pour berlines de sport — autant de spécificités que Recacor gère en stock ou sur commande 24h. Le conseil est compris dans le service, sans supplément.",
+      "Les véhicules hybrides et électriques sont de plus en plus nombreux à Juvignac, reflet d'une commune où le pouvoir d'achat est élevé et la sensibilité environnementale affirmée. Les pneus EV/HL (Electric Vehicle / High Load) — plus résistants, plus silencieux, conçus pour absorber le couple moteur élevé des modèles électriques — sont disponibles chez Recacor sur les marques Michelin (e.Primacy), Continental (EcoContact 6) et Goodyear (ElectricDrive 2). Appelez-nous pour confirmer votre référence avant de faire le trajet.",
+    ],
     published: true,
   },
   {
@@ -345,6 +381,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Avez-vous des pneus pour les véhicules de loisirs et camping-cars ?", a: "Pour les fourgons aménagés et les utilitaires légers, oui. Pour les grands camping-cars, contactez-nous en avance pour vérifier les dimensions disponibles." },
       { q: "Proposez-vous des pneus 4x4 pour la plage et les chemins ?", a: "Nous proposons des pneus tout-terrain (AT) et route (HT) pour 4x4 et SUV. Dimensions courantes en stock, autres sur commande 24-48h." },
       { q: "Combien coûte le montage d'un seul pneu ?", a: "Le tarif s'applique à l'unité : 45€ pour un pneu monté et équilibré. Pas d'obligation de venir avec 4 pneus." },
+    ],
+    contenu: [
+      "Villeneuve-lès-Maguelone occupe une position géographique singulière dans l'Hérault : encadrée par l'étang de Vic au nord et la Méditerranée au sud, la commune est accessible par un nombre limité d'axes routiers. Cette contrainte géographique a une conséquence directe : les habitants de Villeneuve font leurs achats et leurs services dans un rayon précis, et le détour par un garage lointain doit vraiment valoir le coup. Depuis Villeneuve, Recacor est à 12 km via Lattes — 15 minutes sur un axe parfaitement dégagé.",
+      "L'itinéraire Villeneuve–Lattes–Le Crès est l'un des plus agréables du secteur : D186 vers Lattes, puis D986 et N113 vers Le Crès. Aucun passage en ville dense, aucun feu au centre-ville, des ronds-points bien calibrés. Ce trajet, nos clients de Villeneuve le décrivent comme « beaucoup plus simple qu'on ne le pense » la première fois — et ensuite comme un automatisme dès qu'ils ont besoin de pneus.",
+      "Les routes de Villeneuve-lès-Maguelone ont un profil particulier : voies mixtes asphalte/zones sablonneuses, trafic saisonnier intense en accès à la plage, chemins de digue empruntés par les vélos et les voitures. Ce mélange crée une usure hétérogène des pneus — souvent plus forte sur les flancs et les zones d'appui en virage que sur la bande de roulement centrale. Le contrôle de parallélisme laser que nous offrons à chaque changement de pneus est particulièrement utile dans ce contexte.",
+      "Les véhicules les plus fréquents chez nos clients de Villeneuve : citadines pour les déplacements internes à la commune (185/65R15, 195/65R15), berlines familiales pour les trajets vers Montpellier (205/55R16, 215/55R17), et SUV pour les accès aux zones naturelles environnantes (215/65R16, 225/60R17). Dimensions systématiquement en stock, montage sans rendez-vous, équilibrage et valves neuves inclus dans le tarif annoncé.",
     ],
     published: true,
   },
@@ -365,6 +407,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Pouvez-vous me rappeler quand ma dimension est en stock ?", a: "Oui. Soumettez un devis en ligne avec votre dimension et nous vous confirmons la disponibilité. Si la commande est nécessaire, nous vous prévenons dès l'arrivée (24-48h)." },
       { q: "Faites-vous de la mécanique sur rendez-vous pour les déplacements longs ?", a: "Pas de rendez-vous pour les pneus. Pour les interventions mécaniques (vidange, freinage), appelez-nous en avance pour vous assurer d'être pris en charge rapidement à votre arrivée." },
     ],
+    contenu: [
+      "Frontignan combine deux économies aux contraintes opposées : une industrie lourde (raffinerie TotalEnergies, port de commerce) et une agriculture de prestige (le Muscat de Frontignan, AOC). Dans les deux cas, les véhicules professionnels sont soumis à des sollicitations intenses. Les utilitaires des prestataires portuaires font du kilométrage élevé sur des revêtements durs. Les véhicules des viticulteurs roulent sur des chemins non revêtus. Les deux profils ont besoin de pneus solides, résistants, changés régulièrement.",
+      "L'accès à Recacor depuis Frontignan est direct via la N113 : 28 km, 25 à 30 minutes sans trafic. Depuis le centre-ville de Frontignan ou les zones industrielles du port, l'A9 permet de raccourcir le trajet en évitant les traversées de villages. Pour les professionnels qui ont besoin d'une intervention rapide sur un utilitaire immobilisé, la combinaison « appel préalable + arrivée directe » que nous proposons est souvent la solution la plus efficace disponible dans le secteur.",
+      "Les dimensions professionnelles demandées depuis Frontignan : 215/65R16C et 225/65R16C pour les fourgons de livraison, 225/75R16C pour les utilitaires lourds, et pour les particuliers du secteur, les 205/55R16 et 215/60R17 standard. Les pneus commerciaux en version renforcée (C ou XL) sont disponibles en stock chez Recacor ou commandés en 24h — un délai court pour des véhicules qui ne peuvent pas s'immobiliser longtemps.",
+      "Ce qui distingue Frontignan des villes de proximité immédiate : les clients frontignanais viennent souvent pour des raisons économiques très précises. Le marché local du pneumatique est limité en termes de concurrence, et les tarifs pratiqués en restent parfois éloignés des niveaux compétitifs. Recacor, en tant que distributeur direct et indépendant, offre un accès aux mêmes marques (Michelin, Goodyear, Continental) avec des tarifs qui reflètent le volume d'achat plutôt que la rente de position locale.",
+    ],
     published: true,
   },
   {
@@ -383,6 +431,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Avez-vous des pneus en stock pour les voitures allemandes (BMW, Audi, Mercedes) ?", a: "Oui, nous avons les dimensions courantes pour les marques allemandes (225/45R17, 235/45R18, 255/40R19, etc.). Pour les pneus spécifiques runflat, contactez-nous pour vérifier le stock." },
       { q: "Faut-il prendre rendez-vous ?", a: "Non. Recacor accepte les clients sans rendez-vous du lundi au vendredi 8h–17h et le samedi 8h–12h. Venez directement avec votre véhicule." },
       { q: "Proposez-vous une garantie sur les pneus montés ?", a: "Tous les pneus que nous vendons bénéficient de la garantie constructeur. En cas de défaut de fabrication, nous gérons le retour fournisseur pour vous." },
+    ],
+    contenu: [
+      "Gigean est une commune en transition : entre les complexes thermaux de Balaruc-les-Bains — l'une des plus grandes stations thermales de France avec plus de 50 000 curistes par an — et les zones résidentielles qui s'étendent autour du Bassin de Thau. Ce double ancrage génère une clientèle particulièrement hétérogène. D'un côté, des curistes et des retraités qui font des allers-retours fréquents entre leur domicile éloigné et Balaruc, avec des véhicules récents et bien entretenus. De l'autre, des résidents locaux avec des profils plus standards.",
+      "Les thérapies thermales attirent une clientèle qui dispose souvent de moyens confortables et roule dans des véhicules de milieu/haut de gamme. BMW, Audi, Volvo et Mercedes sont surreprésentées dans les parkings de Balaruc. Ces modèles ont des exigences spécifiques : runflat, profils bas, capteurs TPMS intégrés. Chez Recacor, les pneus runflat (Bridgestone DriveGuard, Continental ContiSportContact, Michelin ZP) sont disponibles sur les dimensions courantes BMW/Mercedes. Les capteurs TPMS sont réinitialisés après montage sans supplément.",
+      "Le trajet Gigean–Recacor emprunte la N113 dans le sens est, sur environ 25 km — 25 minutes en dehors des heures de pointe. Pour les résidents du secteur qui n'ont pas de garage de confiance dans leur commune, Recacor représente le point équipé le plus accessible sur cet axe. L'accueil sans rendez-vous est particulièrement apprécié des curistes en cure longue (3 semaines) qui gèrent leur emploi du temps au jour le jour.",
+      "Pour les véhicules courants du secteur Gigean : 205/55R16, 215/55R17 pour les berlines standard, 225/55R17 et 235/55R18 pour les SUV compacts. Pour les véhicules thermaux premium, les dimensions 225/45R18 ou 245/40R19 runflat sont les plus demandées. Stock confirmé par téléphone avant déplacement — recommandation systématique pour les distances supérieures à 20 km.",
     ],
     published: true,
   },
@@ -403,6 +457,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Peut-on vérifier le stock avant le déplacement depuis Pézenas ?", a: "Oui, c'est vivement recommandé. Appelez-nous au 04 99 53 33 90 ou soumettez un devis en ligne avec votre dimension. On vous confirme immédiatement la disponibilité." },
       { q: "Proposez-vous aussi des pneus pour tracteurs agricoles ?", a: "Non, pour l'agriculture contactez notre site de Servian (34290) qui couvre les besoins agricoles du Cœur d'Hérault. Pour les VL et utilitaires, c'est bien Le Crès." },
     ],
+    contenu: [
+      "Pézenas est à 50 km de Recacor — une distance significative, mais pas une exception dans notre base clients. Le Cœur d'Hérault est une zone où la densité en garages indépendants compétitifs est faible : les tarifs pratiqués localement restent élevés faute de concurrence réelle. Nos clients piscénois le formulent souvent de la même façon : « J'ai appelé plusieurs garages locaux, comparé avec votre devis en ligne, et la différence était évidente. »",
+      "La logique du déplacement depuis Pézenas est différente de celle d'une commune à 10 km. On ne vient pas sur un coup de tête — on planifie. La séquence typique de nos clients piscénois : devis en ligne ou appel téléphonique la veille, confirmation du stock, départ à 8h, arrivée à 8h50, montage terminé à 9h20, retour à Pézenas pour 10h15. Une matinée productive, avec des pneus neufs, un parallélisme contrôlé et un budget maîtrisé.",
+      "Pézenas est aussi une ville à forte identité agricole : viticulture, oléiculture, élevage dans l'arrière-pays. Les véhicules professionnels du secteur — fourgons de commerce, pickups de vignerons, fourgonnettes de service — ont des besoins en pneus réguliers et prévisibles. Recacor peut établir des devis flotte pour les entreprises du Cœur d'Hérault qui veulent anticiper leur renouvellement de pneus VL à des tarifs stables.",
+      "Un avantage méconnu pour les Piscénois : le site Recacor de Servian (34290) est lui à environ 25 km de Pézenas — mieux situé pour les besoins poids lourd et agricole. Si votre besoin concerne un véhicule PL ou un engin agricole, le site de Servian est la première option à explorer. Pour les pneus VL et utilitaires légers, Le Crès est le site le mieux équipé.",
+    ],
     published: true,
   },
   {
@@ -421,6 +481,12 @@ export const VILLES_SEO: VilleSeo[] = [
       { q: "Quel trajet depuis Béziers ?", a: "Prenez l'A9 ou la N113 direction Montpellier jusqu'à Le Crès. Environ 70 km, 55-60 minutes. GPS : 1240 Route de Nîmes, 34920 Le Crès." },
       { q: "Avez-vous un site Recacor plus proche de Béziers ?", a: "Oui, Recacor a un site à Servian (34290), proche de Béziers. Pour les besoins PL et agricoles, c'est probablement plus pratique. Contactez-nous pour vous orienter." },
       { q: "Livrez-vous des pneus à Béziers ?", a: "Non, nous ne livrons pas. La prestation comprend le montage sur place. Pour les flottes PL dans l'Hérault ouest, nos commerciaux peuvent intervenir sur site — contactez-nous." },
+    ],
+    contenu: [
+      "Béziers est à 70 km de Recacor Le Crès. Ce n'est pas une distance que nous recommandons pour un pneu de remplacement urgent ou pour un achat courant. Les garages de l'agglomération biterroise peuvent répondre à la plupart des besoins pneus VL sans justifier ce kilométrage. Nous préférons être clairs là-dessus — nos clients biterrois apprécient cette honnêteté.",
+      "Les cas où le déplacement depuis Béziers vaut la peine : dimensions très spécifiques introuvables localement (profils bas, runflat, 4x4 rare), achats en volume pour une petite flotte de véhicules de service, ou combinaison d'un trajet Béziers–Montpellier déjà planifié avec un arrêt chez Recacor en passant. Dans ces configurations, nos prix sur les pneus premium — Michelin, Continental, Bridgestone — peuvent représenter une économie nette de 80 à 140€ sur un jeu de 4.",
+      "Pour les entreprises biterroise avec des flottes de véhicules utilitaires légers, le bon interlocuteur Recacor est le site de Servian (34290), à 25 km de Béziers, spécialisé dans les pneus PL et les services aux professionnels du transport routier. Les commerciaux PL de Recacor couvrent le département de l'Hérault y compris l'Hérault Ouest. Contactez-nous pour identifier le bon interlocuteur selon la nature de votre besoin.",
+      "Si vous venez depuis Béziers, l'itinéraire recommandé est l'A9 direction Montpellier, sortie Le Crès. Comptez 55 à 60 minutes selon la fluidité du trafic en entrée d'agglomération montpelliéraine. Avant tout déplacement depuis Béziers, appelez-nous au 04 99 53 33 90 pour confirmer le stock de votre dimension et valider que le trajet est économiquement pertinent pour vous. On ne prend aucune commission sur le conseil.",
     ],
     published: true,
   },

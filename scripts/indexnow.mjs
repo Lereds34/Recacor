@@ -16,7 +16,6 @@ const URLS = [
   `https://${HOST}/services/parallelisme-geometrie`,
   `https://${HOST}/services/recreusage`,
   `https://${HOST}/montpellier`,
-  `https://${HOST}/lunel`,
   `https://${HOST}/castelnau-le-lez`,
   `https://${HOST}/lattes`,
   `https://${HOST}/mauguio`,
@@ -24,6 +23,17 @@ const URLS = [
   `https://${HOST}/jacou`,
   `https://${HOST}/perols`,
   `https://${HOST}/saint-jean-de-vedas`,
+  `https://${HOST}/lunel`,
+  `https://${HOST}/le-cres`,
+  `https://${HOST}/juvignac`,
+  `https://${HOST}/palavas-les-flots`,
+  `https://${HOST}/villeneuve-les-maguelone`,
+  `https://${HOST}/frontignan`,
+  `https://${HOST}/gigean`,
+  `https://${HOST}/sete`,
+  `https://${HOST}/nimes`,
+  `https://${HOST}/pezenas`,
+  `https://${HOST}/beziers`,
 ];
 
 async function submit() {

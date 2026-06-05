@@ -46,6 +46,16 @@ const villesLinks = [
   { name: "Pneus Jacou", href: "/jacou" },
   { name: "Pneus Saint-Jean-de-Védas", href: "/saint-jean-de-vedas" },
   { name: "Pneus Lunel", href: "/lunel" },
+  { name: "Pneus Le Crès", href: "/le-cres" },
+  { name: "Pneus Juvignac", href: "/juvignac" },
+  { name: "Pneus Palavas-les-Flots", href: "/palavas-les-flots" },
+  { name: "Pneus Villeneuve-lès-Maguelone", href: "/villeneuve-les-maguelone" },
+  { name: "Pneus Frontignan", href: "/frontignan" },
+  { name: "Pneus Gigean", href: "/gigean" },
+  { name: "Pneus Sète", href: "/sete" },
+  { name: "Pneus Nîmes", href: "/nimes" },
+  { name: "Pneus Pézenas", href: "/pezenas" },
+  { name: "Pneus Béziers", href: "/beziers" },
 ];
 
 export async function Footer() {

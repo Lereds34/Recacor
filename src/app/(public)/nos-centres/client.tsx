@@ -70,7 +70,11 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        {heroImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "conic-gradient(from 0deg, transparent 0%, white 1%, transparent 3%)" }} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -115,18 +119,6 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
-
-      {/* Image hero éditable */}
-      {heroImage && (
-        <section className="pt-12 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Stats bar */}
       <section className="py-16 bg-background">

@@ -151,7 +151,11 @@ export default async function BlogPage() {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        {heroImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
             <BookOpen className="h-3 w-3 mr-1" /> Blog
@@ -185,17 +189,6 @@ export default async function BlogPage() {
         </section>
       )}
 
-      {/* Image hero éditable */}
-      {heroImage && (
-        <section className="pt-12 bg-background">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Article à la une */}
       {featured && (

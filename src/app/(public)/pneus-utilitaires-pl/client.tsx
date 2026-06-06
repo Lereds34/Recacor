@@ -84,7 +84,11 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
       <FaqJsonLd items={faqs} id="pl" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        {heroImage && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
             <Truck className="h-3 w-3 mr-1" /> Professionnels
@@ -276,12 +280,6 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
       <section id="devis" className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
         <BgParticles />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          {heroImage && (
-            <div className="w-full rounded-2xl overflow-hidden mb-8 aspect-[16/5]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={heroImage} alt="Garage Recacor" className="w-full h-full object-cover" />
-            </div>
-          )}
           <div className="text-center mb-10">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Demandez un{" "}

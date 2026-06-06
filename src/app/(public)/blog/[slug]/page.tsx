@@ -13,22 +13,6 @@ import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
 export const revalidate = 600;
 
-// Articles dont le sujet chevauche une page /ville existante.
-// Canonical pointé vers la page ville pour consolider le signal SEO.
-// À supprimer une fois l'angle de l'article mis à jour vers un keyword différent.
-const VILLE_CANONICAL: Record<string, string> = {
-  "pneus-voiture-montpellier": "/montpellier",
-  "pneus-castelnau-le-lez": "/castelnau-le-lez",
-  "pneus-lattes": "/lattes",
-  "pneus-mauguio": "/mauguio",
-  "pneus-vendargues": "/vendargues",
-  "pneus-jacou": "/jacou",
-  "pneus-juvignac": "/juvignac",
-  "pneus-lunel": "/lunel",
-  "pneus-nimes": "/nimes",
-  "pneus-sete": "/sete",
-};
-
 export async function generateMetadata({
   params,
 }: {
@@ -37,11 +21,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
   if (!article) return { title: "Article introuvable" };
-  const canonical = VILLE_CANONICAL[slug] ?? `/blog/${slug}`;
   return {
     title: `${article.frontmatter.titre} — Recacor Le Crès`,
     description: article.frontmatter.meta_description,
-    alternates: { canonical },
+    alternates: { canonical: `/blog/${slug}` },
   };
 }
 

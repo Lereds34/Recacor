@@ -63,7 +63,7 @@ const serviceSchema = {
 };
 
 export default async function PneusVoiturePage() {
-  const heroImage = await getAsset("hero_image_pneus_vl", "");
+  const heroImage = await getAsset("vl_visual_image", "");
   return (
     <>
       <Script

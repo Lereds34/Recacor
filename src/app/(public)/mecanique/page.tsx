@@ -59,7 +59,7 @@ const serviceSchema = {
 };
 
 export default async function MecaniquePage() {
-  const heroImage = await getAsset("hero_image_mecanique", "");
+  const heroImage = await getAsset("mecanique_visual", "");
   return (
     <>
       <Script

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function PlPage() {
-  const heroImage = await getAsset("hero_image_pneus_pl", "");
+  const heroImage = await getAsset("pl_hero_image", "");
   return (
     <>
       <PlClient heroImage={heroImage} />

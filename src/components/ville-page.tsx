@@ -63,8 +63,10 @@ function DevisBlock({ nom }: { nom: string }) {
 
 const DEFAULT_VILLE_IMAGE = "/Img/villes/default.png";
 
+type ContenuItem = string | { h3: string; p: string };
+
 /* ── Bloc contenu long + image ── */
-function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: string[]; ville: string; imageUrl?: string | null }) {
+function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: ContenuItem[]; ville: string; imageUrl?: string | null }) {
   const src = imageUrl || DEFAULT_VILLE_IMAGE;
   const hasContenu = contenu && contenu.length > 0;
 
@@ -93,10 +95,17 @@ function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: string[]; ville:
             <h2 className="text-3xl font-black tracking-tight mb-8">
               Pneus à <span className="text-gradient-purple">{ville}</span> — tout ce qu&apos;il faut savoir
             </h2>
-            <div className="space-y-5">
-              {contenu!.map((para, i) => (
-                <p key={i} className="text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: para }} />
-              ))}
+            <div className="space-y-6">
+              {contenu!.map((item, i) =>
+                typeof item === "string" ? (
+                  <p key={i} className="text-muted-foreground leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: item }} />
+                ) : (
+                  <div key={i}>
+                    <h3 className="text-base font-black tracking-tight mb-2">{item.h3}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm" dangerouslySetInnerHTML={{ __html: item.p }} />
+                  </div>
+                )
+              )}
             </div>
           </div>
           <div className="lg:sticky lg:top-24">

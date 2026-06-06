@@ -54,6 +54,28 @@ export async function readArticle(slug: string): Promise<AdminArticle | null> {
   const rows = (await sql`SELECT * FROM articles WHERE slug = ${slug} LIMIT 1`) as AdminRow[];
   if (rows.length === 0) return null;
   const r = rows[0];
+
+  // Si raw n'a pas de bloc frontmatter valide, le reconstruire depuis les colonnes DB
+  const hasFrontmatter = r.raw && /^---[\s\S]*?---/.test(r.raw);
+  const raw = hasFrontmatter
+    ? r.raw
+    : [
+        "---",
+        `titre: ${r.titre}`,
+        `slug: ${r.slug}`,
+        `meta_description: ${r.meta_description || ""}`,
+        `categorie: ${r.categorie}`,
+        r.date ? `date: ${r.date}` : null,
+        r.auteur ? `auteur: ${r.auteur}` : null,
+        r.read_time ? `read_time: ${r.read_time}` : null,
+        "image:",
+        "---",
+        "",
+        r.body || "",
+      ]
+        .filter((l) => l !== null)
+        .join("\n");
+
   return {
     slug: r.slug,
     titre: r.titre,
@@ -63,7 +85,7 @@ export async function readArticle(slug: string): Promise<AdminArticle | null> {
     auteur: r.auteur || undefined,
     read_time: r.read_time || undefined,
     body: r.body,
-    raw: r.raw,
+    raw,
   };
 }
 

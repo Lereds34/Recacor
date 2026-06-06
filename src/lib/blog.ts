@@ -75,10 +75,10 @@ interface ArticleRow {
 }
 
 const CATEGORY_DEFAULT_IMAGE: Record<Categorie, string> = {
-  "pneus-voiture": "/api/asset/vl_visual_image",
-  "mecanique":     "/api/asset/home_services_image",
-  "pneus-pl":      "/api/asset/home_centres_image",
-  "blog":          "/api/asset/home_pro_image",
+  "pneus-voiture": "/Design sans titre (29)/1.webp",
+  "mecanique":     "/Img/IMG_5380.webp",
+  "pneus-pl":      "/Design sans titre (29)/3.webp",
+  "blog":          "/Design sans titre (29)/2.webp",
 };
 
 function rowToFrontmatter(row: ArticleRow): ArticleFrontmatter {

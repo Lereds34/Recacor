@@ -44,6 +44,7 @@ import { DevisCtaLink } from "@/components/devis-cta-link";
 import { LocalBusinessJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { AvisSection } from "@/components/avis-section";
 import { DynamicImage, DynamicMedia, useAsset } from "@/components/dynamic-media";
+import { HomeBlogPreviewClient } from "@/components/home-blog-preview-client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -1742,6 +1743,7 @@ export default function HomePage() {
       <TrajectoireSection />
       <ZoneInterventionSection />
       <FAQSection />
+      <HomeBlogPreviewClient />
       <VillesSeoSection />
     </>
   );

@@ -5,6 +5,7 @@ import { ArrowRight, Clock, Calendar, BookOpen } from "lucide-react";
 import { BgParticles } from "@/components/bg-particles";
 import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
 import { getAsset } from "@/lib/site-assets";
+import { BlogCardImage } from "@/components/blog-card-image";
 
 export const revalidate = 600;
 
@@ -27,21 +28,7 @@ function ArticleCard({ article, featured = false }: { article: Article; featured
         <div className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl border border-border bg-white overflow-hidden hover:border-purple-bright/30 hover:shadow-2xl hover:shadow-purple-bright/[0.08] transition-all duration-300">
           {/* Image ou fallback */}
           <div className="relative min-h-[300px] lg:min-h-[420px] overflow-hidden">
-            {frontmatter.image ? (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={frontmatter.image}
-                  alt={frontmatter.titre}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/60 via-transparent to-transparent" />
-              </>
-            ) : (
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright flex items-center justify-center">
-                <BookOpen className="w-24 h-24 text-white/20" strokeWidth={1} />
-              </div>
-            )}
+            <BlogCardImage src={frontmatter.image || ""} alt={frontmatter.titre} featured />
             <div className="absolute top-4 left-4">
               <Badge className="bg-white/90 text-purple-bright border-0 font-bold text-xs">
                 À la une
@@ -86,21 +73,7 @@ function ArticleCard({ article, featured = false }: { article: Article; featured
       <article className="rounded-2xl border border-border bg-white overflow-hidden h-full hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all duration-300 flex flex-col">
         {/* Image ou fallback */}
         <div className="relative h-52 overflow-hidden shrink-0">
-          {frontmatter.image ? (
-            <>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={frontmatter.image}
-                alt={frontmatter.titre}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/40 via-transparent to-transparent" />
-            </>
-          ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-mid/30 to-purple-bright/20 flex items-center justify-center">
-              <BookOpen className="w-16 h-16 text-purple-bright/30" strokeWidth={1} />
-            </div>
-          )}
+          <BlogCardImage src={frontmatter.image || ""} alt={frontmatter.titre} />
           <div className="absolute top-3 left-3">
             <Badge className="bg-white/90 text-purple-bright border-0 text-xs font-bold">
               {categoryLabel(frontmatter.categorie)}

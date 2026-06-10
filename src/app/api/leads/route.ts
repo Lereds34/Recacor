@@ -3,7 +3,7 @@ import { sql, ensureSchema, getSetting } from "@/lib/db";
 import { getSiteConfig } from "@/lib/site-config";
 import { subscribeContact } from "@/lib/mailchimp";
 import { leadNotificationEmail, leadConfirmationEmail } from "@/lib/email-templates";
-import { sendEmail, sendSMS } from "@/lib/mailer";
+import { sendEmail } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -108,15 +108,6 @@ export async function POST(req: Request) {
       sendLeadEmail(config.leadsEmailTo, data, leadId ?? 0).catch((err) =>
         console.error("[lead email]", err)
       );
-    }
-
-    // SMS notification — fire-and-forget vers tous les numéros dans SMS_NOTIFY_NUMBERS
-    const smsNumbers = (process.env.SMS_NOTIFY_NUMBERS || "").split(",").map(n => n.trim()).filter(Boolean);
-    if (smsNumbers.length > 0 && process.env.BREVO_API_KEY) {
-      const nom = [data.prenom, data.nom].filter(Boolean).join(" ") || "Inconnu";
-      const source = data.utm_source || data.utm_campaign || "Direct";
-      const smsText = `Lead ${data.service_type.toUpperCase()} | ${nom} | ${data.telephone} | CP: ${data.cp || "?"} | ${source}`.slice(0, 160);
-      smsNumbers.forEach(num => sendSMS(num, smsText).catch(err => console.error("[sms]", err)));
     }
 
     const sendConfirm = await getSetting("leads_send_confirmation", "").catch(() => "");

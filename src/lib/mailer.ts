@@ -1,5 +1,22 @@
 /* Provider abstraction : Brevo en priorité, fallback Resend */
 
+export async function sendSMS(to: string, message: string): Promise<void> {
+  if (!process.env.BREVO_API_KEY) return;
+  const res = await fetch("https://api.brevo.com/v3/transactionalSMS/sms", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "api-key": process.env.BREVO_API_KEY,
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ sender: "Recacor", recipient: to, content: message }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    console.error("[sms brevo]", err);
+  }
+}
+
 interface SendOptions {
   to: string;
   subject: string;

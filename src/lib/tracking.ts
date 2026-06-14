@@ -61,7 +61,16 @@ export function getUtmData() {
   };
 }
 
-type ServiceType = "vl" | "pl" | "mecanique";
+export type ServiceType = "vl" | "pl" | "mecanique";
+
+export function inferServiceType(pathname?: string): ServiceType {
+  const path = pathname || (typeof window !== "undefined" ? window.location.pathname : "");
+  if (path.includes("pneus-utilitaires-pl") || path.includes("recreusage")) return "pl";
+  if (path.includes("mecanique") || path.includes("vidange") || path.includes("parallelisme")) {
+    return "mecanique";
+  }
+  return "vl";
+}
 
 export function pushFormStart(serviceType: ServiceType) {
   if (typeof window === "undefined") return;
@@ -69,7 +78,12 @@ export function pushFormStart(serviceType: ServiceType) {
   window.dataLayer.push({ event: "form_start_devis", service_type: serviceType });
 }
 
-export function pushFormSubmit(serviceType: ServiceType, formId: string) {
+export function pushFormSubmit(
+  serviceType: ServiceType,
+  formId: string,
+  trackingId: string,
+  acceptedBy: string[],
+) {
   if (typeof window === "undefined") return;
   const utm = getUtmData();
   window.dataLayer = window.dataLayer || [];
@@ -77,28 +91,41 @@ export function pushFormSubmit(serviceType: ServiceType, formId: string) {
     event: "form_submit_devis",
     service_type: serviceType,
     form_id: formId,
+    lead_id: trackingId,
+    transaction_id: trackingId,
+    accepted_by: acceptedBy.join(","),
     ...utm,
   });
-  sessionStorage.setItem("last_form_type", serviceType);
 }
 
-export function pushPhoneClick(location: string, serviceType: ServiceType = "vl") {
+export function pushPhoneClick(location: string, serviceType?: ServiceType) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event: "phone_click",
     phone_location: location,
-    service_type: serviceType,
+    service_type: serviceType || inferServiceType(),
     page_url: window.location.pathname,
   });
 }
 
-export function pushDevisConfirmed() {
+export function pushWhatsAppClick(serviceType?: ServiceType) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
-    event: "devis_confirmed",
-    service_type: sessionStorage.getItem("last_form_type") || "vl",
+    event: "whatsapp_click",
+    service_type: serviceType || inferServiceType(),
+    page_url: window.location.pathname,
+  });
+}
+
+export function pushDirectionsClick(serviceType?: ServiceType) {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "directions_click",
+    service_type: serviceType || inferServiceType(),
+    page_url: window.location.pathname,
   });
 }
 

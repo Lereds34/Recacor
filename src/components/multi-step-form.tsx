@@ -45,6 +45,7 @@ export function MultiStepForm({
   const [startPushed, setStartPushed] = useState(false);
   const [rgpd, setRgpd] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const totalSteps = steps.length;
 
@@ -73,10 +74,16 @@ export function MultiStepForm({
     e.preventDefault();
     if (!rgpd) return;
     setSubmitting(true);
+    setSubmitError("");
 
-    pushFormSubmit(serviceType, id);
-
-    const payload = { ...data, ...getUtmData(), form_id: id, service_type: serviceType };
+    const submissionId = crypto.randomUUID();
+    const payload = {
+      ...data,
+      ...getUtmData(),
+      form_id: id,
+      service_type: serviceType,
+      submission_id: submissionId,
+    };
 
     try {
       const res = await fetch("/api/leads", {
@@ -86,13 +93,22 @@ export function MultiStepForm({
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        console.error("[lead submit]", err);
+        throw new Error(err.error || "Le serveur n'a pas confirmé la demande.");
       }
-    } catch (err) {
-      console.error("[lead submit network]", err);
-    }
+      const result = await res.json();
+      if (!result.accepted || !result.tracking_id) {
+        throw new Error("Le serveur n'a pas confirmé l'enregistrement du lead.");
+      }
 
-    router.push("/merci");
+      pushFormSubmit(serviceType, id, result.tracking_id, result.accepted_by || []);
+      router.push("/merci");
+    } catch (err) {
+      console.error("[lead submit]", err);
+      setSubmitting(false);
+      setSubmitError(
+        "Votre demande n'a pas pu être confirmée. Réessayez ou appelez-nous directement.",
+      );
+    }
   };
 
   return (
@@ -233,6 +249,11 @@ export function MultiStepForm({
           </button>
         )}
       </div>
+      {submitError && (
+        <p role="alert" className="mt-3 text-sm font-medium text-red-600">
+          {submitError}
+        </p>
+      )}
     </form>
   );
 }

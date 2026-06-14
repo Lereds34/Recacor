@@ -26,6 +26,7 @@ interface LeadPayload {
   fbclid?: string;
   page_source?: string;
   referrer?: string;
+  submission_id?: string;
   [k: string]: unknown;
 }
 
@@ -40,10 +41,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "telephone requis" }, { status: 400 });
     }
 
-    // AdsFlow CRM — awaité pour garantir l'envoi avant que Vercel termine la fonction
-    await fetch(
-      "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
-      {
+    // AdsFlow CRM — la réponse est contrôlée pour ne compter que les leads acceptés.
+    let adsFlowAccepted = false;
+    try {
+      const adsFlowResponse = await fetch(
+        "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
+        {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         signal: AbortSignal.timeout(5000),
@@ -61,8 +64,15 @@ export async function POST(req: Request) {
           message: data.message || null,
           payload: data,
         }),
+        },
+      );
+      adsFlowAccepted = adsFlowResponse.ok;
+      if (!adsFlowAccepted) {
+        console.error("[adsflow webhook]", adsFlowResponse.status);
       }
-    ).catch((err) => console.error("[adsflow webhook]", err));
+    } catch (err) {
+      console.error("[adsflow webhook]", err);
+    }
 
     // Insertion DB Neon — si quota dépassé, on continue quand même
     let leadId: number | undefined;
@@ -130,7 +140,26 @@ export async function POST(req: Request) {
       }
     }
 
-    return NextResponse.json({ ok: true, id: leadId ?? null });
+    const databaseAccepted = typeof leadId === "number";
+    const acceptedBy = [
+      adsFlowAccepted ? "adsflow" : null,
+      databaseAccepted ? "recacor_db" : null,
+    ].filter((value): value is string => Boolean(value));
+
+    if (acceptedBy.length === 0) {
+      return NextResponse.json(
+        { error: "Le lead n'a été accepté par aucun système." },
+        { status: 503 },
+      );
+    }
+
+    return NextResponse.json({
+      ok: true,
+      accepted: true,
+      accepted_by: acceptedBy,
+      id: leadId ?? null,
+      tracking_id: data.submission_id || (leadId ? String(leadId) : null),
+    });
   } catch (e) {
     console.error("[lead]", e);
     return NextResponse.json({ error: String(e) }, { status: 500 });

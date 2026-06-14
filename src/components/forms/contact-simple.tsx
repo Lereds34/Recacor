@@ -12,6 +12,7 @@ export function ContactSimpleForm() {
   const [data, setData] = useState({ nom: "", telephone: "", email: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [rgpd, setRgpd] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const isValid = isValidPhone(data.telephone) && isValidEmail(data.email) && rgpd;
 
@@ -19,21 +20,40 @@ export function ContactSimpleForm() {
     e.preventDefault();
     if (!isValid) return;
     setSubmitting(true);
-
-    pushFormSubmit("vl", "contact-form");
-    const payload = { ...data, ...getUtmData(), form_id: "contact-form", service_type: "contact" };
+    setSubmitError("");
+    const submissionId = crypto.randomUUID();
+    const payload = {
+      ...data,
+      ...getUtmData(),
+      form_id: "contact-form",
+      service_type: "contact",
+      submission_id: submissionId,
+    };
 
     try {
-      await fetch("/api/leads", {
+      const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error.error || "Le serveur n'a pas confirmé la demande.");
+      }
+      const result = await response.json();
+      if (!result.accepted || !result.tracking_id) {
+        throw new Error("Le serveur n'a pas confirmé l'enregistrement du lead.");
+      }
+
+      pushFormSubmit("vl", "contact-form", result.tracking_id, result.accepted_by || []);
+      router.push("/merci");
     } catch (err) {
       console.error("[contact submit]", err);
+      setSubmitting(false);
+      setSubmitError(
+        "Votre message n'a pas pu être confirmé. Réessayez ou appelez-nous directement.",
+      );
     }
-
-    router.push("/merci");
   };
 
   const update = (key: keyof typeof data) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -94,6 +114,11 @@ export function ContactSimpleForm() {
         {submitting ? "Envoi..." : "Envoyer mon message"}
         <ArrowRight className="h-4 w-4" />
       </button>
+      {submitError && (
+        <p role="alert" className="text-sm font-medium text-red-600">
+          {submitError}
+        </p>
+      )}
     </form>
   );
 }

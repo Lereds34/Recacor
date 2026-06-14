@@ -1,20 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Phone, Calendar, ArrowRight } from "lucide-react";
-import { pushDevisConfirmed, PHONE_DISPLAY } from "@/lib/tracking";
+import { PHONE_DISPLAY } from "@/lib/tracking";
 import { PhoneLink } from "@/components/phone-link";
 import { BgParticles } from "@/components/bg-particles";
 
 const CALENDAR_URL = "https://calendar.app.google/hHtajz9kMDfbozaUA";
 
 export default function MerciPage() {
-  useEffect(() => {
-    pushDevisConfirmed();
-  }, []);
-
   return (
     <>
       {/* Hero success */}

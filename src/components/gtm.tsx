@@ -2,7 +2,13 @@
 
 import Script from "next/script";
 import { useEffect } from "react";
-import { captureUtmParams, GTM_ID } from "@/lib/tracking";
+import {
+  captureUtmParams,
+  GTM_ID,
+  pushDirectionsClick,
+  pushPhoneClick,
+  pushWhatsAppClick,
+} from "@/lib/tracking";
 
 const GTM_ENABLED = /^GTM-[A-Z0-9]+$/.test(GTM_ID) && GTM_ID !== "GTM-XXXXXXX";
 
@@ -56,6 +62,24 @@ export function GtmNoscript() {
 export function UtmCapture() {
   useEffect(() => {
     captureUtmParams();
+
+    const trackExternalAction = (event: MouseEvent) => {
+      const target = event.target as Element | null;
+      const link = target?.closest("a[href]") as HTMLAnchorElement | null;
+      if (!link) return;
+
+      const href = link.href;
+      if (href.startsWith("tel:") && !link.classList.contains("phone-link")) {
+        pushPhoneClick("unclassified_link");
+      } else if (href.includes("wa.me/")) {
+        pushWhatsAppClick();
+      } else if (href.includes("maps.google.com/") || href.includes("google.com/maps")) {
+        pushDirectionsClick();
+      }
+    };
+
+    document.addEventListener("click", trackExternalAction);
+    return () => document.removeEventListener("click", trackExternalAction);
   }, []);
   return null;
 }

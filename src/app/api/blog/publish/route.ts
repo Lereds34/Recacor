@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const auth = req.headers.get("authorization") || "";
-  const expected = process.env.CRON_SECRET || "";
+  const expected = process.env.CLAUDE_PUBLISH_KEY || "";
 
   if (!expected || auth !== `Bearer ${expected}`) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });

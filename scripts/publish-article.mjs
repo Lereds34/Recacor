@@ -22,7 +22,7 @@ if (existsSync(".env.claude")) {
   }
 }
 
-const secret = process.env.CRON_SECRET;
+const secret = process.env.CLAUDE_PUBLISH_KEY;
 const filePath = process.argv[2];
 
 if (!filePath) {
@@ -34,7 +34,7 @@ if (!existsSync(filePath)) {
   process.exit(1);
 }
 if (!secret) {
-  console.error("❌ CRON_SECRET manquant.\n   Crée le fichier .env.claude avec : CRON_SECRET=xxx\n   (valeur dans Vercel > projet recacor > Settings > Environment Variables)");
+  console.error("❌ CLAUDE_PUBLISH_KEY manquant.\n   Crée le fichier .env.claude avec : CLAUDE_PUBLISH_KEY=ta-valeur\n   (la valeur que tu as mise dans Vercel > Variables environnementales > CLAUDE_PUBLISH_KEY)");
   process.exit(1);
 }
 

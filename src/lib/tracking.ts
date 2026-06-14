@@ -17,9 +17,9 @@ declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     dataLayer: any[];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    gtag?: (...args: any[]) => void;
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function gtag(...args: any[]): void;
 }
 
 export function captureUtmParams() {
@@ -130,22 +130,32 @@ export function pushDirectionsClick(serviceType?: ServiceType) {
 }
 
 /* Consent Mode v2 */
+function updateConsent(status: "granted" | "denied") {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag =
+    window.gtag ||
+    function () {
+      window.dataLayer.push(arguments);
+    };
+  window.gtag("consent", "update", {
+    ad_storage: status,
+    ad_user_data: status,
+    ad_personalization: status,
+    analytics_storage: status,
+  });
+}
+
 export function grantConsent() {
   if (typeof window === "undefined") return;
-  if (typeof gtag === "function") {
-    gtag("consent", "update", {
-      ad_storage: "granted",
-      ad_user_data: "granted",
-      ad_personalization: "granted",
-      analytics_storage: "granted",
-    });
-  }
   document.cookie = "cookie_consent=granted; max-age=33696000; path=/; SameSite=Lax";
+  updateConsent("granted");
 }
 
 export function denyConsent() {
   if (typeof window === "undefined") return;
   document.cookie = "cookie_consent=denied; max-age=33696000; path=/; SameSite=Lax";
+  updateConsent("denied");
 }
 
 export function hasConsent(): "granted" | "denied" | null {

@@ -19,8 +19,8 @@ export function GtmConsent() {
       {`
         const c = document.cookie.match(/cookie_consent=([^;]+)/)?.[1];
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('consent', 'default', {
+        window.gtag = window.gtag || function(){dataLayer.push(arguments);}
+        window.gtag('consent', 'default', {
           ad_storage: c === 'granted' ? 'granted' : 'denied',
           analytics_storage: c === 'granted' ? 'granted' : 'denied',
           ad_user_data: c === 'granted' ? 'granted' : 'denied',

@@ -31,6 +31,7 @@ const navLinks = [
   { name: "À propos", href: "/a-propos" },
   { name: "Contact", href: "/contact" },
   { name: "Blog", href: "/blog" },
+  { name: "Guide local", href: "/guide-local" },
   { name: "Mentions légales", href: "/mentions-legales" },
   { name: "CGV", href: "/cgv" },
   { name: "Politique de confidentialité", href: "/confidentialite" },

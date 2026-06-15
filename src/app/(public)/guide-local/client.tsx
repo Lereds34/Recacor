@@ -2,8 +2,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ExternalLink, Star, Truck } from "lucide-react";
+import { MapPin, ExternalLink, Star, Truck, ShoppingCart, Clock } from "lucide-react";
 import { BgParticles } from "@/components/bg-particles";
+
+const commercesProches = [
+  {
+    nom: "IKEA Montpellier Saint-Aunès",
+    categorie: "Ameublement & décoration",
+    adresse: "240 Rue du Mas de Prunet, 34130 Saint-Aunès",
+    distance: "5 min",
+    description:
+      "Le magasin IKEA de Montpellier est situé à Saint-Aunès, à 5 minutes du garage Recacor. Avec 15 000 m² de surface de vente, c'est l'une des plus grandes enseignes de la zone est de Montpellier. Profitez de votre passage à IKEA pour faire contrôler vos pneus chez Recacor — sans rendez-vous, en 15 minutes.",
+    site: "https://www.ikea.com/fr/fr/stores/montpellier/",
+  },
+  {
+    nom: "Carrefour Saint-Aunès",
+    categorie: "Grande surface alimentaire",
+    adresse: "Route de Vendargues, 34130 Saint-Aunès",
+    distance: "5 min",
+    description:
+      "L'hypermarché Carrefour de Saint-Aunès dessert toute la zone est de Montpellier, Le Crès, Vendargues et Mauguio. À quelques minutes de Recacor sur la RN113, c'est une occasion idéale de combiner courses et entretien de votre véhicule — vidange, pneus ou parallélisme sans attente.",
+    site: "https://www.carrefour.fr/",
+  },
+  {
+    nom: "Carrefour Contact Le Crès",
+    categorie: "Supermarché de proximité",
+    adresse: "Le Crès, 34920",
+    distance: "2 min",
+    description:
+      "Le Carrefour Contact du Crès est le supermarché de proximité de la commune, à deux minutes du garage Recacor. Idéal pour les habitants du Crès qui peuvent confier leur voiture le matin et récupérer leurs courses dans la foulée.",
+    site: "https://www.carrefour.fr/",
+  },
+  {
+    nom: "Odysseum Montpellier",
+    categorie: "Shopping & loisirs",
+    adresse: "Place de l'Europe, 34000 Montpellier",
+    distance: "10 min",
+    description:
+      "L'Odysseum est le grand complexe commercial et de loisirs de Montpellier Est, accessible en tram (ligne 1). Cinéma, restaurants, boutiques et enseignes nationales — à 10 minutes de Recacor. Un passage à l'Odysseum est l'occasion de déposer votre véhicule chez nous le temps de vos achats.",
+    site: "https://www.odysseum.com/",
+  },
+];
 
 const partenaires = [
   {
@@ -142,6 +181,46 @@ export function GuideLocalClient() {
                   </div>
                 </div>
               </article>
+            ))}
+          </div>
+
+          {/* Commerces proches */}
+          <div className="mt-16 mb-4">
+            <h2 className="text-3xl font-black tracking-tight">Commerces et enseignes proches</h2>
+            <p className="mt-3 text-muted-foreground">
+              Ces grandes enseignes sont à moins de 10 minutes de Recacor Le Crès. Profitez de vos courses ou
+              loisirs pour faire entretenir votre véhicule — sans rendez-vous.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+            {commercesProches.map((c) => (
+              <div key={c.nom} className="rounded-3xl border border-border bg-white p-7">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+                    <ShoppingCart className="w-3 h-3" />
+                    {c.categorie}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-green-50 text-green-700 px-3 py-1 rounded-full">
+                    <Clock className="w-3 h-3" />
+                    {c.distance}
+                  </span>
+                </div>
+                <h3 className="text-lg font-black mb-1">{c.nom}</h3>
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
+                  <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                  {c.adresse}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{c.description}</p>
+                <Link
+                  href={c.site}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-900 underline underline-offset-4"
+                >
+                  Site officiel <ExternalLink className="w-3 h-3" />
+                </Link>
+              </div>
             ))}
           </div>
 

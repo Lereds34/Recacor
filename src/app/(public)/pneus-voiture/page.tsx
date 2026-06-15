@@ -7,7 +7,7 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Pneus Voiture Montpellier | À partir de 45€ montés — Recacor Le Crès",
+  title: "Pneus voiture Montpellier — dès 45€ montés",
   description:
     "Pneus été, hiver et 4 saisons dès 45€ montés. Stock immédiat, montage en 15 min sans RDV à Montpellier — Le Crès. Toutes marques.",
   alternates: { canonical: "/pneus-voiture" },

@@ -142,8 +142,11 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
   const faq = extractFaq(row.body);
   const excerpt = makeExcerpt(row.body);
   const bodyWithoutFaq = row.body.replace(/#{2,3}\s+(?:FAQ|Questions?)[^\n]*\n[\s\S]*?(?=\n#{1,3}\s|$)/i, "");
+  // Le template affiche déjà le titre en H1 dans le hero.
+  // Retirer les H1 Markdown évite un second H1 identique dans le corps.
+  const bodyWithoutH1 = bodyWithoutFaq.replace(/^#\s+.*(?:\r?\n|$)/gm, "");
   // Normalise les sauts de ligne : une seule newline → double newline pour markdown
-  const normalised = bodyWithoutFaq.replace(/([^\n])\n([^\n])/g, "$1\n\n$2");
+  const normalised = bodyWithoutH1.replace(/([^\n])\n([^\n])/g, "$1\n\n$2");
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })

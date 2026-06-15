@@ -8,6 +8,7 @@ import { BgParticles } from "@/components/bg-particles";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { DevisCtaLink } from "@/components/devis-cta-link";
 import { PHONE_DISPLAY } from "@/lib/tracking";
+import Link from "next/link";
 
 const faqs = [
   { q: "Quand faire régler son parallélisme ?", a: "Après un choc, un changement de pneus, tous les 20 000 km ou si vous constatez une usure anormale des pneus ou un volant de travers." },
@@ -68,6 +69,99 @@ export function ParallelismeClient() {
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-muted">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h2 className="text-4xl font-black tracking-tight">
+              Pourquoi contrôler le <span className="text-gradient-purple">parallélisme ?</span>
+            </h2>
+            <p className="mt-5 text-muted-foreground leading-relaxed">
+              Le parallélisme correspond à l&apos;orientation des roues les unes par rapport aux autres.
+              Un mauvais réglage augmente la résistance au roulement, use les pneus de manière irrégulière
+              et peut rendre la voiture moins stable. Un simple choc contre un trottoir, un nid-de-poule,
+              le remplacement d&apos;éléments de suspension ou le montage de pneus neufs peuvent modifier
+              les angles du train roulant.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Usure anormale des pneus</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Une usure plus marquée à l&apos;intérieur ou à l&apos;extérieur de la bande de roulement
+                indique souvent un défaut d&apos;alignement. Corriger rapidement le réglage évite de remplacer
+                prématurément des pneus encore récents.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Volant de travers</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Si le volant n&apos;est plus droit lorsque la voiture roule en ligne droite, ou si le véhicule
+                tire d&apos;un côté, un contrôle du train avant est conseillé. Le diagnostic permet aussi
+                d&apos;écarter un problème de pression ou de suspension.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Après un changement de pneus</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Des pneus neufs montés sur un véhicule mal réglé peuvent s&apos;user rapidement. Chez Recacor,
+                le contrôle du parallélisme est offert lors d&apos;un changement de pneus ; le réglage est
+                proposé uniquement s&apos;il est nécessaire.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-black tracking-tight mb-5">Parallélisme ou géométrie complète ?</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Le parallélisme corrige principalement l&apos;alignement des roues. Une géométrie complète
+                mesure également le carrossage et la chasse lorsque le véhicule permet ces réglages.
+                Notre banc laser 3D compare les valeurs mesurées aux données constructeur. Le technicien
+                explique le résultat avant toute intervention et remet un réglage cohérent avec le véhicule.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-black tracking-tight mb-5">Contrôle au Crès, près de Montpellier</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Le garage est situé au 1240 Route de Nîmes au Crès. Nous recevons les automobilistes de
+                Montpellier, Castelnau-le-Lez, Jacou, Vendargues et des communes voisines avec ou sans
+                rendez-vous. L&apos;opération dure généralement entre 30 et 45 minutes selon les réglages
+                nécessaires et l&apos;état du train roulant.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
+                <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Pneus voiture</Link>
+                <Link href="/mecanique" className="text-purple-bright hover:underline">Mécanique légère</Link>
+                <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight mb-5">Les étapes du contrôle de géométrie</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Avant le réglage, nous contrôlons visuellement les pneus, leur pression et les principaux
+                éléments du train roulant. Un jeu dans une rotule, une biellette ou un roulement doit être
+                traité avant la géométrie : régler un véhicule présentant une pièce défectueuse ne donnerait
+                pas un résultat durable.
+              </p>
+              <p>
+                Les capteurs du banc 3D mesurent ensuite les angles des roues et les comparent aux valeurs
+                constructeur. Le parallélisme démarre à 65€ ; une géométrie quatre roues plus complète peut
+                nécessiter davantage de réglages. Le devis dépend donc du véhicule et des corrections
+                réellement possibles, jamais d&apos;un réglage ajouté sans diagnostic. Après l&apos;intervention,
+                le volant est recentré et le comportement du véhicule est contrôlé. Un bon réglage améliore
+                la stabilité, préserve la durée de vie des pneus et limite les efforts inutiles au roulement.
+                Il ne remplace toutefois pas une pression correcte ni le contrôle régulier de l&apos;usure.
+                En cas de choc important ou de vibration persistante, un contrôle mécanique complémentaire
+                peut être recommandé avant de reprendre la route.
+              </p>
+            </div>
           </div>
         </div>
       </section>

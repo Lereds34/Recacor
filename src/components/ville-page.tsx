@@ -621,6 +621,7 @@ function Variant4({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
    ───────────────────────────────────────────────────────────────── */
 export function VillePageClient({ ville }: { ville: Ville }) {
   const seo = findVilleSeo(ville.slug);
+  const displayVille = seo ? { ...ville, distance: seo.distance } : ville;
   const variant = seo?.variant ?? 1;
   const faqs = seo?.faqs ?? [];
 
@@ -628,19 +629,19 @@ export function VillePageClient({ ville }: { ville: Ville }) {
     <>
       <BreadcrumbJsonLd items={[
         { name: "Accueil", url: "https://recacor.fr" },
-        { name: `Pneus ${ville.nom}`, url: `https://recacor.fr/${ville.slug}` },
+        { name: `Pneus ${displayVille.nom}`, url: `https://recacor.fr/${displayVille.slug}` },
       ]} />
       <ServiceJsonLd
-        name={`Pneus voiture ${ville.nom}`}
-        description={`Changement de pneus à ${ville.nom} — Recacor Le Crès à ${ville.distance}. Sans RDV, à partir de 45€.`}
+        name={`Pneus voiture ${displayVille.nom}`}
+        description={`Changement de pneus à ${displayVille.nom} — Recacor Le Crès à ${displayVille.distance}. Sans RDV, à partir de 45€.`}
         price="45"
       />
-      <FaqJsonLd items={faqs.length > 0 ? faqs : [{ q: `Où trouver un garage pneus près de ${ville.nom} ?`, a: `Recacor au Crès est à ${ville.distance} de ${ville.nom}, 1240 Route de Nîmes, 34920 Le Crès.` }]} id={`pneus-${ville.slug}`} />
+      <FaqJsonLd items={faqs.length > 0 ? faqs : [{ q: `Où trouver un garage pneus près de ${displayVille.nom} ?`, a: `Recacor au Crès est à ${displayVille.distance} de ${displayVille.nom}, 1240 Route de Nîmes, 34920 Le Crès.` }]} id={`pneus-${displayVille.slug}`} />
 
-      {variant === 1 && <Variant1 ville={ville} seo={seo} />}
-      {variant === 2 && <Variant2 ville={ville} seo={seo} />}
-      {variant === 3 && <Variant3 ville={ville} seo={seo} />}
-      {variant === 4 && <Variant4 ville={ville} seo={seo} />}
+      {variant === 1 && <Variant1 ville={displayVille} seo={seo} />}
+      {variant === 2 && <Variant2 ville={displayVille} seo={seo} />}
+      {variant === 3 && <Variant3 ville={displayVille} seo={seo} />}
+      {variant === 4 && <Variant4 ville={displayVille} seo={seo} />}
     </>
   );
 }

@@ -7,7 +7,7 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Vidange & Révision Montpellier | Sans RDV — Garage Recacor Le Crès",
+  title: "Vidange et révision Montpellier — sans RDV",
   description:
     "Vidange à partir de 79€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
   alternates: { canonical: "/mecanique" },

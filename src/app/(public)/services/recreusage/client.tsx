@@ -8,9 +8,10 @@ import { BgParticles } from "@/components/bg-particles";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { DevisCtaLink } from "@/components/devis-cta-link";
 import { PHONE_DISPLAY } from "@/lib/tracking";
+import Link from "next/link";
 
 const avantages = [
-  { icon: Euro, title: "-40% vs pneus neufs", desc: "Économies substantielles sur votre budget pneus" },
+  { icon: Euro, title: "Jusqu'à 40% d'économie", desc: "Un coût kilométrique optimisé pour les flottes" },
   { icon: TrendingUp, title: "+25% de durée de vie", desc: "Prolongation significative de l'usage" },
   { icon: Leaf, title: "Écologique", desc: "Réduction de l'empreinte carbone de votre flotte" },
 ];
@@ -79,7 +80,7 @@ export function RecreusageClient() {
               {[
                 "Solution économique pour les flottes poids lourd",
                 "Démarche écologique (moins de pneus mis au rebut)",
-                "Qualité équivalente à un pneu neuf après traitement",
+                "Performance du pneu prolongée lorsqu'il est éligible",
                 "Kilométrage supplémentaire significatif",
                 "Adapté aux pneus longue distance",
               ].map((item) => (
@@ -89,6 +90,94 @@ export function RecreusageClient() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-muted">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h2 className="text-4xl font-black tracking-tight">
+              Le recreusage, un levier pour le <span className="text-gradient-purple">coût kilométrique</span>
+            </h2>
+            <p className="mt-5 text-muted-foreground leading-relaxed">
+              Le recreusage consiste à retirer une fine couche de gomme dans le fond des sculptures prévues
+              par le fabricant. L&apos;opération redonne de la profondeur au dessin sans intervenir sur la
+              carcasse. Elle permet d&apos;utiliser davantage le potentiel d&apos;un pneu poids lourd avant
+              son remplacement ou son rechapage, ce qui réduit le coût par kilomètre et le volume de pneus
+              mis au rebut.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Contrôle avant intervention</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Tous les pneus ne sont pas recreusables. Le technicien vérifie le marquage REGROOVABLE,
+                l&apos;état de la carcasse, l&apos;usure, les éventuelles réparations et la profondeur restante.
+                Un pneu endommagé ou non prévu par le fabricant est refusé.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Traçage adapté au pneu</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                La largeur et la profondeur de coupe sont choisies selon les recommandations du manufacturier.
+                L&apos;objectif n&apos;est pas de creuser au maximum, mais de préserver une épaisseur de gomme
+                suffisante au-dessus des nappes de la carcasse.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-border bg-white p-7">
+              <h3 className="text-lg font-black mb-3">Suivi de flotte</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Pour une flotte, le bon moment dépend de l&apos;essieu, du kilométrage, de l&apos;usage et du
+                profil de route. Un suivi régulier permet de planifier le recreusage avant que la sculpture
+                résiduelle ne soit trop faible.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-black tracking-tight mb-5">Quels véhicules sont concernés ?</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Le service concerne principalement les pneus poids lourd destinés au transport régional,
+                à la longue distance, aux remorques et à certains usages chantier. La décision se prend
+                pneu par pneu : dimension, marque, position sur le véhicule et état réel déterminent
+                l&apos;éligibilité. Pour plusieurs véhicules, transmettez les dimensions et les quantités
+                afin d&apos;obtenir une proposition adaptée à votre parc.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-black tracking-tight mb-5">Expertise PL en Hérault et livraison France</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Recacor accompagne les transporteurs, exploitants et gestionnaires de flotte depuis son site
+                du Crès. Nous proposons le recreusage, la fourniture de pneus PL et l&apos;assistance pneumatique.
+                Les pneus grandes dimensions peuvent être livrés partout en France selon les références et
+                les volumes disponibles. Un expert étudie la demande et rappelle sous deux heures ouvrées.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
+                <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Solutions pneus PL</Link>
+                <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight mb-5">Recreusage et rechapage : deux opérations différentes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Le recreusage prolonge l&apos;usage de la bande de roulement d&apos;origine en approfondissant
+                les rainures prévues par le manufacturier. Le pneu reste sur sa carcasse et conserve sa bande
+                de roulement. Cette opération intervient avant que le pneu n&apos;atteigne une usure trop
+                importante et nécessite un contrôle précis de la gomme restante.
+              </p>
+              <p>
+                Le rechapage intervient plus tard : la bande de roulement usée est remplacée sur une carcasse
+                contrôlée et réutilisable. Une stratégie de flotte peut combiner pneu neuf, recreusage puis
+                rechapage afin d&apos;exploiter la valeur de la carcasse sur plusieurs cycles. Recacor vous
+                aide à choisir l&apos;option adaptée à l&apos;état du pneu et à son usage.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -6,7 +6,7 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Pneus Poids Lourd Hérault — Agricole & Industriel",
+  title: "Pneus poids lourd Hérault — devis rapide",
   description:
     "Spécialiste pneus PL, agricoles et industriels en Hérault. Recreusage, assistance sur site 24/7. Devis gratuit.",
   alternates: { canonical: "/pneus-utilitaires-pl" },

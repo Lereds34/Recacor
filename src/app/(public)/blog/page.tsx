@@ -10,7 +10,7 @@ import { BlogCardImage } from "@/components/blog-card-image";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "Blog Recacor — Conseils pneus, mécanique & flottes",
+  title: "Blog pneus et mécanique Montpellier",
   description:
     "Conseils pneus voiture et poids lourd, actualités garage, gestion de flotte. Le blog expert Recacor à Montpellier — Le Crès.",
   alternates: { canonical: "/blog" },

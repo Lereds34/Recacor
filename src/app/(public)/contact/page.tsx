@@ -5,7 +5,7 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Contact Recacor — Garage Pneus Montpellier Le Crès",
+  title: "Contact garage pneus Montpellier",
   description:
     "Contactez Recacor au Crès : téléphone, formulaire, horaires et itinéraire. Réponse sous 1h.",
   alternates: { canonical: "/contact" },

@@ -13,6 +13,15 @@ import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
 export const revalidate = 600;
 
+function getArticleSeoTitle(title: string): string {
+  const parts = title.split(" — ").map((part) => part.trim()).filter(Boolean);
+  if (parts.length <= 1) return title;
+  if (parts[0].toLowerCase() === "recacor") {
+    return parts.slice(0, 2).join(" — ");
+  }
+  return parts[0];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -22,7 +31,7 @@ export async function generateMetadata({
   const article = await getArticleBySlug(slug);
   if (!article) return { title: "Article introuvable" };
   return {
-    title: `${article.frontmatter.titre} — Recacor Le Crès`,
+    title: getArticleSeoTitle(article.frontmatter.titre),
     description: article.frontmatter.meta_description,
     alternates: { canonical: `/blog/${slug}` },
   };

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { findVille } from "@/lib/villes";
 import { VillePageClient } from "@/components/ville-page";
+import { findVilleSeo } from "@/data/villes-seo";
 
 export const revalidate = 3600;
 
@@ -21,11 +22,11 @@ export async function generateMetadata({
   if (RESERVED_SLUGS.has(slug)) return {};
   const v = await findVille(slug);
   if (!v) return { title: "Ville introuvable" };
+  const seo = findVilleSeo(slug);
+  const distance = seo?.distance || v.distance;
   return {
-    title: v.meta_title || `Pneus ${v.nom} — Garage Recacor Le Crès`,
-    description:
-      v.meta_description ||
-      `Pneus voiture à ${v.nom} dès 45€ montés — Recacor Le Crès (à ${v.distance}). Stock immédiat, montage en 15 min sans RDV. Devis gratuit.`,
+    title: { absolute: `Pneus ${v.nom} — Recacor Le Crès (${distance})` },
+    description: `Pneus à ${v.nom} dès 45€ montés. Recacor Le Crès à ${distance} : stock immédiat, montage sans RDV et contrôle parallélisme offert.`,
     alternates: { canonical: `/${slug}` },
   };
 }

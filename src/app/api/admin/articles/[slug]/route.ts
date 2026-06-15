@@ -31,6 +31,18 @@ export async function PUT(req: Request, { params }: Params) {
   }
 }
 
+export async function PATCH(req: Request, { params }: Params) {
+  try {
+    const { slug } = await params;
+    const { status, publish_at } = (await req.json()) as { status?: string; publish_at?: string | null };
+    const { sql } = await import("@/lib/db");
+    await sql`UPDATE articles SET status = COALESCE(${status ?? null}, status), publish_at = ${publish_at ?? null}, updated_at = NOW() WHERE slug = ${slug}`;
+    return NextResponse.json({ ok: true });
+  } catch (e) {
+    return NextResponse.json({ error: String(e) }, { status: 500 });
+  }
+}
+
 export async function DELETE(_req: Request, { params }: Params) {
   try {
     const { slug } = await params;

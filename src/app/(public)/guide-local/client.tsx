@@ -20,6 +20,20 @@ const partenaires = [
     note: 5,
     badge: "Partenaire flotte",
   },
+  {
+    slug: "boucherie-vedasienne",
+    nom: "Boucherie Védasienne",
+    categorie: "Boucherie artisanale",
+    description:
+      "La Boucherie Védasienne est une boucherie artisanale implantée à Saint-Jean-de-Védas, aux portes de Montpellier. Sélection rigoureuse des viandes, découpe traditionnelle et service de proximité : une adresse incontournable pour les amateurs de produits de qualité en Hérault. C'est notre partenaire local dont nous assurons l'entretien des véhicules de livraison.",
+    lienPartenariat:
+      "Recacor prend en charge les pneus et la mécanique des véhicules utilitaires de la Boucherie Védasienne pour garantir des livraisons fiables au quotidien.",
+    site: "https://boucheriesaintjeandevedas.fr/",
+    logo: "https://www.recacor.fr/api/media/27",
+    localisation: "Saint-Jean-de-Védas, Hérault (34)",
+    note: 5,
+    badge: "Partenaire flotte",
+  },
 ];
 
 export function GuideLocalClient() {

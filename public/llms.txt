@@ -29,6 +29,29 @@ Recacor est un garage automobile et poids lourd situé au 1240 RN 113, 34920 Le 
 - [Contact](https://www.recacor.fr/contact) : 04 99 53 33 90 — 1240 RN 113, 34920 Le Crès
 - [Blog](https://www.recacor.fr/blog) : Conseils pneus, entretien, guides automobiles et poids lourds
 
+## Géolocalisation
+
+Siège commercial principal :
+- Latitude : 43.6276
+- Longitude : 3.9521
+- Adresse : 1240 RN 113, 34920 Le Crès, Hérault, France
+- Code postal : 34920
+- Ville : Le Crès
+- Département : Hérault (34)
+- Région : Occitanie
+- Pays : France
+
+Zone de chalandise VL (particuliers) : rayon ~25 km autour de Le Crès
+Villes proches desservies : Montpellier, Castelnau-le-Lez, Mauguio, Lunel, Vendargues, Saint-Brès, Jacou, Baillargues, Mudaison
+
+Zone commerciale PL (flottes professionnelles) : 14 départements Occitanie + régions limitrophes
+Départements couverts : 07, 11, 12, 13, 19, 26, 30, 34, 48, 66, 81, 82, 83, 84
+
+Autres centres Recacor :
+- Vergèze — 30310 (Gard) — lat: 43.7019, lng: 4.2677
+- Servian — 34290 (Hérault) — lat: 43.4434, lng: 3.3018
+- Neuvic — 19160 (Corrèze) — lat: 45.3868, lng: 2.2756
+
 ## À propos
 
 - [À propos de Recacor](https://www.recacor.fr/a-propos) : Entreprise familiale spécialisée pneus VL et PL, présente dans 4 départements

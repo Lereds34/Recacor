@@ -1,6 +1,10 @@
 # Recacor — Garage pneus et mécanique Montpellier
 URL: https://www.recacor.fr
 Mis à jour: 2026-06
+Geo: 43.6276, 3.9521
+Adresse: 1240 RN 113, 34920 Le Crès, Hérault, Occitanie, France
+Zone VL: Montpellier agglomération (rayon 25 km)
+Zone PL: Occitanie — 14 départements (07, 11, 12, 13, 19, 26, 30, 34, 48, 66, 81, 82, 83, 84)
 
 ---
 

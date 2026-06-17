@@ -68,10 +68,15 @@ export async function POST(req: Request) {
       );
       adsFlowAccepted = adsFlowResponse.ok;
       if (!adsFlowAccepted) {
-        console.error("[adsflow webhook]", adsFlowResponse.status);
+        const body = await adsFlowResponse.text().catch(() => "");
+        console.error("[adsflow webhook]", adsFlowResponse.status, body);
+        sendAdsFlowFailureAlert(data, `HTTP ${adsFlowResponse.status} — ${body}`).catch((e) =>
+          console.error("[adsflow alert]", e),
+        );
       }
     } catch (err) {
       console.error("[adsflow webhook]", err);
+      sendAdsFlowFailureAlert(data, String(err)).catch((e) => console.error("[adsflow alert]", e));
     }
 
     // Insertion DB Neon — si quota dépassé, on continue quand même
@@ -188,4 +193,33 @@ async function sendConfirmationEmail(data: LeadPayload) {
     text,
   });
   if (!result.ok) console.error("[lead confirmation]", result.error);
+}
+
+const ADSFLOW_ALERT_EMAIL = "redouanelmansouri34@gmail.com";
+
+async function sendAdsFlowFailureAlert(data: LeadPayload, errorDetail: string) {
+  if (!process.env.BREVO_API_KEY && !process.env.RESEND_API_KEY) return;
+  const nom = [data.prenom, data.nom].filter(Boolean).join(" ") || "(nom non renseigné)";
+  const text = [
+    `Le lead n'a PAS été transmis à AdsFlow (webhook en échec). Il reste dans la base Recacor mais ne sera pas visible dans le CRM tant que le webhook n'est pas réparé.`,
+    ``,
+    `Nom : ${nom}`,
+    `Téléphone : ${data.telephone || "—"}`,
+    `Email : ${data.email || "—"}`,
+    `CP : ${data.cp || "—"}`,
+    `Service : ${data.service_type || "—"}`,
+    `Formulaire : ${data.form_id || "—"}`,
+    `Page : ${data.page_source || "—"}`,
+    `Message : ${data.message || "—"}`,
+    ``,
+    `Erreur AdsFlow : ${errorDetail}`,
+  ].join("\n");
+
+  const result = await sendEmail({
+    to: ADSFLOW_ALERT_EMAIL,
+    subject: `⚠️ Lead non transmis à AdsFlow — ${nom}`,
+    html: `<pre style="font-family:monospace;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`,
+    text,
+  });
+  if (!result.ok) console.error("[adsflow alert email]", result.error);
 }

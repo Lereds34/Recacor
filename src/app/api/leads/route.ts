@@ -44,8 +44,11 @@ export async function POST(req: Request) {
     // AdsFlow CRM — la réponse est contrôlée pour ne compter que les leads acceptés.
     let adsFlowAccepted = false;
     try {
+      const adsFlowTokenParam = process.env.ADSFLOW_WEBHOOK_TOKEN
+        ? `&token=${encodeURIComponent(process.env.ADSFLOW_WEBHOOK_TOKEN)}`
+        : "";
       const adsFlowResponse = await fetch(
-        "https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor",
+        `https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor${adsFlowTokenParam}`,
         {
         method: "POST",
         headers: { "Content-Type": "application/json" },

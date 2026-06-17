@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAssetBinary } from "@/lib/site-assets";
 
 export const runtime = "nodejs";
-export const revalidate = 60;
+export const revalidate = 86400;
 
 type Params = { params: Promise<{ key: string }> };
 

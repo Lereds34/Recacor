@@ -31,6 +31,14 @@ let _schemaReady: Promise<void> | null = null;
 
 export async function ensureSchema(): Promise<void> {
   if (_schemaReady) return _schemaReady;
+  // Le schéma est stable en production : on évite de rejouer ~25 requêtes
+  // de migration à chaque cold start (cause majeure d'activité DB permanente
+  // sur Neon serverless). Si une vraie migration est nécessaire, retirer
+  // temporairement SKIP_SCHEMA_CHECK de Vercel, déployer, puis le remettre.
+  if (process.env.SKIP_SCHEMA_CHECK === "true") {
+    _schemaReady = Promise.resolve();
+    return _schemaReady;
+  }
   _schemaReady = (async () => {
     await runSchemaMigrations();
   })().catch((err) => {

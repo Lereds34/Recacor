@@ -11,7 +11,14 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { ArticleTocBox, ArticleTocSidebar } from "@/components/article-toc";
 import { PHONE_DISPLAY, ADDRESS } from "@/lib/tracking";
 
-export const revalidate = 600;
+export const revalidate = 3600;
+
+// Pré-construit tous les articles au build : la DB n'est touchée qu'une
+// seule fois à la construction plutôt qu'à chaque régénération ISR.
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map((a) => ({ slug: a.frontmatter.slug }));
+}
 
 function getArticleSeoTitle(title: string): string {
   const parts = title.split(" — ").map((part) => part.trim()).filter(Boolean);

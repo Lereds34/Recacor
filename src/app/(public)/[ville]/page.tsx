@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { findVille } from "@/lib/villes";
+import { findVille, listVilles } from "@/lib/villes";
 import { VillePageClient } from "@/components/ville-page";
 import { findVilleSeo } from "@/data/villes-seo";
 
@@ -12,6 +12,16 @@ const RESERVED_SLUGS = new Set([
   "a-propos", "mentions-legales", "cgv", "confidentialite",
   "services", "admin", "api",
 ]);
+
+// Pré-construit toutes les pages ville au build : la DB n'est touchée qu'une
+// seule fois à la construction, au lieu d'une régénération à chaque visite
+// (cause majeure d'activité DB permanente sur Neon serverless).
+export async function generateStaticParams() {
+  const villes = await listVilles();
+  return villes
+    .filter((v) => !RESERVED_SLUGS.has(v.slug))
+    .map((v) => ({ ville: v.slug }));
+}
 
 export async function generateMetadata({
   params,

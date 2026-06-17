@@ -7,7 +7,7 @@ import { getAllArticles, categoryLabel, type Article } from "@/lib/blog";
 import { getAsset } from "@/lib/site-assets";
 import { BlogCardImage } from "@/components/blog-card-image";
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Blog pneus et mécanique Montpellier",

@@ -150,12 +150,12 @@ function HeroSection() {
           </motion.div>
 
           <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight">
-            Garage Pneus{" "}
-            <span className="text-purple-glow">Montpellier</span>
+            Pneus dès{" "}
+            <span className="text-purple-glow">45€ montés</span>
             <br />
-            Pneus VL &amp; PL au{" "}
+            à{" "}
             <span className="relative inline-block">
-              <span className="relative z-10">Crès</span>
+              <span className="relative z-10">Montpellier</span>
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -206,7 +206,7 @@ function HeroSection() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-5 text-lg sm:text-xl text-white/70 max-w-xl leading-relaxed"
           >
-            Les pneus les moins chers de Montpellier. Stock immédiat, montage en 15min.
+            Stock immédiat · Sans rendez-vous · Devis gratuit
           </motion.p>
 
           {/* 4 icônes réassurance */}

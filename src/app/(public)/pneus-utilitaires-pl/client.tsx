@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Truck, CheckCircle, ArrowRight, AlertTriangle, Leaf, MapPin, Clock, TrendingUp, Gauge, Shield, Calculator } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -203,9 +204,9 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                     </li>
                   ))}
                 </ul>
-                <a href="/services/recreusage" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-lg transition-shadow">
+                <Link href="/services/recreusage" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-lg transition-shadow">
                   En savoir plus sur le recreusage <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
               <div className="text-center">
                 <div className="text-7xl sm:text-8xl font-black text-purple-glow">-40%</div>

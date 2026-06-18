@@ -135,8 +135,8 @@ function updateConsent(status: "granted" | "denied") {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
-    function () {
-      window.dataLayer.push(arguments);
+    function (...args) {
+      window.dataLayer.push(args);
     };
   window.gtag("consent", "update", {
     ad_storage: status,

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-function Particle({ delay, x, size, color, duration }: { delay: number; x: number; size: number; color: string; duration: number }) {
+function Particle({ delay, x, size, color, duration, drift }: { delay: number; x: number; size: number; color: string; duration: number; drift: number }) {
   return (
     <motion.div
       className="absolute rounded-full"
@@ -15,7 +15,7 @@ function Particle({ delay, x, size, color, duration }: { delay: number; x: numbe
       }}
       animate={{
         y: ["0vh", "110vh"],
-        x: [0, Math.random() > 0.5 ? 25 : -25, 0],
+        x: [0, drift, 0],
         opacity: [0, 0.9, 0.7, 0],
       }}
       transition={{
@@ -43,6 +43,7 @@ const dots = Array.from({ length: 40 }, (_, i) => ({
   size: 3 + Math.random() * 4,
   delay: Math.random() * 12,
   duration: 6 + Math.random() * 6,
+  drift: Math.random() > 0.5 ? 25 : -25,
   color: colors[i % colors.length],
 }));
 
@@ -50,7 +51,7 @@ export function BgParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
       {dots.map((d, i) => (
-        <Particle key={i} x={d.x} size={d.size} delay={d.delay} duration={d.duration} color={d.color} />
+        <Particle key={i} x={d.x} size={d.size} delay={d.delay} duration={d.duration} drift={d.drift} color={d.color} />
       ))}
     </div>
   );

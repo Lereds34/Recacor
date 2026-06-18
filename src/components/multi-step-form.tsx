@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, ReactNode, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { pushFormStart, pushFormSubmit, getUtmData } from "@/lib/tracking";
 
@@ -192,12 +193,12 @@ export function MultiStepForm({
                     <>
                       En soumettant ce formulaire, j&apos;accepte que mes données
                       soient traitées par Recacor dans le cadre de ma demande.{" "}
-                      <a
+                      <Link
                         href="/confidentialite"
                         className="text-purple-bright hover:underline"
                       >
                         Politique de confidentialité
-                      </a>
+                      </Link>
                     </>
                   )}
                 </span>

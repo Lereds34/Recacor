@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -100,9 +101,9 @@ export function ContactSimpleForm() {
         <span className="text-xs text-muted-foreground leading-relaxed">
           En soumettant ce formulaire, j&apos;accepte que mes données soient traitées par
           Recacor dans le cadre de ma demande.{" "}
-          <a href="/confidentialite" className="text-purple-bright hover:underline">
+          <Link href="/confidentialite" className="text-purple-bright hover:underline">
             Politique de confidentialité
-          </a>
+          </Link>
         </span>
       </label>
 

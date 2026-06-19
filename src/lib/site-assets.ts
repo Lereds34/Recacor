@@ -144,6 +144,13 @@ export const SITE_ASSETS: PageAssets[] = [
         alt: "Mécanique légère Recacor",
       },
       {
+        key: "hero_image_climatisation",
+        label: "Hero — Climatisation auto",
+        type: "image",
+        fallback: "",
+        alt: "Recharge climatisation auto Recacor",
+      },
+      {
         key: "hero_image_pneus_pl",
         label: "Hero — Pneus PL",
         type: "image",

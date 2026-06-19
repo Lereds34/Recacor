@@ -10,6 +10,7 @@ import { AvisSection } from "@/components/avis-section";
 import { DevisCtaLink } from "@/components/devis-cta-link";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
+import Link from "next/link";
 
 const saisons = [
   {
@@ -279,6 +280,11 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 ))}
               </ul>
             </motion.div>
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+            <Link href="/services/parallelisme-geometrie" className="text-purple-bright hover:underline">Contrôler le parallélisme</Link>
+            <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
+            <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
           </div>
         </div>
       </section>

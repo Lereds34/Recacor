@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Wrench, Droplet, Disc, Gauge, Target } from "lucide-react";
+import { ArrowRight, Wrench, Droplet, Disc, Gauge, Target, Snowflake } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
 import { DevisMecaniqueForm } from "@/components/forms/devis-mecanique";
 import { BgParticles } from "@/components/bg-particles";
@@ -14,6 +14,7 @@ import Link from "next/link";
 const services = [
   { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange" },
   { icon: Target, title: "Parallélisme & Géométrie", desc: "Réglage laser 3D", price: "65€", href: "/services/parallelisme-geometrie" },
+  { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + diagnostic gratuit", price: "59€", href: "/services/climatisation-auto-montpellier" },
   { icon: Disc, title: "Freinage", desc: "Plaquettes, disques, liquide", price: "89€", href: "/mecanique#freinage" },
   { icon: Gauge, title: "Amortisseurs", desc: "Train roulant, suspension", price: "Sur devis", href: "/mecanique#amortisseurs" },
   { icon: Wrench, title: "Révision", desc: "Entretien complet constructeur", price: "Sur devis", href: "/mecanique#revision" },
@@ -35,6 +36,10 @@ const faqs = [
   {
     q: "Faites-vous le freinage toutes marques ?",
     a: "Oui, nous intervenons sur toutes marques et tous modèles. Plaquettes, disques, liquide de frein : nous utilisons des pièces de qualité adaptées à votre véhicule.",
+  },
+  {
+    q: "Faites-vous la recharge clim voiture ?",
+    a: "Oui, Recacor propose la recharge clim à partir de 59€, avec diagnostic clim gratuit et passage possible avec ou sans rendez-vous.",
   },
   {
     q: "Peut-on combiner mécanique et pneus le même jour ?",

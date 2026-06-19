@@ -13,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/pneus-utilitaires-pl",
     "/services/vidange",
     "/services/parallelisme-geometrie",
+    "/services/climatisation-auto-montpellier",
     "/services/recreusage",
     "/nos-centres",
     "/blog",

@@ -22,6 +22,7 @@ const servicesLinks = [
   { name: "Pneus agricoles", href: "/pneus-utilitaires-pl#agricoles" },
   { name: "Vidange", href: "/services/vidange" },
   { name: "Parallélisme & Géométrie", href: "/services/parallelisme-geometrie" },
+  { name: "Recharge clim", href: "/services/climatisation-auto-montpellier" },
   { name: "Recreusage", href: "/services/recreusage" },
   { name: "Assistance PL Hérault", href: "/pneus-utilitaires-pl#assistance" },
 ];

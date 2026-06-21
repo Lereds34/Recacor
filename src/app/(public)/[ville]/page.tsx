@@ -58,6 +58,6 @@ export default async function VillePage({
   if (RESERVED_SLUGS.has(slug)) notFound();
   const v = await findVille(slug);
   if (!v || !v.published) notFound();
-  const heroImage = await getAsset("home_services_image", "/Design sans titre (29)/1.webp");
+  const heroImage = await getAsset("hero_image_villes_vl", "/hero-generated/villes-vl-master.png");
   return <VillePageClient ville={v} heroImage={heroImage} />;
 }

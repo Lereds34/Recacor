@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { findVille, listVilles } from "@/lib/villes";
 import { VillePageClient } from "@/components/ville-page";
 import { findVilleSeo } from "@/data/villes-seo";
+import { getAsset } from "@/lib/site-assets";
 
 export const revalidate = 3600;
 
@@ -57,5 +58,6 @@ export default async function VillePage({
   if (RESERVED_SLUGS.has(slug)) notFound();
   const v = await findVille(slug);
   if (!v || !v.published) notFound();
-  return <VillePageClient ville={v} />;
+  const heroImage = await getAsset("home_services_image", "/Design sans titre (29)/1.webp");
+  return <VillePageClient ville={v} heroImage={heroImage} />;
 }

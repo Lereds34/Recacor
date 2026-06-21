@@ -44,7 +44,7 @@ function AdresseBlock() {
 /* ── Bloc devis ── */
 function DevisBlock({ nom }: { nom: string }) {
   return (
-    <section id="devis" className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
+    <section className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
       <BgParticles />
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
@@ -73,6 +73,28 @@ function serviceAreaDescription(ville: Ville) {
   return isLocalCityPage(ville)
     ? "Changement de pneus au Crès chez Recacor. Sans RDV, à partir de 45€."
     : `Changement de pneus à ${ville.nom} — Recacor Le Crès à ${ville.distance}. Sans RDV, à partir de 45€.`;
+}
+
+function HeroBackground({
+  heroImage,
+  overlayClassName,
+}: {
+  heroImage?: string;
+  overlayClassName: string;
+}) {
+  return (
+    <>
+      {heroImage && (
+        <img
+          src={heroImage}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+      <div className={`absolute inset-0 ${overlayClassName}`} />
+    </>
+  );
 }
 
 /* ── Bloc contenu long + image ── */
@@ -163,14 +185,17 @@ function FaqBlock({ faqs, ville }: { faqs: { q: string; a: string }[]; ville: st
    Hero 2 colonnes (texte gauche + form visible droite sur desktop)
    Sections : avantages → marques → avis → FAQ → CTA final
    ───────────────────────────────────────────────────────────────── */
-function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVilleSeo> }) {
+function Variant1({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typeof findVilleSeo>; heroImage?: string }) {
   const faqs = seo?.faqs ?? [];
   const localCityPage = isLocalCityPage(ville);
   return (
     <>
       {/* Hero split */}
       <section className="relative pt-32 pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        <HeroBackground
+          heroImage={heroImage}
+          overlayClassName={heroImage ? "bg-gradient-to-br from-purple-deep/88 via-purple-mid/82 to-purple-bright/74" : "bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright"}
+        />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             {/* Left */}
@@ -204,7 +229,7 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
               </div>
             </motion.div>
             {/* Right — mini form visible dès le hero sur desktop */}
-            <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="hidden lg:block">
+            <motion.div id="devis" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }} className="hidden lg:block scroll-mt-24">
               <div className="rounded-3xl bg-white p-6 shadow-2xl shadow-black/30">
                 <p className="text-sm font-black text-purple-deep mb-4">Votre devis pneus en 2 min</p>
                 <DevisVlForm />
@@ -243,6 +268,13 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
         </div>
       </section>
 
+      {/* Devis mobile uniquement (desktop form is in hero) */}
+      <div id="devis" className="scroll-mt-24 lg:hidden">
+        <DevisBlock nom={ville.nom} />
+      </div>
+
+      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
+
       {/* Marques */}
       <section className="relative py-16 bg-muted overflow-hidden">
         <BgParticles />
@@ -256,20 +288,15 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
         </div>
       </section>
 
-      {/* Devis mobile uniquement (desktop form is in hero) */}
-      <div id="devis" className="scroll-mt-24 lg:hidden">
-        <DevisBlock nom={ville.nom} />
-      </div>
-      <div className="hidden lg:block">
-        <DevisBlock nom={ville.nom} />
-      </div>
-
       <AvisSection />
-      <ContenuBlock contenu={seo?.contenu} ville={ville.nom} imageUrl={ville.image_url} />
       <FaqBlock faqs={faqs} ville={ville.nom} />
 
-      {/* CTA final */}
-      <section className="py-16 bg-background">
+      <div id="devis-rappel" className="hidden lg:block scroll-mt-24">
+        <DevisBlock nom={ville.nom} />
+      </div>
+
+      {/* CTA final mobile */}
+      <section className="py-16 bg-background lg:hidden">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-center text-white">
             <h2 className="text-3xl font-black mb-3">Un pneu à changer sur {ville.nom} ?</h2>
@@ -290,7 +317,7 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
    VARIANT 2 — PROCESS / ÉTAPES
    Hero compact → 4 étapes → tarifs → devis → avis → FAQ → map
    ───────────────────────────────────────────────────────────────── */
-function Variant2({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVilleSeo> }) {
+function Variant2({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typeof findVilleSeo>; heroImage?: string }) {
   const faqs = seo?.faqs ?? [];
   const etapes = [
     { num: "01", title: "Demandez votre devis", desc: "En ligne en 2 minutes ou par téléphone. Gratuit, sans engagement." },
@@ -302,7 +329,10 @@ function Variant2({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
     <>
       {/* Hero compact */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-deep to-purple-mid" />
+        <HeroBackground
+          heroImage={heroImage}
+          overlayClassName={heroImage ? "bg-gradient-to-r from-purple-deep/88 to-purple-mid/82" : "bg-gradient-to-r from-purple-deep to-purple-mid"}
+        />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-5">
             <MapPin className="h-3 w-3 mr-1" /> {ville.nom} — {ville.distance} du garage
@@ -404,13 +434,16 @@ function Variant2({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
    VARIANT 3 — STATS LED
    Hero avec grands chiffres → services horizontaux → devis → dimensions → avis → FAQ
    ───────────────────────────────────────────────────────────────── */
-function Variant3({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVilleSeo> }) {
+function Variant3({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typeof findVilleSeo>; heroImage?: string }) {
   const faqs = seo?.faqs ?? [];
   return (
     <>
       {/* Hero stats */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-deep to-purple-mid" />
+        <HeroBackground
+          heroImage={heroImage}
+          overlayClassName={heroImage ? "bg-gradient-to-b from-purple-deep/88 to-purple-mid/82" : "bg-gradient-to-b from-purple-deep to-purple-mid"}
+        />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
             className="flex flex-wrap justify-center gap-8 mb-12">
@@ -516,13 +549,16 @@ function Variant3({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
    VARIANT 4 — SOCIAL PROOF FIRST
    Hero minimal → avis early → avantages liste → marques → devis → FAQ + CTA
    ───────────────────────────────────────────────────────────────── */
-function Variant4({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVilleSeo> }) {
+function Variant4({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typeof findVilleSeo>; heroImage?: string }) {
   const faqs = seo?.faqs ?? [];
   return (
     <>
       {/* Hero minimal */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        <HeroBackground
+          heroImage={heroImage}
+          overlayClassName={heroImage ? "bg-gradient-to-br from-purple-deep/88 via-purple-mid/82 to-purple-bright/74" : "bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright"}
+        />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)", backgroundSize: "20px 20px" }} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
           <Badge className="bg-white/10 text-white border-white/20 mb-5">
@@ -641,7 +677,7 @@ function Variant4({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
 /* ─────────────────────────────────────────────────────────────────
    ROUTER — choisit le variant selon la ville
    ───────────────────────────────────────────────────────────────── */
-export function VillePageClient({ ville }: { ville: Ville }) {
+export function VillePageClient({ ville, heroImage }: { ville: Ville; heroImage?: string }) {
   const seo = findVilleSeo(ville.slug);
   const displayVille = seo ? { ...ville, distance: seo.distance } : ville;
   const variant = seo?.variant ?? 1;
@@ -668,10 +704,10 @@ export function VillePageClient({ ville }: { ville: Ville }) {
         id={`pneus-${displayVille.slug}`}
       />
 
-      {variant === 1 && <Variant1 ville={displayVille} seo={seo} />}
-      {variant === 2 && <Variant2 ville={displayVille} seo={seo} />}
-      {variant === 3 && <Variant3 ville={displayVille} seo={seo} />}
-      {variant === 4 && <Variant4 ville={displayVille} seo={seo} />}
+      {variant === 1 && <Variant1 ville={displayVille} seo={seo} heroImage={heroImage} />}
+      {variant === 2 && <Variant2 ville={displayVille} seo={seo} heroImage={heroImage} />}
+      {variant === 3 && <Variant3 ville={displayVille} seo={seo} heroImage={heroImage} />}
+      {variant === 4 && <Variant4 ville={displayVille} seo={seo} heroImage={heroImage} />}
     </>
   );
 }

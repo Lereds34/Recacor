@@ -32,6 +32,13 @@ export async function generateMetadata({
   if (RESERVED_SLUGS.has(slug)) return {};
   const v = await findVille(slug);
   if (!v) return { title: "Ville introuvable" };
+  if (slug === "le-cres") {
+    return {
+      title: { absolute: "Garage auto Le Crès - Pneus, vidange, parallélisme | Recacor" },
+      description: "Garage auto au Crès : pneus dès 45€ montés, vidange, parallélisme et entretien voiture sans rendez-vous. Recacor Le Crès, stock immédiat.",
+      alternates: { canonical: `/${slug}` },
+    };
+  }
   const seo = findVilleSeo(slug);
   const distance = seo?.distance || v.distance;
   return {

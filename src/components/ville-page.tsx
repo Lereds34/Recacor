@@ -65,6 +65,16 @@ const DEFAULT_VILLE_IMAGE = "/Img/villes/default.png";
 
 type ContenuItem = string | { h3: string; p: string };
 
+function isLocalCityPage(ville: Ville) {
+  return ville.slug === "le-cres" || ville.distance.toLowerCase() === "sur place";
+}
+
+function serviceAreaDescription(ville: Ville) {
+  return isLocalCityPage(ville)
+    ? "Changement de pneus au Crès chez Recacor. Sans RDV, à partir de 45€."
+    : `Changement de pneus à ${ville.nom} — Recacor Le Crès à ${ville.distance}. Sans RDV, à partir de 45€.`;
+}
+
 /* ── Bloc contenu long + image ── */
 function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: ContenuItem[]; ville: string; imageUrl?: string | null }) {
   const src = imageUrl || DEFAULT_VILLE_IMAGE;
@@ -93,7 +103,7 @@ function ContenuBlock({ contenu, ville, imageUrl }: { contenu?: ContenuItem[]; v
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <h2 className="text-3xl font-black tracking-tight mb-8">
-              Pneus à <span className="text-gradient-purple">{ville}</span> — tout ce qu&apos;il faut savoir
+              Pneus <span className="text-gradient-purple">{ville === "Le Crès" ? "au Crès" : `à ${ville}`}</span> — tout ce qu&apos;il faut savoir
             </h2>
             <div className="space-y-6">
               {contenu!.map((item, i) =>
@@ -155,6 +165,7 @@ function FaqBlock({ faqs, ville }: { faqs: { q: string; a: string }[]; ville: st
    ───────────────────────────────────────────────────────────────── */
 function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVilleSeo> }) {
   const faqs = seo?.faqs ?? [];
+  const localCityPage = isLocalCityPage(ville);
   return (
     <>
       {/* Hero split */}
@@ -168,8 +179,17 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
                 <MapPin className="h-3 w-3 mr-1" /> {ville.nom} · {ville.cp}
               </Badge>
               <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                Pneus {ville.nom}<br />
-                <span className="text-purple-glow">À {ville.distance} — Le Crès</span>
+                {localCityPage ? (
+                  <>
+                    Garage auto au Crès<br />
+                    <span className="text-purple-glow">Pneus et entretien voiture</span>
+                  </>
+                ) : (
+                  <>
+                    Pneus {ville.nom}<br />
+                    <span className="text-purple-glow">À {ville.distance} — Le Crès</span>
+                  </>
+                )}
               </h1>
               <p className="mt-4 text-white/70 text-lg max-w-lg">
                 {seo?.hero_subtitle}
@@ -253,7 +273,9 @@ function Variant1({ ville, seo }: { ville: Ville; seo: ReturnType<typeof findVil
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-center text-white">
             <h2 className="text-3xl font-black mb-3">Un pneu à changer sur {ville.nom} ?</h2>
-            <p className="text-white/60 mb-6">Venez directement à Le Crès — {ville.distance} depuis {ville.nom}.</p>
+            <p className="text-white/60 mb-6">
+              {localCityPage ? "Venez directement au garage Recacor au Crès." : `Venez directement à Le Crès — ${ville.distance} depuis ${ville.nom}.`}
+            </p>
             <PhoneLink location="cta" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-deep font-bold" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
@@ -633,10 +655,18 @@ export function VillePageClient({ ville }: { ville: Ville }) {
       ]} />
       <ServiceJsonLd
         name={`Pneus voiture ${displayVille.nom}`}
-        description={`Changement de pneus à ${displayVille.nom} — Recacor Le Crès à ${displayVille.distance}. Sans RDV, à partir de 45€.`}
+        description={serviceAreaDescription(displayVille)}
         price="45"
       />
-      <FaqJsonLd items={faqs.length > 0 ? faqs : [{ q: `Où trouver un garage pneus près de ${displayVille.nom} ?`, a: `Recacor au Crès est à ${displayVille.distance} de ${displayVille.nom}, 1240 Route de Nîmes, 34920 Le Crès.` }]} id={`pneus-${displayVille.slug}`} />
+      <FaqJsonLd
+        items={faqs.length > 0 ? faqs : [{
+          q: `Où trouver un garage pneus près de ${displayVille.nom} ?`,
+          a: isLocalCityPage(displayVille)
+            ? "Recacor est situé au Crès, 1240 Route de Nîmes, 34920 Le Crès."
+            : `Recacor au Crès est à ${displayVille.distance} de ${displayVille.nom}, 1240 Route de Nîmes, 34920 Le Crès.`,
+        }]}
+        id={`pneus-${displayVille.slug}`}
+      />
 
       {variant === 1 && <Variant1 ville={displayVille} seo={seo} />}
       {variant === 2 && <Variant2 ville={displayVille} seo={seo} />}

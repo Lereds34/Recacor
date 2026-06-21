@@ -32,7 +32,8 @@ interface LeadEmailData {
   service?: string;
 }
 
-const WHATSAPP_NUMBER = "33607621043"; // PHONE_MOBILE sans +
+const WHATSAPP_NUMBER_NON_PL = "33687601575";
+const WHATSAPP_NUMBER_PL = "33607621043";
 
 const SITE_URL = "https://recacor.fr";
 const PURPLE_DEEP = "#2D1460";
@@ -104,11 +105,16 @@ function detailsSection(d: LeadEmailData): string {
           </tr>`;
 }
 
+function getWhatsAppNumber(d: LeadEmailData): string {
+  return d.service_type === "pl" ? WHATSAPP_NUMBER_PL : WHATSAPP_NUMBER_NON_PL;
+}
+
 /** Email envoyé à l'admin pour chaque nouveau lead */
 export function leadNotificationEmail(data: LeadEmailData, leadId: number): { subject: string; html: string; text: string } {
   const svc = SERVICE_LABELS[data.service_type || ""] || { label: data.service_type || "Lead", emoji: "📩", color: PURPLE_BRIGHT };
   const fullName = [data.prenom, data.nom].filter(Boolean).join(" ") || "—";
   const subject = `🔔 Nouveau lead Recacor #${leadId} · ${svc.label}`;
+  const whatsappNumber = getWhatsAppNumber(data);
 
   const dateStr = new Date().toLocaleString("fr-FR", {
     day: "2-digit",
@@ -195,7 +201,7 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
                       : ""
                   }
                   <td align="center" width="33%" style="padding-left:4px">
-                    <a href="https://wa.me/${WHATSAPP_NUMBER}" style="display:block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 8px;border-radius:12px;text-align:center">
+                    <a href="https://wa.me/${whatsappNumber}" style="display:block;background:#25D366;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 8px;border-radius:12px;text-align:center">
                       💬 WhatsApp
                     </a>
                   </td>
@@ -299,7 +305,7 @@ export function leadNotificationEmail(data: LeadEmailData, leadId: number): { su
     data.prestation_complementaire ? `Prestation : ${data.prestation_complementaire}` : "",
     data.message ? `\nMessage :\n${data.message}` : "",
     ``,
-    `WhatsApp : https://wa.me/${WHATSAPP_NUMBER}`,
+    `WhatsApp : https://wa.me/${whatsappNumber}`,
     `Source : ${data.utm_source || "direct"}${data.utm_campaign ? ` · ${data.utm_campaign}` : ""}`,
     `Page : ${data.page_source || "/"}`,
     ``,

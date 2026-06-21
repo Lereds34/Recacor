@@ -12,7 +12,7 @@ const DEFAULTS: Record<string, LegalPage> = {
     slug: "mentions-legales",
     titre: "Mentions légales",
     content:
-      "**Éditeur :** Recacor — SARL au capital de [X] €\n\n**Siège social :** 1240 Route de Nîmes, 34920 Le Crès\n\n**Téléphone :** 06 07 62 10 43\n\n**Email :** contact@recacor.fr\n\n**SIRET :** [à compléter]\n\n**Directeur de publication :** [à compléter]\n\n**Hébergeur :** Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA",
+      "**Éditeur :** Recacor — SARL au capital de [X] €\n\n**Siège social :** 1240 Route de Nîmes, 34920 Le Crès\n\n**Téléphone :** 04 99 53 33 90\n\n**Email :** contact@recacor.fr\n\n**SIRET :** [à compléter]\n\n**Directeur de publication :** [à compléter]\n\n**Hébergeur :** Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, USA",
   },
   cgv: {
     slug: "cgv",

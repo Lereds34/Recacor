@@ -142,6 +142,43 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
         </div>
       </section>
 
+      <section className="py-16 bg-muted/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 lg:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
+              <div>
+                <Badge className="bg-purple-bright/10 text-purple-bright border-purple-bright/20 mb-4">
+                  VL · Utilitaires · PL · Agri · Camping-cars
+                </Badge>
+                <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                  Climatisation pour <span className="text-gradient-purple">plusieurs types de véhicules</span>
+                </h2>
+              </div>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Recacor peut intervenir sur la climatisation des voitures, utilitaires, poids lourds,
+                  véhicules agricoles et camping-cars, selon le type de gaz, l&apos;accès au véhicule et la
+                  disponibilité de l&apos;atelier.
+                </p>
+                <p>
+                  Pour les véhicules spécifiques comme les PL, engins agricoles ou camping-cars, un appel avant
+                  le passage permet de vérifier la compatibilité, le besoin réel et le meilleur créneau de prise
+                  en charge.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  {["Voitures et SUV", "Utilitaires", "Poids lourds", "Agricole et camping-cars"].map((item) => (
+                    <div key={item} className="flex items-center gap-2 rounded-xl bg-muted px-4 py-3 text-sm font-bold text-foreground">
+                      <CheckCircle className="h-4 w-4 text-purple-bright shrink-0" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-20 bg-muted">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-black tracking-tight text-center mb-12">

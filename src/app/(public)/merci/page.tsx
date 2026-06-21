@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle, Phone, Calendar, ArrowRight } from "lucide-react";
-import { PHONE_DISPLAY } from "@/lib/tracking";
+import { PHONE_DISPLAY, PHONE_MOBILE } from "@/lib/tracking";
 import { PhoneLink } from "@/components/phone-link";
 import { BgParticles } from "@/components/bg-particles";
 
@@ -83,7 +83,7 @@ export default function MerciPage() {
                   {PHONE_DISPLAY}
                 </PhoneLink>
                 <a
-                  href="https://wa.me/33607621043"
+                  href={`https://wa.me/${PHONE_MOBILE.replace("+", "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] text-white font-bold text-sm hover:opacity-90 transition-opacity mt-3"

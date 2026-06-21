@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, CalendarClock, CheckCircle, Gauge, Snowflake, ThermometerSun, Wrench } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -8,7 +10,6 @@ import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-
 import { DevisCtaLink } from "@/components/devis-cta-link";
 import { AvisSection } from "@/components/avis-section";
 import { PHONE_DISPLAY } from "@/lib/tracking";
-import Link from "next/link";
 
 const faqs = [
   {
@@ -175,6 +176,38 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-background">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <Badge className="bg-purple-bright/10 text-purple-bright border-purple-bright/20 mb-4">
+                Tarifs recharge clim
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                Prix recharge clim <span className="text-gradient-purple">selon véhicule et gaz</span>
+              </h2>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                La recharge dépend du type de gaz et du véhicule. Le diagnostic clim reste gratuit avant intervention
+                pour confirmer le besoin réel.
+              </p>
+            </div>
+            <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-bright/20">
+              Demander un devis clim <ArrowRight className="h-4 w-4" />
+            </DevisCtaLink>
+          </div>
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
+            <Image
+              src="/tarifs/tarif-clim-recacor-202606.webp"
+              alt="Grille tarifaire recharge climatisation Recacor : ancien gaz R134 et nouveau gaz 1234yf selon type de véhicule"
+              width={1600}
+              height={1131}
+              sizes="(min-width: 1024px) 1024px, 100vw"
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>

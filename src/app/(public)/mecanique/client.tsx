@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Wrench, Droplet, Disc, Gauge, Target, Snowflake } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -9,7 +11,6 @@ import { AvisSection } from "@/components/avis-section";
 import { DevisCtaLink } from "@/components/devis-cta-link";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
-import Link from "next/link";
 
 const services = [
   { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange" },
@@ -127,6 +128,39 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tarifs */}
+      <section className="py-20 bg-muted">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <Badge className="bg-purple-bright/10 text-purple-bright border-purple-bright/20 mb-4">
+                Tarifs atelier
+              </Badge>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                Grille tarifaire <span className="text-gradient-purple">mécanique</span>
+              </h2>
+              <p className="mt-3 text-muted-foreground leading-relaxed">
+                Tarifs indicatifs hors pièces pour les interventions réalisées en atelier. Le devis final dépend du véhicule,
+                du diagnostic et des pièces nécessaires.
+              </p>
+            </div>
+            <DevisCtaLink mobileHref="/formulaire/mecanique" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-bright/20">
+              Demander un devis <ArrowRight className="h-4 w-4" />
+            </DevisCtaLink>
+          </div>
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
+            <Image
+              src="/tarifs/tarif-mecanique-recacor-202606.webp"
+              alt="Grille tarifaire mécanique Recacor : T1 72 euros TTC, T2 84 euros TTC, T3 96 euros TTC hors pièces"
+              width={1600}
+              height={1131}
+              sizes="(min-width: 1024px) 1024px, 100vw"
+              className="h-auto w-full"
+            />
           </div>
         </div>
       </section>

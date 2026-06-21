@@ -6,9 +6,9 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Pneus poids lourd Hérault — devis rapide",
+  title: "Pneus poids lourd Hérault - Assistance 24/7, recreusage | Recacor",
   description:
-    "Spécialiste pneus PL, agricoles et industriels en Hérault. Recreusage, assistance sur site 24/7. Devis gratuit.",
+    "Spécialiste pneus poids lourd, agricoles et industriels dans l'Hérault. Assistance sur site 24/7, recreusage et devis flotte rapide avec Recacor.",
   alternates: { canonical: "/pneus-utilitaires-pl" },
 };
 

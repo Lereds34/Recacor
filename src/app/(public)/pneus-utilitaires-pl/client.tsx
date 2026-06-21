@@ -81,7 +81,10 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
         { name: "Accueil", url: "https://recacor.fr" },
         { name: "Pneus PL", url: "https://recacor.fr/pneus-utilitaires-pl" },
       ]} />
-      <ServiceJsonLd name="Pneus poids lourd Hérault" description="Pneus PL, agricoles, industriels et recreusage en Hérault" />
+      <ServiceJsonLd
+        name="Pneus poids lourd Hérault"
+        description="Pneus poids lourd, agricoles et industriels dans l'Hérault, avec recreusage et assistance sur site 24/7."
+      />
       <FaqJsonLd items={faqs} id="pl" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -302,7 +305,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-4xl sm:text-5xl font-black tracking-tight mb-12">
-            Questions fréquentes <span className="text-gradient-purple">pneus PL / agricole</span>
+            Questions fréquentes <span className="text-gradient-purple">pneus PL, agricoles et industriels</span>
           </h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (

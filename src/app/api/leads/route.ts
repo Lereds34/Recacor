@@ -32,7 +32,7 @@ interface LeadPayload {
 
 export async function POST(req: Request) {
   try {
-    const data = (await req.json()) as LeadPayload;
+    const data = normalizeLeadAttribution((await req.json()) as LeadPayload);
 
     if (!data.form_id || !data.service_type) {
       return NextResponse.json({ error: "form_id et service_type requis" }, { status: 400 });
@@ -123,9 +123,7 @@ export async function POST(req: Request) {
     const hasMailer = !!(process.env.BREVO_API_KEY || process.env.RESEND_API_KEY);
 
     if (config.leadsEmailTo && hasMailer) {
-      sendLeadEmail(config.leadsEmailTo, data, leadId ?? 0).catch((err) =>
-        console.error("[lead email]", err)
-      );
+      await sendLeadEmail(config.leadsEmailTo, data, leadId ?? 0);
     }
 
     const sendConfirm = await getSetting("leads_send_confirmation", "").catch(() => "");
@@ -172,6 +170,32 @@ export async function POST(req: Request) {
     console.error("[lead]", e);
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }
+}
+
+function normalizeLeadAttribution(data: LeadPayload): LeadPayload {
+  const referrer = String(data.referrer || "").toLowerCase();
+  const utmSource = String(data.utm_source || "").toLowerCase();
+  const hasRealSource = utmSource && utmSource !== "direct";
+
+  if (hasRealSource) return data;
+
+  if (referrer.includes("facebook.com") || referrer.includes("instagram.com")) {
+    return {
+      ...data,
+      utm_source: "facebook",
+      utm_medium: data.utm_medium || "referral",
+    };
+  }
+
+  if (referrer.includes("google.") || referrer.includes("syndicatedsearch.goog")) {
+    return {
+      ...data,
+      utm_source: "google",
+      utm_medium: data.utm_medium || "organic",
+    };
+  }
+
+  return data;
 }
 
 async function sendLeadEmail(to: string, data: LeadPayload, leadId: number) {

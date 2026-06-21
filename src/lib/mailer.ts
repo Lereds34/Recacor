@@ -25,6 +25,7 @@ async function sendViaBrevo(opts: SendOptions): Promise<{ ok: boolean; provider:
   try {
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
+      signal: AbortSignal.timeout(8000),
       headers: {
         accept: "application/json",
         "api-key": process.env.BREVO_API_KEY!,
@@ -51,6 +52,7 @@ async function sendViaResend(opts: SendOptions): Promise<{ ok: boolean; provider
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
+      signal: AbortSignal.timeout(8000),
       headers: {
         Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         "Content-Type": "application/json",

@@ -23,11 +23,11 @@ const RULES = {
   CPA_FREEZE_THRESHOLD:   25,   // CPA > 25€ → geler immédiatement
   CPL_BOOST_THRESHOLD:     5,   // CPL Meta < 5€ sur 3 jours → +15%
   CPL_REDUCE_THRESHOLD:    8,   // CPL Meta > 8€ sur 2 jours → -20%
-  IS_LOST_BOOST:        0.25,   // IS perdues budget > 25% → +15%
-  MONTHLY_CAP_EUR:      2600,   // Budget mensuel max (option B Recacor)
+  IS_LOST_SIGNAL:       0.25,   // IS perdues budget > 25% → signal manuel, pas de hausse auto
+  MONTHLY_CAP_EUR:       750,   // Search VL : 25€/jour ≈ 750€/mois
   MONTHLY_FREEZE_PCT:   0.80,   // 80% du cap avant le 25 → geler
   BUDGET_MIN_EUR:         10,   // Plancher absolu
-  BUDGET_MAX_EUR:         50,   // Plafond absolu
+  BUDGET_MAX_EUR:         25,   // Plafond absolu validé Search VL
   BOOST_FACTOR:         1.15,
   REDUCE_FACTOR:        0.80,
 };
@@ -241,13 +241,23 @@ async function getMetaCPL(days) {
 }
 
 // ─── Moteur de décision ───────────────────────────────────────────────────────
-function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, cplMeta7d, currentBudget }) {
+function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, currentBudget }) {
   const decisions = [];
   const dayOfMonth = new Date().getDate();
 
   // Données des 3 derniers jours avec CPA connu
   const last3 = dailyCPA.filter(d => d.cpa !== null).slice(0, 3);
   const last2 = dailyCPA.filter(d => d.cpa !== null).slice(0, 2);
+
+  // ── RÈGLE CAP : ne jamais dépasser le plafond validé ─────────────────────
+  if (currentBudget > RULES.BUDGET_MAX_EUR) {
+    decisions.push({
+      action: "CAP",
+      factor: 0,
+      reason: `🔒 Budget actuel ${fmt(currentBudget)} > plafond validé ${fmt(RULES.BUDGET_MAX_EUR)} — retour au plafond`,
+      priority: -1,
+    });
+  }
 
   // ── RÈGLE 0 : Urgence — CPA > 25€ ──────────────────────────────────────────
   const latestCPA = last2[0]?.cpa || null;
@@ -291,13 +301,13 @@ function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, cplMeta7d, 
     });
   }
 
-  // ── RÈGLE 4 : Augmenter — IS perdues budget > 25% ───────────────────────
-  if (isLostBudget > RULES.IS_LOST_BOOST) {
+  // ── RÈGLE 4 : Signal — IS perdues budget > 25% ──────────────────────────
+  if (isLostBudget > RULES.IS_LOST_SIGNAL) {
     decisions.push({
-      action: "BOOST",
-      factor: RULES.BOOST_FACTOR,
-      reason: `📈 IS perdues budget : ${(isLostBudget * 100).toFixed(1)}% > 25% — on rate des impressions rentables`,
-      priority: 4,
+      action: "SIGNAL",
+      factor: 0,
+      reason: `📊 IS perdues budget : ${(isLostBudget * 100).toFixed(1)}% > 25% — signal d'analyse, pas de hausse automatique`,
+      priority: 9,
     });
   }
 
@@ -379,21 +389,28 @@ function computeNewBudget(currentEur, factor) {
     isLostBudget: isMetrics.isLostBudget,
     monthlySpend,
     cplMeta3d,
-    cplMeta7d,
     currentBudget: budget.amountEur,
   });
 
   console.log("\n─── Évaluation des règles ───────────────────────────────");
 
-  if (!decisions.length) {
-    console.log("   ✅ Toutes les métriques dans les seuils — aucune action nécessaire.\n");
+  const actionableDecisions = decisions.filter(d => d.action !== "SIGNAL");
+
+  if (!actionableDecisions.length) {
+    if (decisions.length) {
+      console.log("   ℹ️  Signaux détectés, mais aucune action budget automatique :");
+      decisions.forEach(d => console.log(`   → ${d.reason}`));
+      console.log("");
+    } else {
+      console.log("   ✅ Toutes les métriques dans les seuils — aucune action nécessaire.\n");
+    }
     log.push({ date: todayStr, action: "NONE", reason: "Métriques dans les seuils", applied: false, budget: budget.amountEur });
     saveLog(log);
     process.exit(0);
   }
 
   // On prend la décision de plus haute priorité
-  const decision = decisions[0];
+  const decision = actionableDecisions[0];
   console.log(`\n   Règle déclenchée : ${decision.reason}`);
 
   let newBudget = budget.amountEur;
@@ -408,12 +425,15 @@ function computeNewBudget(currentEur, factor) {
   } else if (decision.action === "REDUCE") {
     newBudget = computeNewBudget(budget.amountEur, RULES.REDUCE_FACTOR);
     actionLabel = `📉 BUDGET -20% : ${fmt(budget.amountEur)} → ${fmt(newBudget)}/jour`;
+  } else if (decision.action === "CAP") {
+    newBudget = RULES.BUDGET_MAX_EUR;
+    actionLabel = `🔒 RETOUR AU PLAFOND : ${fmt(budget.amountEur)} → ${fmt(newBudget)}/jour`;
   }
 
   console.log(`\n   ${actionLabel}`);
   if (decisions.length > 1) {
     console.log("\n   Autres règles déclenchées (non appliquées) :");
-    decisions.slice(1).forEach(d => console.log(`   → ${d.reason}`));
+    decisions.filter(d => d !== decision).forEach(d => console.log(`   → ${d.reason}`));
   }
 
   // Application ou simulation
@@ -427,7 +447,7 @@ function computeNewBudget(currentEur, factor) {
     dryRun: DRY_RUN,
   };
 
-  if (!DRY_RUN && decision.action !== "FREEZE" && newBudget !== budget.amountEur) {
+  if (!DRY_RUN && !["FREEZE", "SIGNAL"].includes(decision.action) && newBudget !== budget.amountEur) {
     console.log("\n⚙️  Application en cours...");
     await mutate(token, "campaignBudgets", [{
       update: {
@@ -449,8 +469,9 @@ function computeNewBudget(currentEur, factor) {
 
   console.log(`\n📋 Décision enregistrée dans budget-auto-log.json\n`);
   console.log("─── Règles actives (rappel) ─────────────────────────────");
-  console.log(`   📈 +15% si CPA < ${RULES.CPA_BOOST_THRESHOLD}€ sur 3j OU IS perdues > 25%`);
+  console.log(`   📈 +15% seulement si CPA < ${RULES.CPA_BOOST_THRESHOLD}€ sur 3j`);
   console.log(`   📉 -20% si CPA > ${RULES.CPA_REDUCE_THRESHOLD}€ sur 2j OU CPL Meta > ${RULES.CPL_REDUCE_THRESHOLD}€`);
   console.log(`   🚨 ALERTE si CPA > ${RULES.CPA_FREEZE_THRESHOLD}€ OU budget mensuel > 80% avant le 25`);
+  console.log(`   🔒 Plafond Search VL : ${fmt(RULES.BUDGET_MAX_EUR)}/jour — IS perdues = signal manuel seulement`);
   console.log(`   🔒 PMax jamais touché — Search uniquement\n`);
 })();

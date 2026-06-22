@@ -50,6 +50,25 @@ const {
   GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_ADS_API_VERSION,
 } = process.env;
 
+const REQUIRED_ENV = {
+  GOOGLE_OAUTH_CLIENT_ID,
+  GOOGLE_OAUTH_CLIENT_SECRET,
+  GOOGLE_OAUTH_REFRESH_TOKEN,
+  GOOGLE_ADS_CUSTOMER_ID,
+  GOOGLE_ADS_DEVELOPER_TOKEN,
+  GOOGLE_ADS_API_VERSION,
+};
+
+const missingEnv = Object.entries(REQUIRED_ENV)
+  .filter(([, value]) => !value)
+  .map(([key]) => key);
+
+if (missingEnv.length) {
+  throw new Error(
+    `Configuration Google Ads incomplète. Secret(s) manquant(s) : ${missingEnv.join(", ")}`
+  );
+}
+
 const CUSTOMER_ID = GOOGLE_ADS_CUSTOMER_ID.replace(/-/g, "");
 
 // ─── Auth ────────────────────────────────────────────────────────────────────
@@ -65,7 +84,15 @@ async function getAccessToken() {
     }),
   });
   const d = await r.json();
-  if (!d.access_token) throw new Error("OAuth failed: " + JSON.stringify(d));
+  if (!d.access_token) {
+    if (d.error === "invalid_grant") {
+      throw new Error(
+        "OAuth Google Ads invalide : le refresh token est expiré ou révoqué. " +
+        "Régénérer GOOGLE_OAUTH_REFRESH_TOKEN puis mettre à jour le secret GitHub Actions."
+      );
+    }
+    throw new Error("OAuth failed: " + JSON.stringify(d));
+  }
   return d.access_token;
 }
 

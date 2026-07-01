@@ -500,10 +500,10 @@ function ServicesSection() {
     {
       title: "Flottes industrielles & transport",
       description:
-        "Maintenance préventive et curative des pneumatiques pour vos flottes poids lourds et utilitaires. Intervention sur site, gestion de parc et suivi personnalisé.",
+        "Maintenance pneumatique et clim cabine pour vos flottes poids lourds et utilitaires. Intervention sur site, gestion de parc et suivi personnalisé.",
       icon: Truck,
       href: "/pneus-utilitaires-pl",
-      features: ["Intervention 24h/24", "Gestion de parc", "Suivi digital"],
+      features: ["Intervention 24h/24", "Clim camion dès 149€", "Suivi digital"],
     },
   ];
 
@@ -1504,12 +1504,27 @@ function ZoneInterventionSection() {
                 Nos ateliers mobiles interviennent directement sur votre site, dépôt ou sur autoroute
                 pour les crevaisons et remplacements de pneumatiques poids lourd. Uniquement pneus.
               </p>
+              <div className="mb-6 rounded-2xl border border-white/15 bg-white/10 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-glow">Nouveau</p>
+                <p className="mt-2 text-sm font-semibold text-white">
+                  Clim camion et poids lourd dès 149€, au garage du Crès ou sur site.
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">
+                  Offre réservée aux poids lourds, engins TP et véhicules agricoles.
+                </p>
+              </div>
               <div className="mt-auto flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/pneus-utilitaires-pl#assistance"
                   className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-lg transition-shadow"
                 >
                   Devis pro <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/services/clim-camion-poids-lourd-montpellier"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Voir l&apos;offre clim <ArrowRight className="h-4 w-4" />
                 </Link>
                 <PhoneLink location="cta" serviceType="pl" className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition-colors" showIcon>
                   Appeler
@@ -1584,6 +1599,7 @@ function ParticuliersProsSection() {
                   "Pneus PL, agricoles, industriels",
                   "Recreusage haute qualité",
                   "Assistance sur site en Hérault",
+                  "Clim camion et poids lourd dès 149€",
                 ].map((i) => (
                   <li key={i} className="flex items-center gap-2 text-sm text-white/70">
                     <Shield className="h-4 w-4 text-purple-glow shrink-0" />
@@ -1591,14 +1607,24 @@ function ParticuliersProsSection() {
                   </li>
                 ))}
               </ul>
-              <div className="flex items-center justify-between gap-4 pt-5 border-t border-white/10">
-                <div>
-                  <p className="text-xs text-white/40 uppercase tracking-wider">Rappel sous</p>
-                  <p className="text-2xl font-black text-purple-glow">2h<span className="text-xs font-medium text-white/40 ml-1">jours ouvrés</span></p>
+              <div className="pt-5 border-t border-white/10">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-xs text-white/40 uppercase tracking-wider">Rappel sous</p>
+                    <p className="text-2xl font-black text-purple-glow">2h<span className="text-xs font-medium text-white/40 ml-1">jours ouvrés</span></p>
+                  </div>
+                  <Link href="/pneus-utilitaires-pl#devis" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-purple-deep text-sm font-bold hover:shadow-lg transition-shadow">
+                    Devis PL <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
-                <Link href="/pneus-utilitaires-pl#devis" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-purple-deep text-sm font-bold hover:shadow-lg transition-shadow">
-                  Devis PL <ArrowRight className="h-4 w-4" />
-                </Link>
+                <div className="mt-3">
+                  <Link
+                    href="/services/clim-camion-poids-lourd-montpellier"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-purple-glow transition-colors"
+                  >
+                    Voir l&apos;offre clim camion <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>

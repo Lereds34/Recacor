@@ -133,10 +133,10 @@ export async function Footer() {
           },
           priceSpecification: {
             "@type": "PriceSpecification",
-            price: "65",
+            price: "79",
             priceCurrency: "EUR",
-            minPrice: "65",
-            description: "À partir de 65€",
+            minPrice: "79",
+            description: "À partir de 79€",
           },
         },
         {

@@ -18,7 +18,7 @@ const inclus = [
 ];
 
 const faqs = [
-  { q: "Combien coûte une vidange chez Recacor ?", a: "Nos vidanges démarrent à 65€ (huile + filtre + main d'œuvre inclus). Le prix varie selon le véhicule et le type d'huile." },
+  { q: "Combien coûte une vidange chez Recacor ?", a: "Nos vidanges démarrent à 79€ (huile + filtre + main d'œuvre inclus). Le prix varie selon le véhicule et le type d'huile." },
   { q: "Faut-il prendre rendez-vous ?", a: "Non, nous acceptons les clients sans rendez-vous à Le Crès. La vidange prend environ 30 minutes." },
   { q: "Changez-vous aussi le filtre à air / habitacle ?", a: "Oui, sur demande. Nous proposons un pack complet vidange + filtres à prix avantageux." },
   { q: "Quelle huile utilisez-vous ?", a: "Nous utilisons des huiles de grandes marques (Total, Elf, Castrol, Shell) adaptées à la préconisation constructeur de votre véhicule." },
@@ -32,7 +32,7 @@ export function VidangeClient() {
         { name: "Services", url: "https://recacor.fr/mecanique" },
         { name: "Vidange", url: "https://recacor.fr/services/vidange" },
       ]} />
-      <ServiceJsonLd name="Vidange voiture Montpellier" description="Vidange complète à partir de 65€, sans RDV" price="65" />
+      <ServiceJsonLd name="Vidange voiture Montpellier" description="Vidange complète à partir de 79€, sans RDV" price="79" />
       <FaqJsonLd items={faqs} id="vidange" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
@@ -41,7 +41,7 @@ export function VidangeClient() {
           <Badge className="bg-white/10 text-white border-white/20 mb-6"><Droplet className="h-3 w-3 mr-1" /> Vidange</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl">
             Vidange Voiture Montpellier<br />
-            <span className="text-purple-glow">À partir de 65€ au Crès</span>
+            <span className="text-purple-glow">À partir de 79€ au Crès</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
             Vidange complète sans RDV. Huile + filtre inclus. Résultat en 30 minutes.
@@ -152,7 +152,7 @@ export function VidangeClient() {
                 à zéro l&apos;indicateur d&apos;entretien lorsque le véhicule le permet.
               </p>
               <p>
-                Le tarif démarre à 65€ et varie principalement selon la quantité d&apos;huile, sa norme et les
+                Le tarif démarre à 79€ et varie principalement selon la quantité d&apos;huile, sa norme et les
                 filtres demandés. La plaque d&apos;immatriculation nous permet de préparer un devis précis
                 avant votre venue. Une facture détaillée vous est remise afin de conserver la date et le
                 kilométrage de l&apos;intervention dans l&apos;historique d&apos;entretien. Pensez à conserver

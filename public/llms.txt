@@ -7,7 +7,7 @@ Recacor est un garage automobile et poids lourd situé au 1240 RN 113, 34920 Le 
 ## Services voiture (VL)
 
 - [Pneus voiture Montpellier](https://www.recacor.fr/pneus-voiture) : Montage et équilibrage toutes marques, dès 45€ le pneu monté. Sans rendez-vous, intervention en 15 minutes. Stock immédiat.
-- [Mécanique et vidange Montpellier](https://www.recacor.fr/mecanique) : Vidange à partir de 65€, freinage, révision. Toutes marques, sans rendez-vous.
+- [Mécanique et vidange Montpellier](https://www.recacor.fr/mecanique) : Vidange à partir de 79€, freinage, révision. Toutes marques, sans rendez-vous.
 - [Parallélisme Montpellier](https://www.recacor.fr/mecanique) : Géométrie 3D à partir de 65€. Contrôle parallélisme offert.
 
 ## Services poids lourd (PL)
@@ -19,7 +19,7 @@ Recacor est un garage automobile et poids lourd situé au 1240 RN 113, 34920 Le 
 | Service | Prix |
 |---------|------|
 | Pneu VL monté | à partir de 45€ |
-| Vidange | à partir de 65€ |
+| Vidange | à partir de 79€ |
 | Parallélisme | à partir de 65€ |
 | Contrôle parallélisme | Offert |
 

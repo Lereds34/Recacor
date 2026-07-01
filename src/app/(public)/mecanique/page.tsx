@@ -9,7 +9,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Vidange et révision Montpellier — sans RDV",
   description:
-    "Vidange à partir de 65€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
+    "Vidange à partir de 79€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
   alternates: { canonical: "/mecanique" },
 };
 
@@ -45,7 +45,7 @@ const serviceSchema = {
       {
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: "Vidange" },
-        priceSpecification: { "@type": "PriceSpecification", price: "65", priceCurrency: "EUR", minPrice: "65" },
+        priceSpecification: { "@type": "PriceSpecification", price: "79", priceCurrency: "EUR", minPrice: "79" },
       },
       {
         "@type": "Offer",

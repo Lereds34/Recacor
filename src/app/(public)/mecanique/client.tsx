@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
 const services = [
-  { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "65€", href: "/services/vidange" },
+  { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange" },
   { icon: Target, title: "Parallélisme & Géométrie", desc: "Réglage laser 3D", price: "65€", href: "/services/parallelisme-geometrie" },
   { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + diagnostic gratuit", price: "59€", href: "/services/climatisation-auto-montpellier" },
   { icon: Disc, title: "Freinage", desc: "Plaquettes, disques, liquide", price: "89€", href: "/mecanique#freinage" },
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     q: "Combien coûte une vidange chez Recacor ?",
-    a: "Nos vidanges démarrent à 65€, huile + filtre + main d'œuvre inclus. Le prix exact dépend de votre véhicule et du type d'huile préconisé par le constructeur.",
+    a: "Nos vidanges démarrent à 79€, huile + filtre + main d'œuvre inclus. Le prix exact dépend de votre véhicule et du type d'huile préconisé par le constructeur.",
   },
   {
     q: "Combien coûte un contrôle de parallélisme ?",

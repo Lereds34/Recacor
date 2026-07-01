@@ -37,7 +37,7 @@ L'intervention sur site est précieuse pour les professionnels du transport : un
 
 ## Mécanique légère pour particuliers
 
-En complément des pneumatiques, notre garage propose la [mécanique légère](/mecanique) : vidange (à partir de 79€), freinage, parallélisme, amortisseurs, révision. Un seul rendez-vous pour entretenir votre véhicule.
+En complément des pneumatiques, notre garage propose la [mécanique légère](/mecanique) : vidange (à partir de 65€), freinage, parallélisme, amortisseurs, révision. Un seul rendez-vous pour entretenir votre véhicule.
 
 ## Pourquoi choisir Recacor au Crès
 

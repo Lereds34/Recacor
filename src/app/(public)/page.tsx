@@ -1215,7 +1215,7 @@ const faqCategories = [
       },
       {
         q: "Combien coûte une vidange au Crès ?",
-        a: "La vidange est à partir de 79€ main-d'œuvre + huile selon le véhicule. Nous effectuons également le contrôle des niveaux, des filtres et l'inspection visuelle des pneus inclus. Sans rendez-vous en semaine.",
+        a: "La vidange est à partir de 65€ main-d'œuvre + huile selon le véhicule. Nous effectuons également le contrôle des niveaux, des filtres et l'inspection visuelle des pneus inclus. Sans rendez-vous en semaine.",
       },
       {
         q: "Quelles marques de pneus proposez-vous ?",

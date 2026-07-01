@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/vidange",
     "/services/parallelisme-geometrie",
     "/services/climatisation-auto-montpellier",
+    "/services/clim-camion-poids-lourd-montpellier",
     "/services/recreusage",
     "/nos-centres",
     "/blog",

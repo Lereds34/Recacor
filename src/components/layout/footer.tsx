@@ -23,6 +23,7 @@ const servicesLinks = [
   { name: "Vidange", href: "/services/vidange" },
   { name: "Parallélisme & Géométrie", href: "/services/parallelisme-geometrie" },
   { name: "Recharge clim", href: "/services/climatisation-auto-montpellier" },
+  { name: "Clim camion & poids lourd", href: "/services/clim-camion-poids-lourd-montpellier" },
   { name: "Recreusage", href: "/services/recreusage" },
   { name: "Assistance PL Hérault", href: "/pneus-utilitaires-pl#assistance" },
 ];

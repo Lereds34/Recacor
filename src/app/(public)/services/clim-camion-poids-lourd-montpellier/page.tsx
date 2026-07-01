@@ -25,6 +25,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ClimCamionPage() {
-  const heroImage = await getAsset("hero_image_climatisation", "");
+  const heroImage = await getAsset(
+    "hero_image_clim_camion",
+    "/images/services/clim-camion-poids-lourd-recacor-hero.webp",
+  );
   return <ClimCamionClient heroImage={heroImage} />;
 }

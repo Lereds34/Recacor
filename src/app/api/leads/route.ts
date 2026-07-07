@@ -30,6 +30,12 @@ interface LeadPayload {
   [k: string]: unknown;
 }
 
+type AdsFlowForwardResult = {
+  accepted: boolean;
+  shouldAlert: boolean;
+  detail?: string;
+};
+
 export async function POST(req: Request) {
   try {
     const data = normalizeLeadAttribution((await req.json()) as LeadPayload);
@@ -42,45 +48,8 @@ export async function POST(req: Request) {
     }
 
     // AdsFlow CRM — la réponse est contrôlée pour ne compter que les leads acceptés.
-    let adsFlowAccepted = false;
-    try {
-      const adsFlowTokenParam = process.env.ADSFLOW_WEBHOOK_TOKEN
-        ? `&token=${encodeURIComponent(process.env.ADSFLOW_WEBHOOK_TOKEN)}`
-        : "";
-      const adsFlowResponse = await fetch(
-        `https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor${adsFlowTokenParam}`,
-        {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        signal: AbortSignal.timeout(5000),
-        body: JSON.stringify({
-          nom: [data.prenom, data.nom].filter(Boolean).join(" ") || null,
-          tel: data.telephone || null,
-          email: data.email || null,
-          cp: data.cp || null,
-          source: data.utm_source || data.referrer || null,
-          page: data.page_source || null,
-          gclid: data.gclid || null,
-          fbclid: data.fbclid || null,
-          form_id: data.form_id,
-          service_type: data.service_type,
-          message: data.message || null,
-          payload: data,
-        }),
-        },
-      );
-      adsFlowAccepted = adsFlowResponse.ok;
-      if (!adsFlowAccepted) {
-        const body = await adsFlowResponse.text().catch(() => "");
-        console.error("[adsflow webhook]", adsFlowResponse.status, body);
-        sendAdsFlowFailureAlert(data, `HTTP ${adsFlowResponse.status} — ${body}`).catch((e) =>
-          console.error("[adsflow alert]", e),
-        );
-      }
-    } catch (err) {
-      console.error("[adsflow webhook]", err);
-      sendAdsFlowFailureAlert(data, String(err)).catch((e) => console.error("[adsflow alert]", e));
-    }
+    const adsFlowResult = await forwardLeadToAdsFlow(data);
+    const adsFlowAccepted = adsFlowResult.accepted;
 
     // Insertion DB Neon — si quota dépassé, on continue quand même
     let leadId: number | undefined;
@@ -147,6 +116,15 @@ export async function POST(req: Request) {
     }
 
     const databaseAccepted = typeof leadId === "number";
+
+    if (!adsFlowAccepted && adsFlowResult.shouldAlert) {
+      sendAdsFlowFailureAlert(
+        data,
+        adsFlowResult.detail || "Échec AdsFlow non détaillé",
+        databaseAccepted,
+      ).catch((e) => console.error("[adsflow alert]", e));
+    }
+
     const acceptedBy = [
       adsFlowAccepted ? "adsflow" : null,
       databaseAccepted ? "recacor_db" : null,
@@ -170,6 +148,76 @@ export async function POST(req: Request) {
     console.error("[lead]", e);
     return NextResponse.json({ error: String(e) }, { status: 500 });
   }
+}
+
+async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardResult> {
+  const adsFlowTokenParam = process.env.ADSFLOW_WEBHOOK_TOKEN
+    ? `&token=${encodeURIComponent(process.env.ADSFLOW_WEBHOOK_TOKEN)}`
+    : "";
+  const url =
+    `https://xohhxyzyupggvkjyouui.supabase.co/functions/v1/incoming-webhook?entreprise_id=3a2e6c94-b7f6-4c0e-bf07-155802908064&source=site_recacor${adsFlowTokenParam}`;
+  const payload = {
+    nom: [data.prenom, data.nom].filter(Boolean).join(" ") || null,
+    tel: data.telephone || null,
+    email: data.email || null,
+    cp: data.cp || null,
+    source: data.utm_source || data.referrer || null,
+    page: data.page_source || null,
+    gclid: data.gclid || null,
+    fbclid: data.fbclid || null,
+    form_id: data.form_id,
+    service_type: data.service_type,
+    message: data.message || null,
+    payload: data,
+  };
+
+  const attempts = [
+    { timeoutMs: 6000, waitAfterMs: 1500 },
+    { timeoutMs: 12000, waitAfterMs: 0 },
+  ];
+
+  let lastHttpError = "";
+  let lastRuntimeError = "";
+
+  for (const attempt of attempts) {
+    try {
+      const adsFlowResponse = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(attempt.timeoutMs),
+        body: JSON.stringify(payload),
+      });
+
+      if (adsFlowResponse.ok) {
+        return { accepted: true, shouldAlert: false };
+      }
+
+      const body = await adsFlowResponse.text().catch(() => "");
+      lastHttpError = `HTTP ${adsFlowResponse.status} — ${body}`;
+      console.error("[adsflow webhook]", lastHttpError);
+    } catch (err) {
+      lastRuntimeError = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+      console.error("[adsflow webhook]", lastRuntimeError);
+    }
+
+    if (attempt.waitAfterMs > 0) {
+      await wait(attempt.waitAfterMs);
+    }
+  }
+
+  if (lastHttpError) {
+    return {
+      accepted: false,
+      shouldAlert: true,
+      detail: lastHttpError,
+    };
+  }
+
+  return {
+    accepted: false,
+    shouldAlert: false,
+    detail: lastRuntimeError || "Erreur AdsFlow transitoire",
+  };
 }
 
 function normalizeLeadAttribution(data: LeadPayload): LeadPayload {
@@ -224,11 +272,21 @@ async function sendConfirmationEmail(data: LeadPayload) {
 
 const ADSFLOW_ALERT_EMAIL = "redouanelmansouri34@gmail.com";
 
-async function sendAdsFlowFailureAlert(data: LeadPayload, errorDetail: string) {
+function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function sendAdsFlowFailureAlert(
+  data: LeadPayload,
+  errorDetail: string,
+  databaseAccepted: boolean,
+) {
   if (!process.env.BREVO_API_KEY && !process.env.RESEND_API_KEY) return;
   const nom = [data.prenom, data.nom].filter(Boolean).join(" ") || "(nom non renseigné)";
   const text = [
-    `Le lead n'a PAS été transmis à AdsFlow (webhook en échec). Il reste dans la base Recacor mais ne sera pas visible dans le CRM tant que le webhook n'est pas réparé.`,
+    databaseAccepted
+      ? `Le webhook AdsFlow a échoué de façon persistante, mais le lead est bien enregistré dans la base Recacor. Vérifier s'il apparaît avec retard dans AdsFlow avant d'agir.`
+      : `Le lead n'a PAS été transmis à AdsFlow et n'a pas pu être confirmé dans la base Recacor. Vérification urgente nécessaire.`,
     ``,
     `Nom : ${nom}`,
     `Téléphone : ${data.telephone || "—"}`,
@@ -244,7 +302,9 @@ async function sendAdsFlowFailureAlert(data: LeadPayload, errorDetail: string) {
 
   const result = await sendEmail({
     to: ADSFLOW_ALERT_EMAIL,
-    subject: `⚠️ Lead non transmis à AdsFlow — ${nom}`,
+    subject: databaseAccepted
+      ? `⚠️ Retard probable AdsFlow — ${nom}`
+      : `⚠️ Lead non transmis à AdsFlow — ${nom}`,
     html: `<pre style="font-family:monospace;white-space:pre-wrap">${text.replace(/</g, "&lt;")}</pre>`,
     text,
   });

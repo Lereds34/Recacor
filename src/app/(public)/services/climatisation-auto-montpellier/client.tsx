@@ -14,7 +14,7 @@ import { PHONE_DISPLAY } from "@/lib/tracking";
 const faqs = [
   {
     q: "Combien coûte une recharge clim voiture chez Recacor ?",
-    a: "La recharge clim démarre à 59€. Le prix exact dépend du véhicule, du gaz utilisé et de l'état du circuit. Le diagnostic clim est gratuit.",
+    a: "La recharge clim démarre à 59€. Le prix exact dépend du véhicule, du gaz utilisé et de l'état du circuit. Un contrôle du fonctionnement est réalisé avant de valider la recharge.",
   },
   {
     q: "Faut-il prendre rendez-vous pour une recharge clim ?",
@@ -22,11 +22,11 @@ const faqs = [
   },
   {
     q: "Quand faut-il faire contrôler sa clim voiture ?",
-    a: "Une clim qui refroidit moins, une mauvaise odeur, un désembuage lent ou un bruit anormal sont de bons signaux pour demander un diagnostic.",
+    a: "Une clim qui refroidit moins, une mauvaise odeur, un désembuage lent ou un bruit anormal sont de bons signaux pour demander un contrôle de fonctionnement.",
   },
   {
     q: "Quelle différence entre diagnostic clim et recharge clim ?",
-    a: "Le diagnostic sert à vérifier les symptômes et l'état général du système. La recharge consiste à remettre le gaz adapté lorsque le circuit le permet.",
+    a: "Le contrôle sert à vérifier le froid, les pressions et l'état général du circuit. La recharge consiste à remettre le fluide adapté lorsque le circuit le permet.",
   },
   {
     q: "Combien de temps dure l'intervention ?",
@@ -44,10 +44,10 @@ const signs = [
 ];
 
 const steps = [
-  { icon: Gauge, title: "Diagnostic gratuit", desc: "Contrôle du besoin réel avant intervention." },
-  { icon: Wrench, title: "Mise sous vide", desc: "Préparation du circuit avant recharge." },
-  { icon: Snowflake, title: "Recharge clim", desc: "Gaz adapté au véhicule, à partir de 59€." },
-  { icon: ThermometerSun, title: "Test de froid", desc: "Contrôle de la température en sortie d'aérateur." },
+  { icon: Gauge, title: "Contrôle de fonctionnement", desc: "Vérification du froid, des pressions et de l'état du circuit." },
+  { icon: Wrench, title: "Mise sous vide", desc: "Préparation du circuit avant recharge si l'intervention est validée." },
+  { icon: Snowflake, title: "Recharge clim", desc: "Injection du fluide adapté au véhicule, à partir de 59€." },
+  { icon: ThermometerSun, title: "Contrôle final", desc: "Mesure du froid en sortie d'aérateur et validation du résultat." },
 ];
 
 export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
@@ -60,7 +60,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
       ]} />
       <ServiceJsonLd
         name="Recharge clim voiture Montpellier"
-        description="Recharge clim voiture dès 59€, diagnostic clim gratuit, avec ou sans rendez-vous au Crès près de Montpellier."
+        description="Recharge clim voiture dès 59€, contrôle du fonctionnement avant recharge, avec ou sans rendez-vous au Crès près de Montpellier."
         price="59"
       />
       <FaqJsonLd items={faqs} id="climatisation-auto" />
@@ -82,10 +82,10 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 <span className="text-purple-glow">Montpellier - Le Crès</span>
               </h1>
               <p className="mt-4 text-white/75 max-w-xl text-lg">
-                Recharge clim dès 59€. Diagnostic clim gratuit. Avec ou sans rendez-vous dans notre atelier au Crès.
+                Recharge clim dès 59€. Contrôle du fonctionnement avant recharge. Avec ou sans rendez-vous dans notre atelier au Crès.
               </p>
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-2xl">
-                {["Dès 59€", "Diagnostic gratuit", "Avec ou sans RDV"].map((item) => (
+                {["Dès 59€", "Contrôle avant recharge", "Avec ou sans RDV"].map((item) => (
                   <div key={item} className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/15 px-3 py-2 text-sm font-bold text-white">
                     <CheckCircle className="h-4 w-4 text-purple-glow shrink-0" />
                     {item}
@@ -108,7 +108,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 <p className="mt-2 text-4xl font-black">59€</p>
                 <p className="text-white/70 text-sm">Recharge clim à partir de</p>
                 <div className="mt-5 space-y-3 text-sm">
-                  <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Diagnostic clim gratuit</div>
+                  <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Contrôle du fonctionnement avant recharge</div>
                   <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Intervention atelier au Crès</div>
                   <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Photos atelier à ajouter au hero</div>
                 </div>
@@ -123,12 +123,13 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-4xl font-black tracking-tight">
-              Clim auto faible ? <span className="text-gradient-purple">Passez au diagnostic gratuit</span>
+              Clim auto faible ? <span className="text-gradient-purple">Faites contrôler le fonctionnement</span>
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed">
               Une climatisation qui ne fait plus assez de froid n&apos;a pas toujours besoin de la même intervention.
-              Recacor vérifie d&apos;abord le symptôme, le véhicule et le besoin réel avant de proposer la recharge.
-              Le diagnostic clim est gratuit et la recharge démarre à 59€.
+              Recacor vérifie d&apos;abord le symptôme, le véhicule, les pressions et le besoin réel avant de lancer une recharge.
+              Si la recharge est validée, la clim repart en froid. Si le circuit ne permet pas de valider l&apos;intervention,
+              le fluide frigorigène est récupéré et la recharge n&apos;est pas facturée.
             </p>
           </div>
 
@@ -191,8 +192,8 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 Prix recharge clim <span className="text-gradient-purple">selon véhicule et gaz</span>
               </h2>
               <p className="mt-3 text-muted-foreground leading-relaxed">
-                La recharge dépend du type de gaz et du véhicule. Le diagnostic clim reste gratuit avant intervention
-                pour confirmer le besoin réel.
+                La recharge dépend du type de gaz et du véhicule. Un contrôle de fonctionnement est réalisé avant
+                intervention pour confirmer si la recharge peut être menée dans de bonnes conditions.
               </p>
             </div>
             <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-bright/20">
@@ -239,7 +240,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
               <p className="text-muted-foreground leading-relaxed">
                 L&apos;atelier Recacor se trouve au 1240 Route de Nîmes au Crès, à proximité immédiate de Montpellier Est,
                 Castelnau-le-Lez, Vendargues, Baillargues, Saint-Aunès, Jacou et Mauguio. Vous pouvez passer avec
-                ou sans rendez-vous pour un diagnostic clim gratuit.
+                ou sans rendez-vous pour un contrôle du fonctionnement de la climatisation.
               </p>
             </div>
             <div>

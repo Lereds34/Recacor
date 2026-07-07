@@ -46,7 +46,7 @@ export function ContactSimpleForm() {
         throw new Error("Le serveur n'a pas confirmé l'enregistrement du lead.");
       }
 
-      pushFormSubmit("vl", "contact-form", result.tracking_id, result.accepted_by || []);
+      await pushFormSubmit("vl", "contact-form", result.tracking_id, result.accepted_by || []);
       router.push("/merci");
     } catch (err) {
       console.error("[contact submit]", err);

@@ -83,7 +83,31 @@ export function pushFormStart(serviceType: ServiceType) {
   window.dataLayer.push({ event: "form_start_devis", service_type: serviceType });
 }
 
-export function pushFormSubmit(
+function dispatchGtagEvent(name: string, params: Record<string, string>) {
+  return new Promise<void>((resolve) => {
+    if (typeof window === "undefined" || typeof window.gtag !== "function") {
+      resolve();
+      return;
+    }
+
+    let settled = false;
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      resolve();
+    };
+
+    window.gtag("event", name, {
+      ...params,
+      event_callback: done,
+      event_timeout: 800,
+    });
+
+    window.setTimeout(done, 850);
+  });
+}
+
+export async function pushFormSubmit(
   serviceType: ServiceType,
   formId: string,
   trackingId: string,
@@ -101,6 +125,26 @@ export function pushFormSubmit(
     accepted_by: acceptedBy.join(","),
     ...utm,
   });
+
+  const eventParams = {
+    service_type: serviceType,
+    form_id: formId,
+    lead_id: trackingId,
+    transaction_id: trackingId,
+    accepted_by: acceptedBy.join(","),
+    utm_source: utm.utm_source,
+    utm_medium: utm.utm_medium,
+    utm_campaign: utm.utm_campaign,
+    utm_content: utm.utm_content,
+    gclid: utm.gclid,
+    fbclid: utm.fbclid,
+    page_source: utm.page_source,
+  };
+
+  await Promise.allSettled([
+    dispatchGtagEvent("formulaire_soumis", eventParams),
+    dispatchGtagEvent("generate_lead", eventParams),
+  ]);
 }
 
 export function pushPhoneClick(location: string, serviceType?: ServiceType) {

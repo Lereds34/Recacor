@@ -15,7 +15,7 @@ import { PHONE_DISPLAY } from "@/lib/tracking";
 const services = [
   { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange" },
   { icon: Target, title: "Parallélisme & Géométrie", desc: "Réglage laser 3D", price: "65€", href: "/services/parallelisme-geometrie" },
-  { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + diagnostic gratuit", price: "59€", href: "/services/climatisation-auto-montpellier" },
+  { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + contrôle avant intervention", price: "59€", href: "/services/climatisation-auto-montpellier" },
   { icon: Disc, title: "Freinage", desc: "Plaquettes, disques, liquide", price: "89€", href: "/mecanique#freinage" },
   { icon: Gauge, title: "Amortisseurs", desc: "Train roulant, suspension", price: "Sur devis", href: "/mecanique#amortisseurs" },
   { icon: Wrench, title: "Révision", desc: "Entretien complet constructeur", price: "Sur devis", href: "/mecanique#revision" },
@@ -40,7 +40,7 @@ const faqs = [
   },
   {
     q: "Faites-vous la recharge clim voiture ?",
-    a: "Oui, Recacor propose la recharge clim à partir de 59€, avec diagnostic clim gratuit et passage possible avec ou sans rendez-vous.",
+    a: "Oui, Recacor propose la recharge clim à partir de 59€, avec contrôle du fonctionnement avant intervention et passage possible avec ou sans rendez-vous.",
   },
   {
     q: "Peut-on combiner mécanique et pneus le même jour ?",

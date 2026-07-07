@@ -36,8 +36,8 @@ const initial: ClimData = {
 
 const SERVICES_CLIM = [
   "Recharge de climatisation",
-  "Diagnostic climatisation",
-  "Entretien complet (recharge + contrôle)",
+  "Contrôle de fonctionnement",
+  "Recharge + contrôle du circuit",
 ];
 
 const ETATS_CLIM = [
@@ -113,7 +113,7 @@ export function DevisClimForm() {
       data={{ ...data, service: "Climatisation auto" }}
       isValid={isValid}
       submitLabel="Envoyer ma demande clim"
-      extraMention="Diagnostic clim gratuit · Recharge à partir de 59€ · Avec ou sans rendez-vous"
+      extraMention="Contrôle avant recharge · Recharge à partir de 59€ · Avec ou sans rendez-vous"
       steps={[
         {
           title: "Votre demande clim",

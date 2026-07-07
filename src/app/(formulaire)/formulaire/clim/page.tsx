@@ -5,9 +5,9 @@ import { PHONE_DISPLAY, PHONE_MOBILE, PHONE_MOBILE_DISPLAY } from "@/lib/trackin
 import { MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Devis clim auto gratuit — Recacor Le Crès",
+  title: "Devis clim auto — Recacor Le Crès",
   description:
-    "Recharge clim dès 59€, diagnostic clim gratuit, avec ou sans rendez-vous au Crès près de Montpellier.",
+    "Recharge clim dès 59€, contrôle du fonctionnement avant recharge, avec ou sans rendez-vous au Crès près de Montpellier.",
   robots: { index: false, follow: false },
 };
 
@@ -24,7 +24,7 @@ export default function FormulaireClimPage() {
               Demande clim en 2 minutes
             </h1>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2">
-              <span className="text-white/80 text-xs">✓ Diagnostic gratuit</span>
+              <span className="text-white/80 text-xs">✓ Contrôle avant recharge</span>
               <span className="text-white/80 text-xs">✓ Dès 59€</span>
               <span className="text-white/80 text-xs">✓ Avec ou sans RDV</span>
             </div>

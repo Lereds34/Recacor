@@ -101,7 +101,7 @@ export function MultiStepForm({
         throw new Error("Le serveur n'a pas confirmé l'enregistrement du lead.");
       }
 
-      pushFormSubmit(serviceType, id, result.tracking_id, result.accepted_by || []);
+      await pushFormSubmit(serviceType, id, result.tracking_id, result.accepted_by || []);
       router.push("/merci");
     } catch (err) {
       console.error("[lead submit]", err);

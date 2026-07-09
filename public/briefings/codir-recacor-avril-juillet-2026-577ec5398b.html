@@ -367,7 +367,7 @@
     }
 
     .metrics-results {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .metric {
@@ -1148,10 +1148,10 @@
             <div class="kicker" data-i18n="results.kicker">Slide 3</div>
             <div class="slide-title" data-i18n="results.title">Résultats</div>
             <p class="slide-copy" data-i18n="results.copy">
-              Les résultats actuellement les plus solides à présenter : volume de leads, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, signaux Google Ads à forte intention, et lecture du pipe commercial récent.
+              Les résultats actuellement les plus solides à présenter : volume de leads, visites site, visibilité, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, signaux Google Ads à forte intention, et leviers qui ont réellement porté la progression.
             </p>
           </div>
-          <span class="badge" data-i18n="results.badge">Résultats lisibles</span>
+          <span class="badge" data-i18n="results.badge">Résultats + leviers forts</span>
         </div>
 
         <div class="metrics metrics-results">
@@ -1164,6 +1164,16 @@
             <div class="metric-label" data-i18n="results.metrics.meta.label">Leads Meta sur la période</div>
             <div class="metric-value">497</div>
             <div class="metric-sub" data-i18n="results.metrics.meta.sub">497 leads issus de Meta Ads sur la période, inclus dans le total AdsFlow, dont 326 en juin.</div>
+          </article>
+          <article class="metric gold">
+            <div class="metric-label" data-i18n="results.metrics.visits.label">Visites site web</div>
+            <div class="metric-value">1 161</div>
+            <div class="metric-sub" data-i18n="results.metrics.visits.sub">Lecture cumulée du deck sur avril à juillet partiel.</div>
+          </article>
+          <article class="metric blue">
+            <div class="metric-label" data-i18n="results.metrics.impressions.label">Impressions Google Ads</div>
+            <div class="metric-value">61 732</div>
+            <div class="metric-sub" data-i18n="results.metrics.impressions.sub">Visibilité payante cumulée du 1er avril au 9 juillet 2026.</div>
           </article>
           <article class="metric rose">
             <div class="metric-label" data-i18n="results.metrics.seo.label">SEO en juin</div>
@@ -1235,33 +1245,23 @@
             </div>
           </div>
         </div>
-      </section>
 
-      <section class="panel slide" data-slide="what-worked">
-        <div class="slide-head">
-          <div>
-            <div class="kicker" data-i18n="worked.kicker">Slide 4</div>
-            <div class="slide-title" data-i18n="worked.title">Ce qui a bien marché</div>
-            <p class="slide-copy" data-i18n="worked.copy">
-              Les leviers qui ont le mieux porté la progression sur la période.
-            </p>
+        <div class="table-card" style="margin-top:18px;">
+          <div class="mini-label" data-i18n="results.winners.label">Ce qui a le mieux marché</div>
+          <div class="cards-grid" style="margin-top:14px;">
+            <article class="card">
+              <div class="mini-label" data-i18n="worked.cards.search.label">Google Search</div>
+              <p data-i18n="worked.cards.search.copy">Google a servi de moteur de lancement dès mai. Même si son coût monte en juin, Search reste plus lisible et plus propre que PMax.</p>
+            </article>
+            <article class="card">
+              <div class="mini-label" data-i18n="worked.cards.meta.label">Meta VL</div>
+              <p data-i18n="worked.cards.meta.copy">Le VL Meta devient réellement fort à partir de juin. Les ensembles récents pneus et méca sont les blocs les plus sains.</p>
+            </article>
+            <article class="card">
+              <div class="mini-label" data-i18n="worked.cards.seo.label">SEO local</div>
+              <p data-i18n="worked.cards.seo.copy">Le SEO commence à dépasser la seule home. Les pages locales et quelques contenus blog émergent enfin dans les clics et impressions.</p>
+            </article>
           </div>
-          <span class="badge" data-i18n="worked.badge">Points forts</span>
-        </div>
-
-        <div class="cards-grid">
-          <article class="card">
-            <div class="mini-label" data-i18n="worked.cards.search.label">Google Search</div>
-            <p data-i18n="worked.cards.search.copy">Google a servi de moteur de lancement dès mai. Même si son coût monte en juin, Search reste plus lisible et plus propre que PMax.</p>
-          </article>
-          <article class="card">
-            <div class="mini-label" data-i18n="worked.cards.meta.label">Meta VL</div>
-            <p data-i18n="worked.cards.meta.copy">Le VL Meta devient réellement fort à partir de juin. Les ensembles récents pneus et méca sont les blocs les plus sains.</p>
-          </article>
-          <article class="card">
-            <div class="mini-label" data-i18n="worked.cards.seo.label">SEO local</div>
-            <p data-i18n="worked.cards.seo.copy">Le SEO commence à dépasser la seule home. Les pages locales et quelques contenus blog émergent enfin dans les clics et impressions.</p>
-          </article>
         </div>
 
         <div class="split-grid" style="margin-top:18px;">
@@ -1287,7 +1287,7 @@
       <section class="panel slide" data-slide="watchouts">
         <div class="slide-head">
           <div>
-            <div class="kicker" data-i18n="watchouts.kicker">Slide 5</div>
+            <div class="kicker" data-i18n="watchouts.kicker">Slide 4</div>
             <div class="slide-title" data-i18n="watchouts.title">Ce qui doit être surveillé</div>
             <p class="slide-copy" data-i18n="watchouts.copy">
               Les points à clarifier pour mieux relier l’investissement au chiffre d’affaires.
@@ -1334,7 +1334,7 @@
       <section class="panel slide" data-slide="decisions">
         <div class="slide-head">
           <div>
-            <div class="kicker" data-i18n="decisions.kicker">Slide 6</div>
+            <div class="kicker" data-i18n="decisions.kicker">Slide 5</div>
             <div class="slide-title" data-i18n="decisions.title">Cap recommandé</div>
             <p class="slide-copy" data-i18n="decisions.copy">
               Les priorités d’investissement et de transformation à retenir pour la suite.
@@ -1417,8 +1417,7 @@
         nav: {
           overview: { title: "Vue d’ensemble", desc: "Présenter le comparatif mensuel d’avril à juillet." },
           spend: { title: "Dépenses", desc: "Poser le budget total, la part VL et la part PL." },
-          results: { title: "Résultats", desc: "Présenter les leads, le trafic, le SEO et les premiers cas business retrouvés." },
-          "what-worked": { title: "Ce qui a marché", desc: "Insister sur Search, Meta VL et SEO local." },
+          results: { title: "Résultats", desc: "Présenter les chiffres clés, les signaux business et les leviers qui ont le mieux marché." },
           watchouts: { title: "Vigilance", desc: "Relier plus clairement l’investissement au chiffre d’affaires." },
           decisions: { title: "Cap recommandé", desc: "Conclure avec les priorités d’investissement et de transformation." }
         },
@@ -1537,8 +1536,8 @@
         results: {
           kicker: "Slide 3",
           title: "Résultats",
-          copy: "Les résultats actuellement les plus solides à présenter : volume de leads, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, signaux Google Ads à forte intention, et lecture du pipe commercial récent.",
-          badge: "Résultats lisibles",
+          copy: "Les résultats actuellement les plus solides à présenter : volume de leads, visites site, visibilité, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, signaux Google Ads à forte intention, et leviers qui ont réellement porté la progression.",
+          badge: "Résultats + leviers forts",
           metrics: {
             june: {
               label: "VL transformés retrouvés",
@@ -1547,6 +1546,14 @@
             meta: {
               label: "Leads Meta sur la période",
               sub: "497 leads issus de Meta Ads sur la période, inclus dans le total AdsFlow, dont 326 en juin."
+            },
+            visits: {
+              label: "Visites site web",
+              sub: "Lecture cumulée du deck sur avril à juillet partiel."
+            },
+            impressions: {
+              label: "Impressions Google Ads",
+              sub: "Visibilité payante cumulée du 1er avril au 9 juillet 2026."
             },
             seo: {
               label: "SEO en juin",
@@ -1564,6 +1571,9 @@
               label: "Google Ads appels / itinéraires",
               sub: "Du 1er avril au 9 juillet : 175 appels depuis les annonces et 289 demandes d’itinéraire."
             }
+          },
+          winners: {
+            label: "Ce qui a le mieux marché"
           },
           progress: {
             label: "VL transformés et pipe récent",
@@ -1619,7 +1629,7 @@
           }
         },
         watchouts: {
-          kicker: "Slide 5",
+          kicker: "Slide 4",
           title: "Ce qui doit être surveillé",
           copy: "Les points à clarifier pour mieux relier l’investissement au chiffre d’affaires.",
           badge: "Vigilance",
@@ -1650,7 +1660,7 @@
           }
         },
         decisions: {
-          kicker: "Slide 6",
+          kicker: "Slide 5",
           title: "Cap recommandé",
           copy: "Les priorités d’investissement et de transformation à retenir pour la suite.",
           badge: "Suite recommandée",
@@ -1713,8 +1723,7 @@
         nav: {
           overview: { title: "Visión general", desc: "Presentar la comparación mensual de abril a julio." },
           spend: { title: "Inversión", desc: "Plantear el presupuesto total, la parte VL y la parte PL." },
-          results: { title: "Resultados", desc: "Presentar los leads, el tráfico, el SEO y los primeros casos de negocio ya identificados." },
-          "what-worked": { title: "Lo que funcionó", desc: "Insistir en Search, Meta VL y SEO local." },
+          results: { title: "Resultados", desc: "Presentar los indicadores clave, las señales de negocio y las palancas que mejor funcionaron." },
           watchouts: { title: "Vigilancia", desc: "Relacionar más claramente la inversión con la facturación." },
           decisions: { title: "Dirección recomendada", desc: "Concluir con las prioridades de inversión y transformación." }
         },
@@ -1833,8 +1842,8 @@
         results: {
           kicker: "Slide 3",
           title: "Resultados",
-          copy: "Los resultados más sólidos que se pueden presentar hoy: volumen de leads, facturación VL visible, primeros leads VL y PL ya transformados, señales Google Ads de alta intención y lectura del embudo comercial reciente.",
-          badge: "Resultados legibles",
+          copy: "Los resultados más sólidos que se pueden presentar hoy: volumen de leads, visitas web, visibilidad, facturación VL visible, primeros leads VL y PL ya transformados, señales Google Ads de alta intención y palancas que realmente impulsaron la progresión.",
+          badge: "Resultados + palancas fuertes",
           metrics: {
             june: {
               label: "VL convertidos ya identificados",
@@ -1843,6 +1852,14 @@
             meta: {
               label: "Leads Meta en el período",
               sub: "497 leads procedentes de Meta Ads en el período, incluidos en el total de AdsFlow, de los cuales 326 en junio."
+            },
+            visits: {
+              label: "Visitas web",
+              sub: "Lectura acumulada del deck entre abril y julio parcial."
+            },
+            impressions: {
+              label: "Impresiones Google Ads",
+              sub: "Visibilidad de pago acumulada del 1 de abril al 9 de julio de 2026."
             },
             seo: {
               label: "SEO en junio",
@@ -1860,6 +1877,9 @@
               label: "Google Ads llamadas / rutas",
               sub: "Del 1 de abril al 9 de julio: 175 llamadas desde los anuncios y 289 solicitudes de ruta."
             }
+          },
+          winners: {
+            label: "Lo que mejor funcionó"
           },
           progress: {
             label: "VL convertidos y embudo reciente",
@@ -1915,7 +1935,7 @@
           }
         },
         watchouts: {
-          kicker: "Slide 5",
+          kicker: "Slide 4",
           title: "Lo que debe vigilarse",
           copy: "Los puntos que hay que aclarar para vincular mejor la inversión con la facturación.",
           badge: "Vigilancia",
@@ -1946,7 +1966,7 @@
           }
         },
         decisions: {
-          kicker: "Slide 6",
+          kicker: "Slide 5",
           title: "Dirección recomendada",
           copy: "Las prioridades de inversión y de transformación a retener para la siguiente etapa.",
           badge: "Siguiente etapa recomendada",
@@ -1984,7 +2004,6 @@
       { id: "overview" },
       { id: "spend" },
       { id: "results" },
-      { id: "what-worked" },
       { id: "watchouts" },
       { id: "decisions" }
     ];

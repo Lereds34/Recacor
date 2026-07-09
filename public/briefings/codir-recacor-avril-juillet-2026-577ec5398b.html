@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0" />
+  <title>Recacor - Bilan avril à juillet 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --bg-2: #ece3d4;
+      --paper: rgba(255, 252, 247, 0.88);
+      --paper-strong: #fffdfa;
+      --ink: #19233f;
+      --muted: #68748d;
+      --line: rgba(25, 35, 63, 0.1);
+      --indigo: #2e2d8a;
+      --blue: #1b4fd8;
+      --teal: #117a80;
+      --mint: #d9f8de;
+      --mint-deep: #18794e;
+      --amber: #f5c96a;
+      --amber-deep: #ae6a05;
+      --rose: #ffd9ce;
+      --rose-deep: #af4c2e;
+      --lavender: #e2e6ff;
+      --shadow: 0 24px 64px rgba(20, 28, 61, 0.12);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(27, 79, 216, 0.16), transparent 22%),
+        radial-gradient(circle at 100% 0%, rgba(245, 201, 106, 0.18), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(17, 122, 128, 0.10), transparent 26%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(46, 45, 138, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 45, 138, 0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 88%);
+    }
+
+    .app {
+      width: min(1480px, calc(100vw - 32px));
+      margin: 18px auto 42px;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .rail {
+      padding: 20px;
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      display: grid;
+      gap: 18px;
+    }
+
+    .brand {
+      padding: 20px;
+      border-radius: 24px;
+      color: #fff;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 30%),
+        linear-gradient(135deg, #1e2c70 0%, #2e2d8a 46%, #1b4fd8 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+      opacity: 0.86;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd972, #ffffff);
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.12);
+    }
+
+    .brand h1,
+    .hero-big,
+    .slide-title,
+    .metric-value {
+      font-family: "Barlow Condensed", Impact, sans-serif;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .brand h1 {
+      margin-top: 14px;
+      font-size: clamp(40px, 4vw, 66px);
+      max-width: 7ch;
+    }
+
+    .brand p {
+      margin: 14px 0 0;
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .rail-card {
+      padding: 16px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+    }
+
+    .rail-label,
+    .kicker,
+    .mini-label,
+    .metric-label,
+    .table-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .nav-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(27, 79, 216, 0.08);
+    }
+
+    .lang-btn.is-active {
+      background: linear-gradient(135deg, #2e2d8a 0%, #1b4fd8 100%);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 12px 24px rgba(27, 79, 216, 0.18);
+    }
+
+    .lang-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .nav-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.76);
+      border-radius: 16px;
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.is-active {
+      transform: translateY(-1px);
+      background: #fff;
+      border-color: rgba(27, 79, 216, 0.2);
+      box-shadow: 0 14px 30px rgba(27, 79, 216, 0.08);
+    }
+
+    .nav-btn strong {
+      display: block;
+      font-size: 15px;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .nav-btn span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .stage {
+      padding: 18px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero {
+      padding: 26px 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -90px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(27,79,216,0.13), transparent 66%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 18px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-big {
+      font-size: clamp(54px, 7vw, 96px);
+      max-width: 10ch;
+    }
+
+    .hero-copy {
+      margin-top: 16px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .hero-box {
+      padding: 18px 18px 20px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(250,247,241,0.9));
+      border: 1px solid var(--line);
+    }
+
+    .hero-box strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .hero-box p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .slide {
+      display: none;
+      padding: 22px 22px 24px;
+    }
+
+    .slide.is-active {
+      display: block;
+    }
+
+    .slide-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .slide-title {
+      font-size: clamp(36px, 4vw, 58px);
+    }
+
+    .slide-copy {
+      margin: 10px 0 0;
+      max-width: 780px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      color: var(--indigo);
+      background: rgba(226,230,255,0.8);
+    }
+
+    .metrics,
+    .split-grid,
+    .cards-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 18px;
+    }
+
+    .metrics-overview {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .metrics-results {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      min-height: 145px;
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-size: clamp(34px, 4vw, 54px);
+    }
+
+    .metric-sub {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .metric.blue { background: rgba(226,230,255,0.78); }
+    .metric.mint { background: rgba(217,248,222,0.78); }
+    .metric.rose { background: rgba(255,217,206,0.76); }
+    .metric.gold { background: rgba(255,247,225,0.88); }
+
+    .split-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: start;
+    }
+
+    .cards-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card,
+    .table-card,
+    .list-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+    }
+
+    .card p,
+    .list-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .table-wrap {
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.66);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    .overview-table {
+      min-width: 1220px;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(25,35,63,0.08);
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    th {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--muted);
+      background: rgba(255,255,255,0.88);
+      position: sticky;
+      top: 0;
+    }
+
+    .overview-table th:first-child,
+    .overview-table td:first-child {
+      width: 92px;
+    }
+
+    .overview-table th.num-head,
+    .overview-table td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums lining-nums;
+      white-space: nowrap;
+    }
+
+    .overview-table td.label-cell {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .overview-table td.transform-cell {
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .overview-table .transform-count {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .overview-table .transform-amount {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bar-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .bar-row {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+    }
+
+    .bar-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .bar-meta strong {
+      font-size: 17px;
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(25,35,63,0.08);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .bar-fill-vl {
+      background: linear-gradient(90deg, #1b4fd8, #4b78eb);
+    }
+
+    .bar-fill-pl {
+      background: linear-gradient(90deg, #f0b249, #d78318);
+    }
+
+    .bar-fill-other {
+      background: linear-gradient(90deg, #8fd7c8, #2ba3a0);
+    }
+
+    .bar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .dot.vl::before { background: var(--blue); }
+    .dot.pl::before { background: var(--amber-deep); }
+    .dot.other::before { background: var(--teal); }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 10px;
+      align-items: start;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .list-item::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      flex: 0 0 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+    }
+
+    .callout {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(226,230,255,0.62);
+      border: 1px solid rgba(27,79,216,0.1);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 1180px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .rail {
+        position: static;
+      }
+
+      .hero-grid,
+      .split-grid,
+      .cards-grid,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app {
+        width: min(100%, calc(100vw - 16px));
+        margin: 10px auto 24px;
+        gap: 14px;
+      }
+
+      .stage {
+        order: 1;
+      }
+
+      .rail {
+        order: 2;
+      }
+
+      .rail,
+      .stage {
+        padding: 14px;
+        gap: 14px;
+      }
+
+      .brand,
+      .rail-card,
+      .hero,
+      .slide,
+      .card,
+      .table-card,
+      .list-card,
+      .metric,
+      .bar-row {
+        padding: 16px;
+      }
+
+      .nav-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-big {
+        font-size: clamp(42px, 14vw, 72px);
+        max-width: 8ch;
+      }
+
+      .hero-copy,
+      .slide-copy {
+        font-size: 15px;
+      }
+
+      .slide-title {
+        font-size: clamp(32px, 10vw, 48px);
+      }
+
+      .metric {
+        min-height: auto;
+      }
+
+      .metric-value {
+        font-size: clamp(30px, 10vw, 46px);
+      }
+
+      .bar-meta strong {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app {
+        width: min(100%, calc(100vw - 12px));
+        margin: 6px auto 18px;
+        gap: 12px;
+      }
+
+      .rail,
+      .stage {
+        padding: 12px;
+        gap: 12px;
+      }
+
+      .brand h1 {
+        font-size: clamp(34px, 14vw, 52px);
+      }
+
+      .brand p,
+      .hero-copy,
+      .slide-copy,
+      .card p,
+      .list-card p,
+      .callout,
+      .footer-note,
+      .list-item {
+        font-size: 13px;
+      }
+
+      .lang-switch {
+        width: 100%;
+      }
+
+      .lang-btn {
+        flex: 1 1 0;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-btn {
+        padding: 12px 14px;
+      }
+
+      .slide-head {
+        align-items: start;
+      }
+
+      .badge {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .metrics,
+      .metrics-overview,
+      .metrics-results {
+        gap: 12px;
+      }
+
+      .metric,
+      .card,
+      .table-card,
+      .list-card,
+      .bar-row,
+      .hero,
+      .slide,
+      .brand,
+      .rail-card {
+        border-radius: 18px;
+      }
+
+      th,
+      td {
+        padding: 12px 14px;
+        font-size: 13px;
+      }
+
+      table {
+        min-width: 680px;
+      }
+
+      .overview-table {
+        min-width: 980px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="panel rail">
+      <section class="brand">
+        <div class="eyebrow" data-i18n="brand.eyebrow">Recacor · Avril à juillet 2026</div>
+        <h1 data-i18n="brand.title">Résultats, dépenses et point d’étape</h1>
+        <p data-i18n="brand.copy">
+          Présentation de synthèse sur la période avril à juillet 2026.
+          Objectif : exposer les résultats, les dépenses et les arbitrages à retenir.
+        </p>
+      </section>
+
+      <section class="rail-card">
+        <div class="rail-label" data-i18n="ui.languageLabel">Langue</div>
+        <div class="lang-switch">
+          <button class="lang-btn is-active" type="button" data-lang="fr">FR</button>
+          <button class="lang-btn" type="button" data-lang="es">ES</button>
+        </div>
+      </section>
+
+      <section class="rail-card">
+        <div class="rail-label" data-i18n="ui.navigationLabel">Navigation</div>
+        <div class="nav-grid" id="nav"></div>
+      </section>
+
+      <section class="rail-card">
+        <div class="rail-label" data-i18n="ui.scopeLabel">Périmètre</div>
+        <p style="margin:10px 0 0;color:var(--muted);font-size:14px;line-height:1.55;" data-i18n="ui.scopeCopy">
+          Les dépenses, les leads et les signaux digitaux sont consolidés. L’attribution détaillée des ventes par plateforme reste en cours de finalisation.
+        </p>
+      </section>
+    </aside>
+
+    <main class="stage">
+      <section class="panel hero">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker" data-i18n="hero.kicker">Synthèse avril à juillet 2026</div>
+            <h1 class="hero-big" data-i18n="hero.title">4 mois de structuration et d’accélération</h1>
+            <p class="hero-copy" data-i18n="hero.copy">
+              Avril correspond au démarrage. Mai et juin installent le volume. Juillet, encore partiel,
+              confirme une dynamique solide sur le VL, tandis que le PL reste le principal sujet de vigilance.
+            </p>
+          </div>
+          <div class="hero-box">
+            <div class="mini-label" data-i18n="hero.keyLabel">Message clé</div>
+            <strong data-i18n="hero.keyTitle">La progression de la visibilité, du trafic et des leads est désormais lisible.</strong>
+            <p data-i18n="hero.keyCopy">
+              Les enjeux restants portent surtout sur la lecture du chiffre d’affaires par canal et sur la transformation du flux en factures.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel slide is-active" data-slide="overview">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="overview.kicker">Slide 1</div>
+            <div class="slide-title" data-i18n="overview.title">Vue d’ensemble</div>
+            <p class="slide-copy" data-i18n="overview.copy">
+              Comparatif mensuel d’avril à juillet, avec avril comme base de lancement.
+            </p>
+          </div>
+          <span class="badge" data-i18n="overview.badge">Avril → Juillet 2026</span>
+        </div>
+
+        <div class="metrics metrics-overview">
+          <article class="metric blue">
+            <div class="metric-label" data-i18n="overview.metrics.budget.label">Budget média tracé</div>
+            <div class="metric-value">5 582,61 €</div>
+            <div class="metric-sub" data-i18n="overview.metrics.budget.sub">Avril intégré comme mois de départ, mai et juin complets, juillet partiel arrêté au 6 juillet.</div>
+          </article>
+          <article class="metric mint">
+            <div class="metric-label" data-i18n="overview.metrics.crm.label">Leads</div>
+            <div class="metric-value">612</div>
+            <div class="metric-sub" data-i18n="overview.metrics.crm.sub">Total des leads entrés dans AdsFlow, toutes sources confondues.</div>
+          </article>
+          <article class="metric gold">
+            <div class="metric-label" data-i18n="overview.metrics.sessions.label">Sessions site</div>
+            <div class="metric-value">1 161</div>
+            <div class="metric-sub" data-i18n="overview.metrics.sessions.sub">2 en avril, 313 en mai, 757 en juin, 89 sur le début de juillet.</div>
+          </article>
+          <article class="metric mint">
+            <div class="metric-label" data-i18n="overview.metrics.caTotal.label">CA total Le Crès</div>
+            <div class="metric-value">253 252,19 €</div>
+            <div class="metric-sub" data-i18n="overview.metrics.caTotal.sub">96 268,41 € en avril, 80 326,61 € en mai, 71 862,77 € en juin, 4 794,40 € sur juillet partiel.</div>
+          </article>
+          <article class="metric rose">
+            <div class="metric-label" data-i18n="overview.metrics.caVl.label">CA VL visible</div>
+            <div class="metric-value">61 513,16 €</div>
+            <div class="metric-sub" data-i18n="overview.metrics.caVl.sub">17 738,09 € en avril, 20 679,07 € en mai, 20 414,40 € en juin, 2 681,60 € sur juillet partiel.</div>
+          </article>
+          <article class="metric gold">
+            <div class="metric-label" data-i18n="overview.metrics.caPl.label">CA PL / autres comptes</div>
+            <div class="metric-value">191 739,03 €</div>
+            <div class="metric-sub" data-i18n="overview.metrics.caPl.sub">Reste du CA hors noyau VL visible : 78 530,32 € en avril, 59 647,54 € en mai, 51 448,37 € en juin, 2 112,80 € sur juillet partiel.</div>
+          </article>
+          <article class="metric rose">
+            <div class="metric-label" data-i18n="overview.metrics.converted.label">Leads transformés retrouvés</div>
+            <div class="metric-value">17</div>
+            <div class="metric-sub" data-i18n="overview.metrics.converted.sub">14 047,14 € de CA déjà rapproché à des leads confirmés à ce stade.</div>
+          </article>
+        </div>
+
+        <div class="split-grid">
+          <div class="table-card">
+            <div class="mini-label" data-i18n="overview.table.label">Lecture par mois</div>
+            <div class="table-wrap" style="margin-top:14px;">
+              <table class="overview-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="overview.table.headers.month">Mois</th>
+                    <th class="num-head" data-i18n="overview.table.headers.budget">Budget total</th>
+                    <th class="num-head" data-i18n="overview.table.headers.crm">Leads</th>
+                    <th class="num-head" data-i18n="overview.table.headers.sessions">Sessions</th>
+                    <th class="num-head" data-i18n="overview.table.headers.seo">Clics SEO</th>
+                    <th class="num-head" data-i18n="overview.table.headers.caVl">CA VL visible</th>
+                    <th class="num-head" data-i18n="overview.table.headers.caPl">CA PL / autres</th>
+                    <th class="num-head" data-i18n="overview.table.headers.caTotal">CA total Le Crès</th>
+                    <th class="num-head" data-i18n="overview.table.headers.converted">Leads transformés / CA retrouvé</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="label-cell" data-i18n="months.april">Avril</td>
+                    <td class="num">24,86 €</td>
+                    <td class="num">0</td>
+                    <td class="num">2</td>
+                    <td class="num">2</td>
+                    <td class="num">17 738,09 €</td>
+                    <td class="num">78 530,32 €</td>
+                    <td class="num">96 268,41 €</td>
+                    <td class="transform-cell">
+                      <div class="transform-count" data-i18n="overview.table.converted.april.count">1 lead</div>
+                      <div class="transform-amount">60,00 €</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell" data-i18n="months.may">Mai</td>
+                    <td class="num">2 439,65 €</td>
+                    <td class="num">144</td>
+                    <td class="num">313</td>
+                    <td class="num">39</td>
+                    <td class="num">20 679,07 €</td>
+                    <td class="num">59 647,54 €</td>
+                    <td class="num">80 326,61 €</td>
+                    <td class="transform-cell">
+                      <div class="transform-count" data-i18n="overview.table.converted.may.count">0 lead</div>
+                      <div class="transform-amount">0,00 €</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell" data-i18n="months.june">Juin</td>
+                    <td class="num">2 624,35 €</td>
+                    <td class="num">393</td>
+                    <td class="num">757</td>
+                    <td class="num">152</td>
+                    <td class="num">20 414,40 €</td>
+                    <td class="num">51 448,37 €</td>
+                    <td class="num">71 862,77 €</td>
+                    <td class="transform-cell">
+                      <div class="transform-count" data-i18n="overview.table.converted.june.count">14 leads</div>
+                      <div class="transform-amount">11 822,14 €</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell" data-i18n="months.july">Juillet</td>
+                    <td class="num">493,75 €</td>
+                    <td class="num">75</td>
+                    <td class="num">89</td>
+                    <td class="num">16</td>
+                    <td class="num">2 681,60 €</td>
+                    <td class="num">2 112,80 €</td>
+                    <td class="num">4 794,40 €</td>
+                    <td class="transform-cell">
+                      <div class="transform-count" data-i18n="overview.table.converted.july.count">2 leads</div>
+                      <div class="transform-amount">2 165,00 €</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="footer-note" data-i18n="overview.table.note">
+              `Leads` = total des leads entrés dans AdsFlow, toutes sources confondues. Le détail spécifique Meta est montré plus loin dans la slide `Résultats`. `CA VL visible` = montant commercial visible dans les exports locaux sur le noyau VL. `CA PL / autres` = reste du CA du centre hors noyau VL visible, donc à lire comme bloc `PL + comptes entreprise + autres lignes non VL pures`. `CA total Le Crès` = total mensuel Ramon sur le visuel `Total Facturado €`. `Leads transformés` = rapprochements confirmés Ramon ↔ AdsFlow / agenda déjà retrouvés à ce jour.
+            </div>
+          </div>
+
+          <div class="list-card">
+            <div class="mini-label" data-i18n="overview.reading.label">Repères de lecture</div>
+            <div class="list">
+              <div class="list-item" data-i18n="overview.reading.item1">Avril sert de base de départ et non de mois plein d’exploitation.</div>
+              <div class="list-item" data-i18n="overview.reading.item2">Mai marque la mise en place structurée des premiers leviers actifs.</div>
+              <div class="list-item" data-i18n="overview.reading.item3">Juin constitue le premier mois d’accélération nette sur le trafic, le SEO et les leads.</div>
+              <div class="list-item" data-i18n="overview.reading.item4">Juillet, bien que partiel, confirme déjà un écart de rendement entre VL et PL.</div>
+              <div class="list-item" data-i18n="overview.reading.item5">La distinction CA `VL` / `PL` est ici lue comme `noyau VL visible` versus `reste du CA du centre`, pour rester fidèle à la source Ramon.</div>
+              <div class="list-item" data-i18n="overview.reading.item6">Le CA total du centre et les leads transformés ne doivent pas être confondus : le premier mesure l’activité globale, le second uniquement les rapprochements déjà retrouvés.</div>
+            </div>
+            <div class="callout" data-i18n="overview.reading.callout">
+              La période met en évidence une accélération nette entre mai et juin, avec des arbitrages désormais identifiés pour juillet.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel slide" data-slide="spend">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="spend.kicker">Slide 2</div>
+            <div class="slide-title" data-i18n="spend.title">Dépenses</div>
+            <p class="slide-copy" data-i18n="spend.copy">
+              Répartition du budget par mois, puis par plateforme, avec séparation VL et PL.
+            </p>
+          </div>
+          <span class="badge" data-i18n="spend.badge">Budget lisible</span>
+        </div>
+
+        <div class="bar-stack">
+          <div class="bar-row">
+            <div class="bar-meta">
+              <strong data-i18n="spend.months.april">Avril 2026</strong>
+              <span>24,86 €</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-vl" style="width: 100%;"></div>
+            </div>
+            <div class="bar-legend">
+              <span class="dot vl" data-i18n="spend.legends.april.vl">VL : 24,86 €</span>
+              <span class="dot pl" data-i18n="spend.legends.april.pl">PL : 0 €</span>
+              <span class="dot other" data-i18n="spend.legends.april.other">Autres : 0 €</span>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <strong data-i18n="spend.months.may">Mai 2026</strong>
+              <span>2 439,65 €</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-vl" style="width: 88.96%;"></div>
+              <div class="bar-fill-pl" style="width: 11.04%;"></div>
+              <div class="bar-fill-other" style="width: 40.45%; margin-left: -40.45%; opacity: 0.35;"></div>
+            </div>
+            <div class="bar-legend">
+              <span class="dot vl" data-i18n="spend.legends.may.vl">VL : 1 900,77 €</span>
+              <span class="dot pl" data-i18n="spend.legends.may.pl">PL : 269,44 €</span>
+              <span class="dot other" data-i18n="spend.legends.may.other">Autres lancements : 986,93 €</span>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <strong data-i18n="spend.months.june">Juin 2026</strong>
+              <span>2 624,35 €</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-vl" style="width: 76.16%;"></div>
+              <div class="bar-fill-pl" style="width: 23.84%;"></div>
+            </div>
+            <div class="bar-legend">
+              <span class="dot vl" data-i18n="spend.legends.june.vl">VL : 1 998,87 €</span>
+              <span class="dot pl" data-i18n="spend.legends.june.pl">PL : 625,48 €</span>
+              <span class="dot other" data-i18n="spend.legends.june.other">Autres : 0 €</span>
+            </div>
+          </div>
+
+          <div class="bar-row">
+            <div class="bar-meta">
+              <strong data-i18n="spend.months.july">Juillet 2026</strong>
+              <span>493,75 €</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill-vl" style="width: 68.85%;"></div>
+              <div class="bar-fill-pl" style="width: 31.15%;"></div>
+            </div>
+            <div class="bar-legend">
+              <span class="dot vl" data-i18n="spend.legends.july.vl">VL : 339,96 €</span>
+              <span class="dot pl" data-i18n="spend.legends.july.pl">PL : 153,79 €</span>
+              <span class="dot other" data-i18n="spend.legends.july.other">Autres : 0 €</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-card" style="margin-top:18px;">
+          <div class="mini-label" data-i18n="spend.table.label">Détail par plateforme</div>
+          <div class="table-wrap" style="margin-top:14px;">
+            <table class="overview-table">
+              <thead>
+                <tr>
+                  <th data-i18n="spend.table.headers.month">Mois</th>
+                  <th class="num-head" data-i18n="spend.table.headers.googleVl">Google VL</th>
+                  <th class="num-head" data-i18n="spend.table.headers.googlePl">Google PL</th>
+                  <th class="num-head" data-i18n="spend.table.headers.metaVl">Meta VL</th>
+                  <th class="num-head" data-i18n="spend.table.headers.metaPl">Meta PL</th>
+                  <th class="num-head" data-i18n="spend.table.headers.extrasVl">Extras VL</th>
+                  <th class="num-head" data-i18n="spend.table.headers.total">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="label-cell" data-i18n="months.april">Avril</td>
+                  <td class="num">24,86 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">24,86 €</td>
+                </tr>
+                <tr>
+                  <td class="label-cell" data-i18n="months.may">Mai</td>
+                  <td class="num">606,11 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">577,17 €</td>
+                  <td class="num">269,44 €</td>
+                  <td class="num">986,93 €</td>
+                  <td class="num">2 439,65 €</td>
+                </tr>
+                <tr>
+                  <td class="label-cell" data-i18n="months.june">Juin</td>
+                  <td class="num">1 101,65 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">896,22 €</td>
+                  <td class="num">625,48 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">2 624,35 €</td>
+                </tr>
+                <tr>
+                  <td class="label-cell" data-i18n="months.july">Juillet</td>
+                  <td class="num">136,42 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">203,54 €</td>
+                  <td class="num">153,79 €</td>
+                  <td class="num">0 €</td>
+                  <td class="num">493,75 €</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="footer-note" data-i18n="spend.table.note">
+            `Extras VL` = Snapchat, TikTok et influenceur au lancement, visibles surtout en mai. `Google PL` n’apparaît pas comme bloc distinct dans les sources utilisées sur cette période. Juillet est arrêté au 6 juillet 2026.
+          </div>
+        </div>
+
+        <div class="cards-grid" style="margin-top:18px;">
+          <article class="card">
+            <div class="mini-label" data-i18n="spend.cards.pacing.label">Cadence budgétaire</div>
+            <p data-i18n="spend.cards.pacing.copy">Le changement d’échelle budgétaire intervient entre mai et juin. Avril sert principalement de référence de départ.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="spend.cards.vl.label">Enjeu VL</div>
+            <p data-i18n="spend.cards.vl.copy">Le VL capte la majeure partie du budget utile et reste la zone la plus saine en rendement sur la période récente.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="spend.cards.pl.label">Enjeu PL</div>
+            <p data-i18n="spend.cards.pl.copy">Le PL prend davantage de place à partir de juin, sans progresser au même rythme en efficacité sur juillet.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel slide" data-slide="results">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="results.kicker">Slide 3</div>
+            <div class="slide-title" data-i18n="results.title">Résultats</div>
+            <p class="slide-copy" data-i18n="results.copy">
+              Les résultats actuellement les plus solides à présenter : volume de leads, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, et lecture du pipe commercial récent.
+            </p>
+          </div>
+          <span class="badge" data-i18n="results.badge">Résultats lisibles</span>
+        </div>
+
+        <div class="metrics metrics-results">
+          <article class="metric mint">
+            <div class="metric-label" data-i18n="results.metrics.june.label">VL transformés retrouvés</div>
+            <div class="metric-value">14</div>
+            <div class="metric-sub" data-i18n="results.metrics.june.sub">14 leads VL déjà rapprochés pour 3 948,74 € de CA retrouvé.</div>
+          </article>
+          <article class="metric blue">
+            <div class="metric-label" data-i18n="results.metrics.meta.label">Leads Meta sur la période</div>
+            <div class="metric-value">497</div>
+            <div class="metric-sub" data-i18n="results.metrics.meta.sub">497 leads issus de Meta Ads sur la période, inclus dans le total AdsFlow, dont 326 en juin.</div>
+          </article>
+          <article class="metric rose">
+            <div class="metric-label" data-i18n="results.metrics.seo.label">SEO en juin</div>
+            <div class="metric-value">152</div>
+            <div class="metric-sub" data-i18n="results.metrics.seo.sub">Clics organiques, contre 39 en mai.</div>
+          </article>
+          <article class="metric mint">
+            <div class="metric-label" data-i18n="results.metrics.caVl.label">CA VL visible cumulé</div>
+            <div class="metric-value">61 513,16 €</div>
+            <div class="metric-sub" data-i18n="results.metrics.caVl.sub">17 738,09 € en avril, 20 679,07 € en mai, 20 414,40 € en juin, 2 681,60 € sur juillet partiel.</div>
+          </article>
+          <article class="metric gold">
+            <div class="metric-label" data-i18n="results.metrics.metaPl.label">Meta PL facturé</div>
+            <div class="metric-value">10 098,40 €</div>
+            <div class="metric-sub" data-i18n="results.metrics.metaPl.sub">3 leads PL issus de Meta représentent déjà 10 098,40 € de CA.</div>
+          </article>
+        </div>
+
+        <div class="split-grid">
+          <div class="table-card">
+            <div class="mini-label" data-i18n="results.progress.label">VL transformés et pipe récent</div>
+            <div class="list">
+              <div class="list-item" data-i18n="results.progress.item1">14 leads VL déjà retrouvés pour 3 948,74 € de CA.</div>
+              <div class="list-item" data-i18n="results.progress.item2">9 accords verbaux sur le snapshot AdsFlow des 7 derniers jours.</div>
+              <div class="list-item" data-i18n="results.progress.item3">14 appels décrochés : le contact existe, mais tout n’arrive pas encore jusqu’à la vente.</div>
+              <div class="list-item" data-i18n="results.progress.item4">28 pas intéressés : le volume est là, mais le ciblage et la qualification restent à resserrer.</div>
+              <div class="list-item" data-i18n="results.progress.item5">72 leads sont encore en début de pipe (`NOUVEAU` + `1ER_REPONDEUR`) sur la fenêtre du 2 au 9 juillet 2026.</div>
+            </div>
+            <div class="callout" data-i18n="results.progress.callout">
+              Conclusion : le sujet n’est plus seulement de générer des leads. Il est maintenant de faire progresser plus vite les leads déjà entrés vers devis, accord verbal et facture.
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="mini-label" data-i18n="results.cases.label">Cas business déjà retrouvés</div>
+            <div class="table-wrap" style="margin-top:14px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-i18n="results.cases.headers.case">Cas</th>
+                    <th data-i18n="results.cases.headers.reading">Lecture</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Yannick Malléjac</strong><br />4 208,80 €</td>
+                    <td data-i18n="results.cases.case1">Lead Meta PL facturé, visible dans Analytics &gt; Factures.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Christophe Coeuret</strong><br />4 089,60 €</td>
+                    <td data-i18n="results.cases.case2">Lead Meta PL facturé, visible dans Analytics &gt; Factures.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Patrick Jarrie TP</strong><br />1 800,00 €</td>
+                    <td data-i18n="results.cases.case3">Lead PL facturé et intégré au chiffre d’affaires.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>AMELAS / ANDRES / Joseph Khalil</strong></td>
+                    <td data-i18n="results.cases.case4">Ventes business confirmées, mais pas encore attribuées proprement à une plateforme.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel slide" data-slide="what-worked">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="worked.kicker">Slide 4</div>
+            <div class="slide-title" data-i18n="worked.title">Ce qui a bien marché</div>
+            <p class="slide-copy" data-i18n="worked.copy">
+              Les leviers qui ont le mieux porté la progression sur la période.
+            </p>
+          </div>
+          <span class="badge" data-i18n="worked.badge">Points forts</span>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="mini-label" data-i18n="worked.cards.search.label">Google Search</div>
+            <p data-i18n="worked.cards.search.copy">Google a servi de moteur de lancement dès mai. Même si son coût monte en juin, Search reste plus lisible et plus propre que PMax.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="worked.cards.meta.label">Meta VL</div>
+            <p data-i18n="worked.cards.meta.copy">Le VL Meta devient réellement fort à partir de juin. Les ensembles récents pneus et méca sont les blocs les plus sains.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="worked.cards.seo.label">SEO local</div>
+            <p data-i18n="worked.cards.seo.copy">Le SEO commence à dépasser la seule home. Les pages locales et quelques contenus blog émergent enfin dans les clics et impressions.</p>
+          </article>
+        </div>
+
+        <div class="split-grid" style="margin-top:18px;">
+          <div class="list-card">
+            <div class="mini-label" data-i18n="worked.takeaways.label">Points à retenir</div>
+            <div class="list">
+              <div class="list-item" data-i18n="worked.takeaways.item1">Le passage de mai à juin montre une structuration nette de l’acquisition.</div>
+              <div class="list-item" data-i18n="worked.takeaways.item2">Avril permet d’illustrer clairement le point de départ.</div>
+              <div class="list-item" data-i18n="worked.takeaways.item3">Le digital n’est plus au stade expérimental : il alimente désormais un flux mesurable.</div>
+              <div class="list-item" data-i18n="worked.takeaways.item4">Le trio le plus solide à date reste : Search Google, Meta VL et SEO local.</div>
+            </div>
+          </div>
+
+          <div class="list-card">
+            <div class="mini-label" data-i18n="worked.summary.label">Formulation de synthèse</div>
+            <p data-i18n="worked.summary.copy">
+              “Entre avril et juillet, Recacor est passé d’une phase de lancement à une phase d’accélération structurée : le trafic progresse, le volume de leads progresse, et les premiers cas business déjà retrouvés confirment la trajectoire.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel slide" data-slide="watchouts">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="watchouts.kicker">Slide 5</div>
+            <div class="slide-title" data-i18n="watchouts.title">Ce qui doit être surveillé</div>
+            <p class="slide-copy" data-i18n="watchouts.copy">
+              Les points à clarifier pour mieux relier l’investissement au chiffre d’affaires.
+            </p>
+          </div>
+          <span class="badge" data-i18n="watchouts.badge">Vigilance</span>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="mini-label" data-i18n="watchouts.cards.ca.label">CA par canal</div>
+            <p data-i18n="watchouts.cards.ca.copy">Le chiffre d’affaires total du Crès est lisible, mais la part rattachée précisément à chaque canal reste encore partielle.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="watchouts.cards.noShow.label">RDV non honorés</div>
+            <p data-i18n="watchouts.cards.noShow.copy">Une partie du flux ne va pas jusqu’à la facture. Le vrai sujet n’est pas seulement le lead, mais le passage rendez-vous → présence → facture.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="watchouts.cards.pl.label">PL déjà facturé</div>
+            <p data-i18n="watchouts.cards.pl.copy">3 leads Meta PL représentent déjà 10 098,40 € de CA.</p>
+          </article>
+        </div>
+
+        <div class="split-grid" style="margin-top:18px;">
+          <div class="list-card">
+            <div class="mini-label" data-i18n="watchouts.business.label">Ce que montre déjà le business</div>
+            <div class="list">
+              <div class="list-item" data-i18n="watchouts.business.item1">5 582,61 € de budget média tracé sur la période.</div>
+              <div class="list-item" data-i18n="watchouts.business.item2">253 252,19 € de CA total lu au Crès sur la même fenêtre.</div>
+              <div class="list-item" data-i18n="watchouts.business.item3">61 513,16 € de CA déjà visibles dans le noyau VL suivi dans le rapport.</div>
+              <div class="list-item" data-i18n="watchouts.business.item4">10 098,40 € de CA déjà visibles sur 3 leads Meta PL.</div>
+            </div>
+          </div>
+
+          <div class="list-card">
+            <div class="mini-label" data-i18n="watchouts.priority.label">Point d’amélioration prioritaire</div>
+            <p data-i18n="watchouts.priority.copy">
+              La priorité n’est pas d’ajouter de la complexité. Elle est de mieux transformer les rendez-vous pris en factures réelles, pour que le chiffre d’affaires suive plus directement l’investissement.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel slide" data-slide="decisions">
+        <div class="slide-head">
+          <div>
+            <div class="kicker" data-i18n="decisions.kicker">Slide 6</div>
+            <div class="slide-title" data-i18n="decisions.title">Cap recommandé</div>
+            <p class="slide-copy" data-i18n="decisions.copy">
+              Les priorités d’investissement et de transformation à retenir pour la suite.
+            </p>
+          </div>
+          <span class="badge" data-i18n="decisions.badge">Suite recommandée</span>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <div class="mini-label" data-i18n="decisions.cards.vl.label">1. Continuer le VL</div>
+            <p data-i18n="decisions.cards.vl.copy">Le VL reste le socle le plus lisible en volume, en trafic et en chiffre d’affaires visible. Il faut poursuivre cet effort.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="decisions.cards.pl.label">2. Poursuivre le PL</div>
+            <p data-i18n="decisions.cards.pl.copy">Le PL représente déjà 10 098,40 € de CA sur 3 leads Meta. Il faut poursuivre cet effort.</p>
+          </article>
+          <article class="card">
+            <div class="mini-label" data-i18n="decisions.cards.convert.label">3. Mieux convertir</div>
+            <p data-i18n="decisions.cards.convert.copy">Le prochain gain ne viendra pas seulement d’un budget plus haut. Il viendra aussi d’une meilleure transformation des rendez-vous en ventes.</p>
+          </article>
+        </div>
+
+        <div class="split-grid" style="margin-top:18px;">
+          <div class="list-card">
+            <div class="mini-label" data-i18n="decisions.shortTerm.label">Décisions court terme</div>
+            <div class="list">
+              <div class="list-item" data-i18n="decisions.shortTerm.item1">Maintenir l’investissement sur le VL, qui reste le moteur principal de volume.</div>
+              <div class="list-item" data-i18n="decisions.shortTerm.item2">Poursuivre le PL, car les premiers retours business sont encourageants.</div>
+              <div class="list-item" data-i18n="decisions.shortTerm.item3">Continuer le travail SEO et site, qui commence à soutenir le trafic et la visibilité.</div>
+              <div class="list-item" data-i18n="decisions.shortTerm.item4">Mieux confirmer et relancer les rendez-vous pour réduire les no-shows et améliorer le passage RDV → facture.</div>
+            </div>
+          </div>
+
+          <div class="list-card">
+            <div class="mini-label" data-i18n="decisions.conclusion.label">Conclusion</div>
+            <p data-i18n="decisions.conclusion.copy">
+              “Le bilan de la période est positif : l’investissement commence à produire des signaux business réels. La suite consiste à consolider ce qui fonctionne et à mieux transformer le flux en chiffre d’affaires.”
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-note" data-i18n="decisions.sources">
+          Sources utilisées : deck 360 local existant, exports locaux Recacor, rapport VL visible, rapport Meta PL, et snapshot AdsFlow 7 jours relancé le 2026-07-09.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const translations = {
+      fr: {
+        metaTitle: "Recacor - Bilan avril à juillet 2026",
+        brand: {
+          eyebrow: "Recacor · Avril à juillet 2026",
+          title: "Résultats, dépenses et point d’étape",
+          copy: "Présentation de synthèse sur la période avril à juillet 2026. Objectif : exposer les résultats, les dépenses et les arbitrages à retenir."
+        },
+        ui: {
+          languageLabel: "Langue",
+          languageNote: "Traduction immédiate de toute la présentation.",
+          navigationLabel: "Navigation",
+          scopeLabel: "Périmètre",
+          scopeCopy: "Les dépenses, les leads et les signaux digitaux sont consolidés. L’attribution détaillée des ventes par plateforme reste en cours de finalisation."
+        },
+        hero: {
+          kicker: "Synthèse avril à juillet 2026",
+          title: "4 mois de structuration et d’accélération",
+          copy: "Avril correspond au démarrage. Mai et juin installent le volume. Juillet, encore partiel, confirme une dynamique solide sur le VL, tandis que le PL reste le principal sujet de vigilance.",
+          keyLabel: "Message clé",
+          keyTitle: "La progression de la visibilité, du trafic et des leads est désormais lisible.",
+          keyCopy: "Les enjeux restants portent surtout sur la lecture du chiffre d’affaires par canal et sur la transformation du flux en factures."
+        },
+        months: {
+          april: "Avril",
+          may: "Mai",
+          june: "Juin",
+          july: "Juillet"
+        },
+        nav: {
+          overview: { title: "Vue d’ensemble", desc: "Présenter le comparatif mensuel d’avril à juillet." },
+          spend: { title: "Dépenses", desc: "Poser le budget total, la part VL et la part PL." },
+          results: { title: "Résultats", desc: "Présenter les leads, le trafic, le SEO et les premiers cas business retrouvés." },
+          "what-worked": { title: "Ce qui a marché", desc: "Insister sur Search, Meta VL et SEO local." },
+          watchouts: { title: "Vigilance", desc: "Relier plus clairement l’investissement au chiffre d’affaires." },
+          decisions: { title: "Cap recommandé", desc: "Conclure avec les priorités d’investissement et de transformation." }
+        },
+        overview: {
+          kicker: "Slide 1",
+          title: "Vue d’ensemble",
+          copy: "Comparatif mensuel d’avril à juillet, avec avril comme base de lancement.",
+          badge: "Avril → Juillet 2026",
+          metrics: {
+            budget: {
+              label: "Budget média tracé",
+              sub: "Avril intégré comme mois de départ, mai et juin complets, juillet partiel arrêté au 6 juillet."
+            },
+            crm: {
+              label: "Leads",
+              sub: "Total des leads entrés dans AdsFlow, toutes sources confondues."
+            },
+            sessions: {
+              label: "Sessions site",
+              sub: "2 en avril, 313 en mai, 757 en juin, 89 sur le début de juillet."
+            },
+            caTotal: {
+              label: "CA total Le Crès",
+              sub: "96 268,41 € en avril, 80 326,61 € en mai, 71 862,77 € en juin, 4 794,40 € sur juillet partiel."
+            },
+            caVl: {
+              label: "CA VL visible",
+              sub: "17 738,09 € en avril, 20 679,07 € en mai, 20 414,40 € en juin, 2 681,60 € sur juillet partiel."
+            },
+            caPl: {
+              label: "CA PL / autres comptes",
+              sub: "Reste du CA hors noyau VL visible : 78 530,32 € en avril, 59 647,54 € en mai, 51 448,37 € en juin, 2 112,80 € sur juillet partiel."
+            },
+            converted: {
+              label: "Leads transformés retrouvés",
+              sub: "14 047,14 € de CA déjà rapproché à des leads confirmés à ce stade."
+            }
+          },
+          table: {
+            label: "Lecture par mois",
+            headers: {
+              month: "Mois",
+              budget: "Budget total",
+              crm: "Leads",
+              sessions: "Sessions",
+              seo: "Clics SEO",
+              caVl: "CA VL visible",
+              caPl: "CA PL / autres",
+              caTotal: "CA total Le Crès",
+              converted: "Leads transformés / CA retrouvé"
+            },
+            converted: {
+              april: { count: "1 lead" },
+              may: { count: "0 lead" },
+              june: { count: "14 leads" },
+              july: { count: "2 leads" }
+            },
+            note: "`Leads` = total des leads entrés dans AdsFlow, toutes sources confondues. Le détail spécifique Meta est montré plus loin dans la slide `Résultats`. `CA VL visible` = montant commercial visible dans les exports locaux sur le noyau VL. `CA PL / autres` = reste du CA du centre hors noyau VL visible, donc à lire comme bloc `PL + comptes entreprise + autres lignes non VL pures`. `CA total Le Crès` = total mensuel Ramon sur le visuel `Total Facturado €`. `Leads transformés` = rapprochements confirmés Ramon ↔ AdsFlow / agenda déjà retrouvés à ce jour."
+          },
+          reading: {
+            label: "Repères de lecture",
+            item1: "Avril sert de base de départ et non de mois plein d’exploitation.",
+            item2: "Mai marque la mise en place structurée des premiers leviers actifs.",
+            item3: "Juin constitue le premier mois d’accélération nette sur le trafic, le SEO et les leads.",
+            item4: "Juillet, bien que partiel, confirme déjà un écart de rendement entre VL et PL.",
+            item5: "La distinction CA `VL` / `PL` est ici lue comme `noyau VL visible` versus `reste du CA du centre`, pour rester fidèle à la source Ramon.",
+            item6: "Le CA total du centre et les leads transformés ne doivent pas être confondus : le premier mesure l’activité globale, le second uniquement les rapprochements déjà retrouvés.",
+            callout: "La période met en évidence une accélération nette entre mai et juin, avec des arbitrages désormais identifiés pour juillet."
+          }
+        },
+        spend: {
+          kicker: "Slide 2",
+          title: "Dépenses",
+          copy: "Répartition du budget par mois, puis par plateforme, avec séparation VL et PL.",
+          badge: "Budget lisible",
+          months: {
+            april: "Avril 2026",
+            may: "Mai 2026",
+            june: "Juin 2026",
+            july: "Juillet 2026"
+          },
+          table: {
+            label: "Détail par plateforme",
+            headers: {
+              month: "Mois",
+              googleVl: "Google VL",
+              googlePl: "Google PL",
+              metaVl: "Meta VL",
+              metaPl: "Meta PL",
+              extrasVl: "Extras VL",
+              total: "Total"
+            },
+            note: "`Extras VL` = Snapchat, TikTok et influenceur au lancement, visibles surtout en mai. `Google PL` n’apparaît pas comme bloc distinct dans les sources utilisées sur cette période. Juillet est arrêté au 6 juillet 2026."
+          },
+          legends: {
+            april: { vl: "VL : 24,86 €", pl: "PL : 0 €", other: "Autres : 0 €" },
+            may: { vl: "VL : 1 900,77 €", pl: "PL : 269,44 €", other: "Autres lancements : 986,93 €" },
+            june: { vl: "VL : 1 998,87 €", pl: "PL : 625,48 €", other: "Autres : 0 €" },
+            july: { vl: "VL : 339,96 €", pl: "PL : 153,79 €", other: "Autres : 0 €" }
+          },
+          cards: {
+            pacing: {
+              label: "Cadence budgétaire",
+              copy: "Le changement d’échelle budgétaire intervient entre mai et juin. Avril sert principalement de référence de départ."
+            },
+            vl: {
+              label: "Enjeu VL",
+              copy: "Le VL capte la majeure partie du budget utile et reste la zone la plus saine en rendement sur la période récente."
+            },
+            pl: {
+              label: "Enjeu PL",
+              copy: "Le PL prend davantage de place à partir de juin, sans progresser au même rythme en efficacité sur juillet."
+            }
+          }
+        },
+        results: {
+          kicker: "Slide 3",
+          title: "Résultats",
+          copy: "Les résultats actuellement les plus solides à présenter : volume de leads, chiffre d’affaires VL visible, premiers leads VL et PL déjà transformés, et lecture du pipe commercial récent.",
+          badge: "Résultats lisibles",
+          metrics: {
+            june: {
+              label: "VL transformés retrouvés",
+              sub: "14 leads VL déjà rapprochés pour 3 948,74 € de CA retrouvé."
+            },
+            meta: {
+              label: "Leads Meta sur la période",
+              sub: "497 leads issus de Meta Ads sur la période, inclus dans le total AdsFlow, dont 326 en juin."
+            },
+            seo: {
+              label: "SEO en juin",
+              sub: "Clics organiques, contre 39 en mai."
+            },
+            caVl: {
+              label: "CA VL visible cumulé",
+              sub: "17 738,09 € en avril, 20 679,07 € en mai, 20 414,40 € en juin, 2 681,60 € sur juillet partiel."
+            },
+            metaPl: {
+              label: "Meta PL facturé",
+              sub: "3 leads PL issus de Meta représentent déjà 10 098,40 € de CA."
+            }
+          },
+          progress: {
+            label: "VL transformés et pipe récent",
+            item1: "14 leads VL déjà retrouvés pour 3 948,74 € de CA.",
+            item2: "9 accords verbaux sur le snapshot AdsFlow des 7 derniers jours.",
+            item3: "14 appels décrochés : le contact existe, mais tout n’arrive pas encore jusqu’à la vente.",
+            item4: "28 pas intéressés : le volume est là, mais le ciblage et la qualification restent à resserrer.",
+            item5: "72 leads sont encore en début de pipe (`NOUVEAU` + `1ER_REPONDEUR`) sur la fenêtre du 2 au 9 juillet 2026.",
+            callout: "Conclusion : le sujet n’est plus seulement de générer des leads. Il est maintenant de faire progresser plus vite les leads déjà entrés vers devis, accord verbal et facture."
+          },
+          cases: {
+            label: "Cas business déjà retrouvés",
+            headers: {
+              case: "Cas",
+              reading: "Lecture"
+            },
+            case1: "Lead Meta PL facturé, visible dans Analytics > Factures.",
+            case2: "Lead Meta PL facturé, visible dans Analytics > Factures.",
+            case3: "Lead PL facturé et intégré au chiffre d’affaires.",
+            case4: "Ventes business confirmées, mais pas encore attribuées proprement à une plateforme."
+          }
+        },
+        worked: {
+          kicker: "Slide 4",
+          title: "Ce qui a bien marché",
+          copy: "Les leviers qui ont le mieux porté la progression sur la période.",
+          badge: "Points forts",
+          cards: {
+            search: {
+              label: "Google Search",
+              copy: "Google a servi de moteur de lancement dès mai. Même si son coût monte en juin, Search reste plus lisible et plus propre que PMax."
+            },
+            meta: {
+              label: "Meta VL",
+              copy: "Le VL Meta devient réellement fort à partir de juin. Les ensembles récents pneus et méca sont les blocs les plus sains."
+            },
+            seo: {
+              label: "SEO local",
+              copy: "Le SEO commence à dépasser la seule home. Les pages locales et quelques contenus blog émergent enfin dans les clics et impressions."
+            }
+          },
+          takeaways: {
+            label: "Points à retenir",
+            item1: "Le passage de mai à juin montre une structuration nette de l’acquisition.",
+            item2: "Avril permet d’illustrer clairement le point de départ.",
+            item3: "Le digital n’est plus au stade expérimental : il alimente désormais un flux mesurable.",
+            item4: "Le trio le plus solide à date reste : Search Google, Meta VL et SEO local."
+          },
+          summary: {
+            label: "Formulation de synthèse",
+            copy: "“Entre avril et juillet, Recacor est passé d’une phase de lancement à une phase d’accélération structurée : le trafic progresse, le volume de leads progresse, et les premiers cas business déjà retrouvés confirment la trajectoire.”"
+          }
+        },
+        watchouts: {
+          kicker: "Slide 5",
+          title: "Ce qui doit être surveillé",
+          copy: "Les points à clarifier pour mieux relier l’investissement au chiffre d’affaires.",
+          badge: "Vigilance",
+          cards: {
+            ca: {
+              label: "CA par canal",
+              copy: "Le chiffre d’affaires total du Crès est lisible, mais la part rattachée précisément à chaque canal reste encore partielle."
+            },
+            noShow: {
+              label: "RDV non honorés",
+              copy: "Une partie du flux ne va pas jusqu’à la facture. Le vrai sujet n’est pas seulement le lead, mais le passage rendez-vous → présence → facture."
+            },
+            pl: {
+              label: "PL déjà facturé",
+              copy: "3 leads Meta PL représentent déjà 10 098,40 € de CA."
+            }
+          },
+          business: {
+            label: "Ce que montre déjà le business",
+            item1: "5 582,61 € de budget média tracé sur la période.",
+            item2: "253 252,19 € de CA total lu au Crès sur la même fenêtre.",
+            item3: "61 513,16 € de CA déjà visibles dans le noyau VL suivi dans le rapport.",
+            item4: "10 098,40 € de CA déjà visibles sur 3 leads Meta PL."
+          },
+          priority: {
+            label: "Point d’amélioration prioritaire",
+            copy: "La priorité n’est pas d’ajouter de la complexité. Elle est de mieux transformer les rendez-vous pris en factures réelles, pour que le chiffre d’affaires suive plus directement l’investissement."
+          }
+        },
+        decisions: {
+          kicker: "Slide 6",
+          title: "Cap recommandé",
+          copy: "Les priorités d’investissement et de transformation à retenir pour la suite.",
+          badge: "Suite recommandée",
+          cards: {
+            vl: {
+              label: "1. Continuer le VL",
+              copy: "Le VL reste le socle le plus lisible en volume, en trafic et en chiffre d’affaires visible. Il faut poursuivre cet effort."
+            },
+            pl: {
+              label: "2. Poursuivre le PL",
+              copy: "Le PL représente déjà 10 098,40 € de CA sur 3 leads Meta. Il faut poursuivre cet effort."
+            },
+            convert: {
+              label: "3. Mieux convertir",
+              copy: "Le prochain gain ne viendra pas seulement d’un budget plus haut. Il viendra aussi d’une meilleure transformation des rendez-vous en ventes."
+            }
+          },
+          shortTerm: {
+            label: "Décisions court terme",
+            item1: "Maintenir l’investissement sur le VL, qui reste le moteur principal de volume.",
+            item2: "Poursuivre le PL, car les premiers retours business sont encourageants.",
+            item3: "Continuer le travail SEO et site, qui commence à soutenir le trafic et la visibilité.",
+            item4: "Mieux confirmer et relancer les rendez-vous pour réduire les no-shows et améliorer le passage RDV → facture."
+          },
+          conclusion: {
+            label: "Conclusion",
+            copy: "“Le bilan de la période est positif : l’investissement commence à produire des signaux business réels. La suite consiste à consolider ce qui fonctionne et à mieux transformer le flux en chiffre d’affaires.”"
+          },
+          sources: "Sources utilisées : deck 360 local existant, exports locaux Recacor, rapport VL visible, rapport Meta PL, et snapshot AdsFlow 7 jours relancé le 2026-07-09."
+        }
+      },
+      es: {
+        metaTitle: "Recacor - Balance de abril a julio de 2026",
+        brand: {
+          eyebrow: "Recacor · Abril a julio de 2026",
+          title: "Resultados, inversión y punto de situación",
+          copy: "Presentación de síntesis sobre el período de abril a julio de 2026. Objetivo: exponer los resultados, la inversión y los arbitrajes a considerar."
+        },
+        ui: {
+          languageLabel: "Idioma",
+          languageNote: "Traducción inmediata de toda la presentación.",
+          navigationLabel: "Navegación",
+          scopeLabel: "Perímetro",
+          scopeCopy: "Los gastos, los leads y las señales digitales están consolidados. La atribución detallada de las ventas por plataforma sigue en proceso de finalización."
+        },
+        hero: {
+          kicker: "Síntesis de abril a julio de 2026",
+          title: "4 meses de estructuración y aceleración",
+          copy: "Abril corresponde al arranque. Mayo y junio instalan el volumen. Julio, todavía parcial, confirma una dinámica sólida en VL, mientras que PL sigue siendo el principal punto de vigilancia.",
+          keyLabel: "Mensaje clave",
+          keyTitle: "La progresión de la visibilidad, del tráfico y de los leads ya es claramente legible.",
+          keyCopy: "Los retos pendientes se centran sobre todo en la lectura de la facturación por canal y en la transformación del flujo en facturas."
+        },
+        months: {
+          april: "Abril",
+          may: "Mayo",
+          june: "Junio",
+          july: "Julio"
+        },
+        nav: {
+          overview: { title: "Visión general", desc: "Presentar la comparación mensual de abril a julio." },
+          spend: { title: "Inversión", desc: "Plantear el presupuesto total, la parte VL y la parte PL." },
+          results: { title: "Resultados", desc: "Presentar los leads, el tráfico, el SEO y los primeros casos de negocio ya identificados." },
+          "what-worked": { title: "Lo que funcionó", desc: "Insistir en Search, Meta VL y SEO local." },
+          watchouts: { title: "Vigilancia", desc: "Relacionar más claramente la inversión con la facturación." },
+          decisions: { title: "Dirección recomendada", desc: "Concluir con las prioridades de inversión y transformación." }
+        },
+        overview: {
+          kicker: "Slide 1",
+          title: "Visión general",
+          copy: "Comparativa mensual de abril a julio, con abril como base de lanzamiento.",
+          badge: "Abril → Julio 2026",
+          metrics: {
+            budget: {
+              label: "Presupuesto de medios trazado",
+              sub: "Abril integrado como mes de partida, mayo y junio completos, julio parcial detenido el 6 de julio."
+            },
+            crm: {
+              label: "Leads",
+              sub: "Total de leads introducidos en AdsFlow, todas las fuentes combinadas."
+            },
+            sessions: {
+              label: "Sesiones del sitio",
+              sub: "2 en abril, 313 en mayo, 757 en junio y 89 en el inicio de julio."
+            },
+            caTotal: {
+              label: "Facturación total Le Crès",
+              sub: "96 268,41 € en abril, 80 326,61 € en mayo, 71 862,77 € en junio y 4 794,40 € en julio parcial."
+            },
+            caVl: {
+              label: "Facturación VL visible",
+              sub: "17 738,09 € en abril, 20 679,07 € en mayo, 20 414,40 € en junio y 2 681,60 € en julio parcial."
+            },
+            caPl: {
+              label: "Facturación PL / otras cuentas",
+              sub: "Resto de la facturación fuera del núcleo VL visible: 78 530,32 € en abril, 59 647,54 € en mayo, 51 448,37 € en junio y 2 112,80 € en julio parcial."
+            },
+            converted: {
+              label: "Leads convertidos identificados",
+              sub: "14 047,14 € de facturación ya vinculada a leads confirmados en esta etapa."
+            }
+          },
+          table: {
+            label: "Lectura por mes",
+            headers: {
+              month: "Mes",
+              budget: "Presupuesto total",
+              crm: "Leads",
+              sessions: "Sesiones",
+              seo: "Clics SEO",
+              caVl: "Facturación VL visible",
+              caPl: "Facturación PL / otras",
+              caTotal: "Facturación total Le Crès",
+              converted: "Leads convertidos / facturación recuperada"
+            },
+            converted: {
+              april: { count: "1 lead" },
+              may: { count: "0 leads" },
+              june: { count: "14 leads" },
+              july: { count: "2 leads" }
+            },
+            note: "`Leads` = total de leads introducidos en AdsFlow, todas las fuentes combinadas. El detalle específico de Meta se muestra más adelante en la slide `Resultados`. `Facturación VL visible` = importe comercial visible en las exportaciones locales sobre el núcleo VL. `Facturación PL / otras` = resto de la facturación del centro fuera del núcleo VL visible, por lo que debe leerse como bloque `PL + cuentas empresa + otras líneas no puramente VL`. `Facturación total Le Crès` = total mensual Ramon en el visual `Total Facturado €`. `Leads convertidos` = cruces confirmados Ramon ↔ AdsFlow / agenda ya identificados a día de hoy."
+          },
+          reading: {
+            label: "Claves de lectura",
+            item1: "Abril sirve como base de partida y no como mes completo de explotación.",
+            item2: "Mayo marca la puesta en marcha estructurada de los primeros palancas activas.",
+            item3: "Junio constituye el primer mes de aceleración clara en tráfico, SEO y leads.",
+            item4: "Julio, aunque parcial, ya confirma una diferencia de rendimiento entre VL y PL.",
+            item5: "La distinción de facturación `VL` / `PL` se lee aquí como `núcleo VL visible` frente a `resto de la facturación del centro`, para mantenernos fieles a la fuente Ramon.",
+            item6: "La facturación total del centro y los leads convertidos no deben confundirse: la primera mide la actividad global, la segunda únicamente los cruces ya recuperados.",
+            callout: "El período pone de relieve una aceleración clara entre mayo y junio, con arbitrajes ya identificados para julio."
+          }
+        },
+        spend: {
+          kicker: "Slide 2",
+          title: "Inversión",
+          copy: "Distribución del presupuesto por mes y luego por plataforma, con separación VL y PL.",
+          badge: "Presupuesto legible",
+          months: {
+            april: "Abril 2026",
+            may: "Mayo 2026",
+            june: "Junio 2026",
+            july: "Julio 2026"
+          },
+          table: {
+            label: "Detalle por plataforma",
+            headers: {
+              month: "Mes",
+              googleVl: "Google VL",
+              googlePl: "Google PL",
+              metaVl: "Meta VL",
+              metaPl: "Meta PL",
+              extrasVl: "Extras VL",
+              total: "Total"
+            },
+            note: "`Extras VL` = Snapchat, TikTok e influencer de lanzamiento, visibles sobre todo en mayo. `Google PL` no aparece como bloque diferenciado en las fuentes utilizadas para este período. Julio está cerrado al 6 de julio de 2026."
+          },
+          legends: {
+            april: { vl: "VL : 24,86 €", pl: "PL : 0 €", other: "Otros : 0 €" },
+            may: { vl: "VL : 1 900,77 €", pl: "PL : 269,44 €", other: "Otros lanzamientos : 986,93 €" },
+            june: { vl: "VL : 1 998,87 €", pl: "PL : 625,48 €", other: "Otros : 0 €" },
+            july: { vl: "VL : 339,96 €", pl: "PL : 153,79 €", other: "Otros : 0 €" }
+          },
+          cards: {
+            pacing: {
+              label: "Ritmo presupuestario",
+              copy: "El cambio de escala presupuestaria se produce entre mayo y junio. Abril sirve sobre todo como referencia de partida."
+            },
+            vl: {
+              label: "Reto VL",
+              copy: "VL capta la mayor parte del presupuesto útil y sigue siendo la zona más sana en rendimiento en el período reciente."
+            },
+            pl: {
+              label: "Reto PL",
+              copy: "PL gana peso a partir de junio, sin progresar al mismo ritmo en eficacia durante julio."
+            }
+          }
+        },
+        results: {
+          kicker: "Slide 3",
+          title: "Resultados",
+          copy: "Los resultados más sólidos que se pueden presentar hoy: volumen de leads, facturación VL visible, primeros leads VL y PL ya transformados y lectura del embudo comercial reciente.",
+          badge: "Resultados legibles",
+          metrics: {
+            june: {
+              label: "VL convertidos ya identificados",
+              sub: "14 leads VL ya conciliados por 3 948,74 € de facturación recuperada."
+            },
+            meta: {
+              label: "Leads Meta en el período",
+              sub: "497 leads procedentes de Meta Ads en el período, incluidos en el total de AdsFlow, de los cuales 326 en junio."
+            },
+            seo: {
+              label: "SEO en junio",
+              sub: "Clics orgánicos, frente a 39 en mayo."
+            },
+            caVl: {
+              label: "Facturación VL visible acumulada",
+              sub: "17 738,09 € en abril, 20 679,07 € en mayo, 20 414,40 € en junio y 2 681,60 € en julio parcial."
+            },
+            metaPl: {
+              label: "Meta PL facturado",
+              sub: "3 leads PL procedentes de Meta representan ya 10 098,40 € de facturación."
+            }
+          },
+          progress: {
+            label: "VL convertidos y embudo reciente",
+            item1: "14 leads VL ya identificados por 3 948,74 € de facturación.",
+            item2: "9 acuerdos verbales en el snapshot AdsFlow de los últimos 7 días.",
+            item3: "14 llamadas atendidas: el contacto existe, pero no todo llega todavía hasta la venta.",
+            item4: "28 no interesados: el volumen existe, pero el targeting y la cualificación aún deben afinarse.",
+            item5: "72 leads siguen al inicio del embudo (`NOUVEAU` + `1ER_REPONDEUR`) en la ventana del 2 al 9 de julio de 2026.",
+            callout: "Conclusión: el tema ya no es solo generar leads. Ahora hay que hacer avanzar más rápido los leads ya captados hacia presupuesto, acuerdo verbal y factura."
+          },
+          cases: {
+            label: "Casos de negocio ya identificados",
+            headers: {
+              case: "Caso",
+              reading: "Lectura"
+            },
+            case1: "Lead Meta PL facturado, visible en Analytics > Factures.",
+            case2: "Lead Meta PL facturado, visible en Analytics > Factures.",
+            case3: "Lead PL facturado e integrado en la facturación.",
+            case4: "Ventas de negocio confirmadas, pero todavía no atribuidas correctamente a una plataforma."
+          }
+        },
+        worked: {
+          kicker: "Slide 4",
+          title: "Lo que funcionó bien",
+          copy: "Las palancas que mejor sostuvieron la progresión durante el período.",
+          badge: "Puntos fuertes",
+          cards: {
+            search: {
+              label: "Google Search",
+              copy: "Google sirvió como motor de lanzamiento desde mayo. Aunque su coste sube en junio, Search sigue siendo más claro y más limpio que PMax."
+            },
+            meta: {
+              label: "Meta VL",
+              copy: "VL en Meta se vuelve realmente fuerte a partir de junio. Los conjuntos recientes de neumáticos y mecánica son los bloques más sanos."
+            },
+            seo: {
+              label: "SEO local",
+              copy: "El SEO empieza a ir más allá de la home. Las páginas locales y algunos contenidos del blog por fin emergen en clics e impresiones."
+            }
+          },
+          takeaways: {
+            label: "Puntos a retener",
+            item1: "El paso de mayo a junio muestra una estructuración clara de la adquisición.",
+            item2: "Abril permite ilustrar claramente el punto de partida.",
+            item3: "Lo digital ya no está en fase experimental: ahora alimenta un flujo medible.",
+            item4: "El trío más sólido hasta la fecha sigue siendo: Search Google, Meta VL y SEO local."
+          },
+          summary: {
+            label: "Fórmula de síntesis",
+            copy: "“Entre abril y julio, Recacor pasó de una fase de lanzamiento a una fase de aceleración estructurada: el tráfico progresa, el volumen de leads progresa y los primeros casos de negocio ya recuperados confirman la trayectoria.”"
+          }
+        },
+        watchouts: {
+          kicker: "Slide 5",
+          title: "Lo que debe vigilarse",
+          copy: "Los puntos que hay que aclarar para vincular mejor la inversión con la facturación.",
+          badge: "Vigilancia",
+          cards: {
+            ca: {
+              label: "Facturación por canal",
+              copy: "La facturación total de Le Crès es legible, pero la parte vinculada con precisión a cada canal sigue siendo todavía parcial."
+            },
+            noShow: {
+              label: "Citas no atendidas",
+              copy: "Parte del flujo no llega hasta la factura. El verdadero tema no es solo el lead, sino el paso cita → presencia → factura."
+            },
+            pl: {
+              label: "PL ya facturado",
+              copy: "3 leads Meta PL representan ya 10 098,40 € de facturación."
+            }
+          },
+          business: {
+            label: "Lo que el negocio ya muestra",
+            item1: "5 582,61 € de presupuesto de medios trazado en el período.",
+            item2: "253 252,19 € de facturación total leída en Le Crès sobre la misma ventana.",
+            item3: "61 513,16 € de facturación ya visible en el núcleo VL seguido en el informe.",
+            item4: "10 098,40 € de facturación ya visibles sobre 3 leads Meta PL."
+          },
+          priority: {
+            label: "Punto de mejora prioritario",
+            copy: "La prioridad no es añadir complejidad. Es transformar mejor las citas tomadas en facturas reales, para que la facturación siga más directamente a la inversión."
+          }
+        },
+        decisions: {
+          kicker: "Slide 6",
+          title: "Dirección recomendada",
+          copy: "Las prioridades de inversión y de transformación a retener para la siguiente etapa.",
+          badge: "Siguiente etapa recomendada",
+          cards: {
+            vl: {
+              label: "1. Continuar VL",
+              copy: "VL sigue siendo la base más legible en volumen, tráfico y facturación visible. Hay que continuar ese esfuerzo."
+            },
+            pl: {
+              label: "2. Continuar PL",
+              copy: "PL ya representa 10 098,40 € de facturación sobre 3 leads Meta. Hay que mantener este esfuerzo."
+            },
+            convert: {
+              label: "3. Convertir mejor",
+              copy: "La siguiente mejora no vendrá solo de un presupuesto más alto. También vendrá de una mejor transformación de las citas en ventas."
+            }
+          },
+          shortTerm: {
+            label: "Decisiones a corto plazo",
+            item1: "Mantener la inversión en VL, que sigue siendo el principal motor de volumen.",
+            item2: "Continuar PL, porque los primeros retornos de negocio son alentadores.",
+            item3: "Continuar el trabajo SEO y web, que empieza a sostener el tráfico y la visibilidad.",
+            item4: "Confirmar y relanzar mejor las citas para reducir los no-shows y mejorar el paso cita → factura."
+          },
+          conclusion: {
+            label: "Conclusión",
+            copy: "“El balance del período es positivo: la inversión empieza a producir señales de negocio reales. La siguiente etapa consiste en consolidar lo que funciona y transformar mejor el flujo en facturación.”"
+          },
+          sources: "Fuentes utilizadas: deck 360 local existente, exportaciones locales de Recacor, informe VL visible, informe Meta PL y snapshot AdsFlow de 7 días relanzado el 2026-07-09."
+        }
+      }
+    };
+
+    const slides = [
+      { id: "overview" },
+      { id: "spend" },
+      { id: "results" },
+      { id: "what-worked" },
+      { id: "watchouts" },
+      { id: "decisions" }
+    ];
+
+    const nav = document.getElementById("nav");
+    const slideEls = Array.from(document.querySelectorAll(".slide"));
+    const textNodes = Array.from(document.querySelectorAll("[data-i18n]"));
+    const langButtons = Array.from(document.querySelectorAll(".lang-btn"));
+
+    let active = "overview";
+    let currentLang = localStorage.getItem("recacor-presentation-lang") || "fr";
+
+    function t(path) {
+      return path.split(".").reduce((acc, part) => acc && acc[part], translations[currentLang]);
+    }
+
+    function applyTranslations() {
+      document.documentElement.lang = currentLang;
+      document.title = translations[currentLang].metaTitle;
+
+      textNodes.forEach((node) => {
+        const value = t(node.dataset.i18n);
+        if (typeof value === "string") {
+          node.textContent = value;
+        }
+      });
+
+      langButtons.forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.lang === currentLang);
+      });
+    }
+
+    function renderNav() {
+      nav.innerHTML = slides.map((slide) => `
+        <button class="nav-btn ${slide.id === active ? "is-active" : ""}" data-slide="${slide.id}">
+          <strong>${t(`nav.${slide.id}.title`)}</strong>
+          <span>${t(`nav.${slide.id}.desc`)}</span>
+        </button>
+      `).join("");
+
+      nav.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          active = btn.dataset.slide;
+          sync();
+        });
+      });
+    }
+
+    function sync() {
+      slideEls.forEach((el) => {
+        el.classList.toggle("is-active", el.dataset.slide === active);
+      });
+      renderNav();
+      const url = new URL(window.location.href);
+      url.hash = active;
+      history.replaceState({}, "", url);
+    }
+
+    langButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        localStorage.setItem("recacor-presentation-lang", currentLang);
+        applyTranslations();
+        sync();
+      });
+    });
+
+    if (!translations[currentLang]) {
+      currentLang = "fr";
+    }
+
+    if (window.location.hash) {
+      const hash = window.location.hash.slice(1);
+      if (slides.some((slide) => slide.id === hash)) {
+        active = hash;
+      }
+    }
+
+    applyTranslations();
+    sync();
+  </script>
+</body>
+</html>

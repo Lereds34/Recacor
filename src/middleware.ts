@@ -7,6 +7,16 @@ if (!process.env.AUTH_SECRET) {
 const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
 const UTM_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+const BRIEFING_PREFIX = "/briefings/";
+
+function applyBriefingHeaders(response: NextResponse) {
+  response.headers.set(
+    "X-Robots-Tag",
+    "noindex, nofollow, noarchive, nosnippet, noimageindex, max-snippet:0, max-image-preview:none, max-video-preview:0",
+  );
+  response.headers.set("Referrer-Policy", "no-referrer");
+  return response;
+}
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
@@ -17,7 +27,8 @@ export async function middleware(req: NextRequest) {
     if (hasUtm) {
       const url = req.nextUrl.clone();
       UTM_PARAMS.forEach((p) => url.searchParams.delete(p));
-      return NextResponse.redirect(url, { status: 301 });
+      const response = NextResponse.redirect(url, { status: 301 });
+      return path.startsWith(BRIEFING_PREFIX) ? applyBriefingHeaders(response) : response;
     }
   }
 
@@ -27,7 +38,8 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!path.startsWith("/admin") && !path.startsWith("/api/admin")) {
-    return NextResponse.next();
+    const response = NextResponse.next();
+    return path.startsWith(BRIEFING_PREFIX) ? applyBriefingHeaders(response) : response;
   }
 
   const token = req.cookies.get("recacor_session")?.value;

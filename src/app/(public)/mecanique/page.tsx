@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   description:
     "Vidange à partir de 79€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
   alternates: { canonical: "/mecanique" },
+  openGraph: {
+    title: "Vidange et révision Montpellier — sans RDV",
+    description:
+      "Vidange à partir de 79€, freinage, parallélisme et révision au garage Recacor, Montpellier — Le Crès.",
+    url: "https://www.recacor.fr/mecanique",
+    siteName: "Recacor",
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 const serviceSchema = {

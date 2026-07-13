@@ -19,7 +19,7 @@ const inclus = [
 
 const faqs = [
   { q: "Combien coûte une vidange chez Recacor ?", a: "Nos vidanges démarrent à 79€ (huile + filtre + main d'œuvre inclus). Le prix varie selon le véhicule et le type d'huile." },
-  { q: "Faut-il prendre rendez-vous ?", a: "Non, nous acceptons les clients sans rendez-vous à Le Crès. La vidange prend environ 30 minutes." },
+  { q: "Faut-il prendre rendez-vous ?", a: "Non, nous acceptons les clients sans rendez-vous au Crès. La vidange prend environ 30 minutes." },
   { q: "Changez-vous aussi le filtre à air / habitacle ?", a: "Oui, sur demande. Nous proposons un pack complet vidange + filtres à prix avantageux." },
   { q: "Quelle huile utilisez-vous ?", a: "Nous utilisons des huiles de grandes marques (Total, Elf, Castrol, Shell) adaptées à la préconisation constructeur de votre véhicule." },
 ];

@@ -279,7 +279,7 @@ function Variant1({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
       <section className="relative py-16 bg-muted overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-black tracking-tight mb-8">Pneus <span className="text-gradient-purple">toutes marques</span> en stock à Le Crès</h2>
+          <h2 className="text-3xl font-black tracking-tight mb-8">Pneus <span className="text-gradient-purple">toutes marques</span> en stock au Crès</h2>
           <div className="flex flex-wrap justify-center gap-3">
             {["Michelin", "Bridgestone", "Continental", "Goodyear", "Pirelli", "Hankook", "Dunlop", "Yokohama", "BFGoodrich", "Firestone"].map(m => (
               <span key={m} className="px-4 py-2 rounded-full border border-border bg-white text-sm font-semibold text-muted-foreground">{m}</span>
@@ -301,7 +301,7 @@ function Variant1({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
           <div className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-center text-white">
             <h2 className="text-3xl font-black mb-3">Un pneu à changer sur {ville.nom} ?</h2>
             <p className="text-white/60 mb-6">
-              {localCityPage ? "Venez directement au garage Recacor au Crès." : `Venez directement à Le Crès — ${ville.distance} depuis ${ville.nom}.`}
+              {localCityPage ? "Venez directement au garage Recacor au Crès." : `Venez directement au Crès — ${ville.distance} depuis ${ville.nom}.`}
             </p>
             <PhoneLink location="cta" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-deep font-bold" showIcon>
               Appeler : {PHONE_DISPLAY}
@@ -322,7 +322,7 @@ function Variant2({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
   const etapes = [
     { num: "01", title: "Demandez votre devis", desc: "En ligne en 2 minutes ou par téléphone. Gratuit, sans engagement." },
     { num: "02", title: "On vérifie le stock", desc: "Votre dimension est en stock ou commandée sous 24–48h." },
-    { num: "03", title: "Venez sans RDV", desc: "Arrivez directement à Le Crès, à {dist} de {ville}.".replace("{dist}", ville.distance).replace("{ville}", ville.nom) },
+    { num: "03", title: "Venez sans RDV", desc: "Arrivez directement au Crès, à {dist} de {ville}.".replace("{dist}", ville.distance).replace("{ville}", ville.nom) },
     { num: "04", title: "15 min et c'est prêt", desc: "Montage, équilibrage, valves neuves. Vous repartez sur des pneus neufs." },
   ];
   return (

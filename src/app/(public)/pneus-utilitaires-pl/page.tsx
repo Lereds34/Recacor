@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   description:
     "Spécialiste pneus poids lourd, agricoles et industriels dans l'Hérault. Assistance sur site 24/7, recreusage et devis flotte rapide avec Recacor.",
   alternates: { canonical: "/pneus-utilitaires-pl" },
+  openGraph: {
+    title: "Pneus poids lourd Hérault - Assistance 24/7, recreusage",
+    description:
+      "Pneus poids lourd, agricoles et industriels dans l'Hérault. Assistance sur site 24/7, recreusage et devis flotte rapide.",
+    url: "https://www.recacor.fr/pneus-utilitaires-pl",
+    siteName: "Recacor",
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export default async function PlPage() {

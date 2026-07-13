@@ -38,6 +38,14 @@ export async function generateMetadata({
       title: { absolute: "Garage auto Le Crès - Pneus, vidange, parallélisme | Recacor" },
       description: "Garage auto au Crès : pneus dès 45€ montés, vidange, parallélisme et entretien voiture sans rendez-vous. Recacor Le Crès, stock immédiat.",
       alternates: { canonical: `/${slug}` },
+      openGraph: {
+        title: "Garage auto Le Crès - Pneus, vidange, parallélisme | Recacor",
+        description: "Garage auto au Crès : pneus dès 45€ montés, vidange, parallélisme et entretien voiture sans rendez-vous.",
+        url: `https://www.recacor.fr/${slug}`,
+        siteName: "Recacor",
+        locale: "fr_FR",
+        type: "website",
+      },
     };
   }
   const seo = findVilleSeo(slug);
@@ -46,6 +54,14 @@ export async function generateMetadata({
     title: { absolute: `Pneus ${v.nom} — Recacor Le Crès (${distance})` },
     description: `Pneus à ${v.nom} dès 45€ montés. Recacor Le Crès à ${distance} : stock immédiat, montage sans RDV et contrôle parallélisme offert.`,
     alternates: { canonical: `/${slug}` },
+    openGraph: {
+      title: `Pneus ${v.nom} — Recacor Le Crès (${distance})`,
+      description: `Pneus à ${v.nom} dès 45€ montés. Recacor Le Crès à ${distance} : stock immédiat, montage sans RDV et contrôle parallélisme offert.`,
+      url: `https://www.recacor.fr/${slug}`,
+      siteName: "Recacor",
+      locale: "fr_FR",
+      type: "website",
+    },
   };
 }
 

@@ -57,7 +57,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
       ]} />
       <ServiceJsonLd
         name="Mécanique légère Montpellier"
-        description="Vidange, freinage, parallélisme, amortisseurs. Avec ou sans rendez-vous à Le Crès."
+        description="Vidange, freinage, parallélisme, amortisseurs. Avec ou sans rendez-vous au Crès."
       />
       <FaqJsonLd items={faqs} id="mecanique" />
 
@@ -78,7 +78,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
             Vidange, freinage, amortisseurs, révision. Avec ou sans rendez-vous
-            à Le Crès, près de Montpellier.
+            au Crès, près de Montpellier.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
             <PhoneLink
@@ -128,6 +128,13 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="mt-8 rounded-2xl border border-border bg-muted/60 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides locaux entretien</p>
+            <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/blog/pneus-lattes" className="text-purple-bright hover:underline">Parallélisme à Lattes</Link>
+              <Link href="/blog/pneus-vendargues" className="text-purple-bright hover:underline">Garage auto à Vendargues</Link>
+            </div>
           </div>
         </div>
       </section>

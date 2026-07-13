@@ -34,7 +34,7 @@ export default function AProposPage() {
     {
       year: "2021",
       title: "Garage Le Crès",
-      text: "Ouverture du garage Recacor à Le Crès (34920), aux portes de Montpellier. Tous types de véhicules, avec ou sans rendez-vous.",
+      text: "Ouverture du garage Recacor au Crès (34920), aux portes de Montpellier. Tous types de véhicules, avec ou sans rendez-vous.",
     },
   ];
 
@@ -76,7 +76,7 @@ export default function AProposPage() {
             <span className="text-purple-glow">Depuis 1950</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
-            Groupe espagnol fondé à Córdoba, implanté à Le Crès depuis 2017.
+            Groupe espagnol fondé à Córdoba, implanté au Crès depuis 2017.
             60+ ateliers en Europe, un seul objectif : votre sécurité sur la route.
           </p>
         </div>

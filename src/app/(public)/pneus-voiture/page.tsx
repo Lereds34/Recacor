@@ -7,18 +7,34 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Pneus voiture Montpellier — dès 45€ montés",
+  title: "Pneus Montpellier dès 45€ montés | Garage pneu Recacor",
   description:
-    "Pneus été, hiver et 4 saisons dès 45€ montés. Stock immédiat, montage en 15 min sans RDV à Montpellier — Le Crès. Toutes marques.",
+    "Garage pneu à Montpellier — Le Crès. Changement, montage et équilibrage de pneus voiture dès 45€ montés, sans rendez-vous et avec stock immédiat.",
   alternates: { canonical: "/pneus-voiture" },
+  openGraph: {
+    title: "Pneus Montpellier dès 45€ montés | Garage pneu Recacor",
+    description:
+      "Changement et montage de pneus voiture à Montpellier — Le Crès. Toutes marques, stock immédiat et devis rapide sans rendez-vous.",
+    url: "https://www.recacor.fr/pneus-voiture",
+    siteName: "Recacor",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Pneus Montpellier dès 45€ montés | Garage pneu Recacor",
+    description:
+      "Garage pneu à Montpellier — Le Crès. Pneus voiture, montage rapide, équilibrage et devis gratuit sans rendez-vous.",
+  },
 };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Montage pneus voiture Montpellier",
+  name: "Garage pneu Montpellier",
   serviceType: "Tire Installation",
-  description: "Montage et équilibrage de pneus toutes marques sans rendez-vous. Stock immédiat, intervention en 15 minutes.",
+  description:
+    "Changement, montage et équilibrage de pneus voiture à Montpellier — Le Crès. Toutes marques, stock immédiat, sans rendez-vous.",
   url: "https://www.recacor.fr/pneus-voiture",
   provider: {
     "@type": "AutoRepair",

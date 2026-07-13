@@ -82,8 +82,8 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
         ]}
       />
       <ServiceJsonLd
-        name="Pneus voiture Montpellier"
-        description="Changement de pneus voiture à Montpellier — Le Crès. Toutes marques, montage 15min, sans RDV."
+        name="Garage pneu Montpellier"
+        description="Changement de pneus voiture à Montpellier — Le Crès. Toutes marques, montage et équilibrage en 15 minutes, sans rendez-vous."
         price="45"
       />
       <FaqJsonLd items={faqs} id="pneus-vl" />
@@ -107,8 +107,8 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl"
           >
-            Pneus Voiture Montpellier<br />
-            <span className="text-purple-glow">Garage VL au Crès</span>
+            Pneus voiture à Montpellier<br />
+            <span className="text-purple-glow">montés rapidement au Crès</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -116,8 +116,8 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             transition={{ delay: 0.2 }}
             className="mt-4 text-white/70 max-w-xl text-lg"
           >
-            Pneus été, hiver et 4 saisons à prix discount. Toutes marques, stock disponible,
-            montage en 15min sans rendez-vous.
+            Un garage pneu proche Montpellier pour changer un train usé, monter des pneus neufs
+            ou trouver rapidement la bonne dimension, avec stock disponible et sans rendez-vous.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -140,17 +140,45 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
+      {/* Intro locale */}
+      <section className="py-14 bg-background">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+              Un garage pneu utile pour{" "}
+              <span className="text-gradient-purple">Montpellier et l&apos;est montpelliérain</span>
+            </h2>
+            <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Recacor accompagne surtout les automobilistes qui veulent une solution simple :
+                remplacer des pneus usés, trouver une dimension disponible sans faire plusieurs
+                garages, ou faire monter rapidement un train neuf avant de reprendre la route.
+                Le site est au Crès, avec un accès pratique depuis Montpellier, Castelnau-le-Lez,
+                Jacou, Vendargues et les communes voisines.
+              </p>
+              <p>
+                L&apos;approche Recacor reste directe : vérifier la dimension, proposer la bonne
+                gamme selon le budget et l&apos;usage, puis faire le montage et l&apos;équilibrage
+                sur place. Si la voiture a aussi besoin d&apos;un contrôle de parallélisme ou
+                d&apos;une prestation atelier, tout peut se faire dans le même passage, au même
+                endroit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* H2: Changement de pneus rapide */}
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Changement de pneus{" "}
-              <span className="text-gradient-purple">rapide pour votre voiture</span>
+              <span className="text-gradient-purple">rapide à Montpellier</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-              Tous types de pneus, toutes dimensions, toutes marques. Montage et équilibrage
-              sur place en 15 minutes.
+              Pneus été, hiver et 4 saisons, avec montage, équilibrage et conseils clairs selon
+              le véhicule, le kilométrage et le budget.
             </p>
           </motion.div>
 
@@ -173,6 +201,44 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                   {s.price}
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pourquoi Recacor */}
+      <section className="py-24 bg-muted">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
+            <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
+              Changer ses pneus{" "}
+              <span className="text-gradient-purple">sans perdre de temps</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-3xl mx-auto">
+              Chez Recacor, l&apos;objectif est simple : vérifier rapidement la bonne dimension,
+              annoncer clairement ce qui est disponible, puis faire le montage et l&apos;équilibrage
+              sur place dans de bonnes conditions.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Du stock sur les dimensions courantes",
+                desc: "Le plus important est souvent de savoir rapidement si le pneu peut être monté aujourd'hui ou commandé sous 24 à 48h.",
+              },
+              {
+                title: "Montage et équilibrage sur place",
+                desc: "Une fois la bonne gamme choisie, tout se fait au même endroit avec une prise en charge simple et sans parcours compliqué.",
+              },
+              {
+                title: "Accès pratique depuis l'est de Montpellier",
+                desc: "Le garage du Crès est facile d'accès depuis Montpellier, Castelnau-le-Lez, Jacou, Vendargues et les communes voisines.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
+                <h3 className="text-xl font-black">{item.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -212,7 +278,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               <span className="text-gradient-purple">disponibles en stock</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl mx-auto">
-              Les dimensions les plus courantes sont en stock immédiat à Le Crès.
+              Les dimensions les plus courantes sont en stock immédiat au Crès, proche Montpellier.
               Votre dimension absente ? Livraison sous 24-48h.
             </p>
           </motion.div>
@@ -247,7 +313,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white p-8">
-              <h2 className="text-2xl font-black mb-4">Montage et équilibrage sur place</h2>
+              <h2 className="text-2xl font-black mb-4">Montage pneus Montpellier sur place</h2>
               <ul className="space-y-2.5">
                 {[
                   "Démontage et montage inclus",
@@ -264,7 +330,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               </ul>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white p-8">
-              <h2 className="text-2xl font-black mb-4">Parallélisme et géométrie</h2>
+              <h2 className="text-2xl font-black mb-4">Parallélisme et géométrie après changement</h2>
               <ul className="space-y-2.5">
                 {[
                   "Équipement laser 3D dernière génération",
@@ -286,6 +352,13 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
             <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
           </div>
+          <div className="mt-6 rounded-2xl border border-border bg-muted/60 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides pneus proches</p>
+            <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/blog/pneus-carnon" className="text-purple-bright hover:underline">Pneus Carnon</Link>
+              <Link href="/blog/pneus-mireval" className="text-purple-bright hover:underline">Pneus Mireval</Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -296,10 +369,11 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Demandez votre{" "}
-              <span className="text-gradient-purple">devis pneus VL gratuit</span>
+              <span className="text-gradient-purple">devis pneu Montpellier</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
-              Réponse sous 2h en jours ouvrés. Seuls le téléphone et l&apos;email sont obligatoires.
+              Réponse rapide en jours ouvrés pour vérifier une dimension, demander un prix ou
+              préparer un passage atelier sans perdre de temps.
             </p>
           </motion.div>
           <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">

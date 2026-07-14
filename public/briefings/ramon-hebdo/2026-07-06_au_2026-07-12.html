@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none,max-video-preview:0" />
+  <title>Recacor - Rapport hebdo Ramon - Semaine du 6 juillet 2026 au 12 juillet 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --paper: rgba(255,255,255,0.9);
+      --line: rgba(25,35,63,0.1);
+      --ink: #19233f;
+      --muted: #68748d;
+      --indigo: #2e2d8a;
+      --blue: #1b4fd8;
+      --mint: #d9f8de;
+      --gold: #fff2c8;
+      --rose: #ffd9ce;
+      --lavender: #e2e6ff;
+      --shadow: 0 24px 64px rgba(20, 28, 61, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(27,79,216,0.12), transparent 20%),
+        radial-gradient(circle at top right, rgba(245,201,106,0.18), transparent 24%),
+        linear-gradient(180deg, #f7f2ea 0%, #efe5d7 100%);
+    }
+    .page {
+      width: min(1320px, calc(100vw - 28px));
+      margin: 20px auto 40px;
+      display: grid;
+      gap: 20px;
+    }
+    .panel {
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+    .hero {
+      padding: 34px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) 340px;
+      gap: 24px;
+      align-items: stretch;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -100px;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(27,79,216,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .eyebrow, .section-tag, .metric-label, .mini-stat-label, th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    .hero-title, .metric-value, .big-number {
+      margin: 0;
+      font-family: "Barlow Condensed", Impact, sans-serif;
+      text-transform: uppercase;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+    .hero-title {
+      font-size: clamp(44px, 6vw, 84px);
+      max-width: 9ch;
+    }
+    .hero-copy {
+      margin: 18px 0 0;
+      max-width: 54ch;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 17px;
+    }
+    .hero-side {
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,247,241,0.92));
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 6px;
+      background: linear-gradient(180deg, #2e2d8a 0%, #1b4fd8 100%);
+    }
+    .hero-side p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .metric {
+      min-width: 0;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+    }
+    .metric.blue { background: rgba(226,230,255,0.85); }
+    .metric.mint { background: rgba(217,248,222,0.82); }
+    .metric.gold { background: rgba(255,247,225,0.92); }
+    .metric.rose { background: rgba(255,217,206,0.8); }
+    .metric-value {
+      margin-top: 10px;
+      font-size: clamp(34px, 4vw, 56px);
+    }
+    .metric-sub {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .block, .table-card {
+      min-width: 0;
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+    }
+    .block h2 {
+      margin: 8px 0 0;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .mini-stat {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid var(--line);
+    }
+    .mini-stat-value {
+      margin-top: 6px;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .list-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .simple-list {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .simple-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(25,35,63,0.08);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .simple-row strong {
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(25,35,63,0.08);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    td.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .footer-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 0 4px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      background: rgba(226,230,255,0.8);
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 1100px) {
+      .hero,
+      .grid-2,
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+      .mini-stats,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="panel hero">
+      <div>
+        <div class="eyebrow">Recacor · Rapport hebdo Ramon</div>
+        <h1 class="hero-title">Depenses, leads et traitement commercial</h1>
+        <p class="hero-copy">
+          Semaine du 6 juillet 2026 au 12 juillet 2026. Lecture hebdomadaire simple pour suivre les depenses media,
+          le volume de leads, l'avancement commercial dans AdsFlow et les signaux a surveiller.
+        </p>
+      </div>
+      <aside class="hero-side">
+        <div class="section-tag">Message cle</div>
+        <h2>Un point hebdo lisible pour relier acquisition et traitement commercial.</h2>
+        <p>
+          Cette version met volontairement l'accent sur la semaine ecoulee : depenses Meta et Google,
+          leads entres dans AdsFlow, appels decroches, leads pris en main, et campagnes a surveiller.
+        </p>
+        <div class="mini-stats">
+          
+    <div class="mini-stat">
+      <div class="mini-stat-label">Depense totale</div>
+      <div class="mini-stat-value">974,62 €</div>
+    </div>
+  
+          
+    <div class="mini-stat">
+      <div class="mini-stat-label">Leads CRM</div>
+      <div class="mini-stat-value">121</div>
+    </div>
+  
+          
+    <div class="mini-stat">
+      <div class="mini-stat-label">Leads traites</div>
+      <div class="mini-stat-value">112</div>
+    </div>
+  
+        </div>
+      </aside>
+    </section>
+
+    <section class="metrics">
+      
+    <article class="metric blue">
+      <div class="metric-label">Depense totale</div>
+      <div class="metric-value">974,62 €</div>
+      <div class="metric-sub">578,01 € Meta + 396,61 € Google</div>
+    </article>
+  
+      
+    <article class="metric mint">
+      <div class="metric-label">Leads CRM</div>
+      <div class="metric-value">121</div>
+      <div class="metric-sub">112 leads Meta inclus dans le total</div>
+    </article>
+  
+      
+    <article class="metric gold">
+      <div class="metric-label">Leads traites</div>
+      <div class="metric-value">112</div>
+      <div class="metric-sub">9 leads encore au statut NOUVEAU</div>
+    </article>
+  
+      
+    <article class="metric rose">
+      <div class="metric-label">Appels decroches</div>
+      <div class="metric-value">8</div>
+      <div class="metric-sub">6 accords verbaux · 1 devis envoyes</div>
+    </article>
+  
+    </section>
+
+    <section class="grid-2">
+      <article class="block list-card">
+        <div class="section-tag">A retenir</div>
+        <h2>Synthese automatique de la semaine</h2>
+        <ul><li>9 leads sont encore au statut NOUVEAU : point de vigilance sur la prise en main commerciale.</li><li>112 leads ont deja quitte le statut NOUVEAU, soit 92.6% du volume CRM de la semaine.</li><li>Meilleure campagne Meta en CPL : LEADS_CLIM_VL_LeCres_25km_20260621 a 2,09 € pour 35 leads.</li><li>Campagne Meta a surveiller : LEADS_CLIM_PL_MONTPELLIER_AGGLO_20260704 a 36,76 € de CPL pour 2 leads.</li><li>Google Ads reste lisible sur la semaine avec 396,61 € de depense et un CPA moyen de 7,78 €.</li><li>Le site a enregistre 115 sessions GA4 et 54 clics SEO sur la periode.</li></ul>
+      </article>
+      <article class="block list-card">
+        <div class="section-tag">Alertes</div>
+        <h2>Points a surveiller</h2>
+        <ul><li>Meta a au moins une campagne a CPL tres eleve cette semaine : LEADS_CLIM_PL_MONTPELLIER_AGGLO_20260704 a 36,76 €.</li></ul>
+      </article>
+    </section>
+
+    <section class="grid-3">
+      <article class="block">
+        <div class="section-tag">Depenses media</div>
+        <h2>Meta vs Google Ads</h2>
+        <div class="simple-list">
+          
+        <div class="simple-row">
+          <span>Meta Ads</span>
+          <strong>578,01 €</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Google Ads</span>
+          <strong>396,61 €</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>CPL Meta</span>
+          <strong>5,16 €</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>CPA Google Ads</span>
+          <strong>7,78 €</strong>
+        </div>
+      
+        </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Traitement commercial</div>
+        <h2>Lecture des statuts AdsFlow</h2>
+        <div class="simple-list">
+          
+        <div class="simple-row">
+          <span>Qualifie</span>
+          <strong>44</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Appel decroche</span>
+          <strong>8</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Devis envoye</span>
+          <strong>1</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Accord verbal</span>
+          <strong>6</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Pas interesse</span>
+          <strong>14</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Mauvais numero</span>
+          <strong>3</strong>
+        </div>
+      
+        </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Traffic & SEO</div>
+        <h2>Visibilite de la semaine</h2>
+        <div class="simple-list">
+          
+        <div class="simple-row">
+          <span>Sessions GA4</span>
+          <strong>115</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Utilisateurs</span>
+          <strong>113</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Clics SEO</span>
+          <strong>54</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>Impressions SEO</span>
+          <strong>1 555</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>CTR Google Ads</span>
+          <strong>6.22%</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>CTR SEO</span>
+          <strong>3.47%</strong>
+        </div>
+      
+        </div>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <article class="table-card">
+        <div class="section-tag">Campagnes Meta</div>
+        <h2>Depense, leads et CPL</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campagne</th>
+              <th>Segment</th>
+              <th class="num">Depense</th>
+              <th class="num">Leads</th>
+              <th class="num">CPL</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td>LEADS_VL_PNEUS_LeCres_25km_20260622</td>
+          <td>VL</td>
+          <td class="num">153,06 €</td>
+          <td class="num">42</td>
+          <td class="num">3,64 €</td>
+        </tr>
+      
+        <tr>
+          <td>LEADS_PL_PROMO_HANKOOK_38565R225_JUILLET_20260703</td>
+          <td>PL</td>
+          <td class="num">139,71 €</td>
+          <td class="num">14</td>
+          <td class="num">9,98 €</td>
+        </tr>
+      
+        <tr>
+          <td>LEADS_MECA_VIDANGE_VL_LeCres_25km_GEOCLEAN_20260626</td>
+          <td>VL</td>
+          <td class="num">85,47 €</td>
+          <td class="num">19</td>
+          <td class="num">4,50 €</td>
+        </tr>
+      
+        <tr>
+          <td>LEADS_CLIM_PL_MONTPELLIER_AGGLO_20260704</td>
+          <td>PL</td>
+          <td class="num">73,52 €</td>
+          <td class="num">2</td>
+          <td class="num">36,76 €</td>
+        </tr>
+      
+        <tr>
+          <td>LEADS_CLIM_VL_LeCres_25km_20260621</td>
+          <td>VL</td>
+          <td class="num">73,32 €</td>
+          <td class="num">35</td>
+          <td class="num">2,09 €</td>
+        </tr>
+      
+        <tr>
+          <td>TRAFIC_CLIM_PL_MontpellierAgglo_20260701</td>
+          <td>PL</td>
+          <td class="num">34,65 €</td>
+          <td class="num">0</td>
+          <td class="num">0,00 €</td>
+        </tr>
+      
+        <tr>
+          <td>TRAFIC_APPEL_VL_ETE_CHALEUR_VACANCES_LeCres_25km_CLEAN_20260711</td>
+          <td>VL</td>
+          <td class="num">18,28 €</td>
+          <td class="num">0</td>
+          <td class="num">0,00 €</td>
+        </tr>
+      </tbody>
+        </table>
+      </article>
+      <article class="table-card">
+        <div class="section-tag">Campagnes Google Ads</div>
+        <h2>Depense, conversions et CPA</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Campagne</th>
+              <th>Type</th>
+              <th class="num">Depense</th>
+              <th class="num">Conversions</th>
+              <th class="num">CPA</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td>Search 22/05</td>
+          <td>SEARCH</td>
+          <td class="num">314,86 €</td>
+          <td class="num">37</td>
+          <td class="num">8,51 €</td>
+        </tr>
+      
+        <tr>
+          <td>Local store visits and promotions-Performance Max-2</td>
+          <td>PMAX</td>
+          <td class="num">81,75 €</td>
+          <td class="num">14</td>
+          <td class="num">5,84 €</td>
+        </tr>
+      </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid-3">
+      <article class="block">
+        <div class="section-tag">Sources de leads</div>
+        <h2>Origine CRM</h2>
+        <div class="simple-list">
+        <div class="simple-row">
+          <span>facebook</span>
+          <strong>109</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>google_ads</span>
+          <strong>7</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>site_web</span>
+          <strong>5</strong>
+        </div>
+      </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Mix segment</div>
+        <h2>VL vs PL</h2>
+        <div class="simple-list">
+        <div class="simple-row">
+          <span>VL</span>
+          <strong>106</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>PL</span>
+          <strong>15</strong>
+        </div>
+      </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Statuts principaux</div>
+        <h2>Top du pipe</h2>
+        <div class="simple-list">
+        <div class="simple-row">
+          <span>QUALIFIE</span>
+          <strong>44</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>1ER_REPONDEUR</span>
+          <strong>30</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>PAS_INTERESSE</span>
+          <strong>14</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>NOUVEAU</span>
+          <strong>9</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>APPEL_DECROCHE</span>
+          <strong>8</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>ACCORD_VERBAL</span>
+          <strong>6</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>MAUVAIS_NUMERO</span>
+          <strong>3</strong>
+        </div>
+      
+        <div class="simple-row">
+          <span>2EME_REPONDEUR</span>
+          <strong>2</strong>
+        </div>
+      </div>
+      </article>
+    </section>
+
+    <div class="footer-note">
+      Rapport genere le 12 juillet 2026 pour la periode du
+      06/07 au 12/07.
+      Source : endpoint marketing-analytics AdsFlow, lecture agregee uniquement.
+      Le bloc "leads traites" correspond aux leads sortis du statut NOUVEAU, pas a une attribution individuelle par commercial.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+name: Ramon Weekly Report
+
+on:
+  schedule:
+    - cron: "30 5 * * 1" # Lundi 05:30 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ramon-weekly-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate weekly report
+        env:
+          RAMON_REPORT_BASE_URL: https://www.recacor.fr/briefings/ramon-hebdo
+        run: node scripts/weekly-ramon-report.mjs --write
+
+      - name: Commit generated report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- public/briefings/ramon-hebdo; then
+            echo "No report changes to commit."
+            exit 0
+          fi
+          git add public/briefings/ramon-hebdo
+          git commit -m "Update Ramon weekly report ($(date -u +%F))"
+          git push
+
+      - name: Wait for public report
+        env:
+          REPORT_URL: https://www.recacor.fr/briefings/ramon-hebdo/latest.html
+        run: |
+          EXPECTED=$(node -e 'const fs=require("fs"); const j=JSON.parse(fs.readFileSync("public/briefings/ramon-hebdo/latest.json","utf8")); process.stdout.write(j.period.label);')
+          for i in $(seq 1 15); do
+            BODY=$(curl -fsSL "$REPORT_URL" || true)
+            if printf '%s' "$BODY" | grep -Fq "$EXPECTED"; then
+              echo "Public report is live."
+              exit 0
+            fi
+            echo "Report not live yet, retry $i/15..."
+            sleep 20
+          done
+          echo "Report not confirmed live after waiting window. Continuing with email send."
+
+      - name: Send weekly email
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_SENDER_NAME: ${{ secrets.BREVO_SENDER_NAME }}
+          BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
+          RAMON_REPORT_TO: ${{ secrets.RAMON_REPORT_TO }}
+          RAMON_REPORT_CC: ${{ secrets.RAMON_REPORT_CC }}
+          RAMON_REPORT_BASE_URL: https://www.recacor.fr/briefings/ramon-hebdo
+        run: node scripts/weekly-ramon-report.mjs --send --from-file public/briefings/ramon-hebdo/latest.json

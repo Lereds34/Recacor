@@ -27,8 +27,9 @@ export async function GET(req: Request) {
   const tokenOk =
     (expected && auth === `Bearer ${expected}`) ||
     (expected && querySecret === expected);
+  const authorized = tokenOk || (isVercelCron && !expected);
 
-  if (!isVercelCron && !tokenOk) {
+  if (!authorized) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

@@ -104,14 +104,22 @@ export interface RamonWeeklyReport {
   };
   pipeline: {
     treatedLeads: number;
+    treatedRate: number;
     newLeads: number;
+    newRate: number;
+    premierRepondeur: number;
+    deuxiemeRepondeur: number;
     qualifie: number;
     appelDecroche: number;
     devisEnvoye: number;
     accordVerbal: number;
     pasInteresse: number;
     mauvaisNumero: number;
+    perdu: number;
     aRelancer: number;
+    fileActive: number;
+    signalCommercial: number;
+    sortiesNegatives: number;
   };
   statusBreakdown: Array<{ label: string; value: number }>;
   sourceBreakdown: Array<{ label: string; value: number }>;
@@ -280,9 +288,20 @@ function buildInsights(data: RamonWeeklyReport) {
   }
 
   if (data.pipeline.treatedLeads > 0 && data.kpis.leads > 0) {
-    const treatedRate = (data.pipeline.treatedLeads / data.kpis.leads) * 100;
     insights.push(
-      `${formatNumber(data.pipeline.treatedLeads)} leads ont deja quitte le statut NOUVEAU, soit ${formatPercent(treatedRate)} du volume CRM de la semaine.`
+      `${formatNumber(data.pipeline.treatedLeads)} leads ont deja quitte le statut NOUVEAU, soit ${formatPercent(data.pipeline.treatedRate)} du volume CRM de la semaine.`
+    );
+  }
+
+  if (data.pipeline.fileActive > 0) {
+    insights.push(
+      `${formatNumber(data.pipeline.fileActive)} leads sont dans la file commerciale active (${formatNumber(data.pipeline.premierRepondeur)} en 1ER_REPONDEUR, ${formatNumber(data.pipeline.deuxiemeRepondeur)} en 2EME_REPONDEUR, ${formatNumber(data.pipeline.aRelancer)} a relancer).`
+    );
+  }
+
+  if (data.pipeline.signalCommercial > 0) {
+    insights.push(
+      `${formatNumber(data.pipeline.signalCommercial)} leads affichent deja un signal commercial positif cette semaine (${formatNumber(data.pipeline.appelDecroche)} appels decroches, ${formatNumber(data.pipeline.qualifie)} qualifies, ${formatNumber(data.pipeline.devisEnvoye)} devis envoyes, ${formatNumber(data.pipeline.accordVerbal)} accords verbaux).`
     );
   }
 
@@ -377,6 +396,21 @@ export function buildRamonWeeklyReport(
   const totalLeads = Number(raw.crm_aggregate?.total_leads || 0);
   const newLeads = Number(statuses.get("NOUVEAU") || 0);
   const treatedLeads = Math.max(0, totalLeads - newLeads);
+  const treatedRate = totalLeads > 0 ? (treatedLeads / totalLeads) * 100 : 0;
+  const newRate = totalLeads > 0 ? (newLeads / totalLeads) * 100 : 0;
+  const premierRepondeur = Number(statuses.get("1ER_REPONDEUR") || 0);
+  const deuxiemeRepondeur = Number(statuses.get("2EME_REPONDEUR") || 0);
+  const qualifie = Number(statuses.get("QUALIFIE") || 0);
+  const appelDecroche = Number(statuses.get("APPEL_DECROCHE") || 0);
+  const devisEnvoye = Number(statuses.get("DEVIS_ENVOYE") || 0);
+  const accordVerbal = Number(statuses.get("ACCORD_VERBAL") || 0);
+  const pasInteresse = Number(statuses.get("PAS_INTERESSE") || 0);
+  const mauvaisNumero = Number(statuses.get("MAUVAIS_NUMERO") || 0);
+  const perdu = Number(statuses.get("PERDU") || 0);
+  const aRelancer = sumByStatus(statuses, ["A_RELANCER", "A_RAPPELER"]);
+  const fileActive = premierRepondeur + deuxiemeRepondeur + aRelancer;
+  const signalCommercial = appelDecroche + qualifie + devisEnvoye + accordVerbal;
+  const sortiesNegatives = pasInteresse + mauvaisNumero + perdu;
 
   const metaCampaigns = (raw.meta_ads?.campaigns || []).map((campaign) => ({
     name: campaign.name,
@@ -428,14 +462,22 @@ export function buildRamonWeeklyReport(
     },
     pipeline: {
       treatedLeads,
+      treatedRate,
       newLeads,
-      qualifie: Number(statuses.get("QUALIFIE") || 0),
-      appelDecroche: Number(statuses.get("APPEL_DECROCHE") || 0),
-      devisEnvoye: Number(statuses.get("DEVIS_ENVOYE") || 0),
-      accordVerbal: Number(statuses.get("ACCORD_VERBAL") || 0),
-      pasInteresse: Number(statuses.get("PAS_INTERESSE") || 0),
-      mauvaisNumero: Number(statuses.get("MAUVAIS_NUMERO") || 0),
-      aRelancer: sumByStatus(statuses, ["A_RELANCER", "A_RAPPELER"]),
+      newRate,
+      premierRepondeur,
+      deuxiemeRepondeur,
+      qualifie,
+      appelDecroche,
+      devisEnvoye,
+      accordVerbal,
+      pasInteresse,
+      mauvaisNumero,
+      perdu,
+      aRelancer,
+      fileActive,
+      signalCommercial,
+      sortiesNegatives,
     },
     statusBreakdown: (raw.crm_aggregate?.leads_by_status || []).map((item) => ({
       label: item.status,
@@ -517,6 +559,38 @@ function renderMiniStat(label: string, value: string) {
       <div class="mini-stat-label">${escapeHtml(label)}</div>
       <div class="mini-stat-value">${escapeHtml(value)}</div>
     </div>
+  `;
+}
+
+function renderCommercialSummaryCard(report: RamonWeeklyReport) {
+  return `
+    <article class="block">
+      <div class="section-tag">Traitement commercial</div>
+      <h2>Point equipe sur la prise en charge</h2>
+      <div class="simple-list">
+        ${renderSimpleRows(
+          [
+            { label: "Leads pris en charge", value: report.pipeline.treatedLeads },
+            { label: "Leads encore nouveaux", value: report.pipeline.newLeads },
+            { label: "File active commerciale", value: report.pipeline.fileActive },
+            { label: "Signal commercial positif", value: report.pipeline.signalCommercial },
+            { label: "Sorties negatives", value: report.pipeline.sortiesNegatives },
+          ],
+          (item) => {
+            if (item.label === "Leads pris en charge") {
+              return `${formatNumber(item.value)} (${formatPercent(report.pipeline.treatedRate)})`;
+            }
+            if (item.label === "Leads encore nouveaux") {
+              return `${formatNumber(item.value)} (${formatPercent(report.pipeline.newRate)})`;
+            }
+            return formatNumber(item.value);
+          }
+        )}
+      </div>
+      <p class="metric-sub" style="margin-top:16px">
+        Lecture equipe, pas par commercial individuel a ce stade : l'API AdsFlow fournie ici est agregee.
+      </p>
+    </article>
   `;
 }
 
@@ -881,23 +955,7 @@ export function renderRamonWeeklyReportHtml(report: RamonWeeklyReport) {
           )}
         </div>
       </article>
-      <article class="block">
-        <div class="section-tag">Traitement commercial</div>
-        <h2>Lecture des statuts AdsFlow</h2>
-        <div class="simple-list">
-          ${renderSimpleRows(
-            [
-              { label: "Qualifie", value: report.pipeline.qualifie },
-              { label: "Appel decroche", value: report.pipeline.appelDecroche },
-              { label: "Devis envoye", value: report.pipeline.devisEnvoye },
-              { label: "Accord verbal", value: report.pipeline.accordVerbal },
-              { label: "Pas interesse", value: report.pipeline.pasInteresse },
-              { label: "Mauvais numero", value: report.pipeline.mauvaisNumero },
-            ],
-            (item) => formatNumber(item.value)
-          )}
-        </div>
-      </article>
+      ${renderCommercialSummaryCard(report)}
       <article class="block">
         <div class="section-tag">Traffic & SEO</div>
         <h2>Visibilite de la semaine</h2>
@@ -912,6 +970,57 @@ export function renderRamonWeeklyReportHtml(report: RamonWeeklyReport) {
               { label: "CTR SEO", value: report.seo.ctr },
             ],
             (item) => item.label.includes("CTR") ? formatPercent(item.value, 2) : formatNumber(item.value)
+          )}
+        </div>
+      </article>
+    </section>
+
+    <section class="grid-3">
+      <article class="block">
+        <div class="section-tag">File commerciale</div>
+        <h2>Statuts de travail</h2>
+        <div class="simple-list">
+          ${renderSimpleRows(
+            [
+              { label: "1ER_REPONDEUR", value: report.pipeline.premierRepondeur },
+              { label: "2EME_REPONDEUR", value: report.pipeline.deuxiemeRepondeur },
+              { label: "A relancer / a rappeler", value: report.pipeline.aRelancer },
+              { label: "Appel decroche", value: report.pipeline.appelDecroche },
+              { label: "Qualifie", value: report.pipeline.qualifie },
+            ],
+            (item) => formatNumber(item.value)
+          )}
+        </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Avancee commerciale</div>
+        <h2>Leads qui progressent</h2>
+        <div class="simple-list">
+          ${renderSimpleRows(
+            [
+              { label: "Devis envoye", value: report.pipeline.devisEnvoye },
+              { label: "Accord verbal", value: report.pipeline.accordVerbal },
+              { label: "Signal positif total", value: report.pipeline.signalCommercial },
+              { label: "Sorties negatives", value: report.pipeline.sortiesNegatives },
+              { label: "Perdu", value: report.pipeline.perdu },
+            ],
+            (item) => formatNumber(item.value)
+          )}
+        </div>
+      </article>
+      <article class="block">
+        <div class="section-tag">Lecture des statuts</div>
+        <h2>Vue detail AdsFlow</h2>
+        <div class="simple-list">
+          ${renderSimpleRows(
+            [
+              { label: "Pas interesse", value: report.pipeline.pasInteresse },
+              { label: "Mauvais numero", value: report.pipeline.mauvaisNumero },
+              { label: "Nouveau", value: report.pipeline.newLeads },
+              { label: "Leads traites", value: report.pipeline.treatedLeads },
+              { label: "Leads CRM total", value: report.kpis.leads },
+            ],
+            (item) => formatNumber(item.value)
           )}
         </div>
       </article>
@@ -973,7 +1082,8 @@ export function renderRamonWeeklyReportHtml(report: RamonWeeklyReport) {
     <div class="footer-note">
       Rapport genere pour la periode du ${escapeHtml(formatDateShort(report.period.start))} au
       ${escapeHtml(formatDateShort(report.period.end))}. Source : endpoint marketing-analytics AdsFlow,
-      lecture agregee uniquement. Le bloc "leads traites" correspond aux leads sortis du statut NOUVEAU.
+      lecture agregee uniquement. Le point "traitement commercial" est une lecture equipe globale des statuts AdsFlow,
+      pas encore une lecture par commercial individuel.
     </div>
   </div>
 </body>
@@ -1025,6 +1135,7 @@ export function buildRamonWeeklyEmailHtml(report: RamonWeeklyReport) {
                     <div style="background:#fff5da;border:1px solid #f4e1ad;border-radius:18px;padding:16px">
                       <div style="font-size:11px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.1em">Leads traites</div>
                       <div style="margin-top:8px;font-size:34px;font-weight:900;color:#19233f">${escapeHtml(formatNumber(report.pipeline.treatedLeads))}</div>
+                      <div style="margin-top:6px;font-size:13px;color:#64748b">${escapeHtml(formatPercent(report.pipeline.treatedRate))} des leads CRM</div>
                     </div>
                   </td>
                   <td style="padding:0 0 0 6px" valign="top">
@@ -1042,7 +1153,8 @@ export function buildRamonWeeklyEmailHtml(report: RamonWeeklyReport) {
               <div style="font-size:12px;font-weight:800;color:#6D28D9;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px">Lecture rapide</div>
               <div style="font-size:15px;line-height:1.7;color:#334155">
                 Meta : <strong>${escapeHtml(formatCurrency(report.kpis.spendMeta))}</strong> depenses, <strong>${escapeHtml(formatNumber(report.kpis.leadsMeta))}</strong> leads, CPL moyen <strong>${escapeHtml(formatCurrency(report.kpis.metaCpl))}</strong>.<br/>
-                Google Ads : <strong>${escapeHtml(formatCurrency(report.kpis.spendGoogle))}</strong> depenses, <strong>${escapeHtml(formatNumber(report.kpis.googleConversions))}</strong> conversions, CPA moyen <strong>${escapeHtml(formatCurrency(report.kpis.googleCpa))}</strong>.
+                Google Ads : <strong>${escapeHtml(formatCurrency(report.kpis.spendGoogle))}</strong> depenses, <strong>${escapeHtml(formatNumber(report.kpis.googleConversions))}</strong> conversions, CPA moyen <strong>${escapeHtml(formatCurrency(report.kpis.googleCpa))}</strong>.<br/>
+                Traitement commercial : <strong>${escapeHtml(formatNumber(report.pipeline.treatedLeads))}</strong> leads pris en charge, <strong>${escapeHtml(formatNumber(report.pipeline.fileActive))}</strong> en file active, <strong>${escapeHtml(formatNumber(report.pipeline.signalCommercial))}</strong> avec signal positif.
               </div>
             </td>
           </tr>
@@ -1084,9 +1196,10 @@ export function buildRamonWeeklyEmailText(report: RamonWeeklyReport) {
     `Meta Ads : ${formatCurrency(report.kpis.spendMeta)} - ${formatNumber(report.kpis.leadsMeta)} leads - CPL ${formatCurrency(report.kpis.metaCpl)}`,
     `Google Ads : ${formatCurrency(report.kpis.spendGoogle)} - ${formatNumber(report.kpis.googleConversions)} conversions - CPA ${formatCurrency(report.kpis.googleCpa)}`,
     `Leads CRM : ${formatNumber(report.kpis.leads)}`,
-    `Leads traites : ${formatNumber(report.pipeline.treatedLeads)}`,
-    `Appels decroches : ${formatNumber(report.pipeline.appelDecroche)}`,
-    `Accords verbaux : ${formatNumber(report.pipeline.accordVerbal)}`,
+    `Leads pris en charge : ${formatNumber(report.pipeline.treatedLeads)} (${formatPercent(report.pipeline.treatedRate)})`,
+    `File active commerciale : ${formatNumber(report.pipeline.fileActive)} (${formatNumber(report.pipeline.premierRepondeur)} en 1ER_REPONDEUR, ${formatNumber(report.pipeline.deuxiemeRepondeur)} en 2EME_REPONDEUR, ${formatNumber(report.pipeline.aRelancer)} a relancer)`,
+    `Signal commercial positif : ${formatNumber(report.pipeline.signalCommercial)} (${formatNumber(report.pipeline.appelDecroche)} appels decroches, ${formatNumber(report.pipeline.qualifie)} qualifies, ${formatNumber(report.pipeline.devisEnvoye)} devis envoyes, ${formatNumber(report.pipeline.accordVerbal)} accords verbaux)`,
+    `Sorties negatives : ${formatNumber(report.pipeline.sortiesNegatives)} (${formatNumber(report.pipeline.pasInteresse)} pas interesses, ${formatNumber(report.pipeline.mauvaisNumero)} mauvais numeros, ${formatNumber(report.pipeline.perdu)} perdus)`,
     ``,
     `Rapport complet : ${report.reportUrl}`,
   ].join("\n");

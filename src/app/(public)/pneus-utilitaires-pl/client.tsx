@@ -200,6 +200,13 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                   Le recreusage Recacor : des pneus haute qualité conçus pour durer plus
                   longtemps, à moindre coût et avec moins d&apos;impact environnemental.
                 </p>
+                <p className="text-sm text-white/70 mb-6 leading-relaxed">
+                  Si vous cherchez surtout a prolonger la duree de vie de vos enveloppes, notre page{" "}
+                  <Link href="/services/recreusage" className="font-bold text-purple-glow hover:underline">
+                    recreusage poids lourd
+                  </Link>{" "}
+                  detaille le service, les gains et le fonctionnement atelier.
+                </p>
                 <ul className="space-y-2 mb-6">
                   {["-40% vs pneu neuf", "+25% de durée de vie", "Qualité équivalente au neuf", "Réduction empreinte carbone"].map((i) => (
                     <li key={i} className="flex items-center gap-2.5 text-sm text-white/80">
@@ -215,6 +222,13 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 <div className="text-7xl sm:text-8xl font-black text-purple-glow">-40%</div>
                 <p className="text-white/60 mt-2 uppercase tracking-widest text-sm">Économies vs pneu neuf</p>
               </div>
+            </div>
+          </div>
+          <div className="mt-6 rounded-2xl border border-border bg-white p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Zones PL déjà couvertes</p>
+            <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/blog/pneus-nimes" className="text-purple-bright hover:underline">Pneus poids lourd Nîmes</Link>
+              <Link href="/blog/pneus-sete" className="text-purple-bright hover:underline">Pneus poids lourd Sète</Link>
             </div>
           </div>
         </div>

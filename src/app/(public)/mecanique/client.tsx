@@ -131,6 +131,13 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
           </div>
           <div className="mt-8 rounded-2xl border border-border bg-muted/60 p-5">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides locaux entretien</p>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+              Si vous venez surtout pour un entretien rapide, notre page{" "}
+              <Link href="/services/vidange" className="font-bold text-purple-bright hover:underline">
+                vidange voiture a Montpellier
+              </Link>{" "}
+              detaille le tarif, ce qui est inclus et le formulaire dedie.
+            </p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/blog/pneus-lattes" className="text-purple-bright hover:underline">Parallélisme à Lattes</Link>
               <Link href="/blog/pneus-vendargues" className="text-purple-bright hover:underline">Garage auto à Vendargues</Link>

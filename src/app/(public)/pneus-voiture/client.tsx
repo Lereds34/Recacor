@@ -352,6 +352,13 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
             <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
           </div>
+          <p className="mt-4 max-w-3xl text-sm text-muted-foreground leading-relaxed">
+            Apres un changement de pneus, un controle de{" "}
+            <Link href="/services/parallelisme-geometrie" className="font-bold text-purple-bright hover:underline">
+              parallellisme et geometrie
+            </Link>{" "}
+            peut eviter une usure irreguliere et affiner la tenue de route.
+          </p>
           <div className="mt-6 rounded-2xl border border-border bg-muted/60 p-5">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides pneus proches</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">

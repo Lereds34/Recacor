@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "À propos — Garage Recacor Le Crès depuis 1950",
     description:
       "Groupe pneumatique fondé en 1950, 60+ ateliers en Europe, implanté à Montpellier — Le Crès depuis 2017.",
-    url: "https://recacor.fr/a-propos",
+    url: "https://www.recacor.fr/a-propos",
   },
 };
 
@@ -61,8 +61,8 @@ export default function AProposPage() {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Accueil", url: "https://recacor.fr" },
-          { name: "À propos", url: "https://recacor.fr/a-propos" },
+          { name: "Accueil", url: "https://www.recacor.fr" },
+          { name: "À propos", url: "https://www.recacor.fr/a-propos" },
         ]}
       />
       <LocalBusinessJsonLd />

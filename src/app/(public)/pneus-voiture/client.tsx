@@ -77,8 +77,8 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Accueil", url: "https://recacor.fr" },
-          { name: "Pneus voiture", url: "https://recacor.fr/pneus-voiture" },
+          { name: "Accueil", url: "https://www.recacor.fr" },
+          { name: "Pneus voiture", url: "https://www.recacor.fr/pneus-voiture" },
         ]}
       />
       <ServiceJsonLd

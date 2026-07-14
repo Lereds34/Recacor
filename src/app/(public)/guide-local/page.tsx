@@ -16,8 +16,8 @@ export default function GuideLocalPage() {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Accueil", url: "https://recacor.fr" },
-          { name: "Guide local", url: "https://recacor.fr/guide-local" },
+          { name: "Accueil", url: "https://www.recacor.fr" },
+          { name: "Guide local", url: "https://www.recacor.fr/guide-local" },
         ]}
       />
       <GuideLocalClient />

@@ -15,8 +15,8 @@ export function ContactClient({ heroImage }: { heroImage?: string }) {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Contact", url: "https://recacor.fr/contact" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Contact", url: "https://www.recacor.fr/contact" },
       ]} />
 
       <section className="relative pt-32 pb-20 overflow-hidden">

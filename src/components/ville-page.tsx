@@ -686,8 +686,8 @@ export function VillePageClient({ ville, heroImage }: { ville: Ville; heroImage?
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: `Pneus ${displayVille.nom}`, url: `https://recacor.fr/${displayVille.slug}` },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: `Pneus ${displayVille.nom}`, url: `https://www.recacor.fr/${displayVille.slug}` },
       ]} />
       <ServiceJsonLd
         name={`Pneus voiture ${displayVille.nom}`}

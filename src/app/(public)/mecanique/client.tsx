@@ -52,8 +52,8 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Mécanique légère", url: "https://recacor.fr/mecanique" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Mécanique légère", url: "https://www.recacor.fr/mecanique" },
       ]} />
       <ServiceJsonLd
         name="Mécanique légère Montpellier"

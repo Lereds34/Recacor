@@ -1671,7 +1671,7 @@ function VillesSeoSection() {
     { label: "Géométrie voiture", href: "/services/parallelisme-geometrie" },
     { label: "Parallélisme Montpellier", href: "/services/parallelisme-geometrie" },
     { label: "Montage & équilibrage", href: "/pneus-voiture" },
-    { label: "Vidange voiture", href: "/mecanique" },
+    { label: "Vidange voiture", href: "/services/vidange" },
     { label: "Pneus été", href: "/pneus-voiture" },
     { label: "Pneus hiver", href: "/pneus-voiture" },
     { label: "Pneus 4 saisons", href: "/pneus-voiture" },

@@ -322,7 +322,7 @@ export async function Footer() {
                   { label: "Parallélisme Montpellier", href: "/services/parallelisme-geometrie" },
                   { label: "Géométrie voiture", href: "/services/parallelisme-geometrie" },
                   { label: "Montage pneus Le Crès", href: "/pneus-voiture" },
-                  { label: "Vidange Montpellier", href: "/mecanique" },
+                  { label: "Vidange Montpellier", href: "/services/vidange" },
                   { label: "Pneus Mauguio", href: "/mauguio" },
                   { label: "Pneus Lattes", href: "/lattes" },
                   { label: "Pneus Lunel", href: "/lunel" },

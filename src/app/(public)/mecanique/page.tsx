@@ -7,14 +7,14 @@ import { getAsset } from "@/lib/site-assets";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Vidange et révision Montpellier — sans RDV",
+  title: "Garage mécanique Montpellier — entretien auto sans RDV",
   description:
-    "Vidange à partir de 79€, freinage, parallélisme, révision. Garage mécanique sans rendez-vous à Montpellier — Le Crès. Devis gratuit.",
+    "Garage mécanique à Montpellier — Le Crès : vidange, freinage, révision et parallélisme sans rendez-vous. Devis gratuit et intervention rapide.",
   alternates: { canonical: "/mecanique" },
   openGraph: {
-    title: "Vidange et révision Montpellier — sans RDV",
+    title: "Garage mécanique Montpellier — entretien auto sans RDV",
     description:
-      "Vidange à partir de 79€, freinage, parallélisme et révision au garage Recacor, Montpellier — Le Crès.",
+      "Entretien auto sans rendez-vous à Montpellier — Le Crès : vidange, freinage, révision et parallélisme chez Recacor.",
     url: "https://www.recacor.fr/mecanique",
     siteName: "Recacor",
     locale: "fr_FR",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Mécanique automobile Montpellier",
+  name: "Garage mécanique automobile Montpellier",
   serviceType: "Auto Repair",
-  description: "Vidange, freinage, révision et parallélisme sans rendez-vous à Montpellier — Le Crès. Toutes marques.",
+  description: "Entretien mécanique automobile à Montpellier — Le Crès : vidange, freinage, révision et parallélisme sans rendez-vous. Toutes marques.",
   url: "https://www.recacor.fr/mecanique",
   provider: {
     "@type": "AutoRepair",
@@ -49,7 +49,7 @@ const serviceSchema = {
   ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Services mécaniques",
+    name: "Entretien mécanique automobile",
     itemListElement: [
       {
         "@type": "Offer",

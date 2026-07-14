@@ -21,8 +21,8 @@ export function ParallelismeClient() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Parallélisme & Géométrie", url: "https://recacor.fr/services/parallelisme-geometrie" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Parallélisme & Géométrie", url: "https://www.recacor.fr/services/parallelisme-geometrie" },
       ]} />
       <ServiceJsonLd name="Parallélisme Géométrie Montpellier" description="Parallélisme et géométrie voiture sans RDV" price="65" />
       <FaqJsonLd items={faqs} id="parallelisme" />

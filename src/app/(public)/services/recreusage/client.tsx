@@ -27,8 +27,8 @@ export function RecreusageClient() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Recreusage", url: "https://recacor.fr/services/recreusage" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Recreusage", url: "https://www.recacor.fr/services/recreusage" },
       ]} />
       <ServiceJsonLd name="Recreusage pneus poids lourd" description="Recreusage haute qualité pour pneus PL en Hérault" />
       <FaqJsonLd items={faqs} id="recreusage" />

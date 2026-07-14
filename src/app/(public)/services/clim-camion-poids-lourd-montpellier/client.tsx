@@ -61,9 +61,9 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "Accueil", url: "https://recacor.fr" },
-          { name: "Pneus PL", url: "https://recacor.fr/pneus-utilitaires-pl" },
-          { name: "Clim camion", url: "https://recacor.fr/services/clim-camion-poids-lourd-montpellier" },
+          { name: "Accueil", url: "https://www.recacor.fr" },
+          { name: "Pneus PL", url: "https://www.recacor.fr/pneus-utilitaires-pl" },
+          { name: "Clim camion", url: "https://www.recacor.fr/services/clim-camion-poids-lourd-montpellier" },
         ]}
       />
       <ServiceJsonLd

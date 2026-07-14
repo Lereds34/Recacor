@@ -54,9 +54,9 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Mécanique", url: "https://recacor.fr/mecanique" },
-        { name: "Climatisation auto", url: "https://recacor.fr/services/climatisation-auto-montpellier" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Mécanique", url: "https://www.recacor.fr/mecanique" },
+        { name: "Climatisation auto", url: "https://www.recacor.fr/services/climatisation-auto-montpellier" },
       ]} />
       <ServiceJsonLd
         name="Recharge clim voiture Montpellier"
@@ -110,7 +110,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 <div className="mt-5 space-y-3 text-sm">
                   <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Contrôle du fonctionnement avant recharge</div>
                   <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Intervention atelier au Crès</div>
-                  <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Photos atelier à ajouter au hero</div>
+                  <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-purple-glow" /> Avec ou sans rendez-vous</div>
                 </div>
               </div>
             </div>
@@ -270,7 +270,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
               Demandez votre <span className="text-gradient-purple">devis clim</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
-              Diagnostic gratuit, recharge à partir de 59€. Réponse rapide en jours ouvrés.
+              Contrôle du fonctionnement avant recharge, à partir de 59€. Réponse rapide en jours ouvrés.
             </p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">

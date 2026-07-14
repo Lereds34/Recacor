@@ -28,9 +28,9 @@ export function VidangeClient() {
   return (
     <>
       <BreadcrumbJsonLd items={[
-        { name: "Accueil", url: "https://recacor.fr" },
-        { name: "Services", url: "https://recacor.fr/mecanique" },
-        { name: "Vidange", url: "https://recacor.fr/services/vidange" },
+        { name: "Accueil", url: "https://www.recacor.fr" },
+        { name: "Services", url: "https://www.recacor.fr/mecanique" },
+        { name: "Vidange", url: "https://www.recacor.fr/services/vidange" },
       ]} />
       <ServiceJsonLd name="Vidange voiture Montpellier" description="Vidange complète à partir de 79€, sans RDV" price="79" />
       <FaqJsonLd items={faqs} id="vidange" />

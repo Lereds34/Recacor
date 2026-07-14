@@ -23,13 +23,18 @@ export async function GET(req: Request) {
   const querySecret = url.searchParams.get("secret") || "";
   const expected = process.env.CRON_SECRET || "";
 
-  const isVercelCron = req.headers.get("x-vercel-cron") === "1";
-  const tokenOk =
-    (expected && auth === `Bearer ${expected}`) ||
-    (expected && querySecret === expected);
-  const authorized = tokenOk || (isVercelCron && !expected);
+  if (!expected) {
+    return NextResponse.json(
+      { ok: false, error: "CRON_SECRET manquant" },
+      { status: 500 }
+    );
+  }
 
-  if (!authorized) {
+  const tokenOk =
+    auth === `Bearer ${expected}` ||
+    querySecret === expected;
+
+  if (!tokenOk) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 

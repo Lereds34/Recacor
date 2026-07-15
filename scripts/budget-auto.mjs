@@ -10,7 +10,10 @@
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
-const DRY_RUN = !process.argv.includes("--apply");
+const REQUESTED_APPLY = process.argv.includes("--apply");
+const APPLY_ALLOWED = process.env.BUDGET_AUTO_ALLOW_APPLY === "true";
+const DRY_RUN = !REQUESTED_APPLY || !APPLY_ALLOWED;
+const APPLY_BLOCKED = REQUESTED_APPLY && !APPLY_ALLOWED;
 const LOG_FILE = process.env.GITHUB_WORKSPACE
   ? `${process.env.GITHUB_WORKSPACE}/budget-auto-log.json`
   : "/Users/redouanelmansouri/Desktop/PROJET_RECACOR/scripts/budget-auto-log.json";
@@ -21,8 +24,8 @@ const RULES = {
   CPA_BOOST_THRESHOLD:    10,   // CPA < 10€ sur 3 jours → +15%
   CPA_REDUCE_THRESHOLD:   15,   // CPA > 15€ sur 2 jours → -20%
   CPA_FREEZE_THRESHOLD:   25,   // CPA > 25€ → geler immédiatement
-  CPL_BOOST_THRESHOLD:     5,   // CPL Meta < 5€ sur 3 jours → +15%
-  CPL_REDUCE_THRESHOLD:    8,   // CPL Meta > 8€ sur 2 jours → -20%
+  CPL_BOOST_THRESHOLD:     5,   // CPL Meta < 5€ sur 3 jours → signal marché
+  CPL_REDUCE_THRESHOLD:    8,   // CPL Meta > 8€ sur 3 jours → signal marché
   IS_LOST_SIGNAL:       0.25,   // IS perdues budget > 25% → signal manuel, pas de hausse auto
   MONTHLY_CAP_EUR:       750,   // Search VL : 25€/jour ≈ 750€/mois
   MONTHLY_FREEZE_PCT:   0.80,   // 80% du cap avant le 25 → geler
@@ -291,13 +294,13 @@ function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, currentBudg
     });
   }
 
-  // ── RÈGLE 3 : Réduire — CPL Meta > 8€ sur 3 jours ──────────────────────
+  // ── RÈGLE 3 : Signal Meta — ne modifie pas Google Search automatiquement ─
   if (cplMeta3d && cplMeta3d > RULES.CPL_REDUCE_THRESHOLD) {
     decisions.push({
-      action: "REDUCE",
-      factor: RULES.REDUCE_FACTOR,
-      reason: `📉 CPL Meta > ${fmt(RULES.CPL_REDUCE_THRESHOLD)} sur 3j (${fmt(cplMeta3d)}) — signal marché dégradé`,
-      priority: 3,
+      action: "SIGNAL",
+      factor: 0,
+      reason: `📉 CPL Meta > ${fmt(RULES.CPL_REDUCE_THRESHOLD)} sur 3j (${fmt(cplMeta3d)}) — signal marché dégradé, sans action Google automatique`,
+      priority: 9,
     });
   }
 
@@ -312,7 +315,11 @@ function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, currentBudg
   }
 
   // ── RÈGLE 5 : Augmenter — CPA < 10€ sur 3 jours ─────────────────────────
-  if (last3.length >= 3 && last3.every(d => d.cpa < RULES.CPA_BOOST_THRESHOLD)) {
+  if (
+    currentBudget < RULES.BUDGET_MAX_EUR &&
+    last3.length >= 3 &&
+    last3.every(d => d.cpa < RULES.CPA_BOOST_THRESHOLD)
+  ) {
     decisions.push({
       action: "BOOST",
       factor: RULES.BOOST_FACTOR,
@@ -321,13 +328,13 @@ function evaluate({ dailyCPA, isLostBudget, monthlySpend, cplMeta3d, currentBudg
     });
   }
 
-  // ── RÈGLE 6 : Augmenter — CPL Meta < 5€ sur 3 jours ─────────────────────
-  if (cplMeta3d && cplMeta3d < RULES.CPL_BOOST_THRESHOLD && last3.every(d => d.cpa < RULES.CPA_BOOST_THRESHOLD)) {
+  // ── RÈGLE 6 : Signal Meta positif — sans hausse Google automatique ──────
+  if (cplMeta3d && cplMeta3d < RULES.CPL_BOOST_THRESHOLD) {
     decisions.push({
-      action: "BOOST",
-      factor: RULES.BOOST_FACTOR,
-      reason: `📈 Tous canaux performants : CPA Google OK + CPL Meta ${fmt(cplMeta3d)} < ${fmt(RULES.CPL_BOOST_THRESHOLD)}`,
-      priority: 6,
+      action: "SIGNAL",
+      factor: 0,
+      reason: `📈 CPL Meta ${fmt(cplMeta3d)} < ${fmt(RULES.CPL_BOOST_THRESHOLD)} — signal marché positif, sans hausse Google automatique`,
+      priority: 9,
     });
   }
 
@@ -345,6 +352,9 @@ function computeNewBudget(currentEur, factor) {
 (async () => {
   console.log(`\n🤖 Budget Auto — Recacor Search VL ${DRY_RUN ? "(SIMULATION)" : "(RÉEL)"}`);
   console.log(`   ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}\n`);
+  if (APPLY_BLOCKED) {
+    console.log("🔒 --apply demandé mais bloqué : définir BUDGET_AUTO_ALLOW_APPLY=true après validation Redouane pour autoriser une modification réelle.\n");
+  }
 
   const log = loadLog();
 
@@ -469,9 +479,10 @@ function computeNewBudget(currentEur, factor) {
 
   console.log(`\n📋 Décision enregistrée dans budget-auto-log.json\n`);
   console.log("─── Règles actives (rappel) ─────────────────────────────");
-  console.log(`   📈 +15% seulement si CPA < ${RULES.CPA_BOOST_THRESHOLD}€ sur 3j`);
-  console.log(`   📉 -20% si CPA > ${RULES.CPA_REDUCE_THRESHOLD}€ sur 2j OU CPL Meta > ${RULES.CPL_REDUCE_THRESHOLD}€`);
+  console.log(`   📈 +15% seulement si budget < plafond et CPA Search < ${RULES.CPA_BOOST_THRESHOLD}€ sur 3j`);
+  console.log(`   📉 -20% seulement si CPA Search > ${RULES.CPA_REDUCE_THRESHOLD}€ sur 2j`);
   console.log(`   🚨 ALERTE si CPA > ${RULES.CPA_FREEZE_THRESHOLD}€ OU budget mensuel > 80% avant le 25`);
   console.log(`   🔒 Plafond Search VL : ${fmt(RULES.BUDGET_MAX_EUR)}/jour — IS perdues = signal manuel seulement`);
+  console.log(`   🔎 CPL Meta = signal d'analyse uniquement, jamais une action Google automatique`);
   console.log(`   🔒 PMax jamais touché — Search uniquement\n`);
 })();

@@ -134,9 +134,18 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               Si vous venez surtout pour un entretien rapide, notre page{" "}
               <Link href="/services/vidange" className="font-bold text-purple-bright hover:underline">
-                vidange voiture a Montpellier
+                vidange voiture à Montpellier
               </Link>{" "}
-              detaille le tarif, ce qui est inclus et le formulaire dedie.
+              détaille le tarif, ce qui est inclus et le formulaire dédié. En cas d&apos;usure
+              irrégulière des pneus ou de volant qui tire, consulter aussi le{" "}
+              <Link href="/services/parallelisme-geometrie" className="font-bold text-purple-bright hover:underline">
+                service parallélisme et géométrie
+              </Link>
+              . Pour l&apos;été, la{" "}
+              <Link href="/services/climatisation-auto-montpellier" className="font-bold text-purple-bright hover:underline">
+                recharge climatisation voiture
+              </Link>{" "}
+              est traitée comme une prestation atelier avec contrôle avant intervention.
             </p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/blog/pneus-lattes" className="text-purple-bright hover:underline">Parallélisme à Lattes</Link>

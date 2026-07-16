@@ -22,7 +22,10 @@ export const checkMarketingSources = inngest.createFunction(
     id: "check-marketing-sources",
     name: "Controle quotidien des sources marketing",
     retries: 3,
-    triggers: [{ cron: "TZ=Europe/Paris 15 7 * * *" }],
+    triggers: [
+      { cron: "TZ=Europe/Paris 15 7 * * *" },
+      { event: "recacor/marketing.health.requested" },
+    ],
   },
   async ({ step }) => {
     const apiKey = process.env.ADSFLOW_ANALYTICS_API_KEY;

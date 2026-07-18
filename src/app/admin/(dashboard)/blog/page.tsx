@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Plus, ExternalLink, Pencil } from "lucide-react";
-import { categoryLabel } from "@/lib/blog";
 import type { AdminArticleListItem } from "@/lib/blog-admin";
 import { useEffect, useState } from "react";
 
@@ -12,6 +11,13 @@ const STATUS_LABEL: Record<string, { label: string; color: string }> = {
   draft:     { label: "Brouillon", color: "bg-gray-100 text-gray-500" },
 };
 
+const CATEGORY_LABEL: Record<string, string> = {
+  "pneus-voiture": "Pneus voiture",
+  mecanique: "Mécanique",
+  "pneus-pl": "Pneus PL",
+  blog: "Actualités",
+};
+
 function statusBadge(status: string) {
   const s = STATUS_LABEL[status] ?? { label: status, color: "bg-gray-100 text-gray-500" };
   return (
@@ -19,6 +25,10 @@ function statusBadge(status: string) {
       {s.label}
     </span>
   );
+}
+
+function categoryLabel(category: string) {
+  return CATEGORY_LABEL[category] ?? category;
 }
 
 export default function AdminBlogList() {

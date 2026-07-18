@@ -2,6 +2,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
+import fs from "fs/promises";
+import path from "path";
 import { sql } from "./db";
 
 export type Categorie = "pneus-voiture" | "mecanique" | "pneus-pl" | "blog";
@@ -74,6 +76,8 @@ interface ArticleRow {
   raw: string;
 }
 
+const LOCAL_BLOG_DIR = path.join(process.cwd(), "content", "blog");
+
 const CATEGORY_DEFAULT_IMAGE: Record<Categorie, string> = {
   "pneus-voiture": "/Design sans titre (29)/1.webp",
   "mecanique":     "/Img/IMG_5380.webp",
@@ -117,7 +121,7 @@ function makeExcerpt(content: string, maxWords = 35): string {
   const cleaned = content
     .replace(/^---[\s\S]*?---/, "")
     .replace(/^#.*$/gm, "")
-    .replace(/\*\*|__|_|\*/g, "")
+    .replace(/\*\*|__|_|\*|`/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/\n+/g, " ")
     .trim();
@@ -127,11 +131,35 @@ function makeExcerpt(content: string, maxWords = 35): string {
 
 const EMOJI_RE = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FEFF}]/gu;
 
+function decodeHtmlEntities(text: string): string {
+  return text
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+function slugifyHeading(text: string): string {
+  return decodeHtmlEntities(text)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, " et ")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 60);
+}
+
 function addHeadingIds(html: string): string {
   const slugMap: Record<string, number> = {};
   return html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h[23]>/gi, (_, level, attrs, inner) => {
-    const text = inner.replace(/<[^>]+>/g, "").trim();
-    const base = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").slice(0, 60);
+    const text = decodeHtmlEntities(inner.replace(/<[^>]+>/g, "").trim());
+    const base = slugifyHeading(text);
     slugMap[base] = (slugMap[base] ?? 0) + 1;
     const id = slugMap[base] > 1 ? `${base}-${slugMap[base]}` : base;
     return `<h${level}${attrs} id="${id}">${inner}</h${level}>`;
@@ -160,10 +188,67 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
     headings.push({
       level: parseInt(hm[1]) as 2 | 3,
       id: hm[2],
-      text: hm[3].replace(/<[^>]+>/g, "").trim(),
+      text: decodeHtmlEntities(hm[3].replace(/<[^>]+>/g, "").trim()),
     });
   }
   return { frontmatter: rowToFrontmatter(row), html, faq, excerpt, headings };
+}
+
+async function readLocalArticleRows(): Promise<ArticleRow[]> {
+  try {
+    const files = (await fs.readdir(LOCAL_BLOG_DIR))
+      .filter((file) => file.endsWith(".md"))
+      .sort();
+
+    const rows: Array<ArticleRow | null> = await Promise.all(
+      files.map(async (file) => {
+        const raw = await fs.readFile(path.join(LOCAL_BLOG_DIR, file), "utf-8");
+        const { frontmatter, body } = parseMarkdown(raw);
+        if (!frontmatter.slug || !frontmatter.titre || !frontmatter.categorie) return null;
+        return {
+          slug: frontmatter.slug,
+          titre: frontmatter.titre,
+          meta_description: frontmatter.meta_description || "",
+          categorie: frontmatter.categorie,
+          date: frontmatter.date || null,
+          auteur: frontmatter.auteur || null,
+          read_time: frontmatter.read_time || null,
+          body,
+          raw,
+        } satisfies ArticleRow;
+      }),
+    );
+
+    return rows.filter((row): row is ArticleRow => row !== null);
+  } catch {
+    return [];
+  }
+}
+
+async function getLocalArticleBySlug(slug: string): Promise<Article | null> {
+  const rows = await readLocalArticleRows();
+  const row = rows.find((item) => item.slug === slug);
+  return row ? rowToArticle(row) : null;
+}
+
+async function getLocalArticles(): Promise<Article[]> {
+  const rows = await readLocalArticleRows();
+  return Promise.all(rows.map(rowToArticle));
+}
+
+function mergeArticles(primary: Article[], secondary: Article[]): Article[] {
+  const merged = new Map<string, Article>();
+  for (const article of primary) merged.set(article.frontmatter.slug, article);
+  for (const article of secondary) {
+    if (!merged.has(article.frontmatter.slug)) {
+      merged.set(article.frontmatter.slug, article);
+    }
+  }
+  return Array.from(merged.values()).sort((a, b) => {
+    const left = a.frontmatter.date || "";
+    const right = b.frontmatter.date || "";
+    return right.localeCompare(left);
+  });
 }
 
 // Filtre runtime : un article est public dès que `status='published'`,
@@ -171,21 +256,26 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
 // Plus besoin de cron pour flipper le status — la lecture matche les dates dynamiquement.
 
 export async function getAllSlugs(): Promise<string[]> {
-  if (!process.env.DATABASE_URL) return [];
+  if (!process.env.DATABASE_URL) {
+    const local = await getLocalArticles();
+    return local.map((article) => article.frontmatter.slug);
+  }
   try {
     const rows = (await sql`
       SELECT slug FROM articles
       WHERE status = 'published'
          OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW())
     `) as { slug: string }[];
-    return rows.map((r) => r.slug);
+    const local = await getLocalArticles();
+    return Array.from(new Set([...rows.map((r) => r.slug), ...local.map((article) => article.frontmatter.slug)]));
   } catch {
-    return [];
+    const local = await getLocalArticles();
+    return local.map((article) => article.frontmatter.slug);
   }
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  if (!process.env.DATABASE_URL) return null;
+  if (!process.env.DATABASE_URL) return getLocalArticleBySlug(slug);
   // Ne pas catch : si la DB est KO, on laisse l'erreur remonter pour afficher maintenance
   const rows = (await sql`
     SELECT * FROM articles
@@ -194,12 +284,12 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
            OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
     LIMIT 1
   `) as ArticleRow[];
-  if (rows.length === 0) return null;
+  if (rows.length === 0) return getLocalArticleBySlug(slug);
   return rowToArticle(rows[0]);
 }
 
 export async function getAllArticles(): Promise<Article[]> {
-  if (!process.env.DATABASE_URL) return [];
+  if (!process.env.DATABASE_URL) return getLocalArticles();
   try {
     const rows = (await sql`
       SELECT * FROM articles
@@ -207,14 +297,19 @@ export async function getAllArticles(): Promise<Article[]> {
          OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW())
       ORDER BY date DESC NULLS LAST
     `) as ArticleRow[];
-    return Promise.all(rows.map(rowToArticle));
+    const dbArticles = await Promise.all(rows.map(rowToArticle));
+    const localArticles = await getLocalArticles();
+    return mergeArticles(dbArticles, localArticles);
   } catch {
-    return [];
+    return getLocalArticles();
   }
 }
 
 export async function getArticlesByCategory(cat: Categorie): Promise<Article[]> {
-  if (!process.env.DATABASE_URL) return [];
+  if (!process.env.DATABASE_URL) {
+    const local = await getLocalArticles();
+    return local.filter((article) => article.frontmatter.categorie === cat);
+  }
   try {
     const rows = (await sql`
       SELECT * FROM articles
@@ -223,9 +318,12 @@ export async function getArticlesByCategory(cat: Categorie): Promise<Article[]> 
              OR (status = 'scheduled' AND publish_at IS NOT NULL AND publish_at <= NOW()))
       ORDER BY date DESC NULLS LAST
     `) as ArticleRow[];
-    return Promise.all(rows.map(rowToArticle));
+    const dbArticles = await Promise.all(rows.map(rowToArticle));
+    const localArticles = (await getLocalArticles()).filter((article) => article.frontmatter.categorie === cat);
+    return mergeArticles(dbArticles, localArticles);
   } catch {
-    return [];
+    const local = await getLocalArticles();
+    return local.filter((article) => article.frontmatter.categorie === cat);
   }
 }
 

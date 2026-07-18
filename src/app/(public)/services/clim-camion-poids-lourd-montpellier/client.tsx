@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, MapPin, Snowflake, Truck, Wrench, Shield, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -11,20 +12,24 @@ import { PHONE_DISPLAY } from "@/lib/tracking";
 
 const faqs = [
   {
-    q: "À qui s'adresse cette offre clim ?",
-    a: "Cette offre est dédiée aux camions, poids lourds, engins TP et véhicules agricoles. Elle ne concerne pas la clim voiture à 59€.",
+    q: "La clim cabine souffle chaud ou refroidit mal : vous contrôlez avant de recharger ?",
+    a: "Oui. Recacor vérifie d'abord le besoin, le véhicule, le circuit et les conditions d'intervention avant de lancer une recharge. Si le problème vient d'autre chose, ce n'est pas traité comme une recharge simple.",
   },
   {
-    q: "Le service est-il disponible au garage ou sur site ?",
-    a: "Oui. Recacor peut prendre en charge la clim au garage du Crès ou organiser une intervention sur site sur Montpellier et son agglomération selon le véhicule et le besoin.",
+    q: "Vous intervenez au garage ou directement sur site ?",
+    a: "Les deux sont possibles selon le véhicule, l'accès et le besoin. La prise en charge peut se faire au garage du Crès ou sur site, mais uniquement sur Montpellier et son agglomération.",
   },
   {
-    q: "Combien coûte une recharge clim poids lourd ?",
-    a: "La recharge clim démarre à 149€. Le prix exact dépend du véhicule, de l'accès, du gaz utilisé et du type d'intervention attendu.",
+    q: "Le tarif à 149€ correspond à quoi ?",
+    a: "149€ est le prix d'appel. Le tarif exact dépend du véhicule, de l'accès, du type de circuit et du mode d'intervention, au garage ou sur site.",
   },
   {
-    q: "Quels véhicules peuvent être pris en charge ?",
-    a: "Poids lourds, tracteurs routiers, porteurs, engins TP, véhicules agricoles et certains utilitaires professionnels selon configuration.",
+    q: "Quels véhicules prenez-vous en charge ?",
+    a: "L'offre concerne surtout les camions, poids lourds, tracteurs routiers, porteurs, engins TP et certains véhicules agricoles selon configuration.",
+  },
+  {
+    q: "Cette page concerne aussi les voitures et utilitaires légers ?",
+    a: "Non. Ici, il s'agit bien de clim camion et poids lourd. Pour une voiture ou un utilitaire léger, il faut passer par la page clim auto à partir de 59€.",
   },
 ];
 
@@ -44,16 +49,35 @@ const vehicleTypes = [
 
 const useCases = [
   "Clim cabine camion qui ne refroidit plus",
-  "Froid faible en tournée ou sur chantier",
-  "Recharge avant forte saison ou longue route",
-  "Besoin d'intervention rapide pour véhicule pro",
+  "Froid faible en tournée, sur chantier ou en livraison",
+  "Cabine difficile à tenir en été",
+  "Besoin de vérifier vite si une recharge est vraiment adaptée",
 ];
 
 const steps = [
-  { icon: Truck, title: "Qualification du véhicule", desc: "Type de véhicule, accès, besoin atelier ou sur site." },
-  { icon: Wrench, title: "Contrôle de la prestation", desc: "Préparation de l'intervention selon le circuit et le gaz concerné." },
-  { icon: Snowflake, title: "Recharge clim", desc: "Recharge à partir de 149€ selon le véhicule et le besoin." },
-  { icon: Shield, title: "Contrôle final", desc: "Vérification du froid en cabine et du bon fonctionnement." },
+  { icon: Truck, title: "Qualification du véhicule", desc: "Type de véhicule, accès, lieu d'intervention et symptôme remonté." },
+  { icon: Wrench, title: "Contrôle avant intervention", desc: "Vérification du besoin réel avant de traiter la demande comme une recharge." },
+  { icon: Snowflake, title: "Recharge clim", desc: "Recharge à partir de 149€ selon le véhicule et le mode de prise en charge." },
+  { icon: Shield, title: "Contrôle final", desc: "Vérification du froid en cabine et du bon fonctionnement après intervention." },
+];
+
+const controlPoints = [
+  {
+    title: "Froid en cabine",
+    desc: "Le point de départ, c'est le ressenti réel en cabine : froid insuffisant, clim qui souffle chaud ou confort qui chute en tournée.",
+  },
+  {
+    title: "Type de véhicule et accès",
+    desc: "Camion, tracteur, porteur ou engin TP ne se prennent pas en charge de la même manière. L'accès et le contexte comptent.",
+  },
+  {
+    title: "Garage ou sur site",
+    desc: "Recacor qualifie d'abord si le besoin se traite au garage du Crès ou sur site, uniquement sur Montpellier agglomération.",
+  },
+  {
+    title: "Cohérence de la recharge",
+    desc: "Le but n'est pas de faire une recharge automatique, mais de vérifier si c'est bien la bonne intervention pour le véhicule.",
+  },
 ];
 
 export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
@@ -86,12 +110,12 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 <Truck className="mr-1 h-3 w-3" /> Clim camion et poids lourd
               </Badge>
               <h1 className="max-w-4xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Clim camion et poids lourd <br />
+                Clim cabine camion <br />
                 <span className="text-purple-glow">Montpellier - Le Crès</span>
               </h1>
               <p className="mt-4 max-w-2xl text-lg text-white/78">
-                Recharge clim pour poids lourds, camions, TP et agricoles dès 149€, au garage du Crès ou sur site
-                sur Montpellier et son agglomération.
+                Recharge clim dès 149€ pour camions, poids lourds, TP et certains véhicules agricoles. Recacor
+                contrôle d&apos;abord le besoin avant intervention, au garage du Crès ou sur site sur Montpellier agglomération.
               </p>
               <div className="mt-6 grid max-w-3xl grid-cols-1 gap-2 sm:grid-cols-2">
                 {points.map((point) => (
@@ -102,7 +126,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 ))}
               </div>
               <p className="mt-4 text-sm font-medium text-white/70">
-                Offre réservée aux poids lourds, engins TP et véhicules agricoles.
+                Offre réservée aux camions, poids lourds, engins TP et véhicules agricoles.
               </p>
               <div className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
                 <PhoneLink
@@ -144,12 +168,17 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h2 className="text-4xl font-black tracking-tight">
-              Une offre clim dédiée aux <span className="text-gradient-purple">camions et véhicules pros</span>
+              Clim cabine moins froide <span className="text-gradient-purple">? Faire contrôler avant recharge</span>
             </h2>
             <p className="mt-5 leading-relaxed text-muted-foreground">
-              Cette page ne concerne pas la clim voiture. Ici, l&apos;offre est pensée pour les besoins des camions,
-              poids lourds, engins TP et véhicules agricoles, avec une prise en charge au garage du Crès ou sur site
-              selon le véhicule et la zone d&apos;intervention.
+              Quand la clim cabine refroidit moins bien, mieux vaut vérifier le besoin réel avant de traiter la
+              demande comme une recharge simple. En poids lourd, le véhicule, l&apos;accès et le contexte d&apos;intervention
+              changent la manière de prendre en charge la demande.
+            </p>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Ici, le sujet n&apos;est pas la clim voiture. Cette page concerne les camions, poids lourds, engins TP et
+              certains véhicules agricoles, avec une prise en charge au garage du Crès ou sur site uniquement sur
+              Montpellier agglomération.
             </p>
           </div>
 
@@ -173,14 +202,14 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                   Poids lourd · Camion · TP · Agricole
                 </Badge>
                 <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-                  Quels véhicules sont <span className="text-gradient-purple">concernés ?</span>
+                  Pour les <span className="text-gradient-purple">camions, PL, TP et agricoles</span>
                 </h2>
               </div>
               <div className="space-y-4 leading-relaxed text-muted-foreground">
                 <p>
-                  Le coeur de l&apos;offre concerne la clim camion et poids lourd. Recacor peut aussi intervenir sur
-                  certains engins TP et véhicules agricoles selon la configuration du véhicule, l&apos;accès et le type
-                  de circuit.
+                  Le coeur de l&apos;offre concerne la clim camion et poids lourd autour de Montpellier. Recacor peut
+                  aussi intervenir sur certains engins TP et véhicules agricoles selon la configuration du véhicule
+                  et les conditions d&apos;accès.
                 </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {vehicleTypes.map((item) => (
@@ -215,6 +244,45 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
         </div>
       </section>
 
+      <section className="bg-muted/60 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div>
+              <Badge className="mb-4 border-purple-bright/20 bg-purple-bright/10 text-purple-bright">
+                Avant intervention
+              </Badge>
+              <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
+                Ce que Recacor <span className="text-gradient-purple">contrôle concrètement</span>
+              </h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                En clim poids lourd, le plus important est d&apos;éviter la mauvaise intervention. Le contrôle sert à
+                qualifier le besoin réel avant de parler recharge, déplacement ou prise en charge atelier.
+              </p>
+
+              <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-white shadow-sm shadow-purple-bright/[0.04]">
+                <Image
+                  src="/illustrations/services/clim-pl-intro-20260717.webp"
+                  alt="Technicien effectuant un contrôle de climatisation sur un camion à l'atelier"
+                  width={1400}
+                  height={933}
+                  sizes="(min-width: 1024px) 36rem, 100vw"
+                  className="h-auto w-full"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              {controlPoints.map((point) => (
+                <div key={point.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm shadow-purple-bright/[0.04]">
+                  <h3 className="text-lg font-black tracking-tight">{point.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{point.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-muted py-20" id="devis">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
@@ -222,11 +290,11 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
               Demande rapide
             </Badge>
             <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-              Demande clim <span className="text-gradient-purple">camion / poids lourd</span>
+              Demander un <span className="text-gradient-purple">contrôle ou une recharge clim cabine</span>
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Laisse les informations du véhicule et du lieu d&apos;intervention. Recacor te rappelle pour organiser la
-              prise en charge au garage du Crès ou sur site.
+              Laisser les informations du véhicule et du lieu d&apos;intervention. Recacor rappelle pour qualifier le
+              besoin et organiser la prise en charge au garage du Crès ou sur site sur Montpellier agglomération.
             </p>
             <div className="mt-6 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground">
               <p className="font-bold text-foreground">À préparer si possible :</p>

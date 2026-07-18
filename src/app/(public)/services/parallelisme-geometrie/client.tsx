@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Target, Gauge, Wrench } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -11,10 +12,11 @@ import { PHONE_DISPLAY } from "@/lib/tracking";
 import Link from "next/link";
 
 const faqs = [
-  { q: "Quand faire régler son parallélisme ?", a: "Après un choc, un changement de pneus, tous les 20 000 km ou si vous constatez une usure anormale des pneus ou un volant de travers." },
-  { q: "Combien coûte un parallélisme ?", a: "Nos tarifs démarrent à 65€ pour un parallélisme simple. La géométrie 4 roues complète est à 89€." },
-  { q: "Combien de temps dure l'opération ?", a: "Le réglage prend environ 30 à 45 minutes avec notre équipement laser 3D." },
-  { q: "Quelle différence entre parallélisme et géométrie ?", a: "Le parallélisme règle l'alignement des roues avant. La géométrie contrôle aussi les angles de carrossage et chasse sur les 4 roues." },
+  { q: "Ma voiture tire d'un côté ou le volant n'est plus droit : faut-il faire un parallélisme ?", a: "Oui, c'est l'un des signaux les plus fréquents. Un contrôle du train roulant permet de vérifier si le problème vient du parallélisme, de la pression des pneus ou d'un autre élément de suspension." },
+  { q: "Combien coûte un parallélisme ?", a: "Nos tarifs démarrent à 65€ pour un parallélisme simple. La géométrie 4 roues complète est à 89€ selon le véhicule et les réglages réellement nécessaires." },
+  { q: "Le contrôle est-il offert après un changement de pneus ?", a: "Oui. Chez Recacor, le contrôle du parallélisme est offert lors d'un changement de pneus. Le réglage n'est proposé que s'il est utile." },
+  { q: "Combien de temps dure l'opération ?", a: "Le réglage prend en général 30 à 45 minutes avec notre équipement laser 3D, selon l'état du train roulant et le type de véhicule." },
+  { q: "Quelle différence entre parallélisme et géométrie ?", a: "Le parallélisme règle principalement l'alignement des roues. La géométrie complète contrôle aussi d'autres angles comme le carrossage et la chasse quand le véhicule permet ces réglages." },
 ];
 
 export function ParallelismeClient() {
@@ -48,6 +50,59 @@ export function ParallelismeClient() {
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </section>
+
+      <section className="py-14 bg-background">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                  Une page qui doit parler{" "}
+                  <span className="text-gradient-purple">usure, tenue de route et pneus neufs</span>
+                </h2>
+                <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Le parallélisme n&apos;est pas une prestation abstraite pour le client. La vraie
+                    demande, c&apos;est souvent : la voiture tire, le volant n&apos;est plus droit,
+                    les pneus s&apos;usent mal, ou un train neuf vient d&apos;être monté et on veut
+                    éviter de le dégrader trop vite.
+                  </p>
+                  <p>
+                    Cette page doit donc rester très concrète : expliquer quand contrôler, ce qui
+                    différencie le simple contrôle du réglage, pourquoi le contrôle est offert lors
+                    d&apos;un changement de pneus, et comment la géométrie protège la durée de vie du
+                    train roulant.
+                  </p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-3xl border border-border bg-muted/30">
+                <Image
+                  src="/illustrations/services/parallelisme-intro-20260716.webp"
+                  alt="Réglage de géométrie sur une voiture avec banc laser de parallélisme"
+                  width={1200}
+                  height={658}
+                  sizes="(min-width: 1024px) 32rem, 100vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Cas les plus fréquents</p>
+                <p className="mt-2 text-sm font-semibold text-foreground">
+                  Voiture qui tire, volant de travers, usure irrégulière, choc trottoir, pneus neufs à préserver
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Infos clés à retenir</p>
+                <p className="mt-2 text-sm font-semibold text-foreground">
+                  Contrôle offert avec pneus, réglage dès 65€, géométrie complète possible selon véhicule
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="py-24 bg-background">
@@ -174,6 +229,9 @@ export function ParallelismeClient() {
             <h2 className="text-4xl font-black tracking-tight">
               Devis <span className="text-gradient-purple">parallélisme</span>
             </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
+              Pour un volant de travers, une usure anormale ou après un changement de pneus, faites contrôler le réglage.
+            </p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisMecaniqueForm defaultService="Contrôle parallélisme" />

@@ -10,6 +10,28 @@ import { DevisCtaLink } from "@/components/devis-cta-link";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 import Link from "next/link";
 
+const signauxParc = [
+  "Pneu marqué REGROOVABLE",
+  "Carcasse encore saine",
+  "Usure lue assez tôt",
+  "Pression et charge suivies",
+];
+
+const risquesCarcasse = [
+  {
+    title: "Sous-gonflage et échauffement",
+    desc: "Un pneu qui roule longtemps avec une pression instable chauffe davantage, s'use moins bien et peut perdre une partie du potentiel qui rend le recreusage pertinent.",
+  },
+  {
+    title: "Surcharge et usage sévère",
+    desc: "Quand la charge réelle, le poste ou l'usage chantier sont mal pris en compte, la carcasse travaille plus dur et se dégrade plus vite.",
+  },
+  {
+    title: "Choc, crevaison ou roulage trop long",
+    desc: "Après incident, certains dégâts restent internes. Attendre trop longtemps avant contrôle peut faire perdre la valeur de l'enveloppe.",
+  },
+];
+
 const avantages = [
   { icon: Euro, title: "Jusqu'à 40% d'économie", desc: "Un coût kilométrique optimisé pour les flottes" },
   { icon: TrendingUp, title: "+25% de durée de vie", desc: "Prolongation significative de l'usage" },
@@ -17,10 +39,12 @@ const avantages = [
 ];
 
 const faqs = [
-  { q: "Qu'est-ce que le recreusage ?", a: "Le recreusage consiste à redonner de la profondeur aux sculptures d'un pneu usé, prolongeant sa durée de vie de 20 à 30%." },
-  { q: "Tous les pneus peuvent-ils être recreusés ?", a: "Non, seuls les pneus conçus pour cette opération (marqués 'REGROOVABLE') peuvent être recreusés. Nous vérifions chaque pneu avant intervention." },
-  { q: "Le recreusage est-il sûr ?", a: "Oui, réalisé par un professionnel sur un pneu adapté, le recreusage respecte toutes les normes de sécurité." },
-  { q: "Combien coûte un recreusage ?", a: "Le tarif varie selon la dimension du pneu et le type d'engin. Demandez un devis personnalisé." },
+  { q: "Qu'est-ce que le recreusage sur un pneu poids lourd ?", a: "Le recreusage consiste à redonner de la profondeur aux sculptures prévues par le manufacturier sur un pneu éligible. L'objectif est de prolonger l'usage du pneu avant remplacement ou rechapage et d'améliorer le coût kilométrique de la flotte." },
+  { q: "Tous les pneus peuvent-ils être recreusés ?", a: "Non. Seuls les pneus conçus pour cette opération, avec marquage REGROOVABLE et un état compatible, peuvent être recreusés. Nous vérifions la carcasse, l'usure, les réparations éventuelles et la profondeur restante avant de valider l'intervention." },
+  { q: "À quel moment faut-il envisager le recreusage ?", a: "Le bon moment dépend du kilométrage, de la position sur le véhicule, de l'usage et de la sculpture restante. L'idée est d'intervenir avant qu'il ne soit trop tard pour préserver le potentiel de la carcasse et éviter de perdre de la valeur sur le pneu." },
+  { q: "Le recreusage est-il sûr ?", a: "Oui, s'il est réalisé sur un pneu adapté et selon les recommandations du manufacturier. Le recreusage ne se décide pas automatiquement : un pneu non conforme ou trop abîmé est refusé." },
+  { q: "Une mauvaise pression ou une surcharge peuvent-elles faire perdre le potentiel de recreusage ?", a: "Oui. Sous-gonflage, surcharge, usure irrégulière, échauffement ou roulage trop long sur une enveloppe dégradée peuvent abîmer la carcasse et faire perdre une partie de sa valeur. Le recreusage fonctionne mieux dans une logique de suivi de parc." },
+  { q: "Combien coûte un recreusage ?", a: "Le tarif dépend de la dimension, du type de pneu, du volume à traiter et de l'usage du parc. Le bon raisonnement reste celui du coût d'usage global, pas seulement du prix immédiat. Demandez un devis personnalisé pour votre flotte." },
 ];
 
 export function RecreusageClient() {
@@ -38,13 +62,22 @@ export function RecreusageClient() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6"><RefreshCw className="h-3 w-3 mr-1" /> Recreusage</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl">
-            Recreusage{" "}
-            <span className="text-purple-glow">Haute Qualité</span><br />
-            Pneus poids lourd en Hérault
+            Recreusage pneus poids lourd{" "}
+            <span className="text-purple-glow">pour mieux exploiter</span><br />
+            la valeur de vos carcasses
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
-            Des pneus haute qualité conçus pour durer plus longtemps, à moindre coût et avec moins d&apos;impact environnemental.
+            Le sujet n&apos;est pas seulement d&apos;économiser. Il s&apos;agit surtout de prolonger
+            l&apos;usage d&apos;une enveloppe éligible, de protéger le coût au kilomètre et d&apos;éviter
+            de perdre trop tôt une carcasse encore exploitable.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-white/80">
+            {["REGROOVABLE", "Carcasse", "Coût au kilomètre", "Transport / remorque", "Pression et charge"].map((item) => (
+              <span key={item} className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5">
+                {item}
+              </span>
+            ))}
+          </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
             <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
               Appeler : {PHONE_DISPLAY}
@@ -57,10 +90,56 @@ export function RecreusageClient() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
+      <section className="py-14 bg-background">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+              Un service pensé pour{" "}
+              <span className="text-gradient-purple">mieux exploiter la valeur du pneu</span>
+            </h2>
+            <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Cette page ne doit pas vendre le recreusage comme un simple argument prix.
+                Pour un transporteur ou un gestionnaire de parc, le vrai sujet est plus large :
+                prolonger l&apos;usage d&apos;une enveloppe éligible, mieux piloter le coût
+                kilométrique et réduire les immobilisations inutiles.
+              </p>
+              <p>
+                Le recreusage a du sens quand il s&apos;intègre à une logique flotte :
+                suivi de l&apos;usure, lecture par essieu, bon moment d&apos;intervention et
+                arbitrage entre pneu neuf, recreusage puis éventuellement rechapage. C&apos;est
+                cette lecture métier que Recacor doit montrer sur la page.
+              </p>
+              <p>
+                En pratique, une carcasse garde de la valeur quand le parc est suivi sérieusement :
+                pression correcte, charge cohérente, contrôle après crevaison ou choc, et
+                intervention avant que l&apos;usure ne détruise le potentiel du pneu. C&apos;est
+                cette rigueur qui conditionne le rendement kilométrique final.
+              </p>
+            </div>
+            <div className="mt-6 rounded-2xl border border-border bg-muted/30 p-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Conditions de départ qui changent tout</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {signauxParc.map((item) => (
+                  <span key={item} className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Voir la page mère pneus PL</Link>
+              <Link href="/services/clim-camion-poids-lourd-montpellier" className="text-purple-bright hover:underline">Clim camion Montpellier agglo</Link>
+              <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-black tracking-tight text-center mb-12">
-            Les 3 avantages du <span className="text-gradient-purple">recreusage Recacor</span>
+            Les 3 gains attendus quand le <span className="text-gradient-purple">parc est bien suivi</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {avantages.map((a) => (
@@ -90,6 +169,15 @@ export function RecreusageClient() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {risquesCarcasse.map((item) => (
+              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
+                <h3 className="text-lg font-black tracking-tight mb-3">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -136,6 +224,39 @@ export function RecreusageClient() {
             </div>
           </div>
 
+          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              Ce qui protège vraiment le{" "}
+              <span className="text-gradient-purple">potentiel de la carcasse</span>
+            </h2>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h3 className="text-base font-black mb-2">Pression suivie</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Une pression instable augmente l&apos;échauffement, accélère l&apos;usure et peut
+                  faire perdre plus vite l&apos;éligibilité au recreusage. Le contrôle à froid et
+                  le suivi régulier restent une base simple mais décisive.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-black mb-2">Charge et usage cohérents</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Surcharge, usage chantier sévère, poste mal affecté ou permutation trop tardive
+                  dégradent la valeur de l&apos;enveloppe. Un pneu rentable est d&apos;abord un pneu
+                  bien exploité.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-base font-black mb-2">Contrôle après incident</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Après crevaison, choc, bordure ou hernie, certains dégâts peuvent rester internes.
+                  Vérifier tôt permet d&apos;éviter de rouler trop longtemps sur une carcasse déjà
+                  fragilisée.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-black tracking-tight mb-5">Quels véhicules sont concernés ?</h2>
@@ -157,6 +278,7 @@ export function RecreusageClient() {
               </p>
               <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
                 <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Solutions pneus PL</Link>
+                <Link href="/services/clim-camion-poids-lourd-montpellier" className="text-purple-bright hover:underline">Clim camion Montpellier agglo</Link>
                 <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
               </div>
             </div>

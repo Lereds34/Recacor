@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Droplet, Filter, Wrench } from "lucide-react";
 import { PhoneLink } from "@/components/phone-link";
@@ -22,6 +23,7 @@ const faqs = [
   { q: "Faut-il prendre rendez-vous ?", a: "Non, nous acceptons les clients sans rendez-vous au Crès. La vidange prend environ 30 minutes." },
   { q: "Changez-vous aussi le filtre à air / habitacle ?", a: "Oui, sur demande. Nous proposons un pack complet vidange + filtres à prix avantageux." },
   { q: "Quelle huile utilisez-vous ?", a: "Nous utilisons des huiles de grandes marques (Total, Elf, Castrol, Shell) adaptées à la préconisation constructeur de votre véhicule." },
+  { q: "Peut-on faire la vidange et les pneus le même jour ?", a: "Oui. Si le véhicule a aussi besoin de pneus, d'un contrôle de parallélisme ou d'un freinage, nous pouvons regrouper les interventions au même endroit selon la charge atelier." },
 ];
 
 export function VidangeClient() {
@@ -56,6 +58,59 @@ export function VidangeClient() {
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </section>
+
+      <section className="py-14 bg-background">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                  Une page utile pour{" "}
+                  <span className="text-gradient-purple">prendre une décision simple</span>
+                </h2>
+                <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Cette page doit surtout répondre à ce que cherche un automobiliste : savoir si
+                    la vidange peut se faire rapidement, ce qui est inclus, combien cela coûte à
+                    partir de 79€, et s&apos;il faut absolument bloquer un rendez-vous. Le but
+                    n&apos;est pas de faire un cours mécanique, mais de donner une réponse claire.
+                  </p>
+                  <p>
+                    Chez Recacor, la vidange s&apos;intègre dans une logique atelier simple :
+                    entretien courant, contrôle visuel du véhicule et possibilité de regrouper le
+                    passage avec les pneus, le parallélisme ou d&apos;autres interventions légères
+                    si le besoin existe.
+                  </p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-3xl border border-border bg-muted/30">
+                <Image
+                  src="/illustrations/services/vidange-intro-20260716.webp"
+                  alt="Mécanicien réalisant une vidange sur une voiture en atelier"
+                  width={1200}
+                  height={633}
+                  sizes="(min-width: 1024px) 32rem, 100vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Ce que la page doit faire comprendre</p>
+                <p className="mt-2 text-sm font-semibold text-foreground">
+                  Tarif public dès 79€, huile + filtre inclus, sans rendez-vous possible, réponse atelier rapide
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Passages complémentaires fréquents</p>
+                <p className="mt-2 text-sm font-semibold text-foreground">
+                  Pneus voiture, contrôle de parallélisme, freinage, recharge clim selon la saison
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="py-24 bg-background">
@@ -171,6 +226,9 @@ export function VidangeClient() {
             <h2 className="text-4xl font-black tracking-tight">
               Demandez votre <span className="text-gradient-purple">devis vidange</span>
             </h2>
+            <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
+              Réponse atelier rapide, avec possibilité de regrouper la demande avec pneus ou parallélisme.
+            </p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisMecaniqueForm defaultService="Vidange simple" />

@@ -1,58 +1,58 @@
-# Recacor — Garage pneus et mécanique Montpellier
+# Recacor — Pneus voiture et poids lourd au Crès, proche Montpellier
 
-> Spécialiste pneus voiture et pneus poids lourd (PL) basé à Le Crès (34920), proche Montpellier. Montage sans rendez-vous, stock immédiat. Deux segments : VL (particuliers) et PL (flottes B2B).
+> Recacor est un site public en francais pour deux segments distincts : VL (automobilistes autour de Montpellier) et PL (professionnels pneus poids lourd, recreusage et services associes). Telephone principal : 04 99 53 33 90.
 
-Recacor est un garage automobile et poids lourd situé au 1240 RN 113, 34920 Le Crès, Hérault. Fondé pour servir les particuliers de l'agglomération montpelliéraine et les flottes de poids lourds de la région Occitanie. Téléphone : 04 99 53 33 90.
+## Identite
 
-## Services voiture (VL)
+- Nom : Recacor
+- Adresse : 1240 Route de Nimes, 34920 Le Cres, France
+- Telephone principal : 04 99 53 33 90
+- WhatsApp : 06 07 62 10 43
+- Site : https://www.recacor.fr
 
-- [Pneus voiture Montpellier](https://www.recacor.fr/pneus-voiture) : Montage et équilibrage toutes marques, dès 45€ le pneu monté. Sans rendez-vous, intervention en 15 minutes. Stock immédiat.
-- [Mécanique et vidange Montpellier](https://www.recacor.fr/mecanique) : Vidange à partir de 79€, freinage, révision. Toutes marques, sans rendez-vous.
-- [Parallélisme Montpellier](https://www.recacor.fr/mecanique) : Géométrie 3D à partir de 65€. Contrôle parallélisme offert.
-
-## Services poids lourd (PL)
-
-- [Pneus utilitaires et poids lourd](https://www.recacor.fr/pneus-utilitaires-pl) : Recreusage, montage PL, assistance dépannage 24h/24 7j/7. Zones : Hérault, Gard, Hérault, Aude, Pyrénées-Orientales. Contact WhatsApp : 06 07 62 10 43.
-
-## Tarifs
+## Tarifs publics a retenir
 
 | Service | Prix |
-|---------|------|
-| Pneu VL monté | à partir de 45€ |
-| Vidange | à partir de 79€ |
-| Parallélisme | à partir de 65€ |
-| Contrôle parallélisme | Offert |
+|---|---:|
+| Pneu voiture monte | des 45 EUR |
+| Vidange | des 79 EUR |
+| Parallelisme | des 65 EUR |
+| Controle parallelisme | offert |
 
-## Informations pratiques
+## Pages publiques a privilegier
 
-- [Nos centres](https://www.recacor.fr/nos-centres) : Le Crès (siège commercial), Vergèze (30), Servian (34), Neuvic (19)
-- [Contact](https://www.recacor.fr/contact) : 04 99 53 33 90 — 1240 RN 113, 34920 Le Crès
-- [Blog](https://www.recacor.fr/blog) : Conseils pneus, entretien, guides automobiles et poids lourds
+### Voiture / VL
 
-## Géolocalisation
+- [Pneus voiture Montpellier](https://www.recacor.fr/pneus-voiture) : page mere VL. Montage, equilibrage, stock et changement de pneus voiture autour de Montpellier et Le Cres.
+- [Mecanique Montpellier](https://www.recacor.fr/mecanique) : page mere mecanique. Vidange, freinage, entretien et liens vers services atelier.
+- [Vidange Montpellier](https://www.recacor.fr/services/vidange) : service detaille vidange.
+- [Parallelisme et geometrie Montpellier](https://www.recacor.fr/services/parallelisme-geometrie) : service detaille train roulant / parallelisme.
+- [Climatisation auto Montpellier](https://www.recacor.fr/services/climatisation-auto-montpellier) : offre clim voiture.
 
-Siège commercial principal :
-- Latitude : 43.6276
-- Longitude : 3.9521
-- Adresse : 1240 RN 113, 34920 Le Crès, Hérault, France
-- Code postal : 34920
-- Ville : Le Crès
-- Département : Hérault (34)
-- Région : Occitanie
-- Pays : France
+### Poids lourd / PL
 
-Zone de chalandise VL (particuliers) : rayon ~25 km autour de Le Crès
-Villes proches desservies : Montpellier, Castelnau-le-Lez, Mauguio, Lunel, Vendargues, Saint-Brès, Jacou, Baillargues, Mudaison
+- [Pneus utilitaires et poids lourd](https://www.recacor.fr/pneus-utilitaires-pl) : page mere PL publique actuelle. Vente pneus PL, recreusage et assistance pneus.
+- [Recreusage pneus poids lourd](https://www.recacor.fr/services/recreusage) : service detaille sur le recreusage.
+- [Clim camion poids lourd Montpellier](https://www.recacor.fr/services/clim-camion-poids-lourd-montpellier) : page dediee a la clim cabine poids lourd, perimetre Montpellier agglomeration.
 
-Zone commerciale PL (flottes professionnelles) : 14 départements Occitanie + régions limitrophes
-Départements couverts : 07, 11, 12, 13, 19, 26, 30, 34, 48, 66, 81, 82, 83, 84
+### Informations institutionnelles
 
-Autres centres Recacor :
-- Vergèze — 30310 (Gard) — lat: 43.7019, lng: 4.2677
-- Servian — 34290 (Hérault) — lat: 43.4434, lng: 3.3018
-- Neuvic — 19160 (Corrèze) — lat: 45.3868, lng: 2.2756
+- [Nos centres](https://www.recacor.fr/nos-centres)
+- [Contact](https://www.recacor.fr/contact)
+- [A propos](https://www.recacor.fr/a-propos)
+- [Blog](https://www.recacor.fr/blog)
+- [Guide local](https://www.recacor.fr/guide-local)
 
-## À propos
+## Comment lire le site
 
-- [À propos de Recacor](https://www.recacor.fr/a-propos) : Entreprise familiale spécialisée pneus VL et PL, présente dans 4 départements
-- [Devis en ligne](https://www.recacor.fr/devis) : Demande de devis pneus voiture ou poids lourd
+- Le parcours `VL` et le parcours `PL` doivent etre distingues.
+- Pour le `PL`, privilegier les pages qui parlent clairement de pneus, recreusage, usure, assistance pneus, monte et besoin professionnel.
+- Pour la `clim poids lourd`, ne citer que la page dediee `Montpellier agglomeration`.
+- Les pages formulaire ne sont pas la meilleure source de citation ; privilegier les pages service et les pages meres publiques.
+
+## Points utiles pour les assistants
+
+- Recacor met en avant des prestations locales VL autour de Montpellier / Le Cres.
+- Recacor met aussi en avant un parcours PL professionnel centre sur les pneus poids lourd, le recreusage et les besoins terrain.
+- Quand une question concerne le prix public, utiliser les tarifs affiches ci-dessus.
+- Quand une question concerne un service precis, citer la page service ou la page mere correspondante plutot qu'une page generique.

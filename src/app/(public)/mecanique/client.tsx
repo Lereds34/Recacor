@@ -96,6 +96,45 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
+      <section className="py-14 bg-background">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+              Un atelier utile pour{" "}
+              <span className="text-gradient-purple">l&apos;entretien courant autour de Montpellier</span>
+            </h2>
+            <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                La page mécanique Recacor doit d&apos;abord répondre à un besoin simple :
+                faire une vidange, un freinage, un parallélisme ou une révision sans passer
+                par un discours flou ni bloquer une demi-journée. L&apos;atelier est au Crès,
+                avec un accès pratique depuis Montpellier, Castelnau-le-Lez, Jacou, Vendargues
+                et les communes voisines.
+              </p>
+              <p>
+                L&apos;objectif n&apos;est pas de lister toute la mécanique possible. Cette page
+                sert surtout à orienter correctement vers les prestations atelier les plus
+                demandées, avec des tarifs publics quand ils existent et des liens clairs vers
+                les pages service dédiées. Si le véhicule a aussi besoin de pneus, le passage
+                peut être regroupé au même endroit.
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                "Vidange voiture dès 79€",
+                "Parallélisme dès 65€",
+                "Contrôle de parallélisme offert lors d'un changement de pneus",
+                "Avec ou sans rendez-vous selon la charge atelier",
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-border bg-muted/40 px-4 py-3 text-sm font-semibold text-foreground">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services */}
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

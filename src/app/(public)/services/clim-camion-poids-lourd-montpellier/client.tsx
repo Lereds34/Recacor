@@ -28,8 +28,8 @@ const faqs = [
     a: "L'offre concerne surtout les camions, poids lourds, tracteurs routiers, porteurs, engins TP et certains véhicules agricoles selon configuration.",
   },
   {
-    q: "Cette page concerne aussi les voitures et utilitaires légers ?",
-    a: "Non. Ici, il s'agit bien de clim camion et poids lourd. Pour une voiture ou un utilitaire léger, il faut passer par la page clim auto à partir de 59€.",
+    q: "Faites-vous aussi la clim voiture ?",
+    a: "Oui, mais sur une offre distincte. Ici, le sujet concerne la clim camion et poids lourd autour de Montpellier agglomération. Pour une voiture ou un utilitaire léger, il faut passer par la page clim auto à partir de 59€.",
   },
 ];
 
@@ -176,8 +176,8 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
               changent la manière de prendre en charge la demande.
             </p>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Ici, le sujet n&apos;est pas la clim voiture. Cette page concerne les camions, poids lourds, engins TP et
-              certains véhicules agricoles, avec une prise en charge au garage du Crès ou sur site uniquement sur
+              L&apos;offre est dédiée aux camions, poids lourds, engins TP et à certains véhicules
+              agricoles, avec une prise en charge au garage du Crès ou sur site uniquement sur
               Montpellier agglomération.
             </p>
           </div>

@@ -24,7 +24,7 @@ const services = [
 const faqs = [
   {
     q: "Faut-il prendre rendez-vous pour une vidange ou un freinage ?",
-    a: "Nous acceptons les clients avec ou sans rendez-vous pour la mécanique légère. La vidange prend environ 30 minutes, le freinage entre 30 et 60 minutes selon l'intervention.",
+    a: "Nous acceptons les clients avec ou sans rendez-vous pour l'entretien auto. La vidange prend environ 30 minutes, le freinage entre 30 et 60 minutes selon l'intervention.",
   },
   {
     q: "Combien coûte une vidange chez Recacor ?",
@@ -53,10 +53,10 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
     <>
       <BreadcrumbJsonLd items={[
         { name: "Accueil", url: "https://www.recacor.fr" },
-        { name: "Mécanique légère", url: "https://www.recacor.fr/mecanique" },
+        { name: "Entretien auto", url: "https://www.recacor.fr/mecanique" },
       ]} />
       <ServiceJsonLd
-        name="Mécanique légère Montpellier"
+        name="Entretien auto Montpellier"
         description="Vidange, freinage, parallélisme, amortisseurs. Avec ou sans rendez-vous au Crès."
       />
       <FaqJsonLd items={faqs} id="mecanique" />
@@ -70,15 +70,15 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
         <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
-            <Wrench className="h-3 w-3 mr-1" /> Mécanique
+            <Wrench className="h-3 w-3 mr-1" /> Entretien auto
           </Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl">
-            Mécanique Légère<br />
+            Entretien Auto<br />
             <span className="text-purple-glow">Garage Recacor Le Crès</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
-            Vidange, freinage, amortisseurs, révision. Avec ou sans rendez-vous
-            au Crès, près de Montpellier.
+            Vidange, freinage, parallélisme, amortisseurs, révision. Avec ou sans
+            rendez-vous au Crès, près de Montpellier.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
             <PhoneLink
@@ -100,23 +100,22 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-              Un atelier utile pour{" "}
-              <span className="text-gradient-purple">l&apos;entretien courant autour de Montpellier</span>
+              Entretenir sa voiture{" "}
+              <span className="text-gradient-purple">sans perdre sa journée</span>
             </h2>
             <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                La page mécanique Recacor doit d&apos;abord répondre à un besoin simple :
-                faire une vidange, un freinage, un parallélisme ou une révision sans passer
-                par un discours flou ni bloquer une demi-journée. L&apos;atelier est au Crès,
-                avec un accès pratique depuis Montpellier, Castelnau-le-Lez, Jacou, Vendargues
-                et les communes voisines.
+                Pour une vidange, un freinage, un parallélisme ou une révision, l&apos;attente
+                est souvent la même : être bien reçu, savoir ce qui va être fait et pouvoir
+                repartir rapidement. Recacor accompagne les automobilistes du Crès, de
+                Montpellier, Castelnau-le-Lez, Jacou, Vendargues et des communes voisines
+                pour ces interventions du quotidien.
               </p>
               <p>
-                L&apos;objectif n&apos;est pas de lister toute la mécanique possible. Cette page
-                sert surtout à orienter correctement vers les prestations atelier les plus
-                demandées, avec des tarifs publics quand ils existent et des liens clairs vers
-                les pages service dédiées. Si le véhicule a aussi besoin de pneus, le passage
-                peut être regroupé au même endroit.
+                Les tarifs sont affichés, la vidange se fait en 30 minutes environ, et
+                l&apos;atelier accueille avec ou sans rendez-vous selon la charge. Si la
+                voiture a aussi besoin de pneus, d&apos;un parallélisme ou d&apos;un contrôle
+                de freinage, tout se règle au même endroit, en un seul passage.
               </p>
             </div>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">

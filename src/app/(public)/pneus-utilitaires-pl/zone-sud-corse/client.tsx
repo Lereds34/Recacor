@@ -25,27 +25,27 @@ const segments = [
     Icon: Truck,
     title: "Transport, logistique et remorque",
     items: [
-      "Tracteur, porteur, remorque et flotte régionale",
-      "Demandes multi-essieux et profils remorque",
-      "Lecture coût au kilomètre, immobilisation et disponibilité",
+      "Tracteurs, porteurs, remorques et flottes régionales",
+      "Montes multi-essieux : 2 avant / 4 arrière, 4 ou 6 pneus remorque",
+      "Objectif : limiter l'immobilisation et le coût au kilomètre",
     ],
   },
   {
     Icon: Wrench,
     title: "TP, BTP et chantier",
     items: [
-      "Bennes, terrassement et usage plus sévère",
-      "Lecture charge réelle, sol et rythme d'exploitation",
-      "Arbitrage entre tenue, résistance et budget",
+      "Bennes, terrassement et usage mixte route/chantier",
+      "Choix selon la charge réelle, les sols et le rythme d'exploitation",
+      "Arbitrage entre résistance aux agressions et budget",
     ],
   },
   {
     Icon: Shield,
     title: "Agricole en renfort de zone",
     items: [
-      "Besoin traité dans la zone sans devenir la promesse principale",
-      "Approche prudente selon disponibilité et point d'appui",
-      "Lecture usage exploitation et contraintes terrain",
+      "Pneus tracteurs et engins d'exploitation selon le secteur",
+      "Prise en charge selon le point d'appui disponible",
+      "Conseil selon l'usage réel de l'exploitation",
     ],
   },
 ];
@@ -60,24 +60,24 @@ const pointsAppui = [
 
 const faqs = [
   {
+    q: "Qui est Claire, l'interlocutrice de la zone ?",
+    a: "Claire est la commerciale terrain qui suit la zone Sud & Corse. Quinze ans dans le pneu poids lourd, des quais de chargement aux pistes de chantier : elle sait lire une usure, chiffrer une monte et déclencher le bon point d'appui sans faire perdre de temps.",
+  },
+  {
     q: "Je travaille dans le transport ou la remorque : pouvez-vous traiter ma demande ?",
-    a: "Oui. Cette zone couvre d'abord les besoins transport, remorque, porteur et flotte roulante. La réponse dépend ensuite de la monte, de l'urgence, du secteur et de la disponibilité réelle.",
+    a: "Oui, c'est le cœur de la zone : tracteurs, porteurs, remorques et flottes régionales. Donnez la dimension complète, la quantité et le poste concerné — Claire revient avec un prix et un délai.",
   },
   {
-    q: "Pouvez-vous accompagner des besoins variés selon le véhicule et l'activité ?",
-    a: "Oui. La solution proposée dépend du type de véhicule, du poste concerné, du niveau de contrainte et de l'usage réel. C'est cette lecture qui permet d'orienter correctement la demande.",
-  },
-  {
-    q: "Comment se passe la prise en charge sur cette zone ?",
-    a: "Claire suit la demande, vérifie les informations utiles puis oriente vers le bon point d'appui selon le secteur, le besoin et la disponibilité réelle.",
+    q: "Comment se passe la prise en charge concrètement ?",
+    a: "Un appel ou le formulaire. Claire qualifie la demande (dimension, quantité, poste, secteur, urgence), vérifie la disponibilité, puis active l'atelier du Crès, un dépannage ou le partenaire relais du secteur. Vous gardez un seul interlocuteur du devis à la pose.",
   },
   {
     q: "Intervenez-vous partout de la même façon dans le Sud ?",
-    a: "Non. La prise en charge dépend du secteur, du point d'appui disponible, du partenaire mobilisable et du type de besoin. L'objectif est d'apporter une réponse sérieuse, pas de promettre la même intervention partout.",
+    a: "Non, et Claire vous le dit d'entrée. Selon le secteur, la réponse passe par l'atelier du Crès, Garage Guilhot ou Pneus Occitanie côté 31/82, BN Pneus en 24/24 sur le 13, ou un relais 26/84 selon disponibilité. Ce qui est annoncé correspond à ce qui peut être tenu.",
   },
   {
     q: "Pouvez-vous aussi parler recreusage si le parc s'y prête ?",
-    a: "Oui. Si la carcasse est éligible et le parc bien suivi, le recreusage peut prolonger la durée de vie du pneu et mieux protéger le coût d'usage.",
+    a: "Oui. Sur carcasse éligible, le recreusage ajoute environ 25% de durée de vie pour 40% de moins qu'un pneu neuf, sous 24 à 48h. Sur un parc suivi, c'est souvent la première économie à activer.",
   },
 ];
 
@@ -111,9 +111,10 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
             en transport, remorque et chantier
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/75">
-            Claire suit cette zone pour les demandes liées au transport, à la remorque,
-            aux bennes et aux besoins chantier, avec une réponse adaptée au secteur
-            et à la disponibilité réelle.
+            Claire, commerciale poids lourd avec quinze ans de terrain, suit cette zone :
+            transport, remorque, bennes et chantier. Elle s&apos;appuie sur l&apos;atelier
+            du Crès et des partenaires relais selon votre secteur — un seul interlocuteur,
+            du devis à la pose.
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-white/80">
             {["Claire", "Transport / remorque", "TP / BTP", "Dépannage", "Recreusage"].map((item) => (
@@ -138,24 +139,26 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-              Un interlocuteur clair pour la{" "}
+              Claire, votre interlocutrice{" "}
               <span className="text-gradient-purple">zone Sud &amp; Corse</span>
             </h2>
             <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Sur cette zone, les demandes concernent surtout le transport, la remorque,
-                les porteurs, les bennes et les besoins chantier. Claire qualifie la demande,
-                vérifie les informations utiles et oriente vers le bon point d&apos;appui selon
-                le secteur, l&apos;urgence et le type de monte.
+                Quinze ans dans le pneu poids lourd, des quais de chargement aux pistes de
+                chantier : Claire connaît les contraintes d&apos;un parc qui doit rouler.
+                Elle qualifie chaque demande — dimension, quantité, poste, urgence — puis
+                active l&apos;atelier du Crès, un dépannage ou le partenaire relais de
+                votre secteur.
               </p>
               <p>
-                L&apos;objectif n&apos;est pas d&apos;annoncer la même intervention partout. L&apos;important
-                est d&apos;apporter une réponse réaliste, avec la bonne lecture d&apos;usage, la bonne
-                disponibilité et, si besoin, une orientation vers le recreusage.
+                Transport, remorque, porteurs, bennes ou besoins chantier : vous gardez un
+                seul interlocuteur du premier appel à la pose. Et quand le parc s&apos;y
+                prête, elle oriente aussi vers le recreusage pour faire baisser le coût
+                au kilomètre.
               </p>
             </div>
             <div className="mt-6 rounded-2xl border border-border bg-muted/30 p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Besoins suivis sur la zone</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Activités les plus traitées</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {zonesActivites.map((item) => (
                   <span key={item} className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
@@ -225,7 +228,7 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
               </div>
             </div>
             <div className="rounded-3xl border border-border bg-white p-8">
-              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Ce qu&apos;il faut donner pour aller vite</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Pour être rappelé rapidement</p>
               <div className="mt-5 space-y-5">
                 <div>
                   <h3 className="text-base font-black">Votre activité</h3>
@@ -235,17 +238,17 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-base font-black">Votre priorité</h3>
+                  <h3 className="text-base font-black">Votre urgence</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Disponibilité rapide, budget maîtrisé, tenue dans le temps ou coût
-                    d&apos;usage : Claire vous aide à orienter la demande au bon endroit.
+                    Crevaison à remettre en route, monte à planifier ou budget à tenir :
+                    dites-le d&apos;entrée, la réponse s&apos;organise autour.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-base font-black">Le bon point d&apos;appui</h3>
+                  <h3 className="text-base font-black">Votre secteur</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    Atelier du Crès, partenaires relais, dépannage ou orientation vers le
-                    recreusage : la réponse s&apos;organise selon la zone et le besoin.
+                    Le Crès, partenaire relais, dépannage ou solution de proximité :
+                    la prise en charge dépend du secteur réellement concerné.
                   </p>
                 </div>
               </div>
@@ -261,15 +264,15 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
               <div>
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium">
-                  <Phone className="h-3.5 w-3.5 text-purple-glow" /> Services liés
+                  <Phone className="h-3.5 w-3.5 text-purple-glow" /> Liens utiles
                 </div>
                 <h2 className="text-3xl font-black sm:text-4xl">
                   D&apos;autres sujets utiles selon votre besoin
                 </h2>
                 <p className="mt-4 text-sm leading-relaxed text-white/75">
-                  Selon votre activité, vous pouvez aussi consulter les autres contenus utiles
-                  du site : pneus PL, besoins autour de Nîmes et Sète, recreusage ou clim
-                  camion sur Montpellier agglomération.
+                  Selon le besoin, vous pouvez aussi consulter le hub pneus PL, les entrées
+                  locales autour de Nîmes et Sète, le recreusage ou la page clim camion
+                  sur Montpellier agglomération.
                 </p>
               </div>
               <div className="space-y-3">
@@ -308,7 +311,8 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
               <span className="text-gradient-purple">Zone Sud &amp; Corse</span>
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Un expert Recacor revient avec une première lecture utile selon la zone, le poste et le type de besoin.
+              Claire vous rappelle avec un prix et un délai — donnez la dimension complète,
+              la quantité, le poste et votre secteur.
             </p>
           </div>
           <div className="rounded-3xl border border-border bg-white p-6 shadow-xl sm:p-8">

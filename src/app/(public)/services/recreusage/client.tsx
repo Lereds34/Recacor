@@ -94,21 +94,20 @@ export function RecreusageClient() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-              Un service pensé pour{" "}
-              <span className="text-gradient-purple">mieux exploiter la valeur du pneu</span>
+              Un service utile quand la{" "}
+              <span className="text-gradient-purple">carcasse a encore du potentiel</span>
             </h2>
             <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Cette page ne doit pas vendre le recreusage comme un simple argument prix.
-                Pour un transporteur ou un gestionnaire de parc, le vrai sujet est plus large :
-                prolonger l&apos;usage d&apos;une enveloppe éligible, mieux piloter le coût
-                kilométrique et réduire les immobilisations inutiles.
+                Le recreusage ne se résume pas à un prix plus bas. Pour un transporteur ou
+                un gestionnaire de parc, l&apos;enjeu est surtout de prolonger l&apos;usage
+                d&apos;une enveloppe éligible, de mieux tenir le coût kilométrique et
+                d&apos;éviter de remplacer trop tôt une carcasse encore exploitable.
               </p>
               <p>
-                Le recreusage a du sens quand il s&apos;intègre à une logique flotte :
-                suivi de l&apos;usure, lecture par essieu, bon moment d&apos;intervention et
-                arbitrage entre pneu neuf, recreusage puis éventuellement rechapage. C&apos;est
-                cette lecture métier que Recacor doit montrer sur la page.
+                Cette solution prend du sens dans une vraie logique flotte : suivi de
+                l&apos;usure, lecture par essieu, bon moment d&apos;intervention et arbitrage
+                entre pneu neuf, recreusage puis éventuellement rechapage.
               </p>
               <p>
                 En pratique, une carcasse garde de la valeur quand le parc est suivi sérieusement :
@@ -118,7 +117,7 @@ export function RecreusageClient() {
               </p>
             </div>
             <div className="mt-6 rounded-2xl border border-border bg-muted/30 p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Conditions de départ qui changent tout</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Repères avant intervention</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {signauxParc.map((item) => (
                   <span key={item} className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
@@ -128,8 +127,8 @@ export function RecreusageClient() {
               </div>
             </div>
             <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
-              <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Voir la page mère pneus PL</Link>
-              <Link href="/services/clim-camion-poids-lourd-montpellier" className="text-purple-bright hover:underline">Clim camion Montpellier agglo</Link>
+              <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Découvrir les solutions pneus PL</Link>
+              <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Voir la zone Sud &amp; Corse</Link>
               <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
             </div>
           </div>

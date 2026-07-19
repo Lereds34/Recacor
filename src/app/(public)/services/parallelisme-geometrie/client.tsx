@@ -58,21 +58,21 @@ export function ParallelismeClient() {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div>
                 <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-                  Une page qui doit parler{" "}
-                  <span className="text-gradient-purple">usure, tenue de route et pneus neufs</span>
+                  Quand le volant tire ou que les pneus{" "}
+                  <span className="text-gradient-purple">s&apos;usent mal</span>
                 </h2>
                 <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Le parallélisme n&apos;est pas une prestation abstraite pour le client. La vraie
-                    demande, c&apos;est souvent : la voiture tire, le volant n&apos;est plus droit,
-                    les pneus s&apos;usent mal, ou un train neuf vient d&apos;être monté et on veut
-                    éviter de le dégrader trop vite.
+                    La voiture tire à droite, le volant n&apos;est plus droit après un trottoir,
+                    les pneus s&apos;usent d&apos;un seul côté — ou vous venez de monter des pneus
+                    neufs et vous voulez éviter de les abîmer en quelques milliers de kilomètres.
+                    Ce sont les vraies raisons de contrôler un parallélisme.
                   </p>
                   <p>
-                    Cette page doit donc rester très concrète : expliquer quand contrôler, ce qui
-                    différencie le simple contrôle du réglage, pourquoi le contrôle est offert lors
-                    d&apos;un changement de pneus, et comment la géométrie protège la durée de vie du
-                    train roulant.
+                    Chez Recacor au Crès, le contrôle est <strong>offert lors d&apos;un changement
+                    de pneus</strong> et le réglage démarre à <strong>65€</strong>. Un train
+                    bien réglé, c&apos;est des pneus qui durent, une voiture qui freine droit et
+                    une consommation qui ne dérive pas.
                   </p>
                 </div>
               </div>

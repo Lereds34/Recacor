@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { VidangeClient } from "./client";
 
 export const metadata: Metadata = {
-  title: "Vidange voiture Montpellier — dès 79€",
+  title: "Vidange voiture Montpellier : dès 79€ au Crès",
   description:
-    "Vidange complète sans RDV à Montpellier — Le Crès. Huile + filtre inclus. Résultat en 30min. Appelez ou devis en ligne.",
+    "Vidange voiture à Montpellier dès 79€ au Crès : huile et filtre inclus, sans rendez-vous possible. Appelez Recacor ou demandez un devis.",
   alternates: { canonical: "/services/vidange" },
   openGraph: {
-    title: "Vidange voiture Montpellier — dès 79€",
+    title: "Vidange voiture Montpellier : dès 79€ au Crès",
     description:
-      "Vidange complète sans rendez-vous à Montpellier — Le Crès. Huile + filtre inclus, résultat en 30 minutes.",
+      "Vidange voiture à Montpellier au Crès dès 79€ : huile et filtre inclus, sans rendez-vous possible selon la charge atelier.",
     url: "https://www.recacor.fr/services/vidange",
     siteName: "Recacor",
     locale: "fr_FR",

@@ -19,8 +19,8 @@ const inclus = [
 ];
 
 const faqs = [
-  { q: "Combien coûte une vidange chez Recacor ?", a: "Nos vidanges démarrent à 79€ (huile + filtre + main d'œuvre inclus). Le prix varie selon le véhicule et le type d'huile." },
-  { q: "Faut-il prendre rendez-vous ?", a: "Non, nous acceptons les clients sans rendez-vous au Crès. La vidange prend environ 30 minutes." },
+  { q: "Combien coûte une vidange voiture à Montpellier chez Recacor ?", a: "Nos vidanges démarrent à 79€ au Crès, avec huile, filtre à huile et main d'œuvre inclus. Le prix exact varie selon le véhicule et le type d'huile demandé par le constructeur." },
+  { q: "Faut-il prendre rendez-vous pour une vidange au Crès ?", a: "Pas forcément. Recacor peut accueillir les automobilistes sans rendez-vous selon la charge atelier. La vidange prend en général environ 30 minutes." },
   { q: "Changez-vous aussi le filtre à air / habitacle ?", a: "Oui, sur demande. Nous proposons un pack complet vidange + filtres à prix avantageux." },
   { q: "Quelle huile utilisez-vous ?", a: "Nous utilisons des huiles de grandes marques (Total, Elf, Castrol, Shell) adaptées à la préconisation constructeur de votre véhicule." },
   { q: "Peut-on faire la vidange et les pneus le même jour ?", a: "Oui. Si le véhicule a aussi besoin de pneus, d'un contrôle de parallélisme ou d'un freinage, nous pouvons regrouper les interventions au même endroit selon la charge atelier." },
@@ -46,7 +46,8 @@ export function VidangeClient() {
             <span className="text-purple-glow">À partir de 79€ au Crès</span>
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">
-            Vidange complète sans RDV. Huile + filtre inclus. Résultat en 30 minutes.
+            Pour une vidange voiture à Montpellier, Recacor vous accueille au Crès dès 79€,
+            avec huile + filtre inclus et sans rendez-vous possible selon la charge atelier.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
             <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
@@ -66,21 +67,21 @@ export function VidangeClient() {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div>
                 <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-                  Une page utile pour{" "}
-                  <span className="text-gradient-purple">prendre une décision simple</span>
+                  Vidange voiture à Montpellier :{" "}
+                  <span className="text-gradient-purple">l&apos;essentiel, sans détour</span>
                 </h2>
                 <div className="mt-5 space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Cette page doit surtout répondre à ce que cherche un automobiliste : savoir si
-                    la vidange peut se faire rapidement, ce qui est inclus, combien cela coûte à
-                    partir de 79€, et s&apos;il faut absolument bloquer un rendez-vous. Le but
-                    n&apos;est pas de faire un cours mécanique, mais de donner une réponse claire.
+                    Pour une vidange voiture à Montpellier, le plus important reste souvent
+                    le même : un tarif clair, un garage accessible et une intervention faite
+                    proprement au bon moment. Au Crès, Recacor réalise les vidanges à partir
+                    de 79€, avec huile, filtre à huile et main-d&apos;œuvre inclus.
                   </p>
                   <p>
-                    Chez Recacor, la vidange s&apos;intègre dans une logique atelier simple :
-                    entretien courant, contrôle visuel du véhicule et possibilité de regrouper le
-                    passage avec les pneus, le parallélisme ou d&apos;autres interventions légères
-                    si le besoin existe.
+                    Que ce soit pour un entretien prévu, un départ à préparer ou simplement
+                    pour rouler serein, l&apos;atelier accueille les automobilistes du Crès,
+                    de Montpellier, Castelnau-le-Lez, Jacou, Vendargues et des alentours
+                    avec une prise en charge simple et lisible.
                   </p>
                 </div>
               </div>
@@ -97,13 +98,13 @@ export function VidangeClient() {
             </div>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-border bg-muted/40 p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Ce que la page doit faire comprendre</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">À retenir avant de venir</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
-                  Tarif public dès 79€, huile + filtre inclus, sans rendez-vous possible, réponse atelier rapide
+                  Tarif public dès 79€, huile + filtre inclus, sans rendez-vous possible selon la charge atelier
                 </p>
               </div>
               <div className="rounded-2xl border border-border bg-muted/40 p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Passages complémentaires fréquents</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">À demander en même temps si besoin</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
                   Pneus voiture, contrôle de parallélisme, freinage, recharge clim selon la saison
                 </p>

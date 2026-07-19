@@ -15,8 +15,8 @@ export async function RelatedArticles({ categorie }: { categorie: Categorie }) {
             Articles liés
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">
-            En savoir plus sur le{" "}
-            <span className="text-gradient-purple">{categoryLabel(categorie).toLowerCase()}</span>
+            En savoir plus —{" "}
+            <span className="text-gradient-purple">{categoryLabel(categorie)}</span>
           </h2>
         </div>
 

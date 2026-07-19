@@ -40,7 +40,7 @@ const pneuTypes = [
     Icon: Truck,
     title: "Transport, remorque et logistique",
     items: [
-      "Pneus pour tracteurs, porteurs et remorques",
+      "Pneus neufs toutes marques, toutes dimensions",
       "Solutions pensées pour rouler, livrer et limiter l'immobilisation",
       "Choix de gamme selon budget, kilomètres et contraintes d'exploitation",
       "Accompagnement sur le remplacement, l'entretien et le coût d'usage",
@@ -50,7 +50,7 @@ const pneuTypes = [
     Icon: Leaf,
     title: "TP, chantier et agricole",
     items: [
-      "Pneus pour bennes, terrassement, exploitation et engins",
+      "Pneus radiaux et diagonaux selon l'application",
       "Solutions adaptées aux charges, aux sols difficiles et aux usages sévères",
       "Recherche de résistance, de motricité et de continuité d'activité",
       "Orientation selon le bon compromis entre robustesse et budget",
@@ -62,8 +62,8 @@ const pneuTypes = [
     items: [
       "Pneus pour parcs mixtes, manutention et environnements exigeants",
       "Recherche de fiabilité, de disponibilité et de régularité",
-      "Conseil utile quand le rythme d'exploitation ne laisse pas de place à l'arrêt",
-      "Organisation des solutions selon le besoin terrain",
+      "Intervention sur site selon les besoins du parc",
+      "Conseil selon le rythme d'exploitation et les contraintes terrain",
     ],
   },
 ];
@@ -87,16 +87,17 @@ const criteres = [
   {
     Icon: Leaf,
     title: "Durée de vie pneu",
-    desc: "Recreusage possible sur pneus adaptés = +25% de durée de vie. Économie et écologie, sans compromis sur la sécurité.",
+    desc: "Elle dépend d'abord de la pression, de la charge, du rythme d'exploitation et du stockage — pas d'une date fixe. Le recreusage sur enveloppes conformes peut ajouter jusqu'à 25% de vie supplémentaire.",
   },
 ];
 
 const faqs = [
-  { q: "Recacor accompagne-t-il surtout le transport, ou aussi le TP et les parcs pros ?", a: "Les deux. Recacor accompagne les transporteurs, les remorques, les bennes, les besoins chantier et les parcs professionnels, avec une recommandation adaptée à l'activité." },
-  { q: "Pouvez-vous conseiller plusieurs marques et niveaux de gamme ?", a: "Oui. Selon votre usage, votre budget et la disponibilité, Recacor peut orienter vers une solution premium, intermédiaire ou plus économique, sans perdre de vue la tenue dans le temps." },
-  { q: "Pouvez-vous intervenir en urgence pour un pneu poids lourd ?", a: "Oui. Recacor propose aussi une assistance pneus PL sur site quand la situation le permet, pour remettre le véhicule en circulation dans les meilleures conditions." },
-  { q: "Le recreusage fait-il partie de votre accompagnement ?", a: "Oui, quand les enveloppes s'y prêtent. Le recreusage permet de prolonger la durée de vie du pneu et d'améliorer le coût d'usage sur les parcs suivis." },
-  { q: "Comment savoir si la solution proposée sera adaptée à mon activité ?", a: "Le choix se fait selon votre usage réel, le type de véhicule, le niveau de contrainte, la charge, le budget et l'objectif de durée de vie. C'est cette lecture d'ensemble qui permet un conseil utile." },
+  { q: "Quelle zone couvrez-vous pour l'assistance pneus PL ?", a: "Tout l'Hérault (34) et les départements limitrophes. Intervention 24h/24 et 7j/7 sur crevaison et remplacement pneu. L'assistance pneus ne couvre pas la mécanique générale — pour une panne moteur, un dépanneur classique est nécessaire." },
+  { q: "Proposez-vous des contrats de gestion de flotte ?", a: "Oui, avec un suivi adapté selon la taille du parc : interlocuteur dédié, tarifs négociés, priorité atelier. Contactez-nous pour cadrer le périmètre selon vos besoins et votre volume." },
+  { q: "Quel est le délai pour un recreusage poids lourd ?", a: "Sous 24 à 48h en moyenne selon la charge atelier. Seules les enveloppes conformes au cadre réglementaire sont acceptées — un pneu recreusé hors norme constitue une non-conformité au contrôle technique. Les flottes sous contrat bénéficient d'une priorité de traitement." },
+  { q: "Pourquoi surveiller la pression d'un pneu PL régulièrement ?", a: "Un sous-gonflage, même léger, augmente la chaleur interne, accélère l'usure et allonge la distance de freinage. Sur un parc qui roule beaucoup, un contrôle mensuel à froid est l'un des leviers les plus simples pour allonger la durée de vie des enveloppes et réduire le coût d'exploitation." },
+  { q: "Recacor accompagne-t-il aussi le TP, l'agricole et les parcs industriels ?", a: "Oui. Au-delà du transport routier, Recacor accompagne les bennes, engins de chantier, parcs agricoles et environnements industriels — avec une recommandation adaptée à l'usage, la charge et le rythme d'exploitation." },
+  { q: "Que faire après un choc important ou une crevaison sévère ?", a: "Faire contrôler le pneu par un professionnel avant toute remise en service. Certains dommages restent internes et ne sont pas visibles à l'œil nu — une enveloppe fragilisée peut provoquer un éclatement ultérieur dans des conditions normales d'usage." },
 ];
 
 export function PlClient({ heroImage }: { heroImage?: string }) {
@@ -379,11 +380,11 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                   longtemps, à moindre coût et avec moins d&apos;impact environnemental.
                 </p>
                 <p className="text-sm text-white/70 mb-6 leading-relaxed">
-                  Si vous cherchez surtout a prolonger la duree de vie de vos enveloppes, notre page{" "}
+                  Si vous cherchez avant tout à prolonger la durée de vie de vos enveloppes, notre page{" "}
                   <Link href="/services/recreusage" className="font-bold text-purple-glow hover:underline">
                     recreusage poids lourd
                   </Link>{" "}
-                  detaille le service, les gains et le fonctionnement atelier.
+                  détaille le service, les gains et le fonctionnement atelier.
                 </p>
                 <ul className="space-y-2 mb-6">
                   {["-40% vs pneu neuf", "+25% de durée de vie", "Qualité équivalente au neuf", "Réduction empreinte carbone"].map((i) => (

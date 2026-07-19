@@ -110,21 +110,23 @@ function extractFaq(content: string): { q: string; a: string }[] {
   const regex = /\*\*([^*]+?)\*\*\s*\n([\s\S]*?)(?=\n\*\*[^*]+?\*\*|\n*$)/g;
   let m: RegExpExecArray | null;
   while ((m = regex.exec(faqBlock)) !== null) {
-    const q = m[1].trim();
-    const a = m[2].trim();
+    const q = decodeHtmlEntities(m[1].trim());
+    const a = decodeHtmlEntities(m[2].trim());
     if (q && a) items.push({ q, a });
   }
   return items;
 }
 
 function makeExcerpt(content: string, maxWords = 35): string {
-  const cleaned = content
+  const cleaned = decodeHtmlEntities(
+    content
     .replace(/^---[\s\S]*?---/, "")
     .replace(/^#.*$/gm, "")
     .replace(/\*\*|__|_|\*|`/g, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/\n+/g, " ")
-    .trim();
+    .trim(),
+  );
   const words = cleaned.split(/\s+/).slice(0, maxWords);
   return words.join(" ") + (words.length === maxWords ? "…" : "");
 }
@@ -136,8 +138,10 @@ function decodeHtmlEntities(text: string): string {
     .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
     .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(parseInt(dec, 10)))
     .replace(/&amp;/g, "&")
+    .replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">");
 }
@@ -174,7 +178,7 @@ async function rowToArticle(row: ArticleRow): Promise<Article> {
   // Retirer les H1 Markdown évite un second H1 identique dans le corps.
   const bodyWithoutH1 = bodyWithoutFaq.replace(/^#\s+.*(?:\r?\n|$)/gm, "");
   // Normalise les sauts de ligne : une seule newline → double newline pour markdown
-  const normalised = bodyWithoutH1.replace(/([^\n])\n([^\n])/g, "$1\n\n$2");
+  const normalised = decodeHtmlEntities(bodyWithoutH1).replace(/([^\n])\n([^\n])/g, "$1\n\n$2");
   const processed = await remark()
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })

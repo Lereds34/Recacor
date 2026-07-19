@@ -150,10 +150,10 @@ export default async function ArticlePage({
                   prose-headings:font-[family-name:var(--font-heading)] prose-headings:font-black prose-headings:tracking-tight
                   prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-3 prose-h2:pb-2 prose-h2:border-b prose-h2:border-border
                   prose-h3:text-lg prose-h3:mt-7 prose-h3:mb-2 prose-h3:text-purple-deep
-                  prose-p:text-foreground/80 prose-p:leading-relaxed prose-p:mb-4
+                  prose-p:text-foreground/88 prose-p:leading-relaxed prose-p:mb-4
                   prose-a:text-purple-bright prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-foreground prose-strong:font-bold
-                  prose-ul:text-foreground/80 prose-li:my-1.5
+                  prose-ul:text-foreground/88 prose-ol:text-foreground/88 prose-li:my-1.5
                   prose-blockquote:border-l-4 prose-blockquote:border-purple-bright prose-blockquote:bg-purple-bright/5 prose-blockquote:rounded-r-xl prose-blockquote:py-2 prose-blockquote:not-italic
                   prose-img:rounded-2xl prose-img:shadow-md"
                 dangerouslySetInnerHTML={{ __html: article.html }}
@@ -277,7 +277,7 @@ export default async function ArticlePage({
                     {faq.q}
                     <span className="text-purple-bright ml-3 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
                   </summary>
-                  <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                  <p className="mt-3 text-sm text-foreground/80 leading-relaxed">{faq.a}</p>
                 </details>
               ))}
             </div>

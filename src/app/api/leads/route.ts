@@ -162,6 +162,7 @@ async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardRe
     tel: data.telephone || null,
     email: data.email || null,
     cp: data.cp || null,
+    service: getAdsFlowService(data),
     source: data.utm_source || data.referrer || null,
     page: data.page_source || null,
     gclid: data.gclid || null,
@@ -224,6 +225,22 @@ async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardRe
     shouldAlert: false,
     detail: lastRuntimeError || "Erreur AdsFlow transitoire",
   };
+}
+
+function getAdsFlowService(data: LeadPayload): "pneus" | "mecanique" {
+  const serviceType = String(data.service_type || "").toLowerCase();
+  const formId = String(data.form_id || "").toLowerCase();
+
+  if (
+    serviceType === "mecanique" ||
+    formId === "devis-mecanique-form" ||
+    formId === "devis-clim-form" ||
+    formId === "devis-clim-pl-form"
+  ) {
+    return "mecanique";
+  }
+
+  return "pneus";
 }
 
 function normalizeLeadAttribution(data: LeadPayload): LeadPayload {

@@ -147,20 +147,38 @@ const faqCategories = [
     ],
   },
   {
-    label: "Clim & PL",
+    label: "Clim voiture",
+    icon: Snowflake,
+    items: [
+      {
+        q: "Où se fait la recharge clim pour une voiture ?",
+        a: "Pour les voitures et véhicules légers, la climatisation se fait à l'atelier Recacor du Crès : contrôle, tirage au vide et recharge avec le gaz adapté.",
+      },
+      {
+        q: "Peut-on faire contrôler une clim qui refroidit moins qu'avant ?",
+        a: "Oui. Si la clim souffle tiède, met du temps à refroidir ou dégage une mauvaise odeur, le garage peut vérifier le besoin avant recharge.",
+      },
+      {
+        q: "Quelle est l'adresse pour la clim voiture ?",
+        a: "Recacor Le Crès se trouve au 1240 Route de Nîmes, 34920 Le Crès, à proximité de Montpellier et des axes RN113/A9.",
+      },
+    ],
+  },
+  {
+    label: "Clim poids lourd",
     icon: Truck,
     items: [
       {
-        q: "Recacor fait-il la climatisation sur camion et utilitaire ?",
-        a: "Oui. Recacor traite les demandes de clim pour voitures, utilitaires, poids lourds, camping-cars, engins TP et véhicules agricoles selon configuration.",
+        q: "Recacor fait-il la climatisation sur camion et poids lourd ?",
+        a: "Oui. Recacor traite les demandes de clim pour poids lourds, utilitaires professionnels, camping-cars, engins TP et véhicules agricoles selon configuration.",
       },
       {
-        q: "Où intervient Recacor pour les poids lourds ?",
-        a: "Le garage du Crès reçoit les professionnels et l'équipe PL couvre l'Hérault selon le besoin : pneus, recreusage, suivi de parc et assistance.",
+        q: "La clim poids lourd peut-elle se faire en déplacement ?",
+        a: "Oui, selon le véhicule et le planning, l'équipe peut intervenir au Crès ou en déplacement autour de Montpellier et de son agglomération.",
       },
       {
-        q: "Quelle est l'adresse du garage Recacor ?",
-        a: "Recacor Le Crès se trouve au 1240 Route de Nîmes, 34920 Le Crès, à proximité de Montpellier et des axes RN113/A9.",
+        q: "Quels véhicules professionnels sont concernés ?",
+        a: "La demande peut concerner camion, tracteur routier, utilitaire, camping-car, engin de chantier ou agricole, avec validation selon l'accès au véhicule et le type de gaz.",
       },
     ],
   },

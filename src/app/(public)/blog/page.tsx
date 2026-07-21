@@ -128,7 +128,7 @@ export default async function BlogPage() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
             <BookOpen className="h-3 w-3 mr-1" /> Blog

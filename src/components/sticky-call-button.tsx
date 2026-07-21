@@ -31,14 +31,14 @@ export function StickyCallButton() {
             id="sticky-call-btn"
             href={`tel:${PHONE_NUMBER}`}
             onClick={() => pushPhoneClick("sticky")}
-            className="phone-link flex-1 flex items-center justify-center gap-2 rounded-full bg-purple-bright text-white font-bold py-4 shadow-[0_8px_30px_rgba(109,40,217,0.4)]"
+            className="phone-link flex-1 flex items-center justify-center gap-2 rounded-[4px] bg-[var(--recacor-night)] text-white font-black uppercase py-4 shadow-[0_8px_30px_rgba(7,27,51,0.24)]"
           >
             <Phone className="h-5 w-5" />
             Appeler
           </a>
           <Link
             href="/formulaire"
-            className="flex-1 flex items-center justify-center gap-2 rounded-full bg-white text-purple-bright font-bold py-4 shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-purple-bright/20"
+            className="flex-1 flex items-center justify-center gap-2 rounded-[4px] bg-yellow-400 text-slate-950 font-black uppercase py-4 shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-yellow-500/30"
           >
             <ClipboardList className="h-5 w-5" />
             Devis gratuit

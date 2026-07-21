@@ -20,6 +20,8 @@ export function GtmConsent() {
         const c = document.cookie.match(/cookie_consent=([^;]+)/)?.[1];
         window.dataLayer = window.dataLayer || [];
         window.gtag = window.gtag || function(){dataLayer.push(arguments);}
+        window.gtag('set', 'url_passthrough', true);
+        window.gtag('set', 'ads_data_redaction', true);
         window.gtag('consent', 'default', {
           ad_storage: c === 'granted' ? 'granted' : 'denied',
           analytics_storage: c === 'granted' ? 'granted' : 'denied',

@@ -17,10 +17,10 @@ export function DevisCtaLink({
 }: DevisCtaLinkProps) {
   return (
     <>
-      <a href={desktopHref} className={cn("hidden lg:inline-flex", className)}>
+      <a href={desktopHref} className={cn(className, "!hidden lg:!inline-flex")}>
         {children}
       </a>
-      <Link href={mobileHref} className={cn("lg:hidden inline-flex", className)}>
+      <Link href={mobileHref} className={cn(className, "!inline-flex lg:!hidden")}>
         {children}
       </Link>
     </>

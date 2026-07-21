@@ -194,7 +194,7 @@ function Variant1({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
       <section className="relative pt-32 pb-12 overflow-hidden">
         <HeroBackground
           heroImage={heroImage}
-          overlayClassName={heroImage ? "bg-gradient-to-br from-purple-deep/88 via-purple-mid/82 to-purple-bright/74" : "bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright"}
+          overlayClassName={heroImage ? "hero-overlay-image" : "hero-overlay-solid"}
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -220,7 +220,7 @@ function Variant1({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
                 {seo?.hero_subtitle}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <PhoneLink location="hero" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+                <PhoneLink location="hero" className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_24px_rgba(0,0,0,0.22)]" showIcon>
                   {PHONE_DISPLAY}
                 </PhoneLink>
                 <DevisCtaLink className="items-center justify-center gap-2 px-7 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
@@ -331,7 +331,7 @@ function Variant2({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
       <section className="relative pt-32 pb-16 overflow-hidden">
         <HeroBackground
           heroImage={heroImage}
-          overlayClassName={heroImage ? "bg-gradient-to-r from-purple-deep/88 to-purple-mid/82" : "bg-gradient-to-r from-purple-deep to-purple-mid"}
+          overlayClassName={heroImage ? "hero-overlay-image" : "hero-overlay-solid"}
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-5">
@@ -343,7 +343,7 @@ function Variant2({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
           </h1>
           <p className="mt-4 text-white/70 max-w-xl text-lg">{seo?.hero_subtitle}</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
-            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_24px_rgba(0,0,0,0.22)]" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
             <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
@@ -442,7 +442,7 @@ function Variant3({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
       <section className="relative pt-32 pb-20 overflow-hidden">
         <HeroBackground
           heroImage={heroImage}
-          overlayClassName={heroImage ? "bg-gradient-to-b from-purple-deep/88 to-purple-mid/82" : "bg-gradient-to-b from-purple-deep to-purple-mid"}
+          overlayClassName={heroImage ? "hero-overlay-image" : "hero-overlay-solid"}
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
@@ -468,7 +468,7 @@ function Variant3({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
           </h1>
           <p className="mt-4 text-white/70 max-w-xl mx-auto text-lg">{seo?.hero_subtitle}</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto">
-            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_24px_rgba(0,0,0,0.22)]" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
             <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
@@ -557,7 +557,7 @@ function Variant4({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
       <section className="relative pt-32 pb-16 overflow-hidden">
         <HeroBackground
           heroImage={heroImage}
-          overlayClassName={heroImage ? "bg-gradient-to-br from-purple-deep/88 via-purple-mid/82 to-purple-bright/74" : "bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright"}
+          overlayClassName={heroImage ? "hero-overlay-image" : "hero-overlay-solid"}
         />
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%)", backgroundSize: "20px 20px" }} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
@@ -570,7 +570,7 @@ function Variant4({ ville, seo, heroImage }: { ville: Ville; seo: ReturnType<typ
           </h1>
           <p className="mt-4 text-white/70 max-w-2xl mx-auto text-lg">{seo?.hero_subtitle}</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto">
-            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_24px_rgba(0,0,0,0.22)]" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
             <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">

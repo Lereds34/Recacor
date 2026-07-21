@@ -102,7 +102,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/88 via-purple-mid/82 to-purple-bright/74" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center">
             <div>
@@ -119,7 +119,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
               </p>
               <div className="mt-6 grid max-w-3xl grid-cols-1 gap-2 sm:grid-cols-2">
                 {points.map((point) => (
-                  <div key={point} className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3 py-2 text-sm font-bold text-white">
+                  <div key={point} className="inline-flex items-center gap-2 rounded-[4px] border border-white/15 bg-white/10 px-3 py-2 text-sm font-bold text-white">
                     <CheckCircle className="h-4 w-4 shrink-0 text-purple-glow" />
                     {point}
                   </div>
@@ -132,7 +132,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 <PhoneLink
                   location="hero"
                   serviceType="pl"
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-8 py-4 font-bold text-white shadow-[0_8px_30px_rgba(109,40,217,0.5)]"
+                  className="flex-1 recacor-btn-primary whitespace-nowrap"
                   showIcon
                 >
                   Appeler : {PHONE_DISPLAY}
@@ -140,7 +140,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 <DevisCtaLink
                   desktopHref="#devis"
                   mobileHref="/formulaire/clim-camion"
-                  className="flex-1 items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 font-semibold text-white hover:bg-white/10"
+                  className="flex-1 recacor-btn-secondary"
                 >
                   Demande clim pro <ArrowRight className="h-4 w-4" />
                 </DevisCtaLink>
@@ -148,7 +148,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
             </div>
 
             <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-5 text-white backdrop-blur-sm">
+              <div className="rounded-[4px] border border-white/15 bg-white/10 p-5 text-white backdrop-blur-sm">
                 <p className="text-xs font-bold uppercase tracking-wider text-white/60">Offre clim pro</p>
                 <p className="mt-2 text-4xl font-black">149€</p>
                 <p className="text-sm text-white/70">Recharge clim à partir de</p>
@@ -184,7 +184,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
 
           <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
             {useCases.map((item) => (
-              <div key={item} className="flex items-start gap-3 rounded-2xl border border-border bg-white p-5">
+              <div key={item} className="flex items-start gap-3 rounded-[4px] border border-border bg-white p-5">
                 <Snowflake className="mt-0.5 h-5 w-5 shrink-0 text-purple-bright" />
                 <p className="text-sm font-semibold">{item}</p>
               </div>
@@ -195,7 +195,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
 
       <section className="bg-muted/60 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 lg:p-10">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 lg:p-10">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
                 <Badge className="mb-4 border-purple-bright/20 bg-purple-bright/10 text-purple-bright">
@@ -213,7 +213,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {vehicleTypes.map((item) => (
-                    <div key={item} className="flex items-center gap-2 rounded-xl bg-muted px-4 py-3 text-sm font-bold text-foreground">
+                    <div key={item} className="flex items-center gap-2 rounded-[4px] bg-muted px-4 py-3 text-sm font-bold text-foreground">
                       <CheckCircle className="h-4 w-4 shrink-0 text-purple-bright" />
                       {item}
                     </div>
@@ -232,8 +232,8 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
             {steps.map((step) => (
-              <div key={step.title} className="rounded-3xl border border-border bg-white p-6">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-purple-bright to-purple-mid">
+              <div key={step.title} className="rounded-[4px] border border-border bg-white p-6">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid">
                   <step.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="mb-2 font-black tracking-tight">{step.title}</h3>
@@ -259,7 +259,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
                 qualifier le besoin réel avant de parler recharge, déplacement ou prise en charge atelier.
               </p>
 
-              <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-white shadow-sm shadow-purple-bright/[0.04]">
+              <div className="mt-8 overflow-hidden rounded-[4px] border border-border bg-white shadow-sm shadow-purple-bright/[0.04]">
                 <Image
                   src="/illustrations/services/clim-pl-intro-20260717.webp"
                   alt="Technicien effectuant un contrôle de climatisation sur un camion à l'atelier"
@@ -273,7 +273,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               {controlPoints.map((point) => (
-                <div key={point.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm shadow-purple-bright/[0.04]">
+                <div key={point.title} className="rounded-[4px] border border-border bg-white p-6 shadow-sm shadow-purple-bright/[0.04]">
                   <h3 className="text-lg font-black tracking-tight">{point.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{point.desc}</p>
                 </div>
@@ -296,7 +296,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
               Laisser les informations du véhicule et du lieu d&apos;intervention. Recacor rappelle pour qualifier le
               besoin et organiser la prise en charge au garage du Crès ou sur site sur Montpellier agglomération.
             </p>
-            <div className="mt-6 rounded-2xl border border-border bg-white p-5 text-sm text-muted-foreground">
+            <div className="mt-6 rounded-[4px] border border-border bg-white p-5 text-sm text-muted-foreground">
               <p className="font-bold text-foreground">À préparer si possible :</p>
               <ul className="mt-3 space-y-2">
                 <li>• type de véhicule</li>
@@ -312,7 +312,7 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-border bg-white p-5 shadow-xl shadow-purple-bright/[0.06] sm:p-6">
+          <div className="rounded-[4px] border border-border bg-white p-5 shadow-xl shadow-purple-bright/[0.06] sm:p-6">
             <DevisClimPlForm />
           </div>
         </div>

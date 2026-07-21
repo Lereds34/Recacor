@@ -100,7 +100,7 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/90 via-purple-mid/85 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="mb-6 border-white/20 bg-white/10 text-white">
             <MapPin className="mr-1 h-3 w-3" /> Zone suivie par Claire
@@ -124,7 +124,7 @@ export function PlZoneSudCorseClient({ heroImage }: { heroImage?: string }) {
             ))}
           </div>
           <div className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
-            <PhoneLink location="hero" serviceType="pl" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-8 py-4 font-bold text-white shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" serviceType="pl" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-8 py-4 font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)]" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
             <a href="#devis" className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 font-semibold text-white hover:bg-white/10">

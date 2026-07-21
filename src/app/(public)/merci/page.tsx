@@ -14,7 +14,7 @@ export default function MerciPage() {
     <>
       {/* Hero success */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        <div className="absolute inset-0 hero-overlay-solid" />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "conic-gradient(from 0deg, transparent 0%, white 1%, transparent 3%)" }} />
 
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">

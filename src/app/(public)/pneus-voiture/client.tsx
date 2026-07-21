@@ -94,7 +94,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "conic-gradient(from 0deg, transparent 0%, white 1%, transparent 3%)" }} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -127,12 +127,12 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           >
             <PhoneLink
               location="hero"
-              className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]"
+              className="flex-1 recacor-btn-primary whitespace-nowrap"
               showIcon
             >
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-colors">
+            <DevisCtaLink className="flex-1 recacor-btn-secondary">
               Devis gratuit <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </motion.div>
@@ -143,7 +143,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       {/* Intro locale */}
       <section className="py-14 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
               Un garage pneu utile pour{" "}
               <span className="text-gradient-purple">Montpellier et l&apos;est montpelliérain</span>
@@ -190,14 +190,14 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group rounded-3xl border border-border bg-white p-8 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
+                className="group rounded-[4px] border border-border bg-white p-8 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
               >
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
                   <s.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-black mb-3">{s.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-4">{s.desc}</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-bright/10 text-purple-bright font-bold text-sm">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-blue-700/10 text-blue-700 font-black uppercase text-sm">
                   {s.price}
                 </div>
               </motion.div>
@@ -235,7 +235,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 desc: "Le garage du Crès est facile d'accès depuis Montpellier, Castelnau-le-Lez, Jacou, Vendargues et les communes voisines.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
+              <div key={item.title} className="rounded-[4px] border border-border bg-white p-8">
                 <h3 className="text-xl font-black">{item.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
@@ -256,7 +256,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-w-4xl mx-auto">
             {marques.map((m) => (
-              <div key={m} className="flex items-center justify-center rounded-xl border border-border bg-white py-4 text-sm font-semibold text-muted-foreground">
+              <div key={m} className="flex items-center justify-center rounded-[4px] border border-border bg-white py-4 text-sm font-semibold text-muted-foreground">
                 {m}
               </div>
             ))}
@@ -290,7 +290,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="rounded-2xl border border-border bg-white p-5 hover:border-purple-bright/30 hover:shadow-lg hover:shadow-purple-bright/[0.06] transition-all"
+                className="rounded-[4px] border border-border bg-white p-5 hover:border-purple-bright/30 hover:shadow-lg hover:shadow-purple-bright/[0.06] transition-all"
               >
                 <p className="text-lg font-black text-purple-bright mb-1">{d.dim}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">{d.usage}</p>
@@ -312,7 +312,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white p-8">
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
               <h2 className="text-2xl font-black mb-4">Montage pneus Montpellier sur place</h2>
               <ul className="space-y-2.5">
                 {[
@@ -329,7 +329,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 ))}
               </ul>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white p-8">
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
               <h2 className="text-2xl font-black mb-4">Parallélisme et géométrie après changement</h2>
               <ul className="space-y-2.5">
                 {[
@@ -359,7 +359,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             </Link>{" "}
             peut eviter une usure irreguliere et affiner la tenue de route.
           </p>
-          <div className="mt-6 rounded-2xl border border-border bg-muted/60 p-5">
+          <div className="mt-6 rounded-[4px] border border-border bg-muted/60 p-5">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides pneus proches</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/blog/pneus-carnon" className="text-purple-bright hover:underline">Pneus Carnon</Link>
@@ -383,7 +383,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               préparer un passage atelier sans perdre de temps.
             </p>
           </motion.div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisVlForm />
           </div>
         </div>
@@ -408,7 +408,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               </a>
             </p>
           </div>
-          <div className="rounded-3xl overflow-hidden border border-border aspect-[16/9] bg-muted">
+          <div className="rounded-[4px] overflow-hidden border border-border aspect-[16/9] bg-muted">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6000!2d3.9!3d43.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sLe+Cr%C3%A8s!5e0!3m2!1sfr!2sfr!4v1"
               className="w-full h-full"
@@ -439,7 +439,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="group rounded-2xl border border-border bg-white p-5 cursor-pointer"
+                className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer"
               >
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}
@@ -455,14 +455,14 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       {/* CTA final */}
       <section className="py-20 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 text-center">
+          <div className="rounded-[4px] bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 text-center">
             <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">
               Un pneu à changer ?
             </h2>
             <p className="text-white/60 max-w-md mx-auto mb-8">
               Appelez-nous ou venez directement : on s&apos;occupe de tout en 15 minutes.
             </p>
-            <PhoneLink location="cta" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-purple-deep font-bold text-base hover:shadow-[0_8px_32px_rgba(255,255,255,0.2)] transition-shadow" showIcon>
+            <PhoneLink location="cta" className="recacor-btn-primary w-full sm:w-auto" showIcon>
               Appeler maintenant : {PHONE_DISPLAY}
             </PhoneLink>
           </div>

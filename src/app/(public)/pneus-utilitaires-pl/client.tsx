@@ -118,7 +118,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
             <Truck className="h-3 w-3 mr-1" /> Professionnels
@@ -134,16 +134,16 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-white/80">
             {activitesCles.map((item) => (
-              <span key={item} className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5">
+              <span key={item} className="rounded-[4px] border border-white/15 bg-white/10 px-3 py-1.5">
                 {item}
               </span>
             ))}
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
-            <PhoneLink location="hero" serviceType="pl" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" serviceType="pl" className="flex-1 recacor-btn-primary whitespace-nowrap" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <a href="#devis" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <a href="#devis" className="flex-1 recacor-btn-secondary">
               Devis professionnel <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -153,7 +153,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
 
       <section className="py-14 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
               Des pneus poids lourd{" "}
               <span className="text-gradient-purple">adaptés à votre activité</span>
@@ -178,25 +178,25 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 roule beaucoup ou qui travaille dans des conditions exigeantes.
               </p>
             </div>
-            <div className="mt-6 rounded-2xl border border-border bg-muted/30 p-5">
+            <div className="mt-6 rounded-[4px] border border-border bg-muted/30 p-5">
               <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Activités accompagnées</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {activitesCles.map((item) => (
-                  <span key={item} className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
+                  <span key={item} className="rounded-[4px] border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
                     {item}
                   </span>
                 ))}
               </div>
             </div>
             <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <div className="rounded-[4px] border border-border bg-muted/40 p-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Selon votre usage</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
                   Longue distance, remorque, chantier, parc mixte ou activité industrielle :
                   la bonne recommandation dépend d&apos;abord du terrain et du rythme d&apos;exploitation.
                 </p>
               </div>
-              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <div className="rounded-[4px] border border-border bg-muted/40 p-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Selon vos priorités</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
                   Prix d&apos;achat, tenue dans le temps, disponibilité, rendement kilométrique
@@ -222,7 +222,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 de travail et à votre niveau d&apos;exigence.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-muted/35 p-6">
+            <div className="rounded-[4px] border border-border bg-muted/35 p-6">
               <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Accompagnement Recacor</p>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
                 L&apos;objectif est simple : vous aider à choisir une solution cohérente selon
@@ -233,7 +233,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             {accompagnements.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
+              <div key={item.title} className="rounded-[4px] border border-border bg-white p-8">
                 <h3 className="text-lg font-black tracking-tight mb-3">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
@@ -250,8 +250,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {pneuTypes.map((t, i) => (
-              <motion.div key={t.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} id={t.title.toLowerCase().includes("agricole") ? "agricoles" : undefined} className="rounded-3xl border border-border bg-white p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
+              <motion.div key={t.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} id={t.title.toLowerCase().includes("agricole") ? "agricoles" : undefined} className="rounded-[4px] border border-border bg-white p-8">
+                <div className="w-14 h-14 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
                   <t.Icon className="w-7 h-7 text-white" strokeWidth={1.75} />
                 </div>
                 <h3 className="text-lg font-black tracking-tight mb-4">{t.title}</h3>
@@ -295,9 +295,9 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group rounded-2xl border border-border bg-white p-6 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
+                className="group rounded-[4px] border border-border bg-white p-6 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <c.Icon className="w-6 h-6 text-white" strokeWidth={1.75} />
                 </div>
                 <h3 className="font-black text-sm tracking-tight mb-2">{c.title}</h3>
@@ -323,8 +323,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           </div>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-3xl border border-border bg-white p-8">
-              <div className="w-14 h-14 rounded-2xl bg-purple-bright/10 flex items-center justify-center mb-5">
+            <div className="rounded-[4px] border border-border bg-white p-8">
+              <div className="w-14 h-14 rounded-[4px] bg-purple-bright/10 flex items-center justify-center mb-5">
                 <Gauge className="w-7 h-7 text-purple-bright" strokeWidth={1.75} />
               </div>
               <h3 className="text-lg font-black tracking-tight mb-3">Pression et charge réelle</h3>
@@ -335,8 +335,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 d&apos;exploitation du véhicule.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-8">
-              <div className="w-14 h-14 rounded-2xl bg-purple-bright/10 flex items-center justify-center mb-5">
+            <div className="rounded-[4px] border border-border bg-white p-8">
+              <div className="w-14 h-14 rounded-[4px] bg-purple-bright/10 flex items-center justify-center mb-5">
                 <TrendingUp className="w-7 h-7 text-purple-bright" strokeWidth={1.75} />
               </div>
               <h3 className="text-lg font-black tracking-tight mb-3">Usure lue par essieu</h3>
@@ -347,8 +347,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 recreusage ou remplacement.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-8">
-              <div className="w-14 h-14 rounded-2xl bg-purple-bright/10 flex items-center justify-center mb-5">
+            <div className="rounded-[4px] border border-border bg-white p-8">
+              <div className="w-14 h-14 rounded-[4px] bg-purple-bright/10 flex items-center justify-center mb-5">
                 <Shield className="w-7 h-7 text-purple-bright" strokeWidth={1.75} />
               </div>
               <h3 className="text-lg font-black tracking-tight mb-3">Contrôle après choc ou crevaison</h3>
@@ -366,10 +366,10 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
       <section className="relative py-24 bg-muted overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 text-white">
+          <div className="rounded-[4px] bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 text-white">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-medium mb-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-white/10 border border-white/20 text-xs font-medium mb-4">
                   <Leaf className="h-3.5 w-3.5 text-purple-glow" /> Écologique &amp; économique
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-black mb-4">
@@ -393,7 +393,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                     </li>
                   ))}
                 </ul>
-                <Link href="/services/recreusage" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-lg transition-shadow">
+                <Link href="/services/recreusage" className="recacor-btn-secondary">
                   En savoir plus sur le recreusage <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -403,7 +403,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
               </div>
             </div>
           </div>
-          <div className="mt-6 rounded-2xl border border-border bg-white p-5">
+          <div className="mt-6 rounded-[4px] border border-border bg-white p-5">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Zones PL déjà couvertes</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Zone Sud &amp; Corse</Link>
@@ -419,7 +419,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-bright/10 text-purple-bright text-xs font-medium mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-blue-700/10 text-blue-700 text-xs font-medium mb-4">
                 <AlertTriangle className="h-3.5 w-3.5" /> 24h/24 · 7j/7
               </div>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tight mb-4">
@@ -436,8 +436,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                   { icon: Clock, label: "Délai moyen", value: "Moins d'1h sur zone urbaine" },
                   { icon: AlertTriangle, label: "Service", value: "Uniquement interventions pneus (pas de mécanique)" },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4 rounded-xl border border-border bg-white p-4">
-                    <div className="w-10 h-10 rounded-lg bg-purple-bright/10 flex items-center justify-center shrink-0">
+                  <div key={item.label} className="flex items-start gap-4 rounded-[4px] border border-border bg-white p-4">
+                    <div className="w-10 h-10 rounded-[4px] bg-purple-bright/10 flex items-center justify-center shrink-0">
                       <item.icon className="w-5 h-5 text-purple-bright" />
                     </div>
                     <div>
@@ -448,20 +448,20 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 ))}
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <PhoneLink location="cta" serviceType="pl" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-purple-bright to-purple-mid text-white font-bold shadow-lg shadow-purple-bright/25 hover:shadow-xl transition-shadow" showIcon>
+                <PhoneLink location="cta" serviceType="pl" className="recacor-btn-primary whitespace-nowrap" showIcon>
                   Assistance urgente : {PHONE_DISPLAY}
                 </PhoneLink>
                 <a
                   href="https://wa.me/33607621043"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-base hover:opacity-90 transition-opacity"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[4px] bg-[#25D366] px-5 py-3 text-sm font-black uppercase text-white transition hover:opacity-90 whitespace-nowrap"
                 >
                   💬 WhatsApp
                 </a>
               </div>
             </div>
-            <div className="rounded-3xl bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright p-10 text-white text-center">
+            <div className="rounded-[4px] bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright p-10 text-white text-center">
               <AlertTriangle className="w-16 h-16 text-purple-glow mx-auto mb-4" />
               <p className="text-5xl font-black mb-2">1h</p>
               <p className="text-white/60 uppercase tracking-widest text-sm mb-6">Délai moyen d&apos;intervention</p>
@@ -487,7 +487,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
               Un expert Recacor vous rappelle sous 2h en jours ouvrés.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisPlForm />
           </div>
         </div>
@@ -503,7 +503,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
           </h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-2xl border border-border bg-white p-5 cursor-pointer">
+              <details key={i} className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer">
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}
                   <span className="text-purple-bright ml-3 group-open:rotate-45 transition-transform text-xl leading-none">+</span>

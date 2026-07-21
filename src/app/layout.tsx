@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
+import { Barlow_Condensed, Inter } from "next/font/google";
 import "./globals.css";
 import { GtmConsent, GtmHead, GtmNoscript } from "@/components/gtm";
 
-const dmSans = DM_Sans({
+const barlowCondensed = Barlow_Condensed({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700", "800", "900"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${dmSans.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${barlowCondensed.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
         <GtmConsent />

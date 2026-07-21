@@ -12,13 +12,15 @@ import { DevisCtaLink } from "@/components/devis-cta-link";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
+const FALLBACK_IMAGE = "/hero-generated/mecanique-master.png";
+
 const services = [
-  { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange" },
-  { icon: Target, title: "Parallélisme & Géométrie", desc: "Réglage laser 3D", price: "65€", href: "/services/parallelisme-geometrie" },
-  { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + contrôle avant intervention", price: "59€", href: "/services/climatisation-auto-montpellier" },
-  { icon: Disc, title: "Freinage", desc: "Plaquettes, disques, liquide", price: "89€", href: "/mecanique#freinage" },
-  { icon: Gauge, title: "Amortisseurs", desc: "Train roulant, suspension", price: "Sur devis", href: "/mecanique#amortisseurs" },
-  { icon: Wrench, title: "Révision", desc: "Entretien complet constructeur", price: "Sur devis", href: "/mecanique#revision" },
+  { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange", image: "/illustrations/services/vidange-intro-20260716.webp" },
+  { icon: Target, title: "Parallélisme & Géométrie", desc: "Réglage laser 3D", price: "65€", href: "/services/parallelisme-geometrie", image: "/illustrations/services/parallelisme-intro-20260716.webp" },
+  { icon: Snowflake, title: "Climatisation auto", desc: "Recharge clim + contrôle avant intervention", price: "59€", href: "/services/climatisation-auto-montpellier", image: FALLBACK_IMAGE, imagePending: true },
+  { icon: Disc, title: "Freinage", desc: "Plaquettes, disques, liquide", price: "89€", href: "/mecanique#freinage", image: FALLBACK_IMAGE, imagePending: true },
+  { icon: Gauge, title: "Amortisseurs", desc: "Train roulant, suspension", price: "Sur devis", href: "/mecanique#amortisseurs", image: FALLBACK_IMAGE, imagePending: true },
+  { icon: Wrench, title: "Révision", desc: "Entretien complet constructeur", price: "Sur devis", href: "/mecanique#revision", image: FALLBACK_IMAGE, imagePending: true },
 ];
 
 const faqs = [
@@ -67,7 +69,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6">
             <Wrench className="h-3 w-3 mr-1" /> Entretien auto
@@ -83,12 +85,12 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
             <PhoneLink
               location="hero"
-              className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]"
+              className="flex-1 recacor-btn-primary whitespace-nowrap"
               showIcon
             >
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <DevisCtaLink mobileHref="/formulaire/mecanique" className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <DevisCtaLink mobileHref="/formulaire/mecanique" className="flex-1 recacor-btn-secondary">
               Devis gratuit <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>
@@ -98,7 +100,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
 
       <section className="py-14 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
               Entretenir sa voiture{" "}
               <span className="text-gradient-purple">sans perdre sa journée</span>
@@ -125,7 +127,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
                 "Contrôle de parallélisme offert lors d'un changement de pneus",
                 "Avec ou sans rendez-vous selon la charge atelier",
               ].map((item) => (
-                <div key={item} className="rounded-2xl border border-border bg-muted/40 px-4 py-3 text-sm font-semibold text-foreground">
+                <div key={item} className="rounded-[4px] border border-border bg-muted/40 px-4 py-3 text-sm font-semibold text-foreground">
                   {item}
                 </div>
               ))}
@@ -145,29 +147,42 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
               <Link
                 key={s.title}
                 href={s.href}
-                className="group rounded-3xl border border-border bg-white p-6 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
+                className="group flex flex-col overflow-hidden rounded-[4px] border border-border bg-white hover:border-blue-700/30 hover:shadow-xl hover:shadow-blue-700/[0.06] transition-all"
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <s.icon className="w-6 h-6 text-white" />
+                <div className="relative h-40 overflow-hidden bg-slate-900">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--recacor-night)]/60 to-transparent" />
+                  <div className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center bg-yellow-400 text-slate-950">
+                    <s.icon className="h-4 w-4" />
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-bold tracking-tight group-hover:text-purple-deep transition-colors">
-                        {s.title}
-                      </h3>
-                      <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-purple-bright group-hover:translate-x-1 transition-all shrink-0" />
-                    </div>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
-                    <span className="mt-3 inline-block text-xs font-bold text-purple-bright bg-purple-bright/10 px-2.5 py-1 rounded-full">
-                      {s.price}
+                  {s.imagePending && (
+                    <span className="absolute right-3 top-3 bg-white/90 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+                      Photo à venir
                     </span>
+                  )}
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="font-bold tracking-tight group-hover:text-blue-700 transition-colors">
+                      {s.title}
+                    </h3>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-blue-700 group-hover:translate-x-1 transition-all shrink-0" />
                   </div>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{s.desc}</p>
+                  <span className="mt-3 inline-block w-fit text-xs font-black uppercase text-blue-700 bg-blue-700/10 px-2.5 py-1 rounded-[4px]">
+                    {s.price}
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
-          <div className="mt-8 rounded-2xl border border-border bg-muted/60 p-5">
+          <div className="mt-8 rounded-[4px] border border-border bg-muted/60 p-5">
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Guides locaux entretien</p>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
               Si vous venez surtout pour un entretien rapide, notre page{" "}
@@ -209,11 +224,11 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
                 du diagnostic et des pièces nécessaires.
               </p>
             </div>
-            <DevisCtaLink mobileHref="/formulaire/mecanique" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-bright/20">
+            <DevisCtaLink mobileHref="/formulaire/mecanique" className="recacor-btn-dark whitespace-nowrap">
               Demander un devis <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
+          <div className="overflow-hidden rounded-[4px] border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
             <Image
               src="/tarifs/tarif-mecanique-recacor-202606.webp"
               alt="Grille tarifaire mécanique Recacor : T1 72 euros TTC, T2 84 euros TTC, T3 96 euros TTC hors pièces"
@@ -238,7 +253,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
               Réponse sous 2h en jours ouvrés. Avec ou sans rendez-vous.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisMecaniqueForm />
           </div>
         </div>
@@ -258,7 +273,7 @@ export function MecaniqueClient({ heroImage }: { heroImage?: string }) {
             {faqs.map((faq, i) => (
               <details
                 key={i}
-                className="group rounded-2xl border border-border bg-white p-5 cursor-pointer"
+                className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer"
               >
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}

@@ -30,7 +30,7 @@ export function ParallelismeClient() {
       <FaqJsonLd items={faqs} id="parallelisme" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        <div className="absolute inset-0 hero-overlay-solid" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6"><Target className="h-3 w-3 mr-1" /> Parallélisme</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl">
@@ -41,10 +41,10 @@ export function ParallelismeClient() {
             Réglage précis avec équipement laser 3D. Résultat en 30 minutes.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
-            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" className="flex-1 recacor-btn-primary whitespace-nowrap" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <DevisCtaLink mobileHref="/formulaire/mecanique" className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <DevisCtaLink mobileHref="/formulaire/mecanique" className="flex-1 recacor-btn-secondary">
               Devis gratuit <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>
@@ -54,7 +54,7 @@ export function ParallelismeClient() {
 
       <section className="py-14 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10 shadow-sm">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div>
                 <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
@@ -76,7 +76,7 @@ export function ParallelismeClient() {
                   </p>
                 </div>
               </div>
-              <div className="overflow-hidden rounded-3xl border border-border bg-muted/30">
+              <div className="overflow-hidden rounded-[4px] border border-border bg-muted/30">
                 <Image
                   src="/illustrations/services/parallelisme-intro-20260716.webp"
                   alt="Réglage de géométrie sur une voiture avec banc laser de parallélisme"
@@ -88,13 +88,13 @@ export function ParallelismeClient() {
               </div>
             </div>
             <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <div className="rounded-[4px] border border-border bg-muted/40 p-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Cas les plus fréquents</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
                   Voiture qui tire, volant de travers, usure irrégulière, choc trottoir, pneus neufs à préserver
                 </p>
               </div>
-              <div className="rounded-2xl border border-border bg-muted/40 p-4">
+              <div className="rounded-[4px] border border-border bg-muted/40 p-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Infos clés à retenir</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
                   Contrôle offert avec pneus, réglage dès 65€, géométrie complète possible selon véhicule
@@ -116,8 +116,8 @@ export function ParallelismeClient() {
               { icon: Gauge, title: "Test dynamique", desc: "Vérification en conditions réelles" },
               { icon: Wrench, title: "Réglage complet", desc: "Parallélisme, carrossage, chasse" },
             ].map((item) => (
-              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
+              <div key={item.title} className="rounded-[4px] border border-border bg-white p-8">
+                <div className="w-14 h-14 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
                   <item.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-black mb-2">{item.title}</h3>
@@ -144,7 +144,7 @@ export function ParallelismeClient() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Usure anormale des pneus</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Une usure plus marquée à l&apos;intérieur ou à l&apos;extérieur de la bande de roulement
@@ -152,7 +152,7 @@ export function ParallelismeClient() {
                 prématurément des pneus encore récents.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Volant de travers</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Si le volant n&apos;est plus droit lorsque la voiture roule en ligne droite, ou si le véhicule
@@ -160,7 +160,7 @@ export function ParallelismeClient() {
                 d&apos;écarter un problème de pression ou de suspension.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Après un changement de pneus</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Des pneus neufs montés sur un véhicule mal réglé peuvent s&apos;user rapidement. Chez Recacor,
@@ -197,7 +197,7 @@ export function ParallelismeClient() {
             </div>
           </div>
 
-          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+          <div className="mt-14 rounded-[4px] border border-border bg-white p-8 sm:p-10">
             <h2 className="text-3xl font-black tracking-tight mb-5">Les étapes du contrôle de géométrie</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground leading-relaxed">
               <p>
@@ -233,7 +233,7 @@ export function ParallelismeClient() {
               Pour un volant de travers, une usure anormale ou après un changement de pneus, faites contrôler le réglage.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisMecaniqueForm defaultService="Contrôle parallélisme" />
           </div>
         </div>
@@ -244,7 +244,7 @@ export function ParallelismeClient() {
           <h2 className="text-center text-4xl font-black tracking-tight mb-12">FAQ</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-2xl border border-border bg-white p-5 cursor-pointer">
+              <details key={i} className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer">
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}
                   <span className="text-purple-bright ml-3 group-open:rotate-45 transition-transform text-xl leading-none">+</span>

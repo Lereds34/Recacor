@@ -29,21 +29,32 @@ function Particle({ delay, x, size, color, duration, drift }: { delay: number; x
 }
 
 const colors = [
-  "rgba(109,40,217,0.4)",
-  "rgba(59,130,246,0.35)",
-  "rgba(139,92,246,0.35)",
-  "rgba(109,40,217,0.3)",
-  "rgba(59,130,246,0.4)",
-  "rgba(167,139,250,0.3)",
+  "rgba(255,255,255,0.28)",
+  "rgba(27,79,216,0.26)",
+  "rgba(255,201,40,0.22)",
+  "rgba(255,255,255,0.18)",
+  "rgba(27,79,216,0.2)",
+  "rgba(255,201,40,0.16)",
 ];
 
-// Generate 40 particles spread across the width
+// PRNG entier 32 bits (mulberry32) : opérations bit à bit exactes sur tous
+// les moteurs JS, donc serveur et client calculent des valeurs identiques
+// pour une même seed. Évite le mismatch d'hydratation qu'un Math.random()
+// non seedé provoquait ici (valeurs différentes SSR vs premier rendu client).
+function seededRandom(seed: number) {
+  let t = (seed + 0x6d2b79f5) | 0;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+}
+
+// 40 particules réparties sur la largeur, positions stables (déterministes par index)
 const dots = Array.from({ length: 40 }, (_, i) => ({
-  x: (i * 2.5) + Math.random() * 2,
-  size: 3 + Math.random() * 4,
-  delay: Math.random() * 12,
-  duration: 6 + Math.random() * 6,
-  drift: Math.random() > 0.5 ? 25 : -25,
+  x: i * 2.5 + seededRandom(i * 2) * 2,
+  size: 3 + seededRandom(i * 2 + 1) * 4,
+  delay: seededRandom(i * 2 + 100) * 12,
+  duration: 6 + seededRandom(i * 2 + 101) * 6,
+  drift: seededRandom(i * 2 + 200) > 0.5 ? 25 : -25,
   color: colors[i % colors.length],
 }));
 

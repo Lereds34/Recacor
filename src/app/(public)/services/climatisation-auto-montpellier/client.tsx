@@ -89,7 +89,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/88 via-purple-mid/80 to-purple-bright/70" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_380px] gap-8 items-center">
             <div>
@@ -106,24 +106,24 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
               </p>
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-2xl">
                 {["Dès 59€", "Contrôle avant recharge", "Avec ou sans RDV"].map((item) => (
-                  <div key={item} className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/15 px-3 py-2 text-sm font-bold text-white">
+                  <div key={item} className="inline-flex items-center gap-2 rounded-[4px] bg-white/10 border border-white/15 px-3 py-2 text-sm font-bold text-white">
                     <CheckCircle className="h-4 w-4 text-purple-glow shrink-0" />
                     {item}
                   </div>
                 ))}
               </div>
               <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
-                <PhoneLink location="hero" serviceType="mecanique" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+                <PhoneLink location="hero" serviceType="mecanique" className="flex-1 recacor-btn-primary whitespace-nowrap" showIcon>
                   Appeler : {PHONE_DISPLAY}
                 </PhoneLink>
-                <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+                <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="flex-1 recacor-btn-secondary">
                   Devis clim <ArrowRight className="h-4 w-4" />
                 </DevisCtaLink>
               </div>
             </div>
 
             <div className="hidden lg:block">
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-5 text-white backdrop-blur-sm">
+              <div className="rounded-[4px] border border-white/15 bg-white/10 p-5 text-white backdrop-blur-sm">
                 <p className="text-xs uppercase tracking-wider text-white/60 font-bold">Offre clim</p>
                 <p className="mt-2 text-4xl font-black">59€</p>
                 <p className="text-white/70 text-sm">Recharge clim à partir de</p>
@@ -158,7 +158,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {signs.map((sign) => (
-              <div key={sign} className="rounded-2xl border border-border bg-white p-5 flex items-start gap-3">
+              <div key={sign} className="rounded-[4px] border border-border bg-white p-5 flex items-start gap-3">
                 <Snowflake className="h-5 w-5 text-purple-bright shrink-0 mt-0.5" />
                 <p className="text-sm font-semibold">{sign}</p>
               </div>
@@ -169,7 +169,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
 
       <section className="py-16 bg-muted/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 lg:p-10">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 lg:p-10">
             <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
               <div>
                 <Badge className="bg-purple-bright/10 text-purple-bright border-purple-bright/20 mb-4">
@@ -192,7 +192,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   {["Voitures et SUV", "Utilitaires légers", "Gaz selon véhicule", "Atelier au Crès"].map((item) => (
-                    <div key={item} className="flex items-center gap-2 rounded-xl bg-muted px-4 py-3 text-sm font-bold text-foreground">
+                    <div key={item} className="flex items-center gap-2 rounded-[4px] bg-muted px-4 py-3 text-sm font-bold text-foreground">
                       <CheckCircle className="h-4 w-4 text-purple-bright shrink-0" />
                       {item}
                     </div>
@@ -225,11 +225,11 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
                 complémentaire ou un remplacement du filtre d&apos;habitacle.
               </p>
             </div>
-            <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="inline-flex items-center justify-center gap-2 rounded-full bg-purple-bright px-6 py-3 text-sm font-bold text-white shadow-lg shadow-purple-bright/20">
+            <DevisCtaLink desktopHref="#devis" mobileHref="/formulaire/clim" className="recacor-btn-dark whitespace-nowrap">
               Demander un devis clim <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
+          <div className="overflow-hidden rounded-[4px] border border-border bg-white shadow-xl shadow-purple-bright/[0.06]">
             <Image
               src="/tarifs/tarif-clim-recacor-202606.webp"
               alt="Grille tarifaire recharge climatisation Recacor : ancien gaz R134 et nouveau gaz 1234yf selon type de véhicule"
@@ -249,8 +249,8 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {steps.map((step) => (
-              <div key={step.title} className="rounded-3xl border border-border bg-white p-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
+              <div key={step.title} className="rounded-[4px] border border-border bg-white p-6">
+                <div className="w-12 h-12 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
                   <step.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="font-black tracking-tight mb-2">{step.title}</h3>
@@ -278,7 +278,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
 
           <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
             {controlPoints.map((point) => (
-              <div key={point.title} className="rounded-3xl border border-border bg-white p-6 shadow-sm shadow-purple-bright/[0.04]">
+              <div key={point.title} className="rounded-[4px] border border-border bg-white p-6 shadow-sm shadow-purple-bright/[0.04]">
                 <h3 className="text-lg font-black tracking-tight">{point.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{point.desc}</p>
               </div>
@@ -319,7 +319,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
       <section id="devis" className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-bright/10 text-purple-bright font-bold text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[4px] bg-blue-700/10 text-blue-700 font-bold text-sm mb-4">
               <CalendarClock className="h-4 w-4" /> Avec ou sans rendez-vous
             </div>
             <h2 className="text-4xl font-black tracking-tight">
@@ -329,7 +329,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
               Laisser les informations du véhicule pour être rappelé rapidement. Contrôle avant recharge, à partir de 59€.
             </p>
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisClimForm />
           </div>
         </div>
@@ -344,7 +344,7 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
           </h2>
           <div className="space-y-3">
             {faqs.map((faq) => (
-              <details key={faq.q} className="group rounded-2xl border border-border bg-white p-5 cursor-pointer">
+              <details key={faq.q} className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer">
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}
                   <span className="text-purple-bright ml-3 group-open:rotate-45 transition-transform text-xl leading-none">+</span>

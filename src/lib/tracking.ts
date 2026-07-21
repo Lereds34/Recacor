@@ -61,11 +61,12 @@ export function getUtmData() {
   };
 }
 
-export type ServiceType = "vl" | "pl" | "mecanique";
+export type ServiceType = "vl" | "pl" | "mecanique" | "contact";
 
 export function inferServiceType(pathname?: string): ServiceType {
   const path = pathname || (typeof window !== "undefined" ? window.location.pathname : "");
   if (path.includes("pneus-utilitaires-pl") || path.includes("recreusage")) return "pl";
+  if (path.includes("contact")) return "contact";
   if (
     path.includes("mecanique") ||
     path.includes("vidange") ||

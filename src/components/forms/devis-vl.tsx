@@ -63,7 +63,7 @@ export function DevisVlForm() {
     setData((d) => ({ ...d, [key]: value }));
 
   const select =
-    "w-full h-11 rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-bright";
+    "w-full h-11 rounded-[4px] border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700";
 
   const isValid = (step: number) => {
     if (step === 0) return true; // Optional fields
@@ -175,7 +175,7 @@ export function DevisVlForm() {
                   maxLength={500}
                   value={data.message}
                   onChange={(e) => update("message", e.target.value)}
-                  className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-bright resize-none"
+                  className="w-full rounded-[4px] border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700 resize-none"
                   placeholder="Précisions utiles..."
                 />
               </FormField>

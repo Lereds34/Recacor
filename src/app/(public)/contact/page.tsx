@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ContactClient } from "./client";
-import { getAsset } from "@/lib/site-assets";
 
 export const revalidate = 3600;
 
@@ -12,6 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const heroImage = await getAsset("hero_image_contact", "");
-  return <ContactClient heroImage={heroImage} />;
+  // L'asset CMS "hero_image_contact" pointe par erreur vers le logo Recacor
+  // (pas une photo) : étiré en fond de hero, ça casse visuellement.
+  // On repasse sur le fond uni en attendant qu'une vraie photo soit assignée.
+  return <ContactClient />;
 }

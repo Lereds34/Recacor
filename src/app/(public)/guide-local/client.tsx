@@ -80,16 +80,16 @@ export function GuideLocalClient() {
     <div className="flex flex-col min-h-screen">
 
       {/* Hero */}
-      <section className="relative py-20 bg-indigo-950 overflow-hidden">
+      <section className="relative py-20 bg-[var(--recacor-night)] overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center text-white">
-          <p className="text-sm font-bold tracking-widest uppercase text-indigo-300 mb-4">
+          <p className="text-sm font-bold tracking-widest uppercase text-white/65 mb-4">
             Recacor Le Crès
           </p>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-6">
             Guide local <span className="text-gradient-purple">Montpellier</span>
           </h1>
-          <p className="text-lg text-indigo-200 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-white/72 max-w-2xl mx-auto leading-relaxed">
             Les adresses et partenaires que nous recommandons en Hérault — des professionnels
             de confiance avec lesquels nous travaillons au quotidien.
           </p>
@@ -112,14 +112,14 @@ export function GuideLocalClient() {
             {partenaires.map((p) => (
               <article
                 key={p.slug}
-                className="rounded-3xl border border-border bg-white overflow-hidden shadow-sm"
+                className="rounded-[4px] border border-border bg-white overflow-hidden shadow-sm"
               >
                 <div className="p-8 sm:p-10">
                   <div className="flex flex-col sm:flex-row sm:items-start gap-6">
 
                     {/* Logo */}
                     <div className="flex-shrink-0">
-                      <div className="w-48 h-20 relative bg-gray-50 rounded-2xl border border-border flex items-center justify-center p-4">
+                      <div className="w-48 h-20 relative bg-gray-50 rounded-[4px] border border-border flex items-center justify-center p-4">
                         <Image
                           src={p.logo}
                           alt={`Logo ${p.nom}`}
@@ -133,10 +133,10 @@ export function GuideLocalClient() {
                     {/* Infos */}
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-3 mb-3">
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-blue-700/10 text-blue-700 px-3 py-1 rounded-[4px]">
                           {p.categorie}
                         </span>
-                        <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-green-50 text-green-700 px-3 py-1 rounded-full">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-green-50 text-green-700 px-3 py-1 rounded-[4px]">
                           <Truck className="w-3 h-3" />
                           {p.badge}
                         </span>
@@ -154,9 +154,9 @@ export function GuideLocalClient() {
                       </p>
 
                       {/* Bloc partenariat */}
-                      <div className="rounded-2xl bg-indigo-50 border border-indigo-100 px-5 py-4 mb-5">
-                        <p className="text-sm font-bold text-indigo-800 mb-1">Notre partenariat</p>
-                        <p className="text-sm text-indigo-700 leading-relaxed">{p.lienPartenariat}</p>
+                      <div className="rounded-[4px] bg-blue-700/5 border border-blue-700/15 px-5 py-4 mb-5">
+                        <p className="text-sm font-bold text-blue-800 mb-1">Notre partenariat</p>
+                        <p className="text-sm text-blue-700 leading-relaxed">{p.lienPartenariat}</p>
                       </div>
 
                       {/* Note + CTA */}
@@ -171,7 +171,7 @@ export function GuideLocalClient() {
                           href={p.site}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-bold text-indigo-700 hover:text-indigo-900 underline underline-offset-4"
+                          className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 underline underline-offset-4"
                         >
                           Visiter le site
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -195,13 +195,13 @@ export function GuideLocalClient() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
             {commercesProches.map((c) => (
-              <div key={c.nom} className="rounded-3xl border border-border bg-white p-7">
+              <div key={c.nom} className="rounded-[4px] border border-border bg-white p-7">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-gray-100 text-gray-600 px-3 py-1 rounded-[4px]">
                     <ShoppingCart className="w-3 h-3" />
                     {c.categorie}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-green-50 text-green-700 px-3 py-1 rounded-full">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold bg-green-50 text-green-700 px-3 py-1 rounded-[4px]">
                     <Clock className="w-3 h-3" />
                     {c.distance}
                   </span>
@@ -216,7 +216,7 @@ export function GuideLocalClient() {
                   href={c.site}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-900 underline underline-offset-4"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-900 underline underline-offset-4"
                 >
                   Site officiel <ExternalLink className="w-3 h-3" />
                 </Link>
@@ -225,15 +225,15 @@ export function GuideLocalClient() {
           </div>
 
           {/* CTA Recacor */}
-          <div className="mt-14 rounded-3xl bg-indigo-950 text-white p-10 text-center">
+          <div className="mt-14 rounded-[4px] bg-[var(--recacor-night)] text-white p-10 text-center">
             <h2 className="text-2xl font-black mb-3">Vous gérez une flotte de véhicules ?</h2>
-            <p className="text-indigo-200 mb-6 max-w-xl mx-auto">
+            <p className="text-white/70 mb-6 max-w-xl mx-auto">
               Recacor prend en charge les pneus et la mécanique de vos utilitaires et poids lourds
               en Hérault — avec ou sans rendez-vous, facture professionnelle garantie.
             </p>
             <Link
               href="/pneus-utilitaires-pl"
-              className="inline-flex items-center gap-2 bg-white text-indigo-900 font-bold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-colors"
+              className="recacor-btn-secondary whitespace-nowrap"
             >
               Découvrir nos services PL
             </Link>

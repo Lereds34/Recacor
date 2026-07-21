@@ -58,7 +58,7 @@ export function RecreusageClient() {
       <FaqJsonLd items={faqs} id="recreusage" />
 
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+        <div className="absolute inset-0 hero-overlay-solid" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="bg-white/10 text-white border-white/20 mb-6"><RefreshCw className="h-3 w-3 mr-1" /> Recreusage</Badge>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl">
@@ -73,16 +73,16 @@ export function RecreusageClient() {
           </p>
           <div className="mt-5 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-white/80">
             {["REGROOVABLE", "Carcasse", "Coût au kilomètre", "Transport / remorque", "Pression et charge"].map((item) => (
-              <span key={item} className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5">
+              <span key={item} className="rounded-[4px] border border-white/15 bg-white/10 px-3 py-1.5">
                 {item}
               </span>
             ))}
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl">
-            <PhoneLink location="hero" className="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-purple-bright text-white font-bold shadow-[0_8px_30px_rgba(109,40,217,0.5)]" showIcon>
+            <PhoneLink location="hero" className="flex-1 recacor-btn-primary whitespace-nowrap" showIcon>
               Appeler : {PHONE_DISPLAY}
             </PhoneLink>
-            <DevisCtaLink className="flex-1 items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10">
+            <DevisCtaLink className="flex-1 recacor-btn-secondary">
               Devis B2B <ArrowRight className="h-4 w-4" />
             </DevisCtaLink>
           </div>
@@ -92,7 +92,7 @@ export function RecreusageClient() {
 
       <section className="py-14 bg-background">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl border border-border bg-white p-8 sm:p-10 shadow-sm">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10 shadow-sm">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
               Un service utile quand la{" "}
               <span className="text-gradient-purple">carcasse a encore du potentiel</span>
@@ -116,11 +116,11 @@ export function RecreusageClient() {
                 cette rigueur qui conditionne le rendement kilométrique final.
               </p>
             </div>
-            <div className="mt-6 rounded-2xl border border-border bg-muted/30 p-5">
+            <div className="mt-6 rounded-[4px] border border-border bg-muted/30 p-5">
               <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Repères avant intervention</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {signauxParc.map((item) => (
-                  <span key={item} className="rounded-full border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
+                  <span key={item} className="rounded-[4px] border border-border bg-white px-3 py-1.5 text-sm font-semibold text-foreground">
                     {item}
                   </span>
                 ))}
@@ -142,8 +142,8 @@ export function RecreusageClient() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {avantages.map((a) => (
-              <div key={a.title} className="rounded-3xl border border-border bg-white p-8">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
+              <div key={a.title} className="rounded-[4px] border border-border bg-white p-8">
+                <div className="w-14 h-14 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center mb-5">
                   <a.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-black mb-2">{a.title}</h3>
@@ -152,7 +152,7 @@ export function RecreusageClient() {
             ))}
           </div>
 
-          <div className="mt-16 rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-white">
+          <div className="mt-16 rounded-[4px] bg-gradient-to-br from-purple-deep to-purple-mid p-10 text-white">
             <h3 className="text-2xl font-black mb-4">Pourquoi recreuser ses pneus ?</h3>
             <ul className="space-y-2.5">
               {[
@@ -172,7 +172,7 @@ export function RecreusageClient() {
 
           <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
             {risquesCarcasse.map((item) => (
-              <div key={item.title} className="rounded-3xl border border-border bg-white p-8">
+              <div key={item.title} className="rounded-[4px] border border-border bg-white p-8">
                 <h3 className="text-lg font-black tracking-tight mb-3">{item.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
@@ -197,7 +197,7 @@ export function RecreusageClient() {
           </div>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Contrôle avant intervention</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Tous les pneus ne sont pas recreusables. Le technicien vérifie le marquage REGROOVABLE,
@@ -205,7 +205,7 @@ export function RecreusageClient() {
                 Un pneu endommagé ou non prévu par le fabricant est refusé.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Traçage adapté au pneu</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 La largeur et la profondeur de coupe sont choisies selon les recommandations du manufacturier.
@@ -213,7 +213,7 @@ export function RecreusageClient() {
                 suffisante au-dessus des nappes de la carcasse.
               </p>
             </div>
-            <div className="rounded-3xl border border-border bg-white p-7">
+            <div className="rounded-[4px] border border-border bg-white p-7">
               <h3 className="text-lg font-black mb-3">Suivi de flotte</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Pour une flotte, le bon moment dépend de l&apos;essieu, du kilométrage, de l&apos;usage et du
@@ -223,7 +223,7 @@ export function RecreusageClient() {
             </div>
           </div>
 
-          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+          <div className="mt-14 rounded-[4px] border border-border bg-white p-8 sm:p-10">
             <h2 className="text-3xl font-black tracking-tight">
               Ce qui protège vraiment le{" "}
               <span className="text-gradient-purple">potentiel de la carcasse</span>
@@ -283,7 +283,7 @@ export function RecreusageClient() {
             </div>
           </div>
 
-          <div className="mt-14 rounded-3xl border border-border bg-white p-8 sm:p-10">
+          <div className="mt-14 rounded-[4px] border border-border bg-white p-8 sm:p-10">
             <h2 className="text-3xl font-black tracking-tight mb-5">Recreusage et rechapage : deux opérations différentes</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-muted-foreground leading-relaxed">
               <p>
@@ -312,7 +312,7 @@ export function RecreusageClient() {
             </h2>
             <p className="mt-4 text-muted-foreground">Un expert vous rappelle sous 2h en jours ouvrés</p>
           </div>
-          <div className="rounded-3xl border border-border bg-white p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
             <DevisPlForm />
           </div>
         </div>
@@ -323,7 +323,7 @@ export function RecreusageClient() {
           <h2 className="text-center text-4xl font-black tracking-tight mb-12">FAQ</h2>
           <div className="space-y-3">
             {faqs.map((faq, i) => (
-              <details key={i} className="group rounded-2xl border border-border bg-white p-5 cursor-pointer">
+              <details key={i} className="group rounded-[4px] border border-border bg-white p-5 cursor-pointer">
                 <summary className="font-bold text-sm list-none flex items-center justify-between">
                   {faq.q}
                   <span className="text-purple-bright ml-3 group-open:rotate-45 transition-transform text-xl leading-none">+</span>

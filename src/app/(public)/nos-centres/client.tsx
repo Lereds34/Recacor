@@ -74,7 +74,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={heroImage} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
         )}
-        <div className={`absolute inset-0 bg-gradient-to-br ${heroImage ? "from-purple-deep/85 via-purple-mid/80 to-purple-bright/75" : "from-purple-deep via-purple-mid to-purple-bright"}`} />
+        <div className={`absolute inset-0 ${heroImage ? "hero-overlay-image" : "hero-overlay-solid"}`} />
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "conic-gradient(from 0deg, transparent 0%, white 1%, transparent 3%)" }} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -107,7 +107,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
             className="mt-10 flex flex-wrap gap-4"
           >
             {services.map((s) => (
-              <div key={s.label} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl px-5 py-3">
+              <div key={s.label} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-[4px] px-5 py-3">
                 <s.icon className="h-5 w-5 text-purple-glow" />
                 <div>
                   <p className="text-white text-sm font-bold">{s.label}</p>
@@ -123,7 +123,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
       {/* Stats bar */}
       <section className="py-16 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-gradient-to-r from-purple-deep via-purple-mid to-purple-bright p-8 sm:p-12">
+          <div className="rounded-[4px] bg-gradient-to-r from-purple-deep via-purple-mid to-purple-bright p-8 sm:p-12">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((s, i) => (
                 <motion.div
@@ -173,7 +173,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" as const }}
               >
-                <div className="group rounded-3xl border border-border bg-white overflow-hidden hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all duration-400">
+                <div className="group rounded-[4px] border border-border bg-white overflow-hidden hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all duration-400">
                   <div className={`grid grid-cols-1 lg:grid-cols-5 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
                     {/* Image */}
                     <div className={`lg:col-span-2 relative min-h-[250px] lg:min-h-0 overflow-hidden ${i % 2 === 1 ? "lg:order-2" : ""}`}>
@@ -186,7 +186,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                       <div className="absolute inset-0 bg-gradient-to-t from-purple-deep/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-transparent" />
                       {/* Badge ville */}
                       <div className="absolute top-4 left-4">
-                        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+                        <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-[4px] px-4 py-2 shadow-lg">
                           <MapPin className="h-5 w-5 text-purple-bright" />
                           <span className="font-black text-sm text-purple-deep">{c.name}</span>
                         </div>
@@ -199,7 +199,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                         <h3 className="text-2xl font-black tracking-tight group-hover:text-purple-deep transition-colors">
                           Centre de {c.name}
                         </h3>
-                        <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full">
+                        <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-[4px]">
                           {c.city}
                         </span>
                       </div>
@@ -243,7 +243,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                           <p className="text-xs font-bold text-foreground/70 uppercase tracking-wider mb-2">Spécialités</p>
                           <div className="flex flex-wrap gap-1.5">
                             {c.specialities.map((s) => (
-                              <span key={s} className="text-xs font-medium text-purple-bright bg-purple-bright/[0.06] px-2.5 py-1 rounded-full">
+                              <span key={s} className="text-xs font-black uppercase text-blue-700 bg-blue-700/[0.06] px-2.5 py-1 rounded-[4px]">
                                 {s}
                               </span>
                             ))}
@@ -269,15 +269,12 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                           <span><strong className="text-foreground">{c.team} techniciens</strong> certifiés</span>
                         </div>
                         <div className="flex gap-3">
-                          <Link
-                            href="/contact"
-                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-purple-bright text-white text-sm font-semibold hover:bg-purple-mid transition-colors"
-                          >
+                          <Link href="/contact" className="recacor-btn-dark !min-h-9 !px-5 !py-2 !text-xs">
                             Prendre RDV <ArrowRight className="h-4 w-4" />
                           </Link>
                           <Link
                             href={`tel:${c.phone.replace(/\s/g, "")}`}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:border-purple-bright/30 transition-colors"
+                            className="recacor-btn-secondary !min-h-9 !px-5 !py-2 !text-xs"
                           >
                             <Phone className="h-3.5 w-3.5" /> Appeler
                           </Link>
@@ -318,10 +315,10 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group rounded-2xl border border-border bg-white p-7 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
+                className="group rounded-[4px] border border-border bg-white p-7 hover:border-purple-bright/30 hover:shadow-xl hover:shadow-purple-bright/[0.06] transition-all"
               >
                 <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 rounded-[4px] bg-gradient-to-br from-purple-bright to-purple-mid flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     <item.icon className="w-7 h-7 text-white" />
                   </div>
                   <div>
@@ -379,7 +376,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-white p-6"
+                className="rounded-[4px] border border-border bg-white p-6"
               >
                 <h3 className="font-bold text-sm mb-2">{faq.q}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
@@ -398,7 +395,7 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 flex flex-col sm:flex-row items-center justify-between gap-8"
+            className="rounded-[4px] bg-gradient-to-br from-purple-deep to-purple-mid p-10 sm:p-14 flex flex-col sm:flex-row items-center justify-between gap-8"
           >
             <div>
               <h2 className="text-3xl font-black text-white mb-2">
@@ -409,17 +406,11 @@ export function NosCentresClient({ heroImage }: { heroImage?: string }) {
                 personnalisé sous 24h.
               </p>
             </div>
-            <div className="flex gap-4 shrink-0">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-[0_8px_32px_rgba(255,255,255,0.2)] transition-shadow"
-              >
+            <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:shrink-0">
+              <Link href="/contact" className="recacor-btn-secondary whitespace-nowrap">
                 Demander un devis <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link
-                href="tel:0499533390"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/25 text-white font-medium text-sm hover:bg-white/10 transition-all"
-              >
+              <Link href="tel:0499533390" className="recacor-btn-primary whitespace-nowrap">
                 <Phone className="h-4 w-4" /> 04 99 53 33 90
               </Link>
             </div>

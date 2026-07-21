@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, ReactNode, FormEvent } from "react";
+import { useState, useRef, ReactNode, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -145,9 +145,9 @@ export function MultiStepForm({
           {steps.map((_, i) => (
             <div
               key={i}
-              className={cn(
-                "flex-1 h-1.5 rounded-full transition-colors duration-300",
-                i <= step ? "bg-purple-bright" : "bg-border"
+            className={cn(
+                "flex-1 h-1.5 rounded-[2px] transition-colors duration-300",
+                i <= step ? "bg-blue-700" : "bg-border"
               )}
             />
           ))}
@@ -173,8 +173,8 @@ export function MultiStepForm({
         >
           {step === totalSteps - 1 ? (
             <div className="space-y-5">
-              <div className="rounded-xl border border-border bg-muted p-5">
-                <p className="text-xs font-bold text-purple-bright uppercase mb-3">
+              <div className="rounded-[4px] border border-border bg-muted p-5">
+                <p className="text-xs font-bold text-blue-700 uppercase mb-3">
                   Récapitulatif
                 </p>
                 {summary}
@@ -195,7 +195,7 @@ export function MultiStepForm({
                       soient traitées par Recacor dans le cadre de ma demande.{" "}
                       <Link
                         href="/confidentialite"
-                        className="text-purple-bright hover:underline"
+                        className="text-blue-700 hover:underline"
                       >
                         Politique de confidentialité
                       </Link>
@@ -205,7 +205,7 @@ export function MultiStepForm({
               </label>
 
               {extraMention && (
-                <p className="text-xs text-center text-purple-bright font-semibold">
+                <p className="text-xs text-center text-blue-700 font-semibold">
                   {extraMention}
                 </p>
               )}
@@ -222,7 +222,7 @@ export function MultiStepForm({
           <button
             type="button"
             onClick={prev}
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-border text-sm font-medium hover:border-purple-bright/30 transition-colors"
+            className="inline-flex items-center gap-2 rounded-[4px] border border-border px-5 py-3 text-sm font-bold hover:border-blue-700/40 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             Retour
@@ -234,7 +234,7 @@ export function MultiStepForm({
             type="button"
             onClick={next}
             disabled={!isValid(step)}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-bright to-purple-mid text-white font-bold text-sm hover:shadow-lg hover:shadow-purple-bright/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[4px] bg-yellow-400 px-6 py-3 text-sm font-black uppercase text-slate-950 transition-all hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Continuer
             <ArrowRight className="h-4 w-4" />
@@ -243,7 +243,7 @@ export function MultiStepForm({
           <button
             type="submit"
             disabled={!rgpd || submitting}
-            className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-bright to-purple-mid text-white font-bold text-sm hover:shadow-lg hover:shadow-purple-bright/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-[4px] bg-yellow-400 px-6 py-3 text-sm font-black uppercase text-slate-950 transition-all hover:bg-yellow-300 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {submitting ? "Envoi..." : submitLabel}
             <CheckCircle className="h-4 w-4" />
@@ -272,7 +272,7 @@ export function FormField({
     <div>
       <label className="text-xs font-semibold text-foreground/70 mb-1.5 block">
         {label}
-        {required && <span className="text-purple-bright ml-1">*</span>}
+        {required && <span className="text-blue-700 ml-1">*</span>}
       </label>
       {children}
     </div>

@@ -104,10 +104,10 @@ export default async function ArticlePage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={article.frontmatter.image} alt={article.frontmatter.titre}
               className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-deep/90 via-purple-mid/75 to-purple-bright/60" />
+            <div className="absolute inset-0 hero-overlay-image" />
           </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright" />
+          <div className="absolute inset-0 hero-overlay-solid" />
         )}
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Link href="/blog" className="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm mb-5 transition-colors">

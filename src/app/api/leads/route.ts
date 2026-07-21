@@ -22,6 +22,7 @@ interface LeadPayload {
   utm_medium?: string;
   utm_campaign?: string;
   utm_content?: string;
+  utm_term?: string;
   gclid?: string;
   fbclid?: string;
   page_source?: string;
@@ -161,10 +162,16 @@ async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardRe
     tel: data.telephone || null,
     email: data.email || null,
     cp: data.cp || null,
+    service: getAdsFlowService(data),
     source: data.utm_source || data.referrer || null,
     page: data.page_source || null,
     gclid: data.gclid || null,
     fbclid: data.fbclid || null,
+    utm_source: data.utm_source || null,
+    utm_medium: data.utm_medium || null,
+    utm_campaign: data.utm_campaign || null,
+    utm_content: data.utm_content || null,
+    utm_term: data.utm_term || null,
     form_id: data.form_id,
     service_type: data.service_type,
     message: data.message || null,
@@ -218,6 +225,22 @@ async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardRe
     shouldAlert: false,
     detail: lastRuntimeError || "Erreur AdsFlow transitoire",
   };
+}
+
+function getAdsFlowService(data: LeadPayload): "pneus" | "mecanique" {
+  const serviceType = String(data.service_type || "").toLowerCase();
+  const formId = String(data.form_id || "").toLowerCase();
+
+  if (
+    serviceType === "mecanique" ||
+    formId === "devis-mecanique-form" ||
+    formId === "devis-clim-form" ||
+    formId === "devis-clim-pl-form"
+  ) {
+    return "mecanique";
+  }
+
+  return "pneus";
 }
 
 function normalizeLeadAttribution(data: LeadPayload): LeadPayload {

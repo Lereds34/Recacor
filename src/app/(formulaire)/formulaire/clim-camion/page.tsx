@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MessageCircle } from "lucide-react";
 import { DevisClimPlForm } from "@/components/forms/devis-clim-pl";
 import { PhoneLink } from "@/components/phone-link";
-import { PHONE_DISPLAY, PHONE_MOBILE, PHONE_MOBILE_DISPLAY } from "@/lib/tracking";
+import { PHONE_DISPLAY, PHONE_WHATSAPP_PL, PHONE_WHATSAPP_PL_DISPLAY } from "@/lib/tracking";
 
 export const metadata: Metadata = {
   title: "Demande clim camion et poids lourd — Recacor Le Crès",
@@ -49,7 +49,7 @@ export default function FormulaireClimCamionPage() {
             </PhoneLink>
 
             <a
-              href={`https://wa.me/${PHONE_MOBILE.replace("+", "")}`}
+              href={`https://wa.me/${PHONE_WHATSAPP_PL.replace("+", "")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1ebe5d]"
@@ -60,7 +60,7 @@ export default function FormulaireClimCamionPage() {
           </div>
 
           <p className="text-xs text-muted-foreground">
-            Tél. Lun-Ven 8h-17h · Sam 8h-12h · WhatsApp {PHONE_MOBILE_DISPLAY}
+            Tél. Lun-Ven 8h-17h · Sam 8h-12h · WhatsApp {PHONE_WHATSAPP_PL_DISPLAY}
           </p>
         </div>
       </div>

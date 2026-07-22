@@ -32,7 +32,7 @@ interface LeadEmailData {
   service?: string;
 }
 
-const WHATSAPP_NUMBER_NON_PL = "33687601575";
+const WHATSAPP_NUMBER_NON_PL = "33756336311";
 const WHATSAPP_NUMBER_PL = "33607621043";
 
 const SITE_URL = "https://recacor.fr";

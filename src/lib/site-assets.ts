@@ -21,15 +21,8 @@ export const SITE_ASSETS: PageAssets[] = [
   {
     id: "home",
     page: "Accueil",
-    description: "Vidéo et images de la page d'accueil",
+    description: "Images de la page d'accueil",
     assets: [
-      {
-        key: "home_hero_video",
-        label: "Hero d'accueil (image ou vidéo)",
-        type: "media",
-        fallback: "/VIDEO/animation transition.mp4",
-        description: "Image ou vidéo affichée en fond derrière le titre",
-      },
       {
         key: "home_services_image",
         label: "Image section Services (droite)",
@@ -50,13 +43,6 @@ export const SITE_ASSETS: PageAssets[] = [
         type: "image",
         fallback: "/Design sans titre (29)/3.webp",
         alt: "Pile de pneumatiques",
-      },
-      {
-        key: "home_faq_video",
-        label: "Bloc bas de page (image ou vidéo)",
-        type: "media",
-        fallback: "/Vidéo_d_une_roue_sur_camion.mp4",
-        description: "Image ou vidéo affichée sous la FAQ",
       },
       {
         key: "home_europe_map",

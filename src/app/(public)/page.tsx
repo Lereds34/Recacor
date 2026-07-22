@@ -36,7 +36,7 @@ const serviceCards = [
   {
     title: "Pneus voiture",
     href: "/pneus-voiture",
-    image: "/refonte/service-vl.png",
+    image: "/refonte/service-vl.webp",
     icon: Car,
     description:
       "Pneus VL toutes marques, montage rapide au Crès, sans rendez-vous selon disponibilité atelier.",
@@ -45,7 +45,7 @@ const serviceCards = [
   {
     title: "Mécanique rapide",
     href: "/mecanique",
-    image: "/refonte/parallelisme.png",
+    image: "/refonte/parallelisme.webp",
     icon: Wrench,
     description:
       "Vidange, freinage, parallélisme et géométrie pour entretenir votre voiture sans perdre la journée.",
@@ -54,7 +54,7 @@ const serviceCards = [
   {
     title: "Climatisation",
     href: "/services/climatisation-auto-montpellier",
-    image: "/hero-generated/clim-master.png",
+    image: "/hero-generated/clim-master.webp",
     icon: Snowflake,
     description:
       "Recharge clim auto, utilitaire, camping-car, camion et engins professionnels au garage du Crès.",
@@ -63,7 +63,7 @@ const serviceCards = [
   {
     title: "Poids lourd",
     href: "/pneus-utilitaires-pl",
-    image: "/refonte/service-pl.png",
+    image: "/refonte/service-pl.webp",
     icon: Truck,
     description:
       "Pneus PL, recreusage, suivi de parc et interventions pour transporteurs, flottes et engins.",

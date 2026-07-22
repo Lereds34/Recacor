@@ -61,7 +61,7 @@ function DevisBlock({ nom }: { nom: string }) {
   );
 }
 
-const DEFAULT_VILLE_IMAGE = "/Img/villes/default.png";
+const DEFAULT_VILLE_IMAGE = "/Img/villes/default.webp";
 
 type ContenuItem = string | { h3: string; p: string };
 

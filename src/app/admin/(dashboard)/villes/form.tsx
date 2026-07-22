@@ -175,7 +175,7 @@ export function VilleForm({ initial, isEdit }: Props) {
           />
           {!data.image_url && (
             <p className="text-xs text-muted-foreground">
-              Si vide, l&apos;image par défaut <code>/Img/villes/default.png</code> sera utilisée.
+              Si vide, l&apos;image par défaut <code>/Img/villes/default.webp</code> sera utilisée.
             </p>
           )}
         </div>

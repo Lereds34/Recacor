@@ -12,7 +12,7 @@ import { DevisCtaLink } from "@/components/devis-cta-link";
 import { BreadcrumbJsonLd, ServiceJsonLd, FaqJsonLd } from "@/components/schema-jsonld";
 import { PHONE_DISPLAY } from "@/lib/tracking";
 
-const FALLBACK_IMAGE = "/hero-generated/mecanique-master.png";
+const FALLBACK_IMAGE = "/hero-generated/mecanique-master.webp";
 
 const services = [
   { icon: Droplet, title: "Vidange", desc: "Vidange complète huile + filtre", price: "79€", href: "/services/vidange", image: "/illustrations/services/vidange-intro-20260716.webp" },

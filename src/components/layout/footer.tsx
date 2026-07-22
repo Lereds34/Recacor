@@ -61,6 +61,11 @@ const villesLinks = [
   { name: "Pneus Béziers", href: "/beziers" },
 ];
 
+const plZoneLinks = [
+  { name: "Zone Sud & Corse", href: "/pneus-utilitaires-pl/zone-sud-corse" },
+  { name: "Zone Nord-Est & Centre", href: "/pneus-utilitaires-pl/zone-nord-est-centre" },
+];
+
 export async function Footer() {
   const config = await getSiteConfig();
 
@@ -254,7 +259,7 @@ export async function Footer() {
           <div>
             <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Nos zones</h4>
             <ul className="space-y-2.5">
-              {villesLinks.map((item) => (
+              {[...plZoneLinks, ...villesLinks].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-sm text-white/60 hover:text-white transition-colors">{item.name}</Link>
                 </li>

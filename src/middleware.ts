@@ -8,6 +8,15 @@ const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
 const UTM_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 const BRIEFING_PREFIX = "/briefings/";
+const PL_ALIAS_DESTINATION = "/pneus-utilitaires-pl";
+const PL_ALIASES = new Set([
+  "/pneus-utilitaire-pl",
+  "/pneus-utilitaires-pl/",
+  "/pneus–utilitaire–pl",
+  "/pneus—utilitaire—pl",
+  "/pneus–utilitaires–pl",
+  "/pneus—utilitaires—pl",
+]);
 
 function applyBriefingHeaders(response: NextResponse) {
   response.headers.set(
@@ -20,6 +29,21 @@ function applyBriefingHeaders(response: NextResponse) {
 
 export async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
+  const decodedPath = (() => {
+    try {
+      return decodeURIComponent(path);
+    } catch {
+      return path;
+    }
+  })();
+  const normalizedPath = decodedPath.toLowerCase();
+
+  if (PL_ALIASES.has(normalizedPath) && normalizedPath !== PL_ALIAS_DESTINATION) {
+    const url = req.nextUrl.clone();
+    url.pathname = PL_ALIAS_DESTINATION;
+    url.search = "";
+    return NextResponse.redirect(url, { status: 301 });
+  }
 
   // Supprimer les params UTM des pages publiques (évite l'indexation d'URLs dupliquées)
   if (!path.startsWith("/admin") && !path.startsWith("/api/")) {

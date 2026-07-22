@@ -18,14 +18,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.recacor.fr"),
   title: {
-    default: "Pneus Voiture Montpellier — Garage Recacor Le Crès",
+    default: "Garage auto Montpellier — pneus VL, mécanique et poids lourd | Recacor",
     template: "%s | Recacor Le Crès",
   },
   description:
     "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans RDV, stock immédiat, prix discount. Appelez le 04 99 53 33 90.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Pneus Voiture Montpellier — Garage Recacor Le Crès",
+    title: "Garage auto Montpellier — pneus VL, mécanique et poids lourd | Recacor",
     description:
       "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans RDV, stock immédiat, prix discount.",
     url: "https://www.recacor.fr",

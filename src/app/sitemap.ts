@@ -12,6 +12,7 @@ const CONTENT_UPDATED: Record<string, string> = {
   "/mecanique": "2026-07-18",
   "/pneus-utilitaires-pl": "2026-07-19",
   "/pneus-utilitaires-pl/zone-sud-corse": "2026-07-18",
+  "/pneus-utilitaires-pl/zone-nord-est-centre": "2026-07-22",
   "/services/vidange": "2026-07-18",
   "/services/parallelisme-geometrie": "2026-07-18",
   "/services/climatisation-auto-montpellier": "2026-07-18",

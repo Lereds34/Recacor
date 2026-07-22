@@ -407,6 +407,7 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
             <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Zones PL déjà couvertes</p>
             <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Zone Sud &amp; Corse</Link>
+              <Link href="/pneus-utilitaires-pl/zone-nord-est-centre" className="text-purple-bright hover:underline">Zone Nord-Est &amp; Centre</Link>
               <Link href="/blog/pneus-nimes" className="text-purple-bright hover:underline">Pneus poids lourd Nîmes</Link>
               <Link href="/blog/pneus-sete" className="text-purple-bright hover:underline">Pneus poids lourd Sète</Link>
             </div>

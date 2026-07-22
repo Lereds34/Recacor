@@ -622,60 +622,103 @@ function ZoneInterventionSection() {
   return (
     <section className="bg-white py-20">
       <div className="recacor-shell">
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="min-h-[420px] overflow-hidden border border-border bg-muted">
-            <iframe
-              src="https://maps.google.com/maps?q=Recacor+1240+Route+de+Nimes+34920+Le+Cres&output=embed&z=17"
-              className="h-full min-h-[420px] w-full"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Garage Recacor Le Crès"
-            />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Bloc 1 : Garage Le Crès */}
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-3xl border border-border bg-white overflow-hidden flex flex-col">
+            <div className="aspect-[16/10] bg-muted relative">
+              <iframe
+                src="https://maps.google.com/maps?q=Recacor+1240+Route+de+Nimes+34920+Le+Cres&output=embed&z=17"
+                className="w-full h-full"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Garage Recacor Le Crès"
+              />
+            </div>
+            <div className="p-8 flex-1 flex flex-col">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-bright/10 text-purple-bright text-xs font-bold uppercase tracking-wider w-fit mb-3">
+                <MapPin className="h-3.5 w-3.5" /> Notre garage
+              </div>
+              <h3 className="text-2xl font-black tracking-tight mb-3">Garage Le Crès</h3>
+              <div className="space-y-2 text-sm text-muted-foreground mb-6">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="h-4 w-4 text-purple-bright shrink-0 mt-0.5" />
+                  <span>1240 Route de Nîmes, 34920 Le Crès</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Clock className="h-4 w-4 text-purple-bright shrink-0" />
+                  <span>Lun–Ven : 8h–17h · Sam : 8h–12h</span>
+                </div>
+              </div>
+              <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-purple-bright text-white font-bold text-sm hover:bg-purple-mid transition-colors"
+                >
+                  <MapPin className="h-4 w-4" /> Itinéraire
+                </a>
+                <PhoneLink location="cta" className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-border text-sm font-semibold hover:border-purple-bright/30 transition-colors" showIcon>
+                  Appeler
+                </PhoneLink>
+              </div>
+            </div>
+          </motion.div>
 
-          <div className="bg-[var(--recacor-night)] p-7 text-white">
-            <p className="inline-flex border-l-4 border-yellow-400 pl-3 text-xs font-black uppercase text-white/70">
-              Venir au garage
-            </p>
-            <h2 className="mt-5 font-heading text-5xl font-black uppercase leading-none">
-              Recacor Le Crès
-            </h2>
-            <div className="mt-7 space-y-4">
-              <div className="flex gap-3">
-                <MapPin className="mt-1 h-5 w-5 shrink-0 text-yellow-400" />
-                <p className="text-sm leading-6 text-white/72">
-                  1240 Route de Nîmes, 34920 Le Crès. Accès rapide depuis Montpellier,
-                  Castelnau-le-Lez, Jacou, Vendargues, Mauguio et Lattes.
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <Clock className="mt-1 h-5 w-5 shrink-0 text-yellow-400" />
-                <p className="text-sm leading-6 text-white/72">
-                  Lundi au vendredi : 8h-17h. Samedi : 8h-12h.
-                </p>
-              </div>
-              <div className="flex gap-3">
-                <Phone className="mt-1 h-5 w-5 shrink-0 text-yellow-400" />
-                <p className="text-sm leading-6 text-white/72">
-                  Appelez avant de venir pour confirmer une dimension ou une prestation précise.
-                </p>
+          {/* Bloc 2 : Assistance PL */}
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }} className="rounded-3xl bg-gradient-to-br from-purple-deep via-purple-mid to-purple-bright text-white overflow-hidden flex flex-col">
+            <div className="aspect-[16/10] relative flex items-center justify-center p-8">
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 70% 30%, white 0%, transparent 50%)" }} />
+              <div className="relative text-center">
+                <Truck className="w-20 h-20 text-purple-glow mx-auto mb-4" strokeWidth={1.25} />
+                <p className="text-5xl font-black">Hérault</p>
+                <p className="text-white/50 uppercase tracking-widest text-sm mt-2">Zone couverte (34)</p>
               </div>
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="https://maps.google.com/?q=1240+Route+de+Nîmes+34920+Le+Crès"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="recacor-btn-primary"
-              >
-                Itinéraire <MapPin className="h-4 w-4" />
-              </a>
-              <PhoneLink location="cta" className="recacor-btn-secondary" showIcon>
-                Appeler
-              </PhoneLink>
+            <div className="p-8 flex-1 flex flex-col">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-wider w-fit mb-3">
+                <Truck className="h-3.5 w-3.5 text-purple-glow" /> Professionnels
+              </div>
+              <h3 className="text-2xl font-black tracking-tight mb-3">Assistance PL Hérault</h3>
+              <p className="text-sm text-white/60 leading-relaxed mb-6">
+                Nos ateliers mobiles interviennent directement sur votre site, dépôt ou sur autoroute
+                pour les crevaisons et remplacements de pneumatiques poids lourd. Uniquement pneus.
+              </p>
+              <div className="mb-6 rounded-2xl border border-white/15 bg-white/10 p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-glow">Nouveau</p>
+                <p className="mt-2 text-sm font-semibold text-white">
+                  Clim camion et poids lourd dès 149€, au garage du Crès ou sur site.
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">
+                  Offre réservée aux poids lourds, engins TP et véhicules agricoles.
+                </p>
+              </div>
+              <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                <Link
+                  href="/pneus-utilitaires-pl#assistance"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-purple-deep font-bold text-sm hover:shadow-lg transition-shadow"
+                >
+                  Devis pro <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/services/clim-camion-poids-lourd-montpellier"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Voir l&apos;offre clim <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/pneus-utilitaires-pl/zone-nord-est-centre"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition-colors"
+                >
+                  Zones PL <ArrowRight className="h-4 w-4" />
+                </Link>
+                <PhoneLink location="cta" serviceType="pl" className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-white/25 text-white text-sm font-semibold hover:bg-white/10 transition-colors" showIcon>
+                  Appeler
+                </PhoneLink>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

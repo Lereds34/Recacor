@@ -129,6 +129,7 @@ export function RecreusageClient() {
             <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
               <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Découvrir les solutions pneus PL</Link>
               <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Voir la zone Sud &amp; Corse</Link>
+              <Link href="/pneus-utilitaires-pl/zone-nord-est-centre" className="text-purple-bright hover:underline">Voir la zone Nord-Est &amp; Centre</Link>
               <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
             </div>
           </div>

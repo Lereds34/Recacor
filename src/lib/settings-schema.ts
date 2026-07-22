@@ -97,7 +97,7 @@ export const SETTINGS_GROUPS: SettingsGroup[] = [
     title: "SEO global",
     fields: [
       { key: "site_url", label: "URL canonique du site", type: "url", defaultValue: "https://recacor.fr" },
-      { key: "site_title", label: "Titre par défaut", type: "text", defaultValue: "Pneus Voiture Montpellier — Garage Recacor Le Crès" },
+      { key: "site_title", label: "Titre par défaut", type: "text", defaultValue: "Garage auto Montpellier — pneus VL, mécanique et poids lourd | Recacor" },
       { key: "site_description", label: "Description par défaut", type: "textarea", defaultValue: "Spécialiste pneus VL et PL à Montpellier — Le Crès. Montage sans RDV, stock immédiat, prix discount." },
     ],
   },

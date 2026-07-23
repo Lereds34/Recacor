@@ -4,10 +4,21 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, ClipboardList } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PHONE_NUMBER, pushPhoneClick } from "@/lib/tracking";
 
 export function StickyCallButton() {
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+
+  const isControleTechniquePage =
+    pathname === "/services/prise-en-charge-controle-technique" ||
+    pathname === "/formulaire/controle-technique";
+
+  const quoteHref = isControleTechniquePage
+    ? "/formulaire/controle-technique"
+    : "/formulaire";
+  const quoteLabel = isControleTechniquePage ? "Prise en charge CT" : "Devis gratuit";
 
   useEffect(() => {
     const onScroll = () => {
@@ -37,11 +48,11 @@ export function StickyCallButton() {
             Appeler
           </a>
           <Link
-            href="/formulaire"
+            href={quoteHref}
             className="flex-1 flex items-center justify-center gap-2 rounded-[4px] bg-yellow-400 text-slate-950 font-black uppercase py-4 shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-yellow-500/30"
           >
             <ClipboardList className="h-5 w-5" />
-            Devis gratuit
+            {quoteLabel}
           </Link>
         </motion.div>
       )}

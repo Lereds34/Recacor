@@ -121,6 +121,41 @@ export function ControleTechniqueClient() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,11,18,0.88)_0%,rgba(18,25,35,0.74)_52%,rgba(26,37,49,0.54)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,201,40,0.10),transparent_26%),radial-gradient(circle_at_78%_18%,rgba(27,79,216,0.12),transparent_20%)]" />
+        <div className="pointer-events-none absolute right-6 top-[220px] hidden lg:block xl:right-10 xl:top-[225px]">
+          <div className="relative w-[320px] overflow-hidden rounded-[4px] border-[5px] border-[#4f96ff] bg-[#bcd6ff] px-4 py-3 text-slate-950 shadow-[0_24px_60px_rgba(0,0,0,0.30)]">
+            <div className="absolute inset-[10px] border border-white/45" />
+            <div className="absolute inset-0 opacity-[0.14]">
+              <div className="absolute left-4 top-3 text-[7.4rem] font-black leading-none text-[#2f7ff3]">CT</div>
+            </div>
+            <div className="relative">
+              <div className="text-center text-[1.5rem] font-black tracking-tight">AB-482-CT</div>
+              <div className="mt-2.5 flex items-end justify-center gap-2">
+                <span className="mb-1 text-[0.92rem] font-black">01/08/2028</span>
+                <ShieldCheck className="mb-1 h-6 w-6 text-emerald-700" />
+                <div className="text-[2.35rem] font-black leading-none">CT</div>
+                <span className="mb-1 rounded-[4px] bg-emerald-200 px-2 py-1 text-[0.68rem] font-black uppercase text-emerald-900">
+                  VALIDE
+                </span>
+              </div>
+              <div className="mt-1 text-center text-[0.8rem] font-black uppercase tracking-[0.1em]">
+                Éviter la contre-visite
+              </div>
+
+              <div className="mt-3.5 grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 text-[0.74rem] font-bold leading-tight">
+                <span>N° agrément :</span>
+                <span>Le Crès 34920</span>
+                <span>N° de série :</span>
+                <span>VF1RECACORCT</span>
+                <span>Pré-contrôle :</span>
+                <span>29€</span>
+                <span>Service :</span>
+                <span>Devis avant réparation</span>
+                <span>Passage CT :</span>
+                <span>Coordonné par Recacor</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
               <Badge className="mb-6 border-white/20 bg-white/10 text-white">
@@ -162,7 +197,7 @@ export function ControleTechniqueClient() {
                   mobileHref="/formulaire/controle-technique"
                   className="flex-1 recacor-btn-secondary"
                 >
-                  Demander une prise en charge <ArrowRight className="h-4 w-4" />
+                  Obtenir mon devis CT <ArrowRight className="h-4 w-4" />
                 </DevisCtaLink>
               </div>
           </div>

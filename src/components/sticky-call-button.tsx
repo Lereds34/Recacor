@@ -18,7 +18,7 @@ export function StickyCallButton() {
   const quoteHref = isControleTechniquePage
     ? "/formulaire/controle-technique"
     : "/formulaire";
-  const quoteLabel = isControleTechniquePage ? "Prise en charge CT" : "Devis gratuit";
+  const quoteLabel = isControleTechniquePage ? "Devis CT" : "Devis gratuit";
 
   useEffect(() => {
     const onScroll = () => {

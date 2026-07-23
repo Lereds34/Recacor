@@ -121,7 +121,7 @@ export function ControleTechniqueClient() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,11,18,0.88)_0%,rgba(18,25,35,0.74)_52%,rgba(26,37,49,0.54)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,201,40,0.10),transparent_26%),radial-gradient(circle_at_78%_18%,rgba(27,79,216,0.12),transparent_20%)]" />
-        <div className="pointer-events-none absolute right-6 top-[220px] hidden lg:block xl:right-10 xl:top-[225px]">
+        <div className="pointer-events-none absolute right-6 top-[220px] z-10 hidden lg:block xl:right-10 xl:top-[225px]">
           <div className="relative w-[320px] overflow-hidden rounded-[4px] border-[5px] border-[#4f96ff] bg-[#bcd6ff] px-4 py-3 text-slate-950 shadow-[0_24px_60px_rgba(0,0,0,0.30)]">
             <div className="absolute inset-[10px] border border-white/45" />
             <div className="absolute inset-0 opacity-[0.14]">
@@ -156,7 +156,7 @@ export function ControleTechniqueClient() {
             </div>
           </div>
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
               <Badge className="mb-6 border-white/20 bg-white/10 text-white">
                 <CarFront className="mr-1 h-3 w-3" /> Contrôle technique
@@ -183,11 +183,11 @@ export function ControleTechniqueClient() {
                   ),
                 )}
               </div>
-              <div className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex max-w-xl flex-col gap-3 sm:flex-row sm:items-stretch">
                 <PhoneLink
                   location="hero"
                   serviceType="mecanique"
-                  className="flex-1 recacor-btn-primary whitespace-nowrap"
+                  className="flex h-14 flex-1 items-center justify-center gap-2 rounded-[4px] bg-yellow-400 px-5 text-center text-sm font-black uppercase text-slate-950 shadow-[0_10px_30px_rgba(255,201,40,0.24)] transition hover:bg-yellow-300 whitespace-nowrap"
                   showIcon
                 >
                   Appeler : {PHONE_DISPLAY}
@@ -195,14 +195,15 @@ export function ControleTechniqueClient() {
                 <DevisCtaLink
                   desktopHref="#devis"
                   mobileHref="/formulaire/controle-technique"
-                  className="flex-1 recacor-btn-secondary"
+                  className="flex h-14 flex-1 items-center justify-center gap-2 rounded-[4px] border border-slate-200 bg-white px-5 text-center text-sm font-black uppercase text-slate-950 shadow-[0_10px_30px_rgba(7,27,51,0.22)] transition hover:bg-slate-100 whitespace-nowrap"
                 >
-                  Obtenir mon devis CT <ArrowRight className="h-4 w-4" />
+                  <span className="text-slate-950">Obtenir mon devis CT</span>
+                  <ArrowRight className="h-4 w-4 shrink-0 text-slate-950" />
                 </DevisCtaLink>
               </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </section>
 
       <section className="bg-background py-14">

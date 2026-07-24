@@ -8,7 +8,7 @@ import { PHONE_DISPLAY, PHONE_MOBILE, PHONE_MOBILE_DISPLAY } from "@/lib/trackin
 export const metadata: Metadata = {
   title: "Demande contrôle technique — Recacor Le Crès",
   description:
-    "Demandez votre pré-contrôle ou votre prise en charge contrôle technique en 2 minutes. Recacor Le Crès vous rappelle rapidement.",
+    "Demandez votre prise en charge contrôle technique en 2 minutes. Pré-contrôle offert et rappel rapide par Recacor Le Crès.",
   robots: { index: false, follow: false },
 };
 
@@ -28,19 +28,19 @@ export default function FormulaireControleTechniquePage() {
           </h1>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-white/80">
             Recacor vous rappelle, prépare le véhicule avant passage et vous transmet un
-            devis clair si un point bloque.
+            devis clair si une réparation est nécessaire.
           </p>
           <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
             <div className="rounded-[4px] border border-white/12 bg-white/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-sm">
               <ClipboardList className="mr-1 inline h-3.5 w-3.5" />
-              Pré-contrôle dès 29€
+              Pré-contrôle gratuit
             </div>
             <div className="rounded-[4px] border border-white/12 bg-white/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-sm">
               <ShieldCheck className="mr-1 inline h-3.5 w-3.5" />
-              Devis avant réparation
+              VL dès 87,22€
             </div>
             <div className="rounded-[4px] border border-white/12 bg-white/10 px-3 py-2 text-xs font-semibold text-white backdrop-blur-sm">
-              1 seul interlocuteur
+              Utilitaire dès 97,02€
             </div>
           </div>
         </div>
@@ -54,8 +54,8 @@ export default function FormulaireControleTechniquePage() {
               Votre demande en 2 minutes
             </h2>
             <div className="mt-2 flex flex-wrap items-center gap-3">
-              <span className="text-xs text-white/80">✓ Pré-contrôle dès 29€</span>
-              <span className="text-xs text-white/80">✓ Devis avant réparation</span>
+              <span className="text-xs text-white/80">✓ Pré-contrôle gratuit</span>
+              <span className="text-xs text-white/80">✓ VL ou utilitaire</span>
               <span className="text-xs text-white/80">✓ Rappel rapide</span>
             </div>
           </div>

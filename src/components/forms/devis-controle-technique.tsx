@@ -5,8 +5,8 @@ import { MultiStepForm, FormField, isValidEmail, isValidPhone } from "../multi-s
 import { Input } from "@/components/ui/input";
 
 const REQUEST_OPTIONS = [
-  "Pré-contrôle uniquement",
-  "Pré-contrôle + prise en charge CT",
+  "Contrôle technique VL",
+  "Contrôle technique utilitaire",
   "Besoin d'un rappel",
 ] as const;
 
@@ -40,7 +40,7 @@ type ControleTechniqueData = {
 };
 
 const initial: ControleTechniqueData = {
-  typeDemande: "Pré-contrôle + prise en charge CT",
+  typeDemande: "Contrôle technique VL",
   plaque: "",
   modele: "",
   dateLimiteCt: "",
@@ -87,11 +87,11 @@ export function DevisControleTechniqueForm() {
       serviceType="mecanique"
       data={{
         ...data,
-        service: "Contrôle technique pris en charge",
+        service: "Contrôle technique",
         source_detail: "controle_technique_prise_en_charge",
       }}
       isValid={isValid}
-      extraMention="Si un point empêche le passage au contrôle technique, un devis est communiqué avant toute réparation."
+      extraMention="Le pré-contrôle est offert. Si un point empêche le passage au contrôle technique, un devis est communiqué avant toute réparation."
       steps={[
         {
           title: "Votre véhicule & besoin",
@@ -233,7 +233,7 @@ export function DevisControleTechniqueForm() {
                   maxLength={700}
                   value={data.message}
                   onChange={(e) => update("message", e.target.value)}
-                  placeholder="Préciser si la date du CT est proche, si une contre-visite est déjà tombée ou si un point vous inquiète."
+                  placeholder="Préciser si la date du CT est proche, si c'est un VL ou un utilitaire, ou si un point vous inquiète."
                   className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-bright resize-none"
                 />
               </FormField>

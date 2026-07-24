@@ -163,6 +163,9 @@ async function forwardLeadToAdsFlow(data: LeadPayload): Promise<AdsFlowForwardRe
     email: data.email || null,
     cp: data.cp || null,
     service: getAdsFlowService(data),
+    vl_service: getAdsFlowVlService(data),
+    service_detail: getAdsFlowServiceDetail(data),
+    source_detail: getSourceDetail(data),
     source: data.utm_source || data.referrer || null,
     page: data.page_source || null,
     gclid: data.gclid || null,
@@ -241,6 +244,38 @@ function getAdsFlowService(data: LeadPayload): "pneus" | "mecanique" {
   }
 
   return "pneus";
+}
+
+function getAdsFlowVlService(data: LeadPayload): string | null {
+  const formId = String(data.form_id || "").toLowerCase();
+  const sourceDetail = getSourceDetail(data);
+
+  if (sourceDetail === "controle_technique_prise_en_charge" || formId === "devis-ct-form") {
+    return "Controle technique";
+  }
+
+  if (formId === "devis-clim-form") return "Clim";
+  if (formId === "devis-mecanique-form") return "mecanique";
+
+  return null;
+}
+
+function getAdsFlowServiceDetail(data: LeadPayload): string | null {
+  const formId = String(data.form_id || "").toLowerCase();
+  const sourceDetail = getSourceDetail(data);
+
+  if (sourceDetail === "controle_technique_prise_en_charge" || formId === "devis-ct-form") {
+    return "controle_technique";
+  }
+
+  return sourceDetail;
+}
+
+function getSourceDetail(data: LeadPayload): string | null {
+  const raw = data.source_detail;
+  if (typeof raw !== "string") return null;
+  const trimmed = raw.trim();
+  return trimmed ? trimmed : null;
 }
 
 function normalizeLeadAttribution(data: LeadPayload): LeadPayload {

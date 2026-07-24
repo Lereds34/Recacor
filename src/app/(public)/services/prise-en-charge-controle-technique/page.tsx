@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { ControleTechniqueClient } from "./client";
 
 export const metadata: Metadata = {
-  title: "Contrôle technique Montpellier : pré-contrôle + prise en charge",
+  title: "Contrôle technique Montpellier : pré-contrôle offert",
   description:
-    "Recacor Le Crès prépare votre voiture avant le contrôle technique, propose un devis si un point bloque, puis peut gérer le passage au CT. Pré-contrôle dès 29€.",
+    "Recacor Le Crès propose le contrôle, le devis et la prise en charge avant le contrôle technique, avec pré-contrôle offert.",
   alternates: { canonical: "/services/prise-en-charge-controle-technique" },
   openGraph: {
-    title: "Contrôle technique Montpellier : pré-contrôle + prise en charge",
+    title: "Contrôle technique Montpellier : pré-contrôle offert",
     description:
-      "Pré-contrôle, devis, réparations validées puis prise en charge du contrôle technique au Crès, près de Montpellier.",
+      "Pré-contrôle offert, devis clair et prise en charge au Crès près de Montpellier avant le contrôle technique.",
     url: "https://www.recacor.fr/services/prise-en-charge-controle-technique",
     siteName: "Recacor",
     locale: "fr_FR",

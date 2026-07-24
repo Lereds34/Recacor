@@ -22,6 +22,7 @@ const servicesLinks = [
   { name: "Pneus agricoles", href: "/pneus-utilitaires-pl#agricoles" },
   { name: "Vidange", href: "/services/vidange" },
   { name: "Parallélisme & Géométrie", href: "/services/parallelisme-geometrie" },
+  { name: "Contrôle technique", href: "/services/prise-en-charge-controle-technique" },
   { name: "Recharge clim", href: "/services/climatisation-auto-montpellier" },
   { name: "Clim camion & poids lourd", href: "/services/clim-camion-poids-lourd-montpellier" },
   { name: "Recreusage", href: "/services/recreusage" },
@@ -34,6 +35,7 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
   { name: "Blog", href: "/blog" },
   { name: "Guide local", href: "/guide-local" },
+  { name: "Contrôle technique", href: "/services/prise-en-charge-controle-technique" },
   { name: "Mentions légales", href: "/mentions-legales" },
   { name: "CGV", href: "/cgv" },
   { name: "Politique de confidentialité", href: "/confidentialite" },
@@ -288,8 +290,6 @@ export async function Footer() {
             </a>
           </div>
         </div>
-
-        {/* SEO maillage interne VL */}
         <div className="mt-12 pt-10 border-t border-white/10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 

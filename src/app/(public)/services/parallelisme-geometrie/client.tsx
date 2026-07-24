@@ -191,6 +191,7 @@ export function ParallelismeClient() {
               <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
                 <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Pneus voiture</Link>
                 <Link href="/mecanique" className="text-purple-bright hover:underline">Mécanique légère</Link>
+                <Link href="/services/prise-en-charge-controle-technique" className="text-purple-bright hover:underline">Préparer le contrôle technique</Link>
                 <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
                 <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
               </div>

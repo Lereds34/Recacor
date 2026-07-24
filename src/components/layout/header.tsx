@@ -12,6 +12,7 @@ import { useAssetUrl } from "@/components/dynamic-media";
 const navigation = [
   { name: "Pneus voiture", href: "/pneus-voiture" },
   { name: "Mécanique", href: "/mecanique" },
+  { name: "Contrôle technique", href: "/services/prise-en-charge-controle-technique" },
   { name: "Clim", href: "/services/climatisation-auto-montpellier" },
   { name: "Pneus PL", href: "/pneus-utilitaires-pl" },
   { name: "Blog", href: "/blog" },

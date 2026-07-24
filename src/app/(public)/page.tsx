@@ -61,6 +61,15 @@ const serviceCards = [
     points: ["Gaz R134a et 1234yf", "VL, utilitaires, PL", "Formulaire dédié"],
   },
   {
+    title: "Contrôle technique",
+    href: "/services/prise-en-charge-controle-technique",
+    image: "/illustrations/services/controle-technique-hero-20260723.png",
+    icon: ShieldCheck,
+    description:
+      "Pré-contrôle offert, devis si un point bloque et prise en charge au garage du Crès.",
+    points: ["VL dès 87,22€", "Utilitaire dès 97,02€", "Atelier sur place"],
+  },
+  {
     title: "Poids lourd",
     href: "/pneus-utilitaires-pl",
     image: "/refonte/service-pl.webp",
@@ -99,6 +108,13 @@ const priceCards = [
     detail: "à partir de",
     note: "Recharge selon gaz et catégorie véhicule.",
     href: "/services/climatisation-auto-montpellier",
+  },
+  {
+    label: "Contrôle technique",
+    price: "87,22€",
+    detail: "dès",
+    note: "Pré-contrôle offert et prise en charge au garage du Crès.",
+    href: "/services/prise-en-charge-controle-technique",
   },
 ];
 
@@ -322,7 +338,7 @@ function ServicesSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-5">
           {serviceCards.map((service) => (
             <Link key={service.title} href={service.href} className="group recacor-card flex min-h-full flex-col overflow-hidden">
               <div className="relative h-48 overflow-hidden bg-slate-900">
@@ -385,7 +401,7 @@ function TarifsSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {priceCards.map((item) => (
             <Link key={item.label} href={item.href} className="group border border-white/14 bg-white/[0.06] p-5 transition hover:border-yellow-400/70 hover:bg-white/[0.09]">
               <p className="text-xs font-black uppercase text-yellow-400">{item.label}</p>
@@ -826,6 +842,7 @@ function VillesSeoSection() {
     { label: "Pneus voiture", href: "/pneus-voiture" },
     { label: "Vidange voiture", href: "/services/vidange" },
     { label: "Parallélisme Montpellier", href: "/services/parallelisme-geometrie" },
+    { label: "Contrôle technique", href: "/services/prise-en-charge-controle-technique" },
     { label: "Recharge clim auto", href: "/services/climatisation-auto-montpellier" },
     { label: "Clim camion", href: "/services/clim-camion-poids-lourd-montpellier" },
     { label: "Pneus poids lourd", href: "/pneus-utilitaires-pl" },

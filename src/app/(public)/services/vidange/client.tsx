@@ -106,7 +106,7 @@ export function VidangeClient() {
               <div className="rounded-[4px] border border-border bg-muted/40 p-4">
                 <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">À demander en même temps si besoin</p>
                 <p className="mt-2 text-sm font-semibold text-foreground">
-                  Pneus voiture, contrôle de parallélisme, freinage, recharge clim selon la saison
+                  Pneus voiture, contrôle de parallélisme, freinage, contrôle technique, recharge clim selon la saison
                 </p>
               </div>
             </div>
@@ -192,6 +192,7 @@ export function VidangeClient() {
               <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
                 <Link href="/mecanique" className="text-purple-bright hover:underline">Voir nos services mécaniques</Link>
                 <Link href="/services/parallelisme-geometrie" className="text-purple-bright hover:underline">Contrôler le parallélisme</Link>
+                <Link href="/services/prise-en-charge-controle-technique" className="text-purple-bright hover:underline">Préparer le contrôle technique</Link>
                 <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
                 <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Changer ses pneus</Link>
               </div>

@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { RecreusageClient } from "./client";
 
 export const metadata: Metadata = {
-  title: "Recreusage pneus poids lourd Hérault",
+  title: "Recreusage pneus poids lourd : service flotte depuis Le Crès",
   description:
-    "Recreusage haute qualité pour pneus PL. Prolongez la durée de vie de vos pneus de 25%. Solution économique et écologique en Hérault.",
+    "Recreusage pneus poids lourd pour transporteurs et flottes. Contrôle de carcasse, lecture du parc et devis B2B depuis Le Crès près de Montpellier.",
   alternates: { canonical: "/services/recreusage" },
   openGraph: {
-    title: "Recreusage pneus poids lourd Hérault",
+    title: "Recreusage pneus poids lourd : service flotte depuis Le Crès",
     description:
-      "Recreusage haute qualité pour pneus poids lourd dans l'Hérault. Solution économique et écologique pour prolonger leur durée de vie.",
+      "Recreusage pneus poids lourd pour flottes et transporteurs, avec contrôle de carcasse et devis B2B depuis Le Crès.",
     url: "https://www.recacor.fr/services/recreusage",
     siteName: "Recacor",
     locale: "fr_FR",

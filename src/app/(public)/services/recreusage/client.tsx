@@ -301,6 +301,24 @@ export function RecreusageClient() {
               </p>
             </div>
           </div>
+
+          <div className="mt-10 rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              Autres pages utiles pour une <span className="text-gradient-purple">flotte PL</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Le recreusage prend plus de sens quand il s&apos;inscrit dans un suivi global du parc :
+              choix de la bonne enveloppe poids lourd, lecture des postes, zone commerciale couverte
+              et contact direct avec l&apos;équipe Recacor selon les besoins de la flotte.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Pneus poids lourd</Link>
+              <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Zone Sud &amp; Corse</Link>
+              <Link href="/pneus-utilitaires-pl/zone-nord-est-centre" className="text-purple-bright hover:underline">Zone Nord-Est &amp; Centre</Link>
+              <Link href="/services/clim-camion-poids-lourd-montpellier" className="text-purple-bright hover:underline">Clim camion et poids lourd</Link>
+              <Link href="/contact" className="text-purple-bright hover:underline">Contacter Recacor</Link>
+            </div>
+          </div>
         </div>
       </section>
 

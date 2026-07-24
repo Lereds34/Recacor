@@ -313,6 +313,24 @@ export function ClimatisationClient({ heroImage }: { heroImage?: string }) {
             <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
             <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Pneus voiture</Link>
           </div>
+
+          <div className="mt-10 rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              D&apos;autres demandes atelier au <span className="text-gradient-purple">même endroit</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Une clim moins froide arrive souvent en même temps qu&apos;une vidange à faire, des pneus
+              à remplacer ou un contrôle avant départ. L&apos;intérêt du garage du Crès, c&apos;est de pouvoir
+              traiter ces besoins dans le même atelier selon la charge et le véhicule.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/mecanique" className="text-purple-bright hover:underline">Voir l&apos;atelier mécanique</Link>
+              <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
+              <Link href="/services/parallelisme-geometrie" className="text-purple-bright hover:underline">Parallélisme voiture</Link>
+              <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Pneus voiture</Link>
+              <Link href="/le-cres" className="text-purple-bright hover:underline">Garage auto au Crès</Link>
+            </div>
+          </div>
         </div>
       </section>
 

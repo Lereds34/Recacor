@@ -218,6 +218,25 @@ export function VidangeClient() {
               </p>
             </div>
           </div>
+
+          <div className="mt-10 rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              Autres services utiles au <span className="text-gradient-purple">même atelier</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Quand la voiture vient pour une vidange, le passage peut aussi servir à contrôler
+              un train avant qui use mal ses pneus, préparer un contrôle technique ou faire vérifier
+              une clim moins froide avant l&apos;été. Tout se fait au garage du Crès, sans multiplier
+              les trajets.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/mecanique" className="text-purple-bright hover:underline">Voir l&apos;atelier mécanique</Link>
+              <Link href="/services/parallelisme-geometrie" className="text-purple-bright hover:underline">Parallélisme et géométrie</Link>
+              <Link href="/services/prise-en-charge-controle-technique" className="text-purple-bright hover:underline">Préparer le contrôle technique</Link>
+              <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim auto</Link>
+              <Link href="/le-cres" className="text-purple-bright hover:underline">Garage auto au Crès</Link>
+            </div>
+          </div>
         </div>
       </section>
 

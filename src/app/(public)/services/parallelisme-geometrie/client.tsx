@@ -220,6 +220,24 @@ export function ParallelismeClient() {
               </p>
             </div>
           </div>
+
+          <div className="mt-10 rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              Pages liées autour du <span className="text-gradient-purple">train roulant</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              Un parallélisme sert rarement seul dans la vraie vie. Il suit souvent un changement
+              de pneus, un contrôle atelier avant centre ou une voiture qui revient pour un entretien
+              courant avec usure d&apos;un côté, volant de travers ou sensation de tenue de route moins nette.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/pneus-voiture" className="text-purple-bright hover:underline">Changer ses pneus</Link>
+              <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
+              <Link href="/services/prise-en-charge-controle-technique" className="text-purple-bright hover:underline">Préparer le contrôle technique</Link>
+              <Link href="/mecanique" className="text-purple-bright hover:underline">Voir l&apos;atelier mécanique</Link>
+              <Link href="/le-cres" className="text-purple-bright hover:underline">Garage auto au Crès</Link>
+            </div>
+          </div>
         </div>
       </section>
 

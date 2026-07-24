@@ -3,14 +3,14 @@ import { getAsset } from "@/lib/site-assets";
 import { ClimatisationClient } from "./client";
 
 export const metadata: Metadata = {
-  title: "Recharge clim voiture Montpellier — dès 59€",
+  title: "Recharge clim voiture Montpellier : contrôle avant recharge dès 59€",
   description:
-    "Recharge clim voiture à Montpellier — Le Crès dès 59€. Contrôle du fonctionnement avant recharge, avec ou sans rendez-vous. Devis clim en ligne.",
+    "Recharge clim voiture au Crès près de Montpellier dès 59€. Contrôle du fonctionnement avant recharge, avec ou sans rendez-vous selon la charge atelier.",
   alternates: { canonical: "/services/climatisation-auto-montpellier" },
   openGraph: {
-    title: "Recharge clim voiture Montpellier — dès 59€",
+    title: "Recharge clim voiture Montpellier : contrôle avant recharge dès 59€",
     description:
-      "Recharge clim voiture à Montpellier — Le Crès dès 59€, avec contrôle du fonctionnement avant intervention.",
+      "Recharge clim voiture au Crès près de Montpellier dès 59€, avec contrôle du fonctionnement avant intervention.",
     url: "https://www.recacor.fr/services/climatisation-auto-montpellier",
     siteName: "Recacor",
     locale: "fr_FR",

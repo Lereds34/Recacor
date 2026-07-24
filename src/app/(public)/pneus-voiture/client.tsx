@@ -98,11 +98,11 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "conic-gradient(from 0deg, transparent 0%, white 1%, transparent 3%)" }} />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div initial={false} animate={{ opacity: 1, y: 0 }}>
             <Badge className="bg-white/10 text-white border-white/20 mb-6"><Car className="h-3 w-3 mr-1" /> Pneus voiture</Badge>
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] max-w-3xl"
@@ -111,7 +111,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             <span className="text-purple-glow">montés rapidement au Crès</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="mt-4 text-white/70 max-w-xl text-lg"
@@ -120,7 +120,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             ou trouver rapidement la bonne dimension, avec stock disponible et sans rendez-vous.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="mt-8 flex flex-col sm:flex-row gap-3 max-w-xl"
@@ -161,7 +161,11 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 gamme selon le budget et l&apos;usage, puis faire le montage et l&apos;équilibrage
                 sur place. Si la voiture a aussi besoin d&apos;un contrôle de parallélisme ou
                 d&apos;une prestation atelier, tout peut se faire dans le même passage, au même
-                endroit.
+                endroit. Si le véhicule doit bientôt passer au centre, la{" "}
+                <Link href="/services/prise-en-charge-controle-technique" className="font-bold text-purple-bright hover:underline">
+                  prise en charge contrôle technique
+                </Link>{" "}
+                permet aussi de préparer la voiture au garage du Crès.
               </p>
             </div>
           </div>
@@ -171,7 +175,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       {/* H2: Changement de pneus rapide */}
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
+          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Changement de pneus{" "}
               <span className="text-gradient-purple">rapide à Montpellier</span>
@@ -186,7 +190,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             {saisons.map((s, i) => (
               <motion.div
                 key={s.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
@@ -209,15 +213,15 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       {/* Pourquoi Recacor */}
       <section className="py-24 bg-muted">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
+          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
-              Changer ses pneus{" "}
-              <span className="text-gradient-purple">sans perdre de temps</span>
+              Trouver la bonne dimension{" "}
+              <span className="text-gradient-purple">et monter sur place</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-3xl mx-auto">
-              Chez Recacor, l&apos;objectif est simple : vérifier rapidement la bonne dimension,
-              annoncer clairement ce qui est disponible, puis faire le montage et l&apos;équilibrage
-              sur place dans de bonnes conditions.
+              Chez Recacor, le plus important est de confirmer la bonne monte, annoncer
+              clairement ce qui est disponible, puis faire le montage et l&apos;équilibrage
+              au garage du Crès.
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -248,7 +252,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section className="relative py-24 bg-muted overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Pneus{" "}
               <span className="text-gradient-purple">toutes marques et tous budgets</span>
@@ -261,6 +265,23 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
               </div>
             ))}
           </div>
+          <div className="mt-8 rounded-[4px] border border-border bg-white p-6">
+            <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Marques de vehicules souvent traitees</p>
+            <div className="mt-3 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/pneus-voiture/peugeot" className="text-purple-bright hover:underline">Pneus Peugeot</Link>
+              <Link href="/pneus-voiture/renault" className="text-purple-bright hover:underline">Pneus Renault</Link>
+              <Link href="/pneus-voiture/citroen" className="text-purple-bright hover:underline">Pneus Citroen</Link>
+              <Link href="/pneus-voiture/volkswagen" className="text-purple-bright hover:underline">Pneus Volkswagen</Link>
+              <Link href="/pneus-voiture/audi" className="text-purple-bright hover:underline">Pneus Audi</Link>
+              <Link href="/pneus-voiture/bmw" className="text-purple-bright hover:underline">Pneus BMW</Link>
+              <Link href="/pneus-voiture/mercedes" className="text-purple-bright hover:underline">Pneus Mercedes</Link>
+              <Link href="/pneus-voiture/opel" className="text-purple-bright hover:underline">Pneus Opel</Link>
+              <Link href="/pneus-voiture/toyota" className="text-purple-bright hover:underline">Pneus Toyota</Link>
+              <Link href="/pneus-voiture/dacia" className="text-purple-bright hover:underline">Pneus Dacia</Link>
+              <Link href="/pneus-voiture/nissan" className="text-purple-bright hover:underline">Pneus Nissan</Link>
+              <Link href="/pneus-voiture/ford" className="text-purple-bright hover:underline">Pneus Ford</Link>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -268,7 +289,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mb-12 text-center"
@@ -286,7 +307,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             {dimensions.map((d, i) => (
               <motion.div
                 key={d.dim}
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
@@ -312,7 +333,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section className="py-24 bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
+            <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
               <h2 className="text-2xl font-black mb-4">Montage pneus Montpellier sur place</h2>
               <ul className="space-y-2.5">
                 {[
@@ -329,7 +350,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
                 ))}
               </ul>
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
+            <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="rounded-[4px] border border-border bg-white p-8">
               <h2 className="text-2xl font-black mb-4">Parallélisme et géométrie après changement</h2>
               <ul className="space-y-2.5">
                 {[
@@ -349,7 +370,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
           </div>
           <div className="mt-8 flex flex-wrap gap-3 text-sm font-bold">
             <Link href="/services/parallelisme-geometrie" className="text-purple-bright hover:underline">Contrôler le parallélisme</Link>
-            <Link href="/services/vidange" className="text-purple-bright hover:underline">Vidange voiture</Link>
+            <Link href="/services/vidange" className="text-purple-bright hover:underline">Voir le détail de la vidange voiture à Montpellier</Link>
             <Link href="/services/climatisation-auto-montpellier" className="text-purple-bright hover:underline">Recharge clim</Link>
           </div>
           <p className="mt-4 max-w-3xl text-sm text-muted-foreground leading-relaxed">
@@ -373,14 +394,14 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section id="devis" className="relative py-24 bg-muted overflow-hidden scroll-mt-24">
         <BgParticles />
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
+          <motion.div initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
             <h2 className="text-4xl sm:text-5xl font-black tracking-tight">
               Demandez votre{" "}
               <span className="text-gradient-purple">devis pneu Montpellier</span>
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-xl mx-auto">
-              Réponse rapide en jours ouvrés pour vérifier une dimension, demander un prix ou
-              préparer un passage atelier sans perdre de temps.
+              Réponse rapide en jours ouvrés pour confirmer une dimension, demander un prix
+              ou préparer un passage atelier au Crès.
             </p>
           </motion.div>
           <div className="rounded-[4px] border border-border bg-white p-6 sm:p-8 shadow-xl">
@@ -427,7 +448,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
       <section className="relative py-24 bg-muted overflow-hidden">
         <BgParticles />
         <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center text-4xl sm:text-5xl font-black tracking-tight mb-12">
+          <motion.h2 initial={false} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center text-4xl sm:text-5xl font-black tracking-tight mb-12">
             Questions fréquentes{" "}
             <span className="text-gradient-purple">sur les pneus VL</span>
           </motion.h2>
@@ -435,7 +456,7 @@ export function PneusVoitureClient({ heroImage }: { heroImage?: string }) {
             {faqs.map((faq, i) => (
               <motion.details
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}

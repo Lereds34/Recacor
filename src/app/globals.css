@@ -158,8 +158,31 @@ body::before {
     );
 }
 
+.hero-overlay-image-strong {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.78) 0,
+      rgba(0, 0, 0, 0.42) 150px,
+      rgba(0, 0, 0, 0.12) 260px
+    ),
+    linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.76) 0%,
+      rgba(0, 0, 0, 0.46) 48%,
+      rgba(0, 0, 0, 0.16) 100%
+    );
+}
+
 .hero-overlay-solid {
   background: linear-gradient(135deg, #070b12 0%, #121923 56%, #1a2531 100%);
+}
+
+.hero-overlay-cutout {
+  background:
+    radial-gradient(circle at 82% 32%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.03) 18%, transparent 44%),
+    radial-gradient(circle at 88% 76%, rgba(255, 201, 40, 0.1) 0%, transparent 22%),
+    linear-gradient(135deg, rgba(6, 26, 49, 0.96) 0%, rgba(15, 38, 68, 0.92) 48%, rgba(27, 79, 216, 0.88) 100%);
 }
 
 .recacor-shell {

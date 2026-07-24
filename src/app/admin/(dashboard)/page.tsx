@@ -2,7 +2,7 @@ import Link from "next/link";
 import { listArticles } from "@/lib/blog-admin";
 import { listVilles } from "@/lib/villes";
 import { sql, ensureSchema } from "@/lib/db";
-import { FileText, Plus, ExternalLink, ArrowRight, Inbox, MapPin, Settings, Scale } from "lucide-react";
+import { FileText, Plus, ExternalLink, ArrowRight, Inbox, MapPin, Settings, Scale, SearchCheck } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -67,6 +67,11 @@ export default async function AdminHome() {
             <Settings className="w-5 h-5 text-purple-bright mb-2" />
             <p className="font-black">Réglages</p>
             <p className="text-xs text-muted-foreground mt-0.5">Tel, email, GTM, pixels</p>
+          </Link>
+          <Link href="/admin/indexation" className="group rounded-2xl bg-white border border-border p-5 hover:border-purple-bright/30">
+            <SearchCheck className="w-5 h-5 text-purple-bright mb-2" />
+            <p className="font-black">Indexation SEO</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Inspection API et lots GSC</p>
           </Link>
           <Link href="/admin/legal" className="group rounded-2xl bg-white border border-border p-5 hover:border-purple-bright/30">
             <Scale className="w-5 h-5 text-purple-bright mb-2" />

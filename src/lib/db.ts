@@ -110,6 +110,22 @@ async function runSchemaMigrations(): Promise<void> {
   await sql`CREATE INDEX IF NOT EXISTS idx_leads_created ON leads (created_at DESC);`;
   await sql`CREATE INDEX IF NOT EXISTS idx_leads_status ON leads (status);`;
 
+  // Consent tracking — first-party measurement for cookie banner impressions and choices
+  await sql`
+    CREATE TABLE IF NOT EXISTS consent_events (
+      id             SERIAL PRIMARY KEY,
+      event_name     TEXT NOT NULL,
+      consent_status TEXT,
+      page_path      TEXT,
+      referrer       TEXT,
+      user_agent     TEXT,
+      metadata       JSONB NOT NULL DEFAULT '{}'::jsonb,
+      created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_consent_events_created ON consent_events (created_at DESC);`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_consent_events_name_created ON consent_events (event_name, created_at DESC);`;
+
   // Villes (pages SEO villes)
   await sql`
     CREATE TABLE IF NOT EXISTS villes (

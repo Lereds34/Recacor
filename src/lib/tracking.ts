@@ -19,8 +19,18 @@ declare global {
     dataLayer: any[];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gtag?: (...args: any[]) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    clarity?: (...args: any[]) => void;
   }
 }
+
+type ConsentStatus = "granted" | "denied";
+
+type ConsentEventName =
+  | "cookie_banner_impression"
+  | "cookie_customize_open"
+  | "cookie_accept"
+  | "cookie_deny";
 
 export function captureUtmParams() {
   if (typeof window === "undefined") return;
@@ -82,6 +92,12 @@ export function pushFormStart(serviceType: ServiceType) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "form_start_devis", service_type: serviceType });
+}
+
+function pushDataLayerEvent(event: string, payload: Record<string, string>) {
+  if (typeof window === "undefined") return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...payload });
 }
 
 function dispatchGtagEvent(name: string, params: Record<string, string>) {
@@ -180,7 +196,7 @@ export function pushDirectionsClick(serviceType?: ServiceType) {
 }
 
 /* Consent Mode v2 */
-function updateConsent(status: "granted" | "denied") {
+function updateConsent(status: ConsentStatus) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.gtag =
@@ -196,16 +212,107 @@ function updateConsent(status: "granted" | "denied") {
   });
 }
 
+function getConsentPayload(status: ConsentStatus) {
+  return {
+    consent_status: status,
+    page_path: typeof window === "undefined" ? "" : window.location.pathname,
+  };
+}
+
+async function logConsentEvent(
+  eventName: ConsentEventName,
+  status: ConsentStatus,
+  extra: Record<string, string> = {},
+) {
+  if (typeof window === "undefined") return;
+
+  const payload = {
+    ...getConsentPayload(status),
+    ...extra,
+  };
+
+  pushDataLayerEvent(eventName, payload);
+
+  if (eventName === "cookie_accept") {
+    pushDataLayerEvent("consent_update", payload);
+    await dispatchGtagEvent(eventName, payload);
+  } else if (eventName === "cookie_deny") {
+    pushDataLayerEvent("consent_update", payload);
+  }
+
+  fetch("/api/consent-events", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      event_name: eventName,
+      consent_status: status,
+      page_path: payload.page_path,
+      metadata: extra,
+    }),
+    keepalive: true,
+  }).catch(() => {});
+}
+
+function syncClarityConsent(status: ConsentStatus) {
+  if (typeof window === "undefined") return;
+
+  let attempts = 0;
+  const maxAttempts = 10;
+
+  const applyConsent = () => {
+    if (typeof window.clarity !== "function") return false;
+
+    if (status === "granted") {
+      window.clarity("consent");
+      window.clarity("event", "cookie_accept");
+    } else {
+      window.clarity("consent", false);
+    }
+
+    return true;
+  };
+
+  if (applyConsent()) return;
+
+  const timer = window.setInterval(() => {
+    attempts += 1;
+    if (applyConsent() || attempts >= maxAttempts) {
+      window.clearInterval(timer);
+    }
+  }, 500);
+}
+
+export function syncStoredConsentIntegrations() {
+  const status = hasConsent();
+  if (status === "granted") {
+    syncClarityConsent(status);
+  }
+}
+
 export function grantConsent() {
   if (typeof window === "undefined") return;
   document.cookie = "cookie_consent=granted; max-age=33696000; path=/; SameSite=Lax";
   updateConsent("granted");
+  syncClarityConsent("granted");
+  void logConsentEvent("cookie_accept", "granted");
 }
 
 export function denyConsent() {
   if (typeof window === "undefined") return;
+  void logConsentEvent("cookie_deny", "denied");
+  syncClarityConsent("denied");
   document.cookie = "cookie_consent=denied; max-age=33696000; path=/; SameSite=Lax";
   updateConsent("denied");
+}
+
+export function trackCookieBannerImpression() {
+  const status = hasConsent() || "denied";
+  void logConsentEvent("cookie_banner_impression", status);
+}
+
+export function trackCookieCustomizeOpen() {
+  const status = hasConsent() || "denied";
+  void logConsentEvent("cookie_customize_open", status);
 }
 
 export function hasConsent(): "granted" | "denied" | null {

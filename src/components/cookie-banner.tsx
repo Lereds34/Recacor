@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { grantConsent, denyConsent, hasConsent } from "@/lib/tracking";
+import {
+  grantConsent,
+  denyConsent,
+  hasConsent,
+  syncStoredConsentIntegrations,
+  trackCookieBannerImpression,
+  trackCookieCustomizeOpen,
+} from "@/lib/tracking";
 
 function TireIcon() {
   return (
@@ -19,9 +26,15 @@ function TireIcon() {
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [details, setDetails] = useState(false);
+  const [impressionTracked, setImpressionTracked] = useState(false);
 
   useEffect(() => {
-    if (!hasConsent()) {
+    const consent = hasConsent();
+    if (consent === "granted") {
+      syncStoredConsentIntegrations();
+    }
+
+    if (!consent) {
       const t = setTimeout(() => setVisible(true), 900);
       return () => clearTimeout(t);
     }
@@ -29,6 +42,12 @@ export function CookieBanner() {
     window.addEventListener("recacor:cookie", handler);
     return () => window.removeEventListener("recacor:cookie", handler);
   }, []);
+
+  useEffect(() => {
+    if (!visible || impressionTracked) return;
+    trackCookieBannerImpression();
+    setImpressionTracked(true);
+  }, [impressionTracked, visible]);
 
   const accept = () => { grantConsent(); setVisible(false); };
   const deny = () => { denyConsent(); setVisible(false); };
@@ -84,7 +103,13 @@ export function CookieBanner() {
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
               <button
                 type="button"
-                onClick={() => setDetails((d) => !d)}
+                onClick={() =>
+                  setDetails((current) => {
+                    const next = !current;
+                    if (next) trackCookieCustomizeOpen();
+                    return next;
+                  })
+                }
                 className="text-xs font-bold uppercase text-white/50 underline-offset-2 hover:text-white hover:underline"
               >
                 {details ? "Masquer les détails" : "Personnaliser"}

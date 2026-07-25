@@ -266,7 +266,7 @@ export function VehicleBrandPageClient({ page }: { page: VehicleBrandPageData })
               <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Autres marques traitees</p>
               <h2 className="mt-3 text-3xl font-black tracking-tight">Autres pages pneus voiture utiles</h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Recacor prend aussi en charge d'autres marques courantes au garage. Cette selection permet de voir
+                Recacor prend aussi en charge d&apos;autres marques courantes au garage. Cette selection permet de voir
                 rapidement les modeles suivis, les dimensions frequentes et les controles atelier utiles selon le vehicule.
               </p>
               <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">

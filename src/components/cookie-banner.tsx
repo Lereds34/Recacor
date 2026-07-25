@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -26,7 +26,7 @@ function TireIcon() {
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [details, setDetails] = useState(false);
-  const [impressionTracked, setImpressionTracked] = useState(false);
+  const impressionTrackedRef = useRef(false);
 
   useEffect(() => {
     const consent = hasConsent();
@@ -44,10 +44,10 @@ export function CookieBanner() {
   }, []);
 
   useEffect(() => {
-    if (!visible || impressionTracked) return;
+    if (!visible || impressionTrackedRef.current) return;
     trackCookieBannerImpression();
-    setImpressionTracked(true);
-  }, [impressionTracked, visible]);
+    impressionTrackedRef.current = true;
+  }, [visible]);
 
   const accept = () => { grantConsent(); setVisible(false); };
   const deny = () => { denyConsent(); setVisible(false); };

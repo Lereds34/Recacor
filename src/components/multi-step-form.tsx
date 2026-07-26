@@ -125,6 +125,7 @@ export function MultiStepForm({
       <input type="hidden" name="utm_medium" />
       <input type="hidden" name="utm_campaign" />
       <input type="hidden" name="utm_content" />
+      <input type="hidden" name="utm_term" />
       <input type="hidden" name="gclid" />
       <input type="hidden" name="fbclid" />
       <input type="hidden" name="page_source" />

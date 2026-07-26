@@ -47,6 +47,14 @@ npm run build
 node scripts/indexnow.mjs
 ```
 
+## Skill et guide SEO local obligatoires
+
+Pour tout changement SEO, utiliser le skill `recacor-copy-seo` et lire avant l'édition :
+
+`/Users/redouanelmansouri/Desktop/PROJET_RECACOR/04_Ressources/style_recacor_seo_local.md`
+
+Cela couvre le contenu visible, les metadata, titres, FAQ, liens internes, CTA, textes JSON-LD, pages villes/services/marques et articles. Après modification, lancer `npm run copy:check -- <fichiers-modifiés>` lorsque le contrôle est compatible, vérifier le rendu visible et enrichir le guide uniquement si la session produit un apprentissage vérifié et réutilisable. Suivre alors le protocole d'enrichissement et compléter le journal daté du guide.
+
 ## IDs formulaires (ne jamais modifier)
 
 - `devis-vl-form` — pneus voiture

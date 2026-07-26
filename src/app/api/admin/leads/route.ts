@@ -27,7 +27,7 @@ export async function GET(req: Request) {
     const header = [
       "id", "created_at", "form_id", "service_type", "status",
       "nom", "prenom", "entreprise", "telephone", "email", "cp", "message",
-      "utm_source", "utm_medium", "utm_campaign", "gclid", "fbclid", "page_source",
+      "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid", "page_source",
     ];
     const csvRows = (rows as Record<string, unknown>[]).map((r) =>
       header

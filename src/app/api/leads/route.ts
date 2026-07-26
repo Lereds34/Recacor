@@ -60,7 +60,7 @@ export async function POST(req: Request) {
         INSERT INTO leads (
           form_id, service_type, nom, prenom, entreprise,
           telephone, email, cp, message, payload,
-          utm_source, utm_medium, utm_campaign, utm_content,
+          utm_source, utm_medium, utm_campaign, utm_content, utm_term,
           gclid, fbclid, page_source, referrer
         ) VALUES (
           ${data.form_id}, ${data.service_type},
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
           ${data.telephone}, ${data.email}, ${data.cp || null}, ${data.message || null},
           ${JSON.stringify(data)}::jsonb,
           ${data.utm_source || null}, ${data.utm_medium || null},
-          ${data.utm_campaign || null}, ${data.utm_content || null},
+          ${data.utm_campaign || null}, ${data.utm_content || null}, ${data.utm_term || null},
           ${data.gclid || null}, ${data.fbclid || null},
           ${data.page_source || null}, ${data.referrer || null}
         )

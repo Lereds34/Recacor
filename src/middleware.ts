@@ -6,7 +6,6 @@ if (!process.env.AUTH_SECRET) {
 }
 const SECRET = new TextEncoder().encode(process.env.AUTH_SECRET);
 
-const UTM_PARAMS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
 const BRIEFING_PREFIX = "/briefings/";
 const PL_ALIAS_DESTINATION = "/pneus-utilitaires-pl";
 const PL_ALIASES = new Set([
@@ -43,17 +42,6 @@ export async function middleware(req: NextRequest) {
     url.pathname = PL_ALIAS_DESTINATION;
     url.search = "";
     return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // Supprimer les params UTM des pages publiques (évite l'indexation d'URLs dupliquées)
-  if (!path.startsWith("/admin") && !path.startsWith("/api/")) {
-    const hasUtm = UTM_PARAMS.some((p) => req.nextUrl.searchParams.has(p));
-    if (hasUtm) {
-      const url = req.nextUrl.clone();
-      UTM_PARAMS.forEach((p) => url.searchParams.delete(p));
-      const response = NextResponse.redirect(url, { status: 301 });
-      return path.startsWith(BRIEFING_PREFIX) ? applyBriefingHeaders(response) : response;
-    }
   }
 
   // Routes publiques (login + API auth)

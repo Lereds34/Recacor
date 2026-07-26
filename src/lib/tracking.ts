@@ -7,11 +7,10 @@ const UTM_KEYS = [
   "utm_medium",
   "utm_campaign",
   "utm_content",
+  "utm_term",
   "gclid",
   "fbclid",
 ] as const;
-
-type UtmKey = (typeof UTM_KEYS)[number];
 
 declare global {
   interface Window {
@@ -53,6 +52,7 @@ export function getUtmData() {
       utm_medium: "",
       utm_campaign: "",
       utm_content: "",
+      utm_term: "",
       gclid: "",
       fbclid: "",
       referrer: "",
@@ -64,6 +64,7 @@ export function getUtmData() {
     utm_medium: sessionStorage.getItem("utm_medium") || "",
     utm_campaign: sessionStorage.getItem("utm_campaign") || "",
     utm_content: sessionStorage.getItem("utm_content") || "",
+    utm_term: sessionStorage.getItem("utm_term") || "",
     gclid: sessionStorage.getItem("gclid") || "",
     fbclid: sessionStorage.getItem("fbclid") || "",
     referrer: sessionStorage.getItem("referrer") || "",
@@ -153,6 +154,7 @@ export async function pushFormSubmit(
     utm_medium: utm.utm_medium,
     utm_campaign: utm.utm_campaign,
     utm_content: utm.utm_content,
+    utm_term: utm.utm_term,
     gclid: utm.gclid,
     fbclid: utm.fbclid,
     page_source: utm.page_source,

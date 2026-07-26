@@ -99,6 +99,7 @@ async function runSchemaMigrations(): Promise<void> {
       utm_medium    TEXT,
       utm_campaign  TEXT,
       utm_content   TEXT,
+      utm_term      TEXT,
       gclid         TEXT,
       fbclid        TEXT,
       page_source   TEXT,
@@ -107,6 +108,7 @@ async function runSchemaMigrations(): Promise<void> {
       created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
     );
   `;
+  await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS utm_term TEXT;`;
   await sql`CREATE INDEX IF NOT EXISTS idx_leads_created ON leads (created_at DESC);`;
   await sql`CREATE INDEX IF NOT EXISTS idx_leads_status ON leads (status);`;
 

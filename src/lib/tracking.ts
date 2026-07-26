@@ -24,12 +24,15 @@ declare global {
 }
 
 type ConsentStatus = "granted" | "denied";
+export type CookieBannerVariant = "bottom" | "center";
 
 type ConsentEventName =
   | "cookie_banner_impression"
   | "cookie_customize_open"
   | "cookie_accept"
   | "cookie_deny";
+
+const COOKIE_BANNER_VARIANT_STORAGE_KEY = "recacor_cookie_banner_variant";
 
 export function captureUtmParams() {
   if (typeof window === "undefined") return;
@@ -197,6 +200,31 @@ export function pushDirectionsClick(serviceType?: ServiceType) {
   });
 }
 
+function chooseCookieBannerVariant(): CookieBannerVariant {
+  if (typeof window === "undefined") return "bottom";
+
+  if (typeof window.crypto?.getRandomValues === "function") {
+    const bucket = new Uint32Array(1);
+    window.crypto.getRandomValues(bucket);
+    return bucket[0] % 2 === 0 ? "bottom" : "center";
+  }
+
+  return Math.random() < 0.5 ? "bottom" : "center";
+}
+
+export function getOrCreateCookieBannerVariant(): CookieBannerVariant {
+  if (typeof window === "undefined") return "bottom";
+
+  const stored = window.localStorage.getItem(COOKIE_BANNER_VARIANT_STORAGE_KEY);
+  if (stored === "bottom" || stored === "center") {
+    return stored;
+  }
+
+  const variant = chooseCookieBannerVariant();
+  window.localStorage.setItem(COOKIE_BANNER_VARIANT_STORAGE_KEY, variant);
+  return variant;
+}
+
 /* Consent Mode v2 */
 function updateConsent(status: ConsentStatus) {
   if (typeof window === "undefined") return;
@@ -291,30 +319,30 @@ export function syncStoredConsentIntegrations() {
   }
 }
 
-export function grantConsent() {
+export function grantConsent(variant?: CookieBannerVariant) {
   if (typeof window === "undefined") return;
   document.cookie = "cookie_consent=granted; max-age=33696000; path=/; SameSite=Lax";
   updateConsent("granted");
   syncClarityConsent("granted");
-  void logConsentEvent("cookie_accept", "granted");
+  void logConsentEvent("cookie_accept", "granted", variant ? { banner_variant: variant } : {});
 }
 
-export function denyConsent() {
+export function denyConsent(variant?: CookieBannerVariant) {
   if (typeof window === "undefined") return;
-  void logConsentEvent("cookie_deny", "denied");
+  void logConsentEvent("cookie_deny", "denied", variant ? { banner_variant: variant } : {});
   syncClarityConsent("denied");
   document.cookie = "cookie_consent=denied; max-age=33696000; path=/; SameSite=Lax";
   updateConsent("denied");
 }
 
-export function trackCookieBannerImpression() {
+export function trackCookieBannerImpression(variant?: CookieBannerVariant) {
   const status = hasConsent() || "denied";
-  void logConsentEvent("cookie_banner_impression", status);
+  void logConsentEvent("cookie_banner_impression", status, variant ? { banner_variant: variant } : {});
 }
 
-export function trackCookieCustomizeOpen() {
+export function trackCookieCustomizeOpen(variant?: CookieBannerVariant) {
   const status = hasConsent() || "denied";
-  void logConsentEvent("cookie_customize_open", status);
+  void logConsentEvent("cookie_customize_open", status, variant ? { banner_variant: variant } : {});
 }
 
 export function hasConsent(): "granted" | "denied" | null {

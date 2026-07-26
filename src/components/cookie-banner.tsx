@@ -6,10 +6,12 @@ import Link from "next/link";
 import {
   grantConsent,
   denyConsent,
+  getOrCreateCookieBannerVariant,
   hasConsent,
   syncStoredConsentIntegrations,
   trackCookieBannerImpression,
   trackCookieCustomizeOpen,
+  type CookieBannerVariant,
 } from "@/lib/tracking";
 
 function TireIcon() {
@@ -26,6 +28,7 @@ function TireIcon() {
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
   const [details, setDetails] = useState(false);
+  const [variant] = useState<CookieBannerVariant>(() => getOrCreateCookieBannerVariant());
   const impressionTrackedRef = useRef(false);
 
   useEffect(() => {
@@ -45,12 +48,13 @@ export function CookieBanner() {
 
   useEffect(() => {
     if (!visible || impressionTrackedRef.current) return;
-    trackCookieBannerImpression();
+    trackCookieBannerImpression(variant);
     impressionTrackedRef.current = true;
-  }, [visible]);
+  }, [variant, visible]);
 
-  const accept = () => { grantConsent(); setVisible(false); };
-  const deny = () => { denyConsent(); setVisible(false); };
+  const accept = () => { grantConsent(variant); setVisible(false); };
+  const deny = () => { denyConsent(variant); setVisible(false); };
+  const isCentered = variant === "center";
 
   return (
     <AnimatePresence>
@@ -64,13 +68,17 @@ export function CookieBanner() {
             className="fixed inset-0 z-[109] bg-black/60"
           />
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
+            initial={isCentered ? { scale: 0.96, opacity: 0 } : { y: 100, opacity: 0 }}
+            animate={isCentered ? { scale: 1, opacity: 1 } : { y: 0, opacity: 1 }}
+            exit={isCentered ? { scale: 0.96, opacity: 0 } : { y: 100, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 z-[110] border-t-4 border-yellow-400 bg-[var(--recacor-night)] shadow-[0_-12px_40px_rgba(0,0,0,0.35)]"
+            className={
+              isCentered
+                ? "fixed left-1/2 top-1/2 z-[110] w-[min(92vw,760px)] -translate-x-1/2 -translate-y-1/2 border-t-4 border-yellow-400 bg-[var(--recacor-night)] shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
+                : "fixed inset-x-0 bottom-0 z-[110] border-t-4 border-yellow-400 bg-[var(--recacor-night)] shadow-[0_-12px_40px_rgba(0,0,0,0.35)]"
+            }
           >
-          <div className="recacor-shell flex flex-col gap-5 py-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className={isCentered ? "flex flex-col gap-5 p-6 sm:p-8" : "recacor-shell flex flex-col gap-5 py-6 lg:flex-row lg:items-center lg:justify-between"}>
             <div className="flex gap-4">
               <TireIcon />
               <div>
@@ -100,13 +108,13 @@ export function CookieBanner() {
               </div>
             </div>
 
-            <div className="flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center">
+            <div className={isCentered ? "flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:flex-wrap sm:items-center" : "flex shrink-0 flex-col gap-3 sm:flex-row sm:items-center"}>
               <button
                 type="button"
                 onClick={() =>
                   setDetails((current) => {
                     const next = !current;
-                    if (next) trackCookieCustomizeOpen();
+                    if (next) trackCookieCustomizeOpen(variant);
                     return next;
                   })
                 }

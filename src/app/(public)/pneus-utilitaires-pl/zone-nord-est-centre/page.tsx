@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pneus poids lourd Zone Nord-Est & Centre | Transport, remorque",
     description:
-      "Une page zone Recacor pour les demandes pneus poids lourd orientées transport, remorque, TP et flotte multi-sites.",
+      "Recacor accompagne les demandes pneus poids lourd de la zone Nord-Est & Centre, avec un focus transport, remorque, TP et flotte multi-sites.",
     url: "https://www.recacor.fr/pneus-utilitaires-pl/zone-nord-est-centre",
     siteName: "Recacor",
     locale: "fr_FR",

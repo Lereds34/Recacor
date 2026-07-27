@@ -35,6 +35,21 @@ const accompagnements = [
   },
 ];
 
+const zonesPl = [
+  {
+    title: "Zone Sud & Corse",
+    href: "/pneus-utilitaires-pl/zone-sud-corse",
+    desc: "Transport régional, remorque, chantier et relais terrain selon le secteur, avec un interlocuteur commercial dédié.",
+    tags: ["Claire", "Transport / remorque", "TP / BTP"],
+  },
+  {
+    title: "Zone Nord-Est & Centre",
+    href: "/pneus-utilitaires-pl/zone-nord-est-centre",
+    desc: "Besoins orientés transport, remorque, Loiret très demandé et qualification serrée sur les flottes multi-sites.",
+    tags: ["Christophe", "Loiret (45)", "Parcs multi-sites"],
+  },
+];
+
 const pneuTypes = [
   {
     Icon: Truck,
@@ -225,8 +240,8 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
             <div className="rounded-[4px] border border-border bg-muted/35 p-6">
               <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Accompagnement Recacor</p>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                L&apos;objectif est simple : vous aider à choisir une solution cohérente selon
-                votre activité, votre budget, vos contraintes et la disponibilité réelle.
+                Recacor aide à orienter le bon choix selon l&apos;activité, le budget, les
+                contraintes terrain et la disponibilité réelle.
               </p>
             </div>
           </div>
@@ -238,6 +253,41 @@ export function PlClient({ heroImage }: { heroImage?: string }) {
                 <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-14 rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-purple-bright">Couverture commerciale PL</p>
+                <h2 className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">
+                  Deux pages zone déjà en place pour{" "}
+                  <span className="text-gradient-purple">mieux orienter les demandes PL</span>
+                </h2>
+                <p className="mt-4 text-muted-foreground leading-relaxed">
+                  Le hub PL reste l&apos;entrée générale, puis la lecture se resserre selon le
+                  secteur, le type de flotte et le besoin terrain. Ces pages permettent de relier
+                  plus clairement les zones suivies, les articles locaux et les services utiles au parc.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                {zonesPl.map((zone) => (
+                  <div key={zone.href} className="rounded-[4px] border border-border bg-muted/30 p-5">
+                    <h3 className="text-lg font-black tracking-tight">{zone.title}</h3>
+                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{zone.desc}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {zone.tags.map((tag) => (
+                        <span key={tag} className="rounded-[4px] border border-border bg-white px-2.5 py-1 text-xs font-bold text-foreground">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <Link href={zone.href} className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-purple-bright hover:underline">
+                      Voir la page {zone.title} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

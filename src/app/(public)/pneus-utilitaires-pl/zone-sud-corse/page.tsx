@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pneus poids lourd Zone Sud & Corse | Transport, remorque, TP",
     description:
-      "Une page zone Recacor pour les besoins pneus poids lourd en transport, remorque, chantier et flotte régionale.",
+      "Recacor accompagne les demandes pneus poids lourd de la zone Sud & Corse en transport, remorque, chantier et flotte régionale.",
     url: "https://www.recacor.fr/pneus-utilitaires-pl/zone-sud-corse",
     siteName: "Recacor",
     locale: "fr_FR",

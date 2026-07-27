@@ -317,6 +317,30 @@ export function ClimCamionClient({ heroImage }: { heroImage?: string }) {
           </div>
         </div>
       </section>
+
+      <section className="bg-background py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-[4px] border border-border bg-white p-8 sm:p-10">
+            <h2 className="text-3xl font-black tracking-tight">
+              Autres pages utiles pour une{" "}
+              <span className="text-gradient-purple">demande PL ou flotte</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              La clim cabine s&apos;intègre souvent dans un besoin plus large : pneus poids lourd,
+              recreusage, couverture commerciale selon la zone et contact atelier selon le type
+              de parc. Ces pages aident à aller directement vers le bon point d&apos;entrée.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
+              <Link href="/pneus-utilitaires-pl" className="text-purple-bright hover:underline">Pneus poids lourd</Link>
+              <Link href="/services/recreusage" className="text-purple-bright hover:underline">Recreusage poids lourd</Link>
+              <Link href="/pneus-utilitaires-pl/zone-sud-corse" className="text-purple-bright hover:underline">Zone Sud &amp; Corse</Link>
+              <Link href="/pneus-utilitaires-pl/zone-nord-est-centre" className="text-purple-bright hover:underline">Zone Nord-Est &amp; Centre</Link>
+              <Link href="/blog/pneus-nimes" className="text-purple-bright hover:underline">Pneus poids lourd Nîmes</Link>
+              <Link href="/blog/pneus-sete" className="text-purple-bright hover:underline">Pneus poids lourd Sète</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

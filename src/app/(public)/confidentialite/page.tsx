@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getLegalPage } from "@/lib/legal";
 import { LegalContent } from "@/components/legal-renderer";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité",

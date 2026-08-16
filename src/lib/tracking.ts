@@ -270,17 +270,8 @@ async function logConsentEvent(
     pushDataLayerEvent("consent_update", payload);
   }
 
-  fetch("/api/consent-events", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      event_name: eventName,
-      consent_status: status,
-      page_path: payload.page_path,
-      metadata: extra,
-    }),
-    keepalive: true,
-  }).catch(() => {});
+  // Le test A/B de la bannière est terminé. On conserve le dataLayer,
+  // GA4 et Clarity sans réveiller Neon à chaque visite publique.
 }
 
 function syncClarityConsent(status: ConsentStatus) {

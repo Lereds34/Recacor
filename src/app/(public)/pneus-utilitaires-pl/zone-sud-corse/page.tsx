@@ -3,7 +3,7 @@ import { getAsset } from "@/lib/site-assets";
 import { RelatedArticles } from "@/components/related-articles";
 import { PlZoneSudCorseClient } from "./client";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Pneus poids lourd Zone Sud & Corse | Transport, remorque, TP",

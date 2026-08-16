@@ -4,7 +4,7 @@ import { RelatedArticles } from "@/components/related-articles";
 import { findVehicleBrandPage, listPublishedVehicleBrandPages } from "@/data/vehicle-brand-pages";
 import { VehicleBrandPageClient } from "./client";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
   return listPublishedVehicleBrandPages().map((page) => ({ marque: page.slug }));

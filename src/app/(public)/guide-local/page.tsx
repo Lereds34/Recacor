@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { GuideLocalClient } from "./client";
 import { BreadcrumbJsonLd } from "@/components/schema-jsonld";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Guide local Montpellier — partenaires et bonnes adresses",

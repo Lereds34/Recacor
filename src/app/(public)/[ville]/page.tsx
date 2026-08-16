@@ -5,7 +5,7 @@ import { VillePageClient } from "@/components/ville-page";
 import { findVilleSeo } from "@/data/villes-seo";
 import { getAsset } from "@/lib/site-assets";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const RESERVED_SLUGS = new Set([
   "blog", "contact", "merci", "maquette", "mecanique",

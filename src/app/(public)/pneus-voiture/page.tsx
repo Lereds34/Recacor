@@ -4,7 +4,7 @@ import { PneusVoitureClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
 import { getAsset } from "@/lib/site-assets";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Pneus Montpellier dès 45€ montés | Garage pneu Recacor",

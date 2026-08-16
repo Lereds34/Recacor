@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { sql, ensureSchema } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -40,6 +41,15 @@ export async function GET(req: Request) {
       FROM articles
      WHERE status = 'scheduled' AND publish_at > NOW()
   `) as { n: number }[];
+
+  if (promoted.length > 0) {
+    revalidatePath("/");
+    revalidatePath("/blog");
+    revalidatePath("/api/public/articles/recent");
+    for (const article of promoted) {
+      revalidatePath(`/blog/${article.slug}`);
+    }
+  }
 
   return NextResponse.json({
     ok: true,

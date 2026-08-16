@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { NosCentresClient } from "./client";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Notre Garage Recacor — Le Crès, Hérault",

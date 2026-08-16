@@ -3,7 +3,7 @@ import { PlClient } from "./client";
 import { RelatedArticles } from "@/components/related-articles";
 import { getAsset } from "@/lib/site-assets";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   title: "Pneus poids lourd Hérault - Assistance 24/7 et devis flotte",

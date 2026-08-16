@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import sharp from "sharp";
 import { getAllAssets, setAsset, setAssetBinary, resetAsset } from "@/lib/site-assets";
 
@@ -30,6 +31,7 @@ export async function PUT(req: Request) {
       };
       if (!key || !url) return NextResponse.json({ error: "key et url requis" }, { status: 400 });
       await setAsset(key, url, type, alt || "");
+      revalidatePath("/api/public/assets");
       return NextResponse.json({ ok: true, url });
     }
 
@@ -72,6 +74,7 @@ export async function PUT(req: Request) {
     }
 
     const url = await setAssetBinary(key, buffer, type, mime, filename, alt);
+    revalidatePath("/api/public/assets");
     return NextResponse.json({ ok: true, url });
   } catch (e) {
     console.error("[site-asset upload]", e);
@@ -85,6 +88,7 @@ export async function DELETE(req: Request) {
     const key = url.searchParams.get("key");
     if (!key) return NextResponse.json({ error: "key requis" }, { status: 400 });
     await resetAsset(key);
+    revalidatePath("/api/public/assets");
     return NextResponse.json({ ok: true });
   } catch (e) {
     return NextResponse.json({ error: String(e) }, { status: 500 });

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAllAssets } from "@/lib/site-assets";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 export const runtime = "nodejs";
 
 export async function GET() {
@@ -12,6 +12,6 @@ export async function GET() {
     out[k] = { url: v.url, type: v.type, alt: v.alt };
   }
   return NextResponse.json({ assets: out }, {
-    headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400" },
+    headers: { "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=604800" },
   });
 }

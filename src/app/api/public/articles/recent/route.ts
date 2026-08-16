@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAllArticles } from "@/lib/blog";
 
-export const revalidate = 3600;
+export const revalidate = 604800;
 
 export async function GET() {
   try {
@@ -16,7 +16,7 @@ export async function GET() {
       excerpt,
     }));
     return NextResponse.json(recent, {
-      headers: { "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=600" },
+      headers: { "Cache-Control": "public, s-maxage=604800, stale-while-revalidate=86400" },
     });
   } catch {
     return NextResponse.json([], { status: 200 });
